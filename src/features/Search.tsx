@@ -19,29 +19,30 @@ export const Search = () => {
       }
     })
     .then((res) => {
-      console.log('something got submitted')
+      console.log('ticketmaster api response')
       console.log(res.data);
     })
     .catch((err) => {
-      console.log('something did not work')
+      console.log('ticketmaster api rejection')
       console.log(err);
     })
-
-    // axios.get('https://api.stubhub.com/sellers/search/events/v3', {
-    //   params: {
-    //     apikey: 'BBCLAjLv49NKWn8ridowEhErPKvuxJfT',
-    //     keyword: formValue,
-    //     countryCode: 'US'
-    //   }
-    // })
-    // .then((res) => {
-    //   console.log('something got submitted')
-    //   console.log(res.data);
-    // })
-    // .catch((err) => {
-    //   console.log('something did not work')
-    //   console.log(err);
-    // })
+    
+    axios.get('https://api.stubhub.com/sellers/search/events/v3', {
+      params: {
+        q: formValue,
+      },
+      headers: {
+        'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP',
+      }
+    })
+    .then((res) => {
+      console.log('stubhub api response')
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log('stubhub api rejection')
+      console.log(err);
+    })
 
   }
   return (

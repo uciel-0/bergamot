@@ -1,12 +1,22 @@
 import * as React from 'react';
-// component which will house all the necessary contexts 
-const defaultValue = '';
-const SearchResultsContext: React.Context<any> = React.createContext(defaultValue);
+import {searchResultsReducer, initialSearchResultsState, SearchResultsState} from './searchResults/Reducer';
+import {SearchResultsActions} from './searchResults/Actions';
+// const [state, dispatch] = React.useReducer(searchResultsReducer, initialSearchResultsState)
 
+interface SearchResultsContextType {
+  state: SearchResultsState;
+  dispatch: React.Dispatch<SearchResultsActions>
+}
+
+export const SearchResultsContext = React.createContext<SearchResultsContextType>({
+  state: initialSearchResultsState,
+  dispatch: () => null
+});
+// component which will house all the necessary contexts 
 const Store: React.FunctionComponent = ({children}) => {
-  const [searchResults, setSearchResults] = React.useState(defaultValue);
+  const [state, dispatch] = React.useReducer(searchResultsReducer, initialSearchResultsState);
   return (
-    <SearchResultsContext.Provider value={[searchResults, setSearchResults]}>
+    <SearchResultsContext.Provider value={{state, dispatch}}>
       {children}
     </SearchResultsContext.Provider>
   ) 

@@ -6,17 +6,12 @@ import {setTicketMasterResultsAction, setStubHubResultsAction} from '../store/se
 export const Search = () => {
   const [formValue, setFormValue] = React.useState<string>('');
   const {state, dispatch} = React.useContext(SearchResultsContext);
-  // const [ticketMasterResults, setTicketMasterResults] = React.useState<any>();
-  // const [stubhubResults, setStubhubResults] = React.useState<any>();
-
-  React.useEffect(() => {
-
-  }, [])
   // we have to take the input and send it across multiple apis 
   // the api calls are both asynchronous, wondering if we should wait for them both to be sent back or just send which one resolves first 
   
   const onSubmit = (e: any) => {
     e.preventDefault();
+    // ticketmaster call
     axios.get('https://app.ticketmaster.com/discovery/v2/suggest', {
       params: {
         apikey: 'BBCLAjLv49NKWn8ridowEhErPKvuxJfT',
@@ -32,27 +27,26 @@ export const Search = () => {
     .catch((err) => {
       console.log('ticketmaster api rejection')
       console.log(err);
-    })
-    
-    axios.get('https://api.stubhub.com/sellers/search/events/v3', {
+    });
+    // custom api call to search/performers
+    axios.get('http://localhost:8080/api/stubhub/search', {
       params: {
-        q: formValue,
-      },
-      headers: {
-        'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP',
+        keyword: formValue
       }
     })
     .then((res) => {
-      console.log('stubhub api response')
+      console.log('search api response')
       console.log(res.data);
       dispatch(setStubHubResultsAction(res.data));
     })
     .catch((err) => {
-      console.log('stubhub api rejection')
+      console.log('front end search api rejection')
       console.log(err);
-    })
-
+    });
+    // custom api call to search/locations
+    // apis seem to be looking for specific artists using an ID 
   }
+
   return (
     <React.Fragment>
       <form

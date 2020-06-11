@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export enum SearchResultActionTypes {
   SET_TICKETMASTER_RESULTS = 'SET_TICKETMASTER_RESULTS',
   SET_STUBHUB_RESULTS = 'SET_STUBHUB_RESULTS'

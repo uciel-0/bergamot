@@ -20,5 +20,3 @@ export const initialSearchResultsState: SearchResultsState = {
   ticketmaster: {},
   stubhub: {}
 }
-  
-// export const SearchResultsContext: React.Context<any> = React.createContext(defaultValue);

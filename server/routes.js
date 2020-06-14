@@ -3,6 +3,7 @@ import * as controller from './controllers';
 
 const router = express.Router();
 
-router.get('/api/stubhub/search', controller.getStubhubSuggestions);
+router.get('/api/stubhub/search', controller.stubhub.getStubhubSearchResults);
+router.get('/api/ticketmaster/search', controller.ticketmaster.getTicketMasterSearchResults)
 
 export default router;

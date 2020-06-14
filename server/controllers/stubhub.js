@@ -1,9 +1,8 @@
 // in this file we'll define the XHR calls to the stubhub and ticketmaster backend 
 // for now, we'll just do the stubhub calls since they're the ones giving us a hard time
 import axios from 'axios';
-import { Router } from 'express';
 // this has got to take in some input from the front end 
-export const getStubhubPerformers = (req, res) => {
+const getStubhubPerformers = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/partners/search/performers/v3', {
     params: {
@@ -13,7 +12,6 @@ export const getStubhubPerformers = (req, res) => {
       'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP'
     }
   }).then((data) => {
-    console.log('stubhub performers api response', data.data)
     return data.data
   })
   .catch((err) => {
@@ -21,8 +19,8 @@ export const getStubhubPerformers = (req, res) => {
     return err
   })
 }
-// good 
-export const getStubhubEvents = (req, res) => {
+ 
+const getStubhubEvents = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/sellers/search/events/v3', {
     params: {
@@ -34,7 +32,6 @@ export const getStubhubEvents = (req, res) => {
     }
   })
   .then((data) => {
-    console.log('stubhub events api response', data.data)
     return data.data
   })
   .catch((err) => {
@@ -43,7 +40,7 @@ export const getStubhubEvents = (req, res) => {
   });
 }
 
-export const getStubhubVenues = (req, res) => {
+const getStubhubVenues = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/partners/search/venues/v3', {
     params: {
@@ -55,7 +52,6 @@ export const getStubhubVenues = (req, res) => {
     }
   })
   .then((data) => {
-    console.log('stubhub venues api response', data.data)
     return data.data
   })
   .catch((err) => {
@@ -64,7 +60,7 @@ export const getStubhubVenues = (req, res) => {
   });
 }
 // good 
-export const getStubhubLocations = (req, res) => {
+const getStubhubLocations = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/sellers/search/locations/v3', {
     params: {
@@ -76,7 +72,7 @@ export const getStubhubLocations = (req, res) => {
     }
   })
   .then((data) => {
-    return data.data
+    return data.data;
   })
   .catch((err) => {
     console.err('stubhub locations api rejection', err)
@@ -84,7 +80,7 @@ export const getStubhubLocations = (req, res) => {
   });
 }
 
-export const getStubhubSuggestions = (req, res) => {
+export const getStubhubSearchResults = (req, res) => {
   const performers = getStubhubPerformers(req, res);
   const events = getStubhubEvents(req, res);
   const venues = getStubhubVenues(req, res);

@@ -11,8 +11,8 @@ export const Search = () => {
   
   const onSubmit = (e: any) => {
     e.preventDefault();
-    // ticketmaster call
-    axios.get('https://app.ticketmaster.com/discovery/v2/suggest', {
+  
+    axios.get('http://localhost:8080/api/ticketmaster/search', {
       params: {
         apikey: 'BBCLAjLv49NKWn8ridowEhErPKvuxJfT',
         keyword: formValue,
@@ -28,7 +28,7 @@ export const Search = () => {
       console.log('ticketmaster api rejection')
       console.log(err);
     });
-    // custom api call to search/performers
+
     axios.get('http://localhost:8080/api/stubhub/search', {
       params: {
         keyword: formValue

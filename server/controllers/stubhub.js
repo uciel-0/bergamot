@@ -1,25 +1,5 @@
-// in this file we'll define the XHR calls to the stubhub and ticketmaster backend 
-// for now, we'll just do the stubhub calls since they're the ones giving us a hard time
 import axios from 'axios';
 // this has got to take in some input from the front end 
-const getStubhubPerformers = (req) => {
-  const keyword = req.query.keyword;
-  return axios.get('https://api.stubhub.com/partners/search/performers/v3', {
-    params: {
-      q: keyword
-    },
-    headers: {
-      'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP'
-    }
-  }).then((data) => {
-    return data.data
-  })
-  .catch((err) => {
-    console.error('stubhub performers api rejection', err);
-    return err
-  })
-}
- 
 const getStubhubEvents = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/sellers/search/events/v3', {
@@ -38,6 +18,24 @@ const getStubhubEvents = (req) => {
     console.err('stubhub events api rejection', err)
     return err
   });
+}
+
+const getStubhubPerformers = (req) => {
+  const keyword = req.query.keyword;
+  return axios.get('https://api.stubhub.com/partners/search/performers/v3', {
+    params: {
+      q: keyword
+    },
+    headers: {
+      'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP'
+    }
+  }).then((data) => {
+    return data.data
+  })
+  .catch((err) => {
+    console.error('stubhub performers api rejection', err);
+    return err
+  })
 }
 
 const getStubhubVenues = (req) => {
@@ -81,22 +79,22 @@ const getStubhubLocations = (req) => {
 }
 
 export const getStubhubSearchResults = (req, res) => {
-  const performers = getStubhubPerformers(req, res);
-  const events = getStubhubEvents(req, res);
-  const venues = getStubhubVenues(req, res);
-  const locations = getStubhubLocations(req, res);
-  Promise.all([performers, events, venues, locations])
+  const events = getStubhubEvents(req);
+  const performers = getStubhubPerformers(req);
+  const venues = getStubhubVenues(req);
+  const locations = getStubhubLocations(req);
+  Promise.all([events, performers, venues, locations])
   .then((data) => {
-    let suggestionsResponse = {
-      performers: data[0].performers,
-      events: data[1].events,
+    let searchResults = {
+      events: data[0].events,
+      performers: data[1].performers,
       venues: data[2].venues,
       locations: data[3].locations
     }
-    res.send(suggestionsResponse);
+    res.send(searchResults);
   })
   .catch((err) => {
     console.log('all calls did not resolve successfully', err);
-    res.sendStatus(400)
+    res.sendStatus(400);
   })
 }

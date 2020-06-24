@@ -6,13 +6,12 @@ import {
   setStubHubResultsAction,
   setSeatGeekResults
 } from '../store/searchResults/Actions';
+import {BopIcon} from '../components/BopIcon';
 
 export const Search = () => {
   const [formValue, setFormValue] = React.useState<string>('');
   const {state, dispatch} = React.useContext(SearchResultsContext);
-  // we have to take the input and send it across multiple apis 
-  // the api calls are both asynchronous, wondering if we should wait for them both to be sent back or just send which one resolves first 
-  // when we're happy with the results, we can turn this into one big call resolved from the back end 
+
   const onSubmit = (e: any) => {
     e.preventDefault();
     
@@ -61,28 +60,15 @@ export const Search = () => {
   }
 
   return (
-    <React.Fragment>
-      <form
-        onSubmit={(e) => onSubmit(e)}
-      >
+    <div className="Search">
+      <BopIcon />
+      <form onSubmit={(e) => onSubmit(e)}>
         <input 
           placeholder="search for events, artists, teams or venues" 
           value={formValue} 
           onChange={(e) => setFormValue(e.target.value)}
         />
       </form>
-      <div>
-        <h1>ticketmaster results</h1>
-        {JSON.stringify(state.ticketmaster)}
-      </div>
-      <div>
-        <h1>stubhub results</h1>
-        {JSON.stringify(state.stubhub)}
-      </div>
-      <div>
-        <h1>seatgeek results</h1>
-        {JSON.stringify(state.seatgeek)}
-      </div>
-    </React.Fragment>
+    </div>
   ) 
 }

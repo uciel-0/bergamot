@@ -50,17 +50,17 @@ export const getSeatGeekSearchResults = (req, res) => {
   const events = getSeatGeekEvents(req);
   const performers = getSeatGeekPerformers(req);
   const venues = getSeatGeekVenues(req);
-  Promise.all([events, performers, venues])
+  return Promise.all([events, performers, venues])
   .then((data) => {
     let searchResults = {
       events: data[0].events,
       performers: data[1].performers,
       venues: data[2].venues
     }
-    res.send(searchResults);
+    return searchResults;
   })
   .catch((err) => {
     console.log('error with seatgeek api calls', err);
-    res.sendStatus(400);
+    return err 
   })
 }

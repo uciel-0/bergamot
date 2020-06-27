@@ -1,5 +1,3 @@
-import * as stubhub from './stubhub';
-import * as ticketmaster from './ticketmaster';
-import * as seatgeek from './seatgeek';
+import * as search from './search'
 
-export {stubhub, ticketmaster, seatgeek};
+export {search};

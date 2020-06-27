@@ -7,27 +7,10 @@ export const Results = () => {
   return (
     <div className="Results">
       <div>
-        <h1>ticketmaster results</h1>
         {
-          state.ticketmaster._embedded ? state.ticketmaster._embedded.events.map((e: any) => 
-            <Card name={e.name} date={e.dates.start.dateTime}/>
-          ) : null
-        }
-      </div>
-      <div>
-        <h1>stubhub results</h1>
-        {
-          state.stubhub.events ? state.stubhub.events.map((e: any) => 
-            <Card name={e.name} price={e.ticketInfo.minPrice} date={e.eventDateLocal}/>
-          ) : null
-        }
-      </div>
-      <div>
-        <h1>seatgeek results</h1>
-        {
-          state.seatgeek.events ? state.seatgeek.events.map((e: any) => 
-            <Card date={e.datetime_local} name={e.title} price={e.stats.lowest_price}/>
-          ) : null
+          state.searchResults.map((e: any) => 
+            <Card name={e.name} date={e.date} price={e.minPrice} source={e.source}/>
+          ) 
         }
       </div>
     </div>

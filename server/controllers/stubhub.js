@@ -83,7 +83,7 @@ export const getStubhubSearchResults = (req, res) => {
   const performers = getStubhubPerformers(req);
   const venues = getStubhubVenues(req);
   const locations = getStubhubLocations(req);
-  Promise.all([events, performers, venues, locations])
+  return Promise.all([events, performers, venues, locations])
   .then((data) => {
     let searchResults = {
       events: data[0].events,
@@ -91,10 +91,10 @@ export const getStubhubSearchResults = (req, res) => {
       venues: data[2].venues,
       locations: data[3].locations
     }
-    res.send(searchResults);
+    return searchResults;
   })
   .catch((err) => {
     console.log('all calls did not resolve successfully', err);
-    res.sendStatus(400);
+    return err
   })
 }

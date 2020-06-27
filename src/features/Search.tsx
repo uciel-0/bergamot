@@ -1,62 +1,27 @@
 import * as React from 'react';
 import axios from 'axios';
 import {SearchResultsContext} from '../store/Store';
-import {
-  setTicketMasterResultsAction, 
-  setStubHubResultsAction,
-  setSeatGeekResults
-} from '../store/searchResults/Actions';
+import {setSearchResults} from '../store/searchResults/Actions';
 import {BopIcon} from '../components/BopIcon';
 
 export const Search = () => {
   const [formValue, setFormValue] = React.useState<string>('');
-  const {state, dispatch} = React.useContext(SearchResultsContext);
+  const {dispatch} = React.useContext(SearchResultsContext);
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    
-    axios.get('http://localhost:8080/api/ticketmaster/search', {
+    axios.get('http://localhost:8080/api/search/events', {
       params: {
-        apikey: 'BBCLAjLv49NKWn8ridowEhErPKvuxJfT',
         keyword: formValue,
-        countryCode: 'US'
       }
     })
     .then((res) => {
-      console.log('ticketmaster api response', res.data)
-      dispatch(setTicketMasterResultsAction(res.data));
+      console.log('master search api response', res.data)
+      dispatch(setSearchResults(res.data));
     })
     .catch((err) => {
-      console.log('ticketmaster api rejection')
-      console.log(err);
+      console.log('master search api rejection', err)
     });
-
-    axios.get('http://localhost:8080/api/stubhub/search', {
-      params: {
-        keyword: formValue
-      }
-    })
-    .then((res) => {
-      console.log('stubhub api response', res.data)
-      dispatch(setStubHubResultsAction(res.data));
-    })
-    .catch((err) => {
-      console.log('stubhub api rejection')
-      console.log(err);
-    });
-
-    axios.get('http://localhost:8080/api/seatgeek/search', {
-      params: {
-        keyword: formValue
-      }
-    })
-    .then((res) => {
-      console.log('seatgeek response', res.data);
-      dispatch(setSeatGeekResults(res.data))
-    })
-    .catch((err) => {
-      console.log('Seatgeek API call err', err);
-    })
   }
 
   return (

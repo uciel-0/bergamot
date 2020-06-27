@@ -56,3 +56,8 @@
 .Results {
   flex-direction: column;
 }
+
+.Card {
+  border: 1px solid black;
+  background-color: rgba(196, 196, 196, 0.4);
+}

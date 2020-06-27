@@ -24,7 +24,7 @@ export const Search = () => {
     })
     .then((res) => {
       console.log('ticketmaster api response', res.data)
-      dispatch(setTicketMasterResultsAction('Ticketmaster Results in console'));
+      dispatch(setTicketMasterResultsAction(res.data));
     })
     .catch((err) => {
       console.log('ticketmaster api rejection')
@@ -38,7 +38,7 @@ export const Search = () => {
     })
     .then((res) => {
       console.log('stubhub api response', res.data)
-      dispatch(setStubHubResultsAction('Stubhub results in console'));
+      dispatch(setStubHubResultsAction(res.data));
     })
     .catch((err) => {
       console.log('stubhub api rejection')
@@ -52,7 +52,7 @@ export const Search = () => {
     })
     .then((res) => {
       console.log('seatgeek response', res.data);
-      dispatch(setSeatGeekResults('Seatgeek results in console'))
+      dispatch(setSeatGeekResults(res.data))
     })
     .catch((err) => {
       console.log('Seatgeek API call err', err);

@@ -22,7 +22,6 @@ const SourceLogo = ({source}: any) => {
     default: 
       logo = null;
   }
-  console.log(logo);
   return logo
 }
 

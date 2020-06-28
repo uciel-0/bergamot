@@ -29,6 +29,7 @@ export const Search = () => {
       <BopIcon />
       <form onSubmit={(e) => onSubmit(e)}>
         <input 
+          className="Search-input"
           placeholder="search for events, artists, teams or venues" 
           value={formValue} 
           onChange={(e) => setFormValue(e.target.value)}

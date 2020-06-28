@@ -56,9 +56,13 @@ body {
 
 .Search-input {
   position: absolute;
-  top: 35px;
-  left: 100px;
+  top: 20px;
+  left: 130px;
   width: 90%;
+  background: rgba(196, 196, 196, 0.23);
+  border-radius: 10px;
+  height: 64px;
+  outline: none;
 }
 
 .icon-box {
@@ -68,7 +72,7 @@ body {
 }
 
 .icon {
-  height: 35px;
+  height: 57px;
 }
 
 .Results {

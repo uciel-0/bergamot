@@ -2,7 +2,6 @@ import * as React from 'react'
 
 const StubhubLogo = () => <b>StubHub</b>
 
-
 const TicketmasterLogo = () => <b>TicketMaster</b>
 
 const SeatGeekLogo = () => <b>SeatGeek</b>

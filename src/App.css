@@ -77,6 +77,8 @@ body {
 
 .Results {
   flex-direction: column;
+  display: inline-block;
+  padding-top: 120px;
 }
 
 .Card {
@@ -84,6 +86,8 @@ body {
   background-color: rgba(196, 196, 196, 0.4);
   flex-direction: row;
   align-items: center;
+  margin-top: 15px;
+  width: 98%;
 }
 
 .Card_logo {

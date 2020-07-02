@@ -4,7 +4,7 @@ const getStubhubEvents = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/sellers/search/events/v3', {
     params: {
-      q: keyword,
+      name: keyword,
     },
     headers: {
       'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP',
@@ -24,7 +24,7 @@ const getStubhubPerformers = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/partners/search/performers/v3', {
     params: {
-      q: keyword
+      name: keyword
     },
     headers: {
       'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP'
@@ -42,7 +42,7 @@ const getStubhubVenues = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/partners/search/venues/v3', {
     params: {
-      q: keyword,
+      name: keyword,
     },
     headers: {
       'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP',
@@ -62,7 +62,7 @@ const getStubhubLocations = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/sellers/search/locations/v3', {
     params: {
-      q: keyword,
+      name: keyword,
     },
     headers: {
       'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP',

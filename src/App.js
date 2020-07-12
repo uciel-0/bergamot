@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import '.css/main.css';
+import './css/main.css';
 import {Search} from './features/Search';
 import {Results} from './features/Results';
 

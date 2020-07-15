@@ -10,7 +10,10 @@ export const searchEvents = (req, res) => {
   .then((data) => {
     data[0].events.map(e => {
       e.source = 'ticketmaster';
-      e.date = e.dates.start.dateTime;
+      e.date = e.dates.start.dateTime || e.dates.start.localDate;
+      if (e.priceRanges) {
+        e.minPrice = e.priceRanges[0].min;
+      }
     });
     data[1].events.map(e => {
       e.source = 'stubhub';

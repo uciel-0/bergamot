@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getTicketMasterSearchResults = (req, res) => {
   const keyword = req.query.keyword;
-  return axios.get('https://app.ticketmaster.com/discovery/v2/suggest', {
+  return axios.get('https://app.ticketmaster.com/discovery/v2/events', {
     params: {
       apikey: 'BBCLAjLv49NKWn8ridowEhErPKvuxJfT',
       countryCode: 'US',

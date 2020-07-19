@@ -1,25 +1,19 @@
 import * as React from 'react';
-import {searchResultsReducer, initialSearchResultsState, SearchResultsState} from './searchResults/Reducer';
-import {SearchResultsActions} from './searchResults/Actions';
-// const [state, dispatch] = React.useReducer(searchResultsReducer, initialSearchResultsState)
-
-interface SearchResultsContextType {
-  state: SearchResultsState;
-  dispatch: React.Dispatch<SearchResultsActions>
-}
-
-export const SearchResultsContext = React.createContext<SearchResultsContextType>({
-  state: initialSearchResultsState,
-  dispatch: () => null
-});
+import {SearchResultsContext} from './searchResults/Context';
+import {searchResultsReducer, initialSearchResultsState} from './searchResults/Reducer';
+import {SpinnerContext} from './spinner/Context';
+import {spinnerReducer, initialSpinnerState} from './spinner/Reducers';
 // component which will house all the necessary contexts 
 const Store: React.FunctionComponent = ({children}) => {
-  const [state, dispatch] = React.useReducer(searchResultsReducer, initialSearchResultsState);
+  const [searchResultsState, searchResultsDispatch] = React.useReducer(searchResultsReducer, initialSearchResultsState);
+  const [spinnerState, spinnerDispatch] = React.useReducer(spinnerReducer, initialSpinnerState);
   return (
-    <SearchResultsContext.Provider value={{state, dispatch}}>
-      {children}
-    </SearchResultsContext.Provider>
-  ) 
+    <SpinnerContext.Provider value={{spinnerState, spinnerDispatch}}>
+      <SearchResultsContext.Provider value={{searchResultsState, searchResultsDispatch}}>
+        {children}
+      </SearchResultsContext.Provider>
+    </SpinnerContext.Provider>
+  )
 }
 
 export default Store;

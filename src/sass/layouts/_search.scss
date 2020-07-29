@@ -9,12 +9,12 @@
     }
     &-input {
         position: absolute;
-        top: 20px;
-        left: 130px;
+        top: 2rem;
+        left: 13rem;
         width: 90%;
-        background: rgba(196, 196, 196, 0.23);
-        border-radius: 10px;
-        height: 64px;
+        background: $color-gray--dark;
+        border-radius: 1rem;
+        height: 6.4rem;
         outline: none;
     }
 }

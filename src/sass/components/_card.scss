@@ -1,8 +1,8 @@
 .Card {
     border: 1px solid black;
-    background-color: rgba(196, 196, 196, 0.4);
+    background-color: $color-gray--main;
     flex-direction: row;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 1.5rem;
     width: 98%;
   }

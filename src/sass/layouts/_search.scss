@@ -1,0 +1,20 @@
+.Search {
+    /* flex-direction: row; */
+    display: inline-flex;
+    align-items: center;
+
+    form {
+        width: 100%;
+        position: relative;
+    }
+    &-input {
+        position: absolute;
+        top: 20px;
+        left: 130px;
+        width: 90%;
+        background: rgba(196, 196, 196, 0.23);
+        border-radius: 10px;
+        height: 64px;
+        outline: none;
+    }
+}

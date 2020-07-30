@@ -1,6 +1,6 @@
 import axios from 'axios';
 // this has got to take in some input from the front end 
-const getStubhubEvents = (req) => {
+export const getStubhubEvents = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.stubhub.com/sellers/search/events/v3', {
     params: {
@@ -77,7 +77,7 @@ const getStubhubLocations = (req) => {
     return err
   });
 }
-
+// the searchResults object returns across multiple categories
 export const getStubhubSearchResults = (req, res) => {
   const events = getStubhubEvents(req);
   const performers = getStubhubPerformers(req);

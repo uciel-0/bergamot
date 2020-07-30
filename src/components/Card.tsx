@@ -8,7 +8,6 @@ const SeatGeekLogo = () => <b>SeatGeek</b>
 // title, price, date 
 const SourceLogo = ({source}: any) => {
   let logo; 
-  console.log('source logo working', source)
   switch(source) {
     case 'ticketmaster': 
       logo = <TicketmasterLogo/>;

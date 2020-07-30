@@ -8,8 +8,8 @@ export const Results = () => {
     <div className="Results">
       <div>
         {
-          searchResultsState.searchResults.map((e: any) => 
-            <Card name={e.name} date={e.date} price={e.minPrice} source={e.source}/>
+          searchResultsState.searchResults.map((e: any, index) => 
+            <Card name={e.name} date={e.date} price={e.minPrice} source={e.source} key={index}/>
           )
         }
       </div>

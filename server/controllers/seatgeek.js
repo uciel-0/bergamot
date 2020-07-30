@@ -1,6 +1,6 @@
 import axios from 'axios';
 // working
-const getSeatGeekEvents = (req) => {
+export const getSeatGeekEvents = (req) => {
   const keyword = req.query.keyword.trim().replace(/\s/g, '-');
   const client_id = 'MTg4ODAyNjN8MTU4OTU3NDI4NS44NQ'
   const endpoint = `https://api.seatgeek.com/2/events?client_id=${client_id}&performers.slug=${keyword}`

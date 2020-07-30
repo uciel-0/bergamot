@@ -1,10 +1,20 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 100%; }
+
 body {
-  font-family: 'Comfortaa', cursive; }
+  box-sizing: border-box; }
 
 .App {
   display: flex;
   flex-direction: column;
-  padding-left: 20px; }
+  padding-left: .2rem; }
   .App-logo {
     height: 40vmin;
     pointer-events: none; }
@@ -20,55 +30,25 @@ body {
   .App-link {
     color: #61dafb; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear; } }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
-
-.Search {
-  /* flex-direction: row; */
-  display: inline-flex;
-  align-items: center; }
-  .Search form {
-    width: 100%;
-    position: relative; }
-  .Search-input {
-    position: absolute;
-    top: 20px;
-    left: 130px;
-    width: 90%;
-    background: rgba(196, 196, 196, 0.23);
-    border-radius: 10px;
-    height: 64px;
-    outline: none; }
+body {
+  font-family: 'Comfortaa', cursive; }
 
 .icon {
-  height: 57px; }
+  height: 5.7rem; }
   .icon-box {
     position: absolute;
-    top: 30px;
-    left: 30px; }
-
-.Results {
-  flex-direction: column;
-  display: inline-block;
-  padding-top: 120px; }
+    top: 1rem;
+    left: 1rem; }
 
 .Card {
   border: 1px solid black;
   background-color: rgba(196, 196, 196, 0.4);
   flex-direction: row;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 1.5rem;
   width: 98%; }
 
 .Spinner {
-  color: black;
   font-size: 90px;
   text-indent: -9999em;
   overflow: hidden;
@@ -137,3 +117,30 @@ body {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
+
+.Results {
+  flex-direction: column;
+  display: inline-block;
+  padding-top: 8rem;
+  padding-left: 1rem; }
+  .Results_date {
+    font-size: 1rem; }
+  .Results_group {
+    padding-bottom: 1rem; }
+
+.Search {
+  /* flex-direction: row; */
+  display: inline-flex;
+  align-items: center; }
+  .Search form {
+    width: 99%;
+    position: relative; }
+  .Search-input {
+    position: absolute;
+    top: 2rem;
+    left: 8.5rem;
+    width: 90%;
+    background: rgba(196, 196, 196, 0.23);
+    border-radius: 1rem;
+    height: 3.2rem;
+    outline: none; }

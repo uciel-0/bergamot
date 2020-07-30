@@ -4,17 +4,17 @@
     align-items: center;
 
     form {
-        width: 100%;
+        width: 99%;
         position: relative;
     }
     &-input {
         position: absolute;
         top: 2rem;
-        left: 13rem;
+        left: 8.5rem;
         width: 90%;
         background: $color-gray--dark;
         border-radius: 1rem;
-        height: 6.4rem;
+        height: 3.2rem;
         outline: none;
     }
 }

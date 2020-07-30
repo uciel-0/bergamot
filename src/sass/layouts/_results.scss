@@ -1,6 +1,13 @@
 .Results {
-    flex-direction: column;
-    display: inline-block;
-    padding-top: 12rem;
+  flex-direction: column;
+  display: inline-block;
+  padding-top: 8rem;
+  padding-left: $space-from-left;
+  &_date {
+    font-size: 1rem;
   }
+  &_group {
+    padding-bottom: 1rem;
+  }
+}
   

@@ -1,6 +1,7 @@
 import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
+import {groupByDay, normalizeDate} from '../utils/dateUtils';
 // final modifications to the array we recieve on the front-end are made here 
 export const wideSearchResults = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
@@ -70,33 +71,4 @@ export const getEvents = (req, res) => {
     console.log('error in event search', err);
     res.sendStatus(400);
   });
-}
-
-const normalizeDate = (date) => {
-  if (date) {
-    let dateObject = new Date(date);
-    const offset = dateObject.getTimezoneOffset();
-    dateObject = new Date(dateObject.getTime() + (offset*60*100))
-    return dateObject.toISOString().split('T')[0]
-  } else return false;
-}
-
-const groupByDay = (data) => {
-  console.log(data, 'grouped data from inside the set');
-  // array of objects 
-  let groupedData = {};
-  let eventsOnSameDay = [];
-  data.forEach((e) => {
-    const date = e.date;
-    const event = e;
-    if (!groupedData[date]) {
-      eventsOnSameDay = [];
-      groupedData[date] = eventsOnSameDay;
-      eventsOnSameDay.push(event);
-    } else if (groupedData[date]) {
-      eventsOnSameDay.push(event);
-    }
-  });
-  console.log('GROUPEDDATASTART',groupedData, 'GROUPEDDATAEND');
-  return groupedData;
 }

@@ -25,7 +25,6 @@ const SourceLogo = ({source}: any) => {
 }
 
 export const Card = ({date, price, source, name}: any) => {
-  const formattedDate = new Date(date).toDateString();
   const priceFormatted = price ? `From $${price}` : null;
   return (
     <div className="Card">
@@ -34,9 +33,13 @@ export const Card = ({date, price, source, name}: any) => {
       </span>
       <div className="Card_info">
         <p>{name}</p>
-        <p>{formattedDate}</p>
+        <p>{date}</p>
         <p>{priceFormatted}</p>
       </div>
     </div>
   )
+}
+
+export const CardGroup = () => {
+  
 }

@@ -46,7 +46,7 @@ const getSeatGeekVenues = (req) => {
   })
 }
 
-export const getSeatGeekSearchResults = (req, res) => {
+export const getSeatGeekSearchResults = (req) => {
   const events = getSeatGeekEvents(req);
   const performers = getSeatGeekPerformers(req);
   const venues = getSeatGeekVenues(req);

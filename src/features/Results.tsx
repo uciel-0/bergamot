@@ -27,9 +27,19 @@ export const ResultsGroup = (searchResult: SearchResults) => {
       <h1 className="Results_date">{formattedDate}</h1>
       {
         searchResult.events.map((e: any, index: number) => 
-          <Card name={e.name} date={formattedDate} price={e.minPrice} source={e.source} key={index}/>
+          <Card 
+            name={e.name} 
+            date={formattedDate} 
+            priceBeforeFees={e.priceBeforeFees}
+            priceAfterFees={e.priceAfterFees}
+            source={e.source} 
+            key={index}
+          />
         )
       }
     </div>
   )
 }
+
+// we need to start keeping track of the custom fields on the objects which we always expect to have
+// they are the crucial bits of the front end and should be treated as such in the code

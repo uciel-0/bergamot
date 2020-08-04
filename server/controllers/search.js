@@ -48,19 +48,25 @@ export const getEvents = (req, res) => {
       e.source = 'ticketmaster';
       e.date = normalizeDate(e.dates.start.dateTime) || normalizeDate(e.dates.start.localDate);
       if (e.priceRanges) {
-        e.minPrice = e.priceRanges[0].min;
+        e.priceBeforeFees = e.priceRanges[0].min;
+        e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
+      } else {
+        e.priceBeforeFees = null;
+        e.priceAfterFees = null;
       }
     })
     data[1].events.map(e => {
       e.source = 'stubhub';
       e.date = normalizeDate(e.eventDateLocal);
-      e.minPrice = e.ticketInfo.minPrice;
+      e.priceBeforeFees = e.ticketInfo.minListPrice;
+      e.priceAfterFees = e.ticketInfo.minPrice
     });
     data[2].events.map(e => {
       e.source = 'seatgeek';
       e.date = normalizeDate(e.datetime_local);
       e.name = e.title;
-      e.minPrice = e.stats.lowest_price;
+      e.priceBeforeFees = e.stats.lowest_sg_base_price;
+      e.priceAfterFees = e.stats.lowest_price;
     });
     const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -72,3 +78,5 @@ export const getEvents = (req, res) => {
     res.sendStatus(400);
   });
 }
+// you also want to map out the individual arrays for the stuff they always return 
+// this way you're able to pull data off them

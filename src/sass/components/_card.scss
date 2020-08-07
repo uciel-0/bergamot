@@ -6,6 +6,15 @@
   margin-top: 1.5rem;
   width: 98%;
   position: relative;
+  &_logo {
+    font-size: $font-size-medium;
+  }
+  &_info {
+    padding-top: 1rem;
+    p {
+      padding-bottom: 1rem;
+    }
+  }
   &_content {
     vertical-align: center;
   }
@@ -14,6 +23,9 @@
     padding-right: $card-padding;
     &-text {
       text-align: right;
+      &:not(:last-child) {
+        padding-bottom: 1rem;
+      }
     }
     &-bold {
       font-size: $font-size-large;

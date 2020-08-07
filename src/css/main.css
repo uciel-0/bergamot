@@ -48,6 +48,12 @@ body {
   margin-top: 1.5rem;
   width: 98%;
   position: relative; }
+  .Card_logo {
+    font-size: 1.5rem; }
+  .Card_info {
+    padding-top: 1rem; }
+    .Card_info p {
+      padding-bottom: 1rem; }
   .Card_content {
     vertical-align: center; }
   .Card_prices {
@@ -55,6 +61,8 @@ body {
     padding-right: 1rem; }
     .Card_prices-text {
       text-align: right; }
+      .Card_prices-text:not(:last-child) {
+        padding-bottom: 1rem; }
     .Card_prices-bold {
       font-size: 2rem;
       width: 50%; }

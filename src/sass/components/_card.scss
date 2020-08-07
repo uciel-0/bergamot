@@ -10,8 +10,8 @@
     font-size: $font-size-medium;
   }
   &_info {
-    padding-top: 1rem;
-    p {
+    padding-top: .75rem;
+    p:not(:last-child) {
       padding-bottom: 1rem;
     }
   }

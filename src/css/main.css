@@ -46,7 +46,18 @@ body {
   flex-direction: row;
   align-items: center;
   margin-top: 1.5rem;
-  width: 98%; }
+  width: 98%;
+  position: relative; }
+  .Card_content {
+    vertical-align: center; }
+  .Card_prices {
+    padding-bottom: 1.5rem;
+    padding-right: 1rem; }
+    .Card_prices-text {
+      text-align: right; }
+    .Card_prices-bold {
+      font-size: 2rem;
+      width: 50%; }
 
 .Spinner {
   font-size: 90px;

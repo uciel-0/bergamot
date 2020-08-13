@@ -28,6 +28,19 @@ export const Search = () => {
       spinnerDispatch(setSpinnerState(false));
       console.log('master search api rejection', err)
     });
+    
+    axios.get('http://localhost:8080/api/search/wide', {
+      params: {
+        keyword: formValue,
+      }
+    })
+    .then((res) => {
+      console.log('wide search api response', res.data);
+    })
+    .catch((err) => {
+      console.log('wide search api rejection', err)
+    });
+
   }
 
   return (

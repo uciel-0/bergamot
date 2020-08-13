@@ -1,7 +1,7 @@
 import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
-import {groupByDay, normalizeDate} from '../utils/dateUtils';
+import {groupByDay, normalizeDate, formatDate} from '../utils/dateUtils';
 // final modifications to the array we recieve on the front-end are made here 
 export const wideSearchResults = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
@@ -36,7 +36,7 @@ export const wideSearchResults = (req, res) => {
     res.sendStatus(400);
   });
 }
-
+// this is the api call we're using
 export const getEvents = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
   const stubhub = getStubhubEvents(req, res);
@@ -44,9 +44,11 @@ export const getEvents = (req, res) => {
   return Promise.all([ticketmaster, stubhub, seatgeek])
   .then(data => {
     // set some custom fields for easy front end access
+    // ticketmaster events
     data[0].events.map(e => {
       e.source = 'ticketmaster';
-      e.date = normalizeDate(e.dates.start.dateTime) || normalizeDate(e.dates.start.localDate);
+      e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
+      e.venue = e._embedded.venues[0].name;
       if (e.priceRanges) {
         e.priceBeforeFees = e.priceRanges[0].min;
         e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
@@ -54,16 +56,20 @@ export const getEvents = (req, res) => {
         e.priceBeforeFees = null;
         e.priceAfterFees = null;
       }
-    })
+    });
+    // stubhub events
     data[1].events.map(e => {
       e.source = 'stubhub';
-      e.date = normalizeDate(e.eventDateLocal);
+      e.date = formatDate(e.eventDateLocal);
+      e.venue = e.venue.name;
       e.priceBeforeFees = e.ticketInfo.minListPrice;
       e.priceAfterFees = e.ticketInfo.minPrice
     });
+    // seatgeek events
     data[2].events.map(e => {
       e.source = 'seatgeek';
-      e.date = normalizeDate(e.datetime_local);
+      e.date = formatDate(e.datetime_utc);
+      e.venue = e.venue.name;
       e.name = e.title;
       e.priceBeforeFees = e.stats.lowest_sg_base_price;
       e.priceAfterFees = e.stats.lowest_price;

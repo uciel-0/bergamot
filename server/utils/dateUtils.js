@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const groupByDay = (data) => {
     // array of objects 
     let groupedData = {};
@@ -42,3 +44,5 @@ export const groupByDay = (data) => {
     day = day.length > 1 ? day : '0' + day;
     return month + '-' + day + '-' + year;
   }
+
+  export const formatDate = (date) => moment.utc(date).local().format('ddd MM D YYYY')

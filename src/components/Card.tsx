@@ -1,12 +1,10 @@
 import * as React from 'react'
-// TODO: add a space here for priceBeforeFee and priceAfterFee
-// also include logic to do a custom calculation for fees (in case the price after fees is not avaialble)
 // stubhub has a field called ticketInfo -> if ticketInfo.totalListings = 0, show some sort of message indicating that fact
-export const Card = ({date, priceBeforeFees, priceAfterFees, source, name}: any) => {
+export const Card = ({date, priceBeforeFees, priceAfterFees, source, name, venue}: any) => {
   const priceBeforeFeesText = "Price before fees: ";
   const priceAfterFeesText = "Price after fees: ";
-  const priceBeforeFeesFormatted = priceBeforeFees ? '$'+ priceBeforeFees + '.00' : '';
-  const priceAfterFeesFormatted = priceAfterFees ? '$' + priceAfterFees + '.00' : '';
+  const priceBeforeFeesFormatted = priceBeforeFees ? '$'+ priceBeforeFees.toFixed(2) : '';
+  const priceAfterFeesFormatted = priceAfterFees ? '$' + priceAfterFees.toFixed(2) : '';
   const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p> : null;
   const priceAfterFeesHTML = priceAfterFees ?  <p className="Card_prices-text">{priceAfterFeesText}<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : null;
   return (
@@ -17,6 +15,7 @@ export const Card = ({date, priceBeforeFees, priceAfterFees, source, name}: any)
         </span>
         <div className="Card_info">
           <p>{name}</p>
+          <p>{venue}</p>
           <p>{date}</p>
         </div>
         <div className="Card_prices">

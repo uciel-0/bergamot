@@ -33,6 +33,7 @@ export const ResultsGroup = (searchResult: SearchResults) => {
             priceBeforeFees={e.priceBeforeFees}
             priceAfterFees={e.priceAfterFees}
             source={e.source} 
+            venue={e.venue}
             key={index}
           />
         )

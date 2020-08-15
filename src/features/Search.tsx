@@ -28,17 +28,17 @@ export const Search = () => {
       spinnerDispatch(setSpinnerState(false));
       console.log('master search api rejection', err)
     });
-    
+    // for testing puposes
     axios.get('http://localhost:8080/api/search/wide', {
       params: {
         keyword: formValue,
       }
     })
     .then((res) => {
-      console.log('wide search api response', res.data);
+      console.log('individual api responses', res.data);
     })
     .catch((err) => {
-      console.log('wide search api rejection', err)
+      console.log('individual api responses', err)
     });
 
   }

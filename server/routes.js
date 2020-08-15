@@ -7,7 +7,7 @@ router.get('/api/search/wide', controller.search.wideSearchResults);
 // categories = events, preformers, venues, locations
 router.get('/api/search/events', controller.search.getEvents);
 // individual api calls
-router.get('/api/ticketmaster/events', controller.ticketmaster.getTicketMasterSearchResults);
-router.get('/api/stubhub/events', controller.seatgeek.getSeatGeekEvents);
-router.get('/api/stubhub/events', controller.stubhub.getStubhubEvents);
+// router.get('/api/ticketmaster/events', controller.ticketmaster.getTicketMasterSearchResults);
+// router.get('/api/stubhub/events', controller.seatgeek.getSeatGeekEvents);
+// router.get('/api/stubhub/events', controller.stubhub.getStubhubEvents);
 export default router;

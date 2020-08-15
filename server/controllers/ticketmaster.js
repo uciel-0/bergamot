@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getTicketMasterSearchResults = (req, res) => {
+export const getTicketMasterSearchResults = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://app.ticketmaster.com/discovery/v2/events', {
     params: {

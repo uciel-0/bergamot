@@ -79,6 +79,7 @@ export const getEvents = (req, res) => {
       e.priceBeforeFees = e.ticketInfo.minListPrice;
       e.priceAfterFees = e.ticketInfo.minPrice;
       e.isPriceEstimated = false;
+      e.url = "https://www.stubhub.com/" + e.webURI;
     });
     // seatgeek events
     data[2].events.map(e => {

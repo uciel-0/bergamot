@@ -76,8 +76,6 @@ body {
     padding: .5rem .5rem;
     background-image: linear-gradient(to right, #2998ff, #5643fa);
     color: #fff; }
-  .Card_button:hover {
-    background-image: linear-gradient(to right, #2998ff, #5643fa); }
   .Card_button-row {
     text-align: right; }
 

@@ -45,4 +45,7 @@ export const groupByDay = (data) => {
     return month + '-' + day + '-' + year;
   }
 
-  export const formatDate = (date) => moment.utc(date).local().format('ddd MM D YYYY')
+  export const formatDate = (date) => date ?  moment.utc(date).local().format('ddd MM D YYYY') : null
+  
+  
+ 

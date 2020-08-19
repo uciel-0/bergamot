@@ -13,7 +13,7 @@ export const getTicketMasterSearchResults = (req) => {
     return data.data._embedded
   })
   .catch((err) => {
-    console.err('ticketmaster api call rejection', err)
+    console.log('ticketmaster api call rejection', err)
     return err;
   });
 }

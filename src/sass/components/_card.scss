@@ -6,6 +6,7 @@
   margin-top: 1.5rem;
   width: 98%;
   position: relative;
+  padding: .2rem;
   &_logo {
     font-size: $font-size-medium;
   }
@@ -19,10 +20,11 @@
     vertical-align: center;
   }
   &_prices { 
-    padding-bottom: 1.5rem;
-    padding-right: $card-padding;
     &-text {
       text-align: right;
+      &--tiny {
+        font-size: .8rem;
+      }
       &:not(:last-child) {
         padding-bottom: 1rem;
       }
@@ -30,6 +32,22 @@
     &-bold {
       font-size: $font-size-large;
       width: 50%;
+    }
+  }
+  &_button {
+    &:link, &:visited {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 1rem;
+      padding: .5rem .5rem;
+      background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
+      color: $color-white;
+    }
+    &:hover {
+      background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
+    }
+    &-row {
+      text-align: right;
     }
   }
 }

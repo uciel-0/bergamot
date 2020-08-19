@@ -32,8 +32,10 @@ export const ResultsGroup = (searchResult: SearchResults) => {
             date={formattedDate} 
             priceBeforeFees={e.priceBeforeFees}
             priceAfterFees={e.priceAfterFees}
+            isPriceEstimated={e.isPriceEstimated}
             source={e.source} 
             venue={e.venue}
+            url={e.url}
             key={index}
           />
         )

@@ -1,7 +1,7 @@
 import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
-import {groupByDay, normalizeDate, formatDate} from '../utils/dateUtils';
+import {groupByDay, formatDate} from '../utils/dateUtils';
 // final modifications to the array we recieve on the front-end are made here 
 export const wideSearchResults = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
@@ -61,9 +61,11 @@ export const getEvents = (req, res) => {
       e.source = 'ticketmaster';
       e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
       e.venue = e._embedded.venues[0].name;
+      e.isPriceEstimated = false;
       if (e.priceRanges) {
         e.priceBeforeFees = e.priceRanges[0].min;
         e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
+        e.isPriceEstimated = true;
       } else {
         e.priceBeforeFees = null;
         e.priceAfterFees = null;
@@ -75,7 +77,8 @@ export const getEvents = (req, res) => {
       e.date = formatDate(e.eventDateLocal);
       e.venue = e.venue.name;
       e.priceBeforeFees = e.ticketInfo.minListPrice;
-      e.priceAfterFees = e.ticketInfo.minPrice
+      e.priceAfterFees = e.ticketInfo.minPrice;
+      e.isPriceEstimated = false;
     });
     // seatgeek events
     data[2].events.map(e => {
@@ -85,6 +88,7 @@ export const getEvents = (req, res) => {
       e.name = e.title;
       e.priceBeforeFees = e.stats.lowest_sg_base_price;
       e.priceAfterFees = e.stats.lowest_price;
+      e.isPriceEstimated = false;
     });
     const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));

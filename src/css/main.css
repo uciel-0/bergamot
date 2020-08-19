@@ -33,6 +33,9 @@ body {
 body {
   font-family: 'Comfortaa', cursive; }
 
+.margin-tiny {
+  margin: .2rem .2rem; }
+
 .icon {
   height: 5.7rem; }
   .icon-box {
@@ -47,7 +50,8 @@ body {
   align-items: center;
   margin-top: 1.5rem;
   width: 98%;
-  position: relative; }
+  position: relative;
+  padding: .2rem; }
   .Card_logo {
     font-size: 1.5rem; }
   .Card_info {
@@ -56,16 +60,26 @@ body {
       padding-bottom: 1rem; }
   .Card_content {
     vertical-align: center; }
-  .Card_prices {
-    padding-bottom: 1.5rem;
-    padding-right: 1rem; }
-    .Card_prices-text {
-      text-align: right; }
-      .Card_prices-text:not(:last-child) {
-        padding-bottom: 1rem; }
-    .Card_prices-bold {
-      font-size: 2rem;
-      width: 50%; }
+  .Card_prices-text {
+    text-align: right; }
+    .Card_prices-text--tiny {
+      font-size: .8rem; }
+    .Card_prices-text:not(:last-child) {
+      padding-bottom: 1rem; }
+  .Card_prices-bold {
+    font-size: 2rem;
+    width: 50%; }
+  .Card_button:link, .Card_button:visited {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 1rem;
+    padding: .5rem .5rem;
+    background-image: linear-gradient(to right, #2998ff, #5643fa);
+    color: #fff; }
+  .Card_button:hover {
+    background-image: linear-gradient(to right, #2998ff, #5643fa); }
+  .Card_button-row {
+    text-align: right; }
 
 .Spinner {
   font-size: 90px;

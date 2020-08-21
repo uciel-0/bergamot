@@ -43,6 +43,9 @@
       background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
       color: $color-white;
     }
+    &:hover {
+      background-image: linear-gradient(to right, rgba($color-blue-light, .85), rgba($color-blue-dark, .85));
+    }
     &-row {
       text-align: right;
     }

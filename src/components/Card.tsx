@@ -28,7 +28,7 @@ export const Card = ({date, priceBeforeFees, priceAfterFees, isPriceEstimated, s
       </div>
       <div className="Card_button-row">
         <a href={url} target="_blank" rel="noopener noreferrer" className="Card_button margin-tiny">
-          View Tickets
+          <p>View Tickets</p>
         </a>
       </div>
     </div>

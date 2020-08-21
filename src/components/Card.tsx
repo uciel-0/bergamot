@@ -7,7 +7,7 @@ export const Card = ({date, priceBeforeFees, priceAfterFees, isPriceEstimated, s
   const priceBeforeFeesFormatted = priceBeforeFees ? '$'+ priceBeforeFees.toFixed(2) : '';
   const priceAfterFeesFormatted = priceAfterFees ? '$' + priceAfterFees.toFixed(2) : 'This source does not currently have available tickets. Please visit link for additional details.';
   const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p> : null;
-  const priceAfterFeesHTML = priceAfterFees ?  <p className="Card_prices-text">{priceAfterFeesText}<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
+  const priceAfterFeesHTML = priceAfterFees ? <p className="Card_prices-text">{priceAfterFeesText}<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
   const priceDisclaimer = isPriceEstimated ? <p className="Card_prices-text Card_prices-text--tiny">{priceDisclaimerText}</p> : null;
   return (
     <div className="Card">

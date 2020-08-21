@@ -38,7 +38,7 @@
     &:link, &:visited {
       display: inline-block;
       text-decoration: none;
-      border-radius: 1rem;
+      border-radius: 4px;
       padding: .5rem .5rem;
       background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
       color: $color-white;

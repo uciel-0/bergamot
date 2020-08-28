@@ -1,7 +1,7 @@
 import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
-import {groupByDay, formatDate} from '../utils/dateUtils';
+import {groupByDay, formatDate, formatLocalDate, formatTime} from '../utils/dateUtils';
 // final modifications to the array we recieve on the front-end are made here 
 export const wideSearchResults = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
@@ -11,7 +11,8 @@ export const wideSearchResults = (req, res) => {
   .then((data) => {
     data[0].events.map(e => {
       e.source = 'ticketmaster';
-      e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
+      e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
+      e.time = e.dates.start.localTime;
       e.venue = e._embedded.venues[0].name;
       if (e.priceRanges) {
         e.priceBeforeFees = e.priceRanges[0].min;
@@ -31,6 +32,7 @@ export const wideSearchResults = (req, res) => {
     data[2].events.map(e => {
       e.source = 'seatgeek';
       e.date = formatDate(e.datetime_utc);
+      e.time = formatTime(e.datetime_local);
       e.venue = e.venue.name;
       e.name = e.title;
       e.priceBeforeFees = e.stats.lowest_sg_base_price;
@@ -59,7 +61,9 @@ export const getEvents = (req, res) => {
     // ticketmaster events
     data[0].events.map(e => {
       e.source = 'ticketmaster';
-      e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
+      e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
+      // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
+      e.time = formatTime(e.dates.start.dateTime);
       e.venue = e._embedded.venues[0].name;
       e.isPriceEstimated = false;
       if (e.priceRanges) {
@@ -74,7 +78,8 @@ export const getEvents = (req, res) => {
     // stubhub events
     data[1].events.map(e => {
       e.source = 'stubhub';
-      e.date = formatDate(e.eventDateLocal);
+      e.date = formatLocalDate(e.eventDateLocal);
+      e.time = formatTime(e.eventDateUTC);
       e.venue = e.venue.name;
       e.priceBeforeFees = e.ticketInfo.minListPrice;
       e.priceAfterFees = e.ticketInfo.minPrice;
@@ -85,6 +90,7 @@ export const getEvents = (req, res) => {
     data[2].events.map(e => {
       e.source = 'seatgeek';
       e.date = formatDate(e.datetime_utc);
+      e.time = formatTime(e.datetime_utc + "Z");
       e.venue = e.venue.name;
       e.name = e.title;
       e.priceBeforeFees = e.stats.lowest_sg_base_price;

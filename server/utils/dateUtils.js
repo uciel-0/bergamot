@@ -48,4 +48,4 @@ export const reformatDate = (date) => {
 export const formatDate = (date) => date ? moment.utc(date).local().format('ddd, MMM D, YYYY') : null;
 export const formatLocalDate = (date) => date ? moment(date).format('ddd, MMM D, YYYY') : null;
 
-export const formatTime = (dateTime) => dateTime ? moment(dateTime).format('hh:mmA') : null; 
+export const formatTime = (dateTime) => dateTime ? moment(dateTime).format('hh:mm A') : null; 

@@ -31,7 +31,7 @@ body {
     color: #61dafb; }
 
 body {
-  font-family: 'Comfortaa', cursive; }
+  font-family: 'Roboto', 'Roboto'; }
 
 .margin-tiny {
   margin: .2rem .2rem; }
@@ -54,6 +54,8 @@ body {
   padding: .2rem; }
   .Card_logo {
     font-size: 1.5rem; }
+    .Card_logo b {
+      font-weight: 400; }
   .Card_info {
     padding-top: .75rem; }
     .Card_info p:not(:last-child) {
@@ -176,4 +178,5 @@ body {
     background: rgba(196, 196, 196, 0.23);
     border-radius: 1rem;
     height: 3.2rem;
-    outline: none; }
+    outline: none;
+    padding-left: 8px; }

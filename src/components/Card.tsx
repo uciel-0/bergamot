@@ -1,6 +1,6 @@
 import * as React from 'react'
 // stubhub has a field called ticketInfo -> if ticketInfo.totalListings = 0, show some sort of message indicating that fact
-export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstimated, source, name, venue, url}: any) => {
+export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstimated, source, name, venue, url, sourceUrl}: any) => {
   const priceBeforeFeesText = "Price before fees: ";
   const priceAfterFeesText = "Price after fees: ";
   const priceDisclaimerText = "*Estimated fees based on the average amount from source website. Prices may vary.";
@@ -9,11 +9,20 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
   const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p> :  <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p>;
   const priceAfterFeesHTML = priceAfterFees ? <p className="Card_prices-text">{priceAfterFeesText}<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
   const priceDisclaimer = isPriceEstimated ? <p className="Card_prices-text Card_prices-text--tiny">{priceDisclaimerText}</p> : null;
-  const dayText = date.slice(0,3);
-  const dateText = date.slice(5);
-  const dateTimeText = dayText + " - " + time;
   const venueText = venue || 'Venue TBD';
-  return (
+  const urlContent = url || sourceUrl;
+  const displayDateText = (date: string) => {
+    if (date) {
+      const dayText = date.slice(0,3);
+      const dateText = date.slice(5);
+      const timeText = time || "TBD";
+      const dateTimeText = dayText + " - " + timeText;
+      return <><p>{dateText}</p><p>{dateTimeText}</p></>
+    } else {
+      return <><p>Date: TBD</p></>
+    }
+  }
+  return name ? (
     <div className="Card">
       <div className="Card_content">
         <span className="Card_logo">
@@ -22,8 +31,7 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
         <div className="Card_info">
           <p>{name}</p>
           <p>{venueText}</p>
-          <p>{dateText}</p>
-          <p>{dateTimeText}</p>
+          {displayDateText(date)}
         </div>
         <div className="Card_prices">
           {priceBeforeFeesHTML}
@@ -32,12 +40,12 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
         </div>
       </div>
       <div className="Card_button-row">
-        <a href={url} target="_blank" rel="noopener noreferrer" className="Card_button margin-tiny">
+        <a href={urlContent} target="_blank" rel="noopener noreferrer" className="Card_button margin-tiny">
           <p>View Tickets</p>
         </a>
       </div>
     </div>
-  )
+  ) : null;
 }
 
 const StubhubLogo = () => <b>StubHub</b>

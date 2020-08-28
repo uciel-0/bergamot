@@ -11,6 +11,7 @@ export const wideSearchResults = (req, res) => {
   .then((data) => {
     data[0].events.map(e => {
       e.source = 'ticketmaster';
+      e.sourceUrl = 'https://ticketmaster.com';
       e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
       e.time = e.dates.start.localTime;
       e.venue = e._embedded.venues[0].name;
@@ -24,6 +25,7 @@ export const wideSearchResults = (req, res) => {
     });
     data[1].events.map(e => {
       e.source = 'stubhub';
+      e.sourceUrl = 'https://stubhub.com';
       e.date = formatDate(e.eventDateLocal);
       e.venue = e.venue.name;
       e.priceBeforeFees = e.ticketInfo.minListPrice;
@@ -31,6 +33,7 @@ export const wideSearchResults = (req, res) => {
     });
     data[2].events.map(e => {
       e.source = 'seatgeek';
+      e.sourceUrl = 'https://seatgeek.com';
       e.date = formatDate(e.datetime_utc);
       e.time = formatTime(e.datetime_local);
       e.venue = e.venue.name;
@@ -61,6 +64,7 @@ export const getEvents = (req, res) => {
     // ticketmaster events
     data[0].events.map(e => {
       e.source = 'ticketmaster';
+      e.sourceUrl = 'https://ticketmaster.com';
       e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
       // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
       e.time = formatTime(e.dates.start.dateTime);
@@ -78,6 +82,7 @@ export const getEvents = (req, res) => {
     // stubhub events
     data[1].events.map(e => {
       e.source = 'stubhub';
+      e.sourceUrl = 'https://stubhub.com';
       e.date = formatLocalDate(e.eventDateLocal);
       e.time = formatTime(e.eventDateUTC);
       e.venue = e.venue.name;
@@ -89,6 +94,7 @@ export const getEvents = (req, res) => {
     // seatgeek events
     data[2].events.map(e => {
       e.source = 'seatgeek';
+      e.sourceUrl = 'https://seatgeek.com';
       e.date = formatDate(e.datetime_utc);
       e.time = formatTime(e.datetime_utc + "Z");
       e.venue = e.venue.name;

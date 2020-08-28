@@ -36,6 +36,7 @@ export const ResultsGroup = (searchResult: SearchResults) => {
             source={e.source} 
             venue={e.venue}
             url={e.url}
+            sourceUrl={e.sourceUrl}
             key={index}
           />
         )

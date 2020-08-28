@@ -11,7 +11,8 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
   const priceDisclaimer = isPriceEstimated ? <p className="Card_prices-text Card_prices-text--tiny">{priceDisclaimerText}</p> : null;
   const dayText = date.slice(0,3);
   const dateText = date.slice(5);
-  const dateTimeText = dayText + " - " + time
+  const dateTimeText = dayText + " - " + time;
+  const venueText = venue || 'Venue TBD';
   return (
     <div className="Card">
       <div className="Card_content">
@@ -20,7 +21,7 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
         </span>
         <div className="Card_info">
           <p>{name}</p>
-          <p>{venue}</p>
+          <p>{venueText}</p>
           <p>{dateText}</p>
           <p>{dateTimeText}</p>
         </div>

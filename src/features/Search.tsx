@@ -48,6 +48,7 @@ export const Search = () => {
       <BopIcon />
       <form onSubmit={(e) => onSubmit(e)}>
         <input 
+          data-test="search-bar"
           className="Search-input"
           placeholder="search for events, artists, teams or venues" 
           value={formValue} 

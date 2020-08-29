@@ -1,0 +1,3015 @@
+{
+  "body": [
+    {
+      "date": "Wed, Sep 2, 2020",
+      "events": [
+        {
+          "id": 104524646,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Drake Bell Tickets (Reschduled from March 19, 2020)",
+          "description": "Buy and sell Drake Bell Lancaster Tickets for September 2 at Chameleon Club in Lancaster, PA at StubHub! Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "drake-bell-tickets-drake-bell-lancaster-chameleon-club-9-2-2020/event/104524646/",
+          "eventDateLocal": "2020-09-02T15:00:00-0400",
+          "eventDateUTC": "2020-09-02T19:00:00+0000",
+          "createdDate": "2019-12-21T19:19:50+0000",
+          "lastUpdatedDate": "2020-04-09T17:23:30+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "Chameleon Club",
+          "timezone": "EDT",
+          "performers": [
+            {
+              "id": 405020,
+              "name": "Drake Bell"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 63911,
+                "name": "Artists D - G"
+              }
+            ],
+            "performers": [
+              {
+                "id": 405020,
+                "name": "Drake Bell"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              },
+              {
+                "id": 441193,
+                "name": "Rock, Pop and Hip-Hop"
+              },
+              {
+                "id": 195743,
+                "name": "Pop Music"
+              },
+              {
+                "id": 209736,
+                "name": "Rock Music"
+              }
+            ]
+          },
+          "currencyCode": "USD",
+          "ticketInfo": {
+            "minPrice": 48.81,
+            "minListPrice": 37.35,
+            "maxListPrice": 150,
+            "totalTickets": 59,
+            "totalListings": 6
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Wed, Sep 2, 2020",
+          "time": "03:00 PM",
+          "priceBeforeFees": 37.35,
+          "priceAfterFees": 48.81,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/drake-bell-tickets-drake-bell-lancaster-chameleon-club-9-2-2020/event/104524646/"
+        }
+      ]
+    },
+    {
+      "date": "Thu, Sep 3, 2020",
+      "events": [
+        {
+          "id": 104561458,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Drake Bell Tickets (Rescheduled from March 18, 2020)",
+          "description": "Buy and sell Drake Bell Pittsburgh Tickets for September 3 at Lawrence Hall Ballroom at Point Park University in Pittsburgh, PA at StubHub! Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "drake-bell-tickets-drake-bell-pittsburgh-lawrence-hall-ballroom-at-point-park-university-9-3-2020/event/104561458/",
+          "eventDateLocal": "2020-09-03T19:00:00-0400",
+          "eventDateUTC": "2020-09-03T23:00:00+0000",
+          "createdDate": "2020-01-21T23:13:15+0000",
+          "lastUpdatedDate": "2020-04-13T17:34:04+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "Lawrence Hall Ballroom at Point Park University",
+          "timezone": "EDT",
+          "performers": [
+            {
+              "id": 405020,
+              "name": "Drake Bell"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 63911,
+                "name": "Artists D - G"
+              }
+            ],
+            "performers": [
+              {
+                "id": 405020,
+                "name": "Drake Bell"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              },
+              {
+                "id": 441193,
+                "name": "Rock, Pop and Hip-Hop"
+              },
+              {
+                "id": 195743,
+                "name": "Pop Music"
+              },
+              {
+                "id": 209736,
+                "name": "Rock Music"
+              }
+            ]
+          },
+          "currencyCode": "USD",
+          "ticketInfo": {
+            "minPrice": 0,
+            "minListPrice": 0,
+            "maxListPrice": 0,
+            "totalTickets": 0,
+            "totalListings": 0
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Thu, Sep 3, 2020",
+          "time": "07:00 PM",
+          "priceBeforeFees": 0,
+          "priceAfterFees": 0,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/drake-bell-tickets-drake-bell-pittsburgh-lawrence-hall-ballroom-at-point-park-university-9-3-2020/event/104561458/"
+        }
+      ]
+    },
+    {
+      "date": "Mon, Sep 7, 2020",
+      "events": [
+        {
+          "id": 104546013,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Drake Bell Tickets (Rescheduled from April 14, 2020)",
+          "description": "Buy and sell Drake Bell Worcester Tickets for September 7 at The Palladium Worcester in Worcester, MA at StubHub! Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "drake-bell-tickets-drake-bell-worcester-the-palladium-worcester-9-7-2020/event/104546013/",
+          "eventDateLocal": "2020-09-07T19:30:00-0400",
+          "eventDateUTC": "2020-09-07T23:30:00+0000",
+          "createdDate": "2020-01-09T22:46:26+0000",
+          "lastUpdatedDate": "2020-04-09T17:37:26+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "The Palladium Worcester",
+          "timezone": "EDT",
+          "performers": [
+            {
+              "id": 405020,
+              "name": "Drake Bell"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 63911,
+                "name": "Artists D - G"
+              }
+            ],
+            "performers": [
+              {
+                "id": 405020,
+                "name": "Drake Bell"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              },
+              {
+                "id": 441193,
+                "name": "Rock, Pop and Hip-Hop"
+              },
+              {
+                "id": 195743,
+                "name": "Pop Music"
+              },
+              {
+                "id": 209736,
+                "name": "Rock Music"
+              }
+            ]
+          },
+          "currencyCode": "USD",
+          "ticketInfo": {
+            "minPrice": 50.05,
+            "minListPrice": 38.35,
+            "maxListPrice": 150,
+            "totalTickets": 52,
+            "totalListings": 10
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Mon, Sep 7, 2020",
+          "time": "07:30 PM",
+          "priceBeforeFees": 38.35,
+          "priceAfterFees": 50.05,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/drake-bell-tickets-drake-bell-worcester-the-palladium-worcester-9-7-2020/event/104546013/"
+        }
+      ]
+    },
+    {
+      "date": "Tue, Sep 8, 2020",
+      "events": [
+        {
+          "id": 104546015,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Drake Bell Tickets (Postponed from April 15, 2020)",
+          "description": "Buy and sell Drake Bell Hartford Tickets for September 8 at The Webster Underground in Hartford, CT at StubHub! Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "drake-bell-tickets-drake-bell-hartford-the-webster-underground-9-8-2020/event/104546015/",
+          "eventDateLocal": "2020-09-08T19:30:00-0400",
+          "eventDateUTC": "2020-09-08T23:30:00+0000",
+          "createdDate": "2020-01-09T22:48:21+0000",
+          "lastUpdatedDate": "2020-06-03T17:09:31+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "The Webster Underground",
+          "timezone": "EDT",
+          "performers": [
+            {
+              "id": 405020,
+              "name": "Drake Bell"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 63911,
+                "name": "Artists D - G"
+              }
+            ],
+            "performers": [
+              {
+                "id": 405020,
+                "name": "Drake Bell"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              },
+              {
+                "id": 441193,
+                "name": "Rock, Pop and Hip-Hop"
+              },
+              {
+                "id": 195743,
+                "name": "Pop Music"
+              },
+              {
+                "id": 209736,
+                "name": "Rock Music"
+              }
+            ]
+          },
+          "currencyCode": "USD",
+          "ticketInfo": {
+            "minPrice": 0,
+            "minListPrice": 0,
+            "maxListPrice": 0,
+            "totalTickets": 0,
+            "totalListings": 0
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Tue, Sep 8, 2020",
+          "time": "07:30 PM",
+          "priceBeforeFees": 0,
+          "priceAfterFees": 0,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/drake-bell-tickets-drake-bell-hartford-the-webster-underground-9-8-2020/event/104546015/"
+        }
+      ]
+    },
+    {
+      "date": "Wed, Sep 23, 2020",
+      "events": [
+        {
+          "id": 104612143,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Drake Bell Tickets (Rescheduled from May 21, 2020)",
+          "description": "Buy and sell Drake Bell Kent Tickets for September 23 at The Outpost Concert Club in Kent, OH at StubHub! Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "drake-bell-tickets-drake-bell-kent-the-outpost-concert-club-9-23-2020/event/104612143/",
+          "eventDateLocal": "2020-09-23T18:00:00-0400",
+          "eventDateUTC": "2020-09-23T22:00:00+0000",
+          "createdDate": "2020-02-26T16:27:12+0000",
+          "lastUpdatedDate": "2020-05-28T19:01:16+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "The Outpost Concert Club",
+          "timezone": "EDT",
+          "performers": [
+            {
+              "id": 405020,
+              "name": "Drake Bell"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 63911,
+                "name": "Artists D - G"
+              }
+            ],
+            "performers": [
+              {
+                "id": 405020,
+                "name": "Drake Bell"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              },
+              {
+                "id": 441193,
+                "name": "Rock, Pop and Hip-Hop"
+              },
+              {
+                "id": 195743,
+                "name": "Pop Music"
+              },
+              {
+                "id": 209736,
+                "name": "Rock Music"
+              }
+            ]
+          },
+          "currencyCode": "USD",
+          "ticketInfo": {
+            "minPrice": 0,
+            "minListPrice": 0,
+            "maxListPrice": 0,
+            "totalTickets": 0,
+            "totalListings": 0
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Wed, Sep 23, 2020",
+          "time": "06:00 PM",
+          "priceBeforeFees": 0,
+          "priceAfterFees": 0,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/drake-bell-tickets-drake-bell-kent-the-outpost-concert-club-9-23-2020/event/104612143/"
+        }
+      ]
+    },
+    {
+      "date": "Thu, Sep 24, 2020",
+      "events": [
+        {
+          "id": 104612145,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Drake Bell with Connor Stratton Tickets (Rescheduled from May 22, 2020)",
+          "description": "Buy and sell Drake Bell Kankakee Tickets for September 24 at Majestic Theater in Kankakee in Kankakee, Illinois at StubHub! Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "drake-bell-tickets-drake-bell-kankakee-majestic-theater-in-kankakee-9-24-2020/event/104612145/",
+          "eventDateLocal": "2020-09-24T19:00:00-0500",
+          "eventDateUTC": "2020-09-25T00:00:00+0000",
+          "createdDate": "2020-02-26T16:34:41+0000",
+          "lastUpdatedDate": "2020-05-26T22:30:18+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "Majestic Theater in Kankakee",
+          "timezone": "CDT",
+          "performers": [
+            {
+              "id": 405020,
+              "name": "Drake Bell"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 63911,
+                "name": "Artists D - G"
+              }
+            ],
+            "performers": [
+              {
+                "id": 405020,
+                "name": "Drake Bell"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              },
+              {
+                "id": 441193,
+                "name": "Rock, Pop and Hip-Hop"
+              },
+              {
+                "id": 195743,
+                "name": "Pop Music"
+              },
+              {
+                "id": 209736,
+                "name": "Rock Music"
+              }
+            ]
+          },
+          "currencyCode": "USD",
+          "ticketInfo": {
+            "minPrice": 0,
+            "minListPrice": 0,
+            "maxListPrice": 0,
+            "totalTickets": 0,
+            "totalListings": 0
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Thu, Sep 24, 2020",
+          "time": "08:00 PM",
+          "priceBeforeFees": 0,
+          "priceAfterFees": 0,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/drake-bell-tickets-drake-bell-kankakee-majestic-theater-in-kankakee-9-24-2020/event/104612145/"
+        }
+      ]
+    },
+    {
+      "date": "Fri, Sep 25, 2020",
+      "events": [
+        {
+          "name": "The Project 100.7/106.3 Presents Drake Bell",
+          "type": "event",
+          "id": "rZ7HnEZ1A8o-k4",
+          "test": false,
+          "url": "https://www.ticketweb.com/event/the-project-10071063-presents-drake-the-thompson-house-tickets/10461195",
+          "locale": "en-us",
+          "images": [
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_3_2.jpg",
+              "width": 640,
+              "height": 427,
+              "fallback": false
+            },
+            {
+              "ratio": "4_3",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_CUSTOM.jpg",
+              "width": 305,
+              "height": 225,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_3_2.jpg",
+              "width": 1024,
+              "height": 683,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_LANDSCAPE_16_9.jpg",
+              "width": 1136,
+              "height": 639,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_16_9.jpg",
+              "width": 640,
+              "height": 360,
+              "fallback": false
+            },
+            {
+              "ratio": "1_1",
+              "url": "https://i.ticketweb.com/i/00/09/68/62/59_Edp.jpg",
+              "width": 427,
+              "height": 427,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RECOMENDATION_16_9.jpg",
+              "width": 100,
+              "height": 56,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_EVENT_DETAIL_PAGE_16_9.jpg",
+              "width": 205,
+              "height": 115,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_16_9.jpg",
+              "width": 1024,
+              "height": 576,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_ARTIST_PAGE_3_2.jpg",
+              "width": 305,
+              "height": 203,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+              "width": 2048,
+              "height": 1152,
+              "fallback": false
+            }
+          ],
+          "sales": {
+            "public": {
+              "startDateTime": "2020-02-24T20:00:00Z",
+              "startTBD": false,
+              "startTBA": false,
+              "endDateTime": "2020-09-25T23:00:00Z"
+            }
+          },
+          "dates": {
+            "access": {
+              "startDateTime": "2020-09-25T22:00:00Z",
+              "startApproximate": false,
+              "endApproximate": false
+            },
+            "start": {
+              "localDate": "2020-09-25",
+              "localTime": "19:00:00",
+              "dateTime": "2020-09-25T23:00:00Z",
+              "dateTBD": false,
+              "dateTBA": false,
+              "timeTBA": false,
+              "noSpecificTime": false
+            },
+            "end": {
+              "approximate": false,
+              "noSpecificTime": false
+            },
+            "timezone": "America/New_York",
+            "status": {
+              "code": "onsale"
+            },
+            "spanMultipleDays": false
+          },
+          "classifications": [
+            {
+              "primary": true,
+              "segment": {
+                "id": "KZFzniwnSyZfZ7v7nJ",
+                "name": "Music"
+              },
+              "genre": {
+                "id": "KnvZfZ7vAeA",
+                "name": "Rock"
+              },
+              "subGenre": {
+                "id": "KZazBEonSMnZfZ7v6F1",
+                "name": "Pop"
+              },
+              "family": false
+            }
+          ],
+          "info": "American actor and musician, Drake Bell gained international notoriety for his lead role on the Award-Winning Nickelodeon Comedy Series, Drake & Josh. Following the premiere in 2004, Bell became an instant household name which continues to resonate with fans across multiple generations after more than a decade.Through the combined power of social media and streaming platforms, Bell has permeated the music industry too, independently releasing music and visuals while maintaining artistic authenticity and creative control. Bell released his latest single, Fuego Lento, in November 2018 garnering over 40 million streams across streaming platforms and 14 million views on its official music video.Drake recently released two new singles, MIA and Vertigo, and is currently working on a new album.",
+          "priceRanges": [
+            {
+              "type": "standard",
+              "currency": "USD",
+              "min": 20,
+              "max": 25
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/discovery/v2/events/rZ7HnEZ1A8o-k4?locale=en-us"
+            },
+            "attractions": [
+              {
+                "href": "/discovery/v2/attractions/K8vZ9175g2f?locale=en-us"
+              }
+            ],
+            "venues": [
+              {
+                "href": "/discovery/v2/venues/KovZpZAFJJeA?locale=en-us"
+              }
+            ]
+          },
+          "_embedded": {
+            "venues": [
+              {
+                "name": "The Thompson House",
+                "type": "venue",
+                "id": "KovZpZAFJJeA",
+                "test": false,
+                "url": "https://www.ticketmaster.com/the-thompson-house-tickets-newport/venue/341535",
+                "locale": "en-us",
+                "postalCode": "41071",
+                "timezone": "America/New_York",
+                "city": {
+                  "name": "Newport "
+                },
+                "state": {
+                  "name": "Kentucky",
+                  "stateCode": "KY"
+                },
+                "country": {
+                  "name": "United States Of America",
+                  "countryCode": "US"
+                },
+                "address": {
+                  "line1": "24 E. 3rd Street"
+                },
+                "location": {
+                  "longitude": "-84.49619275",
+                  "latitude": "39.09357316"
+                },
+                "markets": [
+                  {
+                    "name": "Cincinnati and Dayton",
+                    "id": "4"
+                  }
+                ],
+                "dmas": [
+                  {
+                    "id": 251
+                  },
+                  {
+                    "id": 263
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 5,
+                  "ticketweb": 5
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/venues/KovZpZAFJJeA?locale=en-us"
+                  }
+                }
+              }
+            ],
+            "attractions": [
+              {
+                "name": "Drake Bell",
+                "type": "attraction",
+                "id": "K8vZ9175g2f",
+                "test": false,
+                "url": "https://www.ticketmaster.com/drake-bell-tickets/artist/991253",
+                "locale": "en-us",
+                "externalLinks": {
+                  "youtube": [
+                    {
+                      "url": "https://www.youtube.com/user/DrakeBellLive"
+                    }
+                  ],
+                  "twitter": [
+                    {
+                      "url": "https://twitter.com/DrakeBell"
+                    }
+                  ],
+                  "itunes": [
+                    {
+                      "url": "https://itunes.apple.com/artist/id49635456"
+                    }
+                  ],
+                  "facebook": [
+                    {
+                      "url": "https://www.facebook.com/bell.drake"
+                    }
+                  ],
+                  "wiki": [
+                    {
+                      "url": "https://en.wikipedia.org/wiki/Drake_Bell"
+                    }
+                  ],
+                  "musicbrainz": [
+                    {
+                      "id": "094f10e7-27d5-400d-a145-331013e67229"
+                    }
+                  ],
+                  "homepage": [
+                    {
+                      "url": "http://drakebell.com/"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAeA",
+                      "name": "Rock"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7v6F1",
+                      "name": "Pop"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7nI",
+                      "name": "Undefined"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7v7lJ",
+                      "name": "Undefined"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 2,
+                  "ticketweb": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ9175g2f?locale=en-us"
+                  }
+                }
+              }
+            ]
+          },
+          "source": "ticketmaster",
+          "sourceUrl": "https://ticketmaster.com",
+          "date": "Fri, Sep 25, 2020",
+          "time": "07:00 PM",
+          "venue": "The Thompson House",
+          "isPriceEstimated": true,
+          "priceBeforeFees": 20,
+          "priceAfterFees": 26
+        }
+      ]
+    },
+    {
+      "date": "Sat, Sep 26, 2020",
+      "events": [
+        {
+          "id": 104608894,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Drake Bell Tickets (Rescheduled from May 23, 2020)",
+          "description": "Buy and sell Drake Bell Hobart Tickets for September 26 at Hobart Art Theater in Hobart, IN at StubHub! Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "drake-bell-tickets-drake-bell-hobart-hobart-art-theater-9-26-2020/event/104608894/",
+          "eventDateLocal": "2020-09-26T19:00:00-0500",
+          "eventDateUTC": "2020-09-27T00:00:00+0000",
+          "createdDate": "2020-02-26T16:39:01+0000",
+          "lastUpdatedDate": "2020-06-03T18:17:31+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "Hobart Art Theater",
+          "timezone": "CDT",
+          "performers": [
+            {
+              "id": 405020,
+              "name": "Drake Bell"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 63911,
+                "name": "Artists D - G"
+              }
+            ],
+            "performers": [
+              {
+                "id": 405020,
+                "name": "Drake Bell"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              },
+              {
+                "id": 441193,
+                "name": "Rock, Pop and Hip-Hop"
+              },
+              {
+                "id": 195743,
+                "name": "Pop Music"
+              },
+              {
+                "id": 209736,
+                "name": "Rock Music"
+              }
+            ]
+          },
+          "currencyCode": "USD",
+          "ticketInfo": {
+            "minPrice": 0,
+            "minListPrice": 0,
+            "maxListPrice": 0,
+            "totalTickets": 0,
+            "totalListings": 0
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Sat, Sep 26, 2020",
+          "time": "08:00 PM",
+          "priceBeforeFees": 0,
+          "priceAfterFees": 0,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/drake-bell-tickets-drake-bell-hobart-hobart-art-theater-9-26-2020/event/104608894/"
+        }
+      ]
+    },
+    {
+      "date": "Sat, Nov 21, 2020",
+      "events": [
+        {
+          "id": 104610871,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Drake Bulldogs at Stetson Hatters Football",
+          "description": "Buy and sell Drake Bulldogs vs Stetson Hatters Football Tickets for Nov 21 at Spec Martin Stadium in DeLand at StubHub! Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "stetson-hatters-football-tickets-stetson-hatters-football-deland-spec-martin-stadium-11-21-2020/event/104610871/",
+          "eventDateLocal": "2020-11-21T13:00:00-0500",
+          "eventDateUTC": "2020-11-21T18:00:00+0000",
+          "createdDate": "2020-02-25T21:57:23+0000",
+          "lastUpdatedDate": "2020-02-25T21:57:24+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "Spec Martin Stadium",
+          "timezone": "EST",
+          "performers": [
+            {
+              "id": 735473,
+              "name": "Stetson Hatters Football"
+            },
+            {
+              "id": 491332,
+              "name": "Drake Bulldogs Football",
+              "role": "AWAY_TEAM"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 28,
+                "name": "Sports"
+              },
+              {
+                "id": 31,
+                "name": "Football"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 122,
+                "name": "NCAA Football"
+              },
+              {
+                "id": 491324,
+                "name": "Pioneer Football League"
+              }
+            ],
+            "performers": [
+              {
+                "id": 735473,
+                "name": "Stetson Hatters Football"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 31,
+                "name": "Football"
+              }
+            ]
+          },
+          "currencyCode": "USD",
+          "ticketInfo": {
+            "minPrice": 0,
+            "minListPrice": 0,
+            "maxListPrice": 0,
+            "totalTickets": 0,
+            "totalListings": 0
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Sat, Nov 21, 2020",
+          "time": "01:00 PM",
+          "priceBeforeFees": 0,
+          "priceAfterFees": 0,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/stetson-hatters-football-tickets-stetson-hatters-football-deland-spec-martin-stadium-11-21-2020/event/104610871/"
+        }
+      ]
+    },
+    {
+      "date": "Thu, Apr 8, 2021",
+      "events": [
+        {
+          "name": "Drake Bell",
+          "type": "event",
+          "id": "vv16eZAro7ZZA82AG2",
+          "test": false,
+          "url": "https://www.ticketmaster.com/drake-bell-lancaster-pennsylvania-04-08-2021/event/02005791100FE4BE",
+          "locale": "en-us",
+          "images": [
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_3_2.jpg",
+              "width": 640,
+              "height": 427,
+              "fallback": false
+            },
+            {
+              "ratio": "4_3",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_CUSTOM.jpg",
+              "width": 305,
+              "height": 225,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_3_2.jpg",
+              "width": 1024,
+              "height": 683,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_LANDSCAPE_16_9.jpg",
+              "width": 1136,
+              "height": 639,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_16_9.jpg",
+              "width": 640,
+              "height": 360,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RECOMENDATION_16_9.jpg",
+              "width": 100,
+              "height": 56,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_EVENT_DETAIL_PAGE_16_9.jpg",
+              "width": 205,
+              "height": 115,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_16_9.jpg",
+              "width": 1024,
+              "height": 576,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_ARTIST_PAGE_3_2.jpg",
+              "width": 305,
+              "height": 203,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+              "width": 2048,
+              "height": 1152,
+              "fallback": false
+            }
+          ],
+          "sales": {
+            "public": {
+              "startDateTime": "2019-12-20T15:00:00Z",
+              "startTBD": false,
+              "startTBA": false,
+              "endDateTime": "2021-04-08T22:00:00Z"
+            }
+          },
+          "dates": {
+            "start": {
+              "localDate": "2021-04-08",
+              "localTime": "18:00:00",
+              "dateTime": "2021-04-08T22:00:00Z",
+              "dateTBD": false,
+              "dateTBA": false,
+              "timeTBA": false,
+              "noSpecificTime": false
+            },
+            "initialStartDate": {
+              "localDate": "2020-09-02",
+              "localTime": "18:00:00",
+              "dateTime": "2020-09-02T22:00:00Z"
+            },
+            "timezone": "America/New_York",
+            "status": {
+              "code": "rescheduled"
+            },
+            "spanMultipleDays": false
+          },
+          "classifications": [
+            {
+              "primary": true,
+              "segment": {
+                "id": "KZFzniwnSyZfZ7v7nJ",
+                "name": "Music"
+              },
+              "genre": {
+                "id": "KnvZfZ7vAeA",
+                "name": "Rock"
+              },
+              "subGenre": {
+                "id": "KZazBEonSMnZfZ7v6F1",
+                "name": "Pop"
+              },
+              "type": {
+                "id": "KZAyXgnZfZ7v7nI",
+                "name": "Undefined"
+              },
+              "subType": {
+                "id": "KZFzBErXgnZfZ7v7lJ",
+                "name": "Undefined"
+              },
+              "family": false
+            }
+          ],
+          "promoter": {
+            "id": "756",
+            "name": "STAN LEVINSTONE PRESENTS",
+            "description": "STAN LEVINSTONE PRESENTS / LOC / WDC"
+          },
+          "promoters": [
+            {
+              "id": "756",
+              "name": "STAN LEVINSTONE PRESENTS",
+              "description": "STAN LEVINSTONE PRESENTS / LOC / WDC"
+            }
+          ],
+          "info": "This event has been rescheduled to 4/8/2021. All tickets honored.",
+          "pleaseNote": "ALL AGES ADMITTED MUST BE 21 TO DRINK-I.D. REQUIRED This event has been reschedueld from 3/19/20 to 9/2/20. All tickets honored.",
+          "priceRanges": [
+            {
+              "type": "standard",
+              "currency": "USD",
+              "min": 20,
+              "max": 20
+            }
+          ],
+          "seatmap": {
+            "staticUrl": "https://maps.ticketmaster.com/maps/geometry/3/event/02005791100FE4BE/staticImage?type=png&systemId=HOST"
+          },
+          "accessibility": {},
+          "ageRestrictions": {
+            "legalAgeEnforced": false
+          },
+          "_links": {
+            "self": {
+              "href": "/discovery/v2/events/vv16eZAro7ZZA82AG2?locale=en-us"
+            },
+            "attractions": [
+              {
+                "href": "/discovery/v2/attractions/K8vZ9175g2f?locale=en-us"
+              }
+            ],
+            "venues": [
+              {
+                "href": "/discovery/v2/venues/KovZpZAa1t1A?locale=en-us"
+              }
+            ]
+          },
+          "_embedded": {
+            "venues": [
+              {
+                "name": "Chameleon Club",
+                "type": "venue",
+                "id": "KovZpZAa1t1A",
+                "test": false,
+                "url": "https://www.ticketmaster.com/chameleon-club-tickets-lancaster/venue/16471",
+                "locale": "en-us",
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dbimages/6986v.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  }
+                ],
+                "postalCode": "17603",
+                "timezone": "America/New_York",
+                "city": {
+                  "name": "Lancaster"
+                },
+                "state": {
+                  "name": "Pennsylvania",
+                  "stateCode": "PA"
+                },
+                "country": {
+                  "name": "United States Of America",
+                  "countryCode": "US"
+                },
+                "address": {
+                  "line1": "223 N. Water St"
+                },
+                "location": {
+                  "longitude": "-76.308822",
+                  "latitude": "40.041535"
+                },
+                "markets": [
+                  {
+                    "name": "Philadelphia",
+                    "id": "18"
+                  }
+                ],
+                "dmas": [
+                  {
+                    "id": 294
+                  },
+                  {
+                    "id": 358
+                  },
+                  {
+                    "id": 416
+                  }
+                ],
+                "boxOfficeInfo": {
+                  "phoneNumberDetail": "General Information telephone # is 717-299-9684/recorded hotline",
+                  "openHoursDetail": "Whenever club is open for concerts. Tuesday - Saturday 9pm-2am .",
+                  "acceptedPaymentDetail": "Cash, American Express, MasterCard, and Visa.",
+                  "willCallDetail": "Will call opens at doors. see website (www.chameleonclub.net) and/or ticket for information"
+                },
+                "parkingDetail": "Ample Public Parking Garage is located directly across from entrance to club.The fee for parking is $ 2.00 after 5pm. There is On Street Parking on surrounding streets. Accessible parking is available at public garage.",
+                "accessibleSeatingDetail": "Main floor is accessible. No restrooms on main floor.",
+                "generalInfo": {
+                  "generalRule": "Cameras and recording devices allowed ONLY if allowed by bands. There is no dress code and smoking is permitted. If under 21 - no re-entry. There is no group sales discount and all ages require a ticket."
+                },
+                "upcomingEvents": {
+                  "_total": 8,
+                  "tmr": 1,
+                  "ticketmaster": 7
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/venues/KovZpZAa1t1A?locale=en-us"
+                  }
+                }
+              }
+            ],
+            "attractions": [
+              {
+                "name": "Drake Bell",
+                "type": "attraction",
+                "id": "K8vZ9175g2f",
+                "test": false,
+                "url": "https://www.ticketmaster.com/drake-bell-tickets/artist/991253",
+                "locale": "en-us",
+                "externalLinks": {
+                  "youtube": [
+                    {
+                      "url": "https://www.youtube.com/user/DrakeBellLive"
+                    }
+                  ],
+                  "twitter": [
+                    {
+                      "url": "https://twitter.com/DrakeBell"
+                    }
+                  ],
+                  "itunes": [
+                    {
+                      "url": "https://itunes.apple.com/artist/id49635456"
+                    }
+                  ],
+                  "facebook": [
+                    {
+                      "url": "https://www.facebook.com/bell.drake"
+                    }
+                  ],
+                  "wiki": [
+                    {
+                      "url": "https://en.wikipedia.org/wiki/Drake_Bell"
+                    }
+                  ],
+                  "musicbrainz": [
+                    {
+                      "id": "094f10e7-27d5-400d-a145-331013e67229"
+                    }
+                  ],
+                  "homepage": [
+                    {
+                      "url": "http://drakebell.com/"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAeA",
+                      "name": "Rock"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7v6F1",
+                      "name": "Pop"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7nI",
+                      "name": "Undefined"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7v7lJ",
+                      "name": "Undefined"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 2,
+                  "ticketweb": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ9175g2f?locale=en-us"
+                  }
+                }
+              }
+            ]
+          },
+          "source": "ticketmaster",
+          "sourceUrl": "https://ticketmaster.com",
+          "date": "Thu, Apr 8, 2021",
+          "time": "06:00 PM",
+          "venue": "Chameleon Club",
+          "isPriceEstimated": true,
+          "priceBeforeFees": 20,
+          "priceAfterFees": 26
+        }
+      ]
+    },
+    {
+      "date": "Sun, Apr 25, 2021",
+      "events": [
+        {
+          "id": 104566312,
+          "status": "Active",
+          "locale": "en_US",
+          "name": "Lauren Sanderson Tickets (Rescheduled from April 8, 2020, Relocated from The Drake Hotel)",
+          "description": "Buy and sell Lauren Sanderson Tickets for Apr 25 at Velvet Underground Toronto in Toronto, ON at StubHub. Tickets are 100% guaranteed by FanProtect.",
+          "webURI": "lauren-sanderson-tickets-toronto-velvet-underground-toronto-4-25-2021/event/104566312/",
+          "eventDateLocal": "2021-04-25T19:00:00-0400",
+          "eventDateUTC": "2021-04-25T23:00:00+0000",
+          "createdDate": "2020-01-25T21:38:43+0000",
+          "lastUpdatedDate": "2020-08-14T17:20:48+0000",
+          "hideEventDate": false,
+          "hideEventTime": false,
+          "venue": "Velvet Underground Toronto",
+          "timezone": "EDT",
+          "performers": [
+            {
+              "id": 100282795,
+              "name": "Lauren Sanderson"
+            }
+          ],
+          "ancestors": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ],
+            "groupings": [
+              {
+                "id": 63912,
+                "name": "Artists L - O"
+              }
+            ],
+            "performers": [
+              {
+                "id": 100282795,
+                "name": "Lauren Sanderson"
+              }
+            ]
+          },
+          "categoriesCollection": {
+            "categories": [
+              {
+                "id": 1,
+                "name": "Concert"
+              }
+            ]
+          },
+          "currencyCode": "CAD",
+          "ticketInfo": {
+            "minPrice": 161.75,
+            "minListPrice": 131.08,
+            "maxListPrice": 1418.97,
+            "totalTickets": 5,
+            "totalListings": 2
+          },
+          "source": "stubhub",
+          "sourceUrl": "https://stubhub.com",
+          "date": "Sun, Apr 25, 2021",
+          "time": "07:00 PM",
+          "priceBeforeFees": 131.08,
+          "priceAfterFees": 161.75,
+          "isPriceEstimated": false,
+          "url": "https://www.stubhub.com/lauren-sanderson-tickets-toronto-velvet-underground-toronto-4-25-2021/event/104566312/"
+        }
+      ]
+    },
+    {
+      "date": "Fri, Sep 3, 2021",
+      "events": [
+        {
+          "name": "FarmJam Music & Camping Festival",
+          "type": "event",
+          "id": "vvG1HZp515CS9I",
+          "test": false,
+          "url": "https://on.fgtix.com/trk/VdmF",
+          "locale": "en-us",
+          "images": [
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RECOMENDATION_16_9.jpg",
+              "width": 100,
+              "height": 56,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_3_2.jpg",
+              "width": 1024,
+              "height": 683,
+              "fallback": false
+            },
+            {
+              "ratio": "4_3",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_CUSTOM.jpg",
+              "width": 305,
+              "height": 225,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_EVENT_DETAIL_PAGE_16_9.jpg",
+              "width": 205,
+              "height": 115,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_ARTIST_PAGE_3_2.jpg",
+              "width": 305,
+              "height": 203,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+              "width": 2048,
+              "height": 1152,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_PORTRAIT_3_2.jpg",
+              "width": 640,
+              "height": 427,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_LANDSCAPE_16_9.jpg",
+              "width": 1136,
+              "height": 639,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_PORTRAIT_16_9.jpg",
+              "width": 640,
+              "height": 360,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_16_9.jpg",
+              "width": 1024,
+              "height": 576,
+              "fallback": false
+            }
+          ],
+          "sales": {
+            "public": {
+              "startDateTime": "2020-05-18T16:54:00Z",
+              "startTBD": false,
+              "startTBA": false,
+              "endDateTime": "2021-09-06T06:00:00Z"
+            }
+          },
+          "dates": {
+            "start": {
+              "localDate": "2021-09-03",
+              "dateTBD": false,
+              "dateTBA": false,
+              "timeTBA": false,
+              "noSpecificTime": true
+            },
+            "end": {
+              "localDate": "2021-09-05",
+              "approximate": false,
+              "noSpecificTime": true
+            },
+            "timezone": "America/Los_Angeles",
+            "status": {
+              "code": "rescheduled"
+            },
+            "spanMultipleDays": false
+          },
+          "classifications": [
+            {
+              "primary": true,
+              "segment": {
+                "id": "KZFzniwnSyZfZ7v7nJ",
+                "name": "Music"
+              },
+              "genre": {
+                "id": "KnvZfZ7vAe6",
+                "name": "Undefined"
+              },
+              "subGenre": {
+                "id": "KZazBEonSMnZfZ7v6JI",
+                "name": "Undefined"
+              },
+              "type": {
+                "id": "KZAyXgnZfZ7v7lt",
+                "name": "Event Style"
+              },
+              "subType": {
+                "id": "KZFzBErXgnZfZ7vA6E",
+                "name": "Festival"
+              },
+              "family": false
+            }
+          ],
+          "promoter": {
+            "id": "494",
+            "name": "PROMOTED BY VENUE",
+            "description": "PROMOTED BY VENUE / NTL / USA"
+          },
+          "promoters": [
+            {
+              "id": "494",
+              "name": "PROMOTED BY VENUE",
+              "description": "PROMOTED BY VENUE / NTL / USA"
+            }
+          ],
+          "accessibility": {},
+          "ageRestrictions": {
+            "legalAgeEnforced": false
+          },
+          "_links": {
+            "self": {
+              "href": "/discovery/v2/events/vvG1HZp515CS9I?locale=en-us"
+            },
+            "attractions": [
+              {
+                "href": "/discovery/v2/attractions/K8vZ917bz0f?locale=en-us"
+              },
+              {
+                "href": "/discovery/v2/attractions/K8vZ917u6if?locale=en-us"
+              },
+              {
+                "href": "/discovery/v2/attractions/K8vZ917bFM0?locale=en-us"
+              },
+              {
+                "href": "/discovery/v2/attractions/K8vZ9172lBf?locale=en-us"
+              },
+              {
+                "href": "/discovery/v2/attractions/K8vZ91734RV?locale=en-us"
+              },
+              {
+                "href": "/discovery/v2/attractions/K8vZ9173Jm7?locale=en-us"
+              },
+              {
+                "href": "/discovery/v2/attractions/K8vZ91741Hf?locale=en-us"
+              },
+              {
+                "href": "/discovery/v2/attractions/K8vZ9175L20?locale=en-us"
+              },
+              {
+                "href": "/discovery/v2/attractions/K8vZ917f8G0?locale=en-us"
+              }
+            ],
+            "venues": [
+              {
+                "href": "/discovery/v2/venues/KovZ917ANVi?locale=en-us"
+              }
+            ]
+          },
+          "_embedded": {
+            "venues": [
+              {
+                "name": "FarmJam",
+                "type": "venue",
+                "id": "KovZ917ANVi",
+                "test": false,
+                "url": "https://www.ticketmaster.com/farmjam-tickets-colville/venue/123954",
+                "locale": "en-us",
+                "postalCode": "99114",
+                "timezone": "America/Los_Angeles",
+                "city": {
+                  "name": "Colville"
+                },
+                "state": {
+                  "name": "Washington",
+                  "stateCode": "WA"
+                },
+                "country": {
+                  "name": "United States Of America",
+                  "countryCode": "US"
+                },
+                "address": {
+                  "line1": "73 Oakshott Road"
+                },
+                "location": {
+                  "longitude": "-117.920102",
+                  "latitude": "48.54308"
+                },
+                "markets": [
+                  {
+                    "name": "Seattle Area",
+                    "id": "42"
+                  }
+                ],
+                "dmas": [
+                  {
+                    "id": 385
+                  },
+                  {
+                    "id": 391
+                  },
+                  {
+                    "id": 418
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 2,
+                  "frontgate": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/venues/KovZ917ANVi?locale=en-us"
+                  }
+                }
+              }
+            ],
+            "attractions": [
+              {
+                "name": "FarmJam Music & Camping Festival",
+                "type": "attraction",
+                "id": "K8vZ917bz0f",
+                "test": false,
+                "url": "https://www.ticketmaster.com/farmjam-music-camping-festival-tickets/artist/2756301",
+                "locale": "en-us",
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAe6",
+                      "name": "Undefined"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7v6JI",
+                      "name": "Undefined"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7lt",
+                      "name": "Event Style"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7vA6E",
+                      "name": "Festival"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ917bz0f?locale=en-us"
+                  }
+                }
+              },
+              {
+                "name": "Eric Paslay",
+                "type": "attraction",
+                "id": "K8vZ917u6if",
+                "test": false,
+                "url": "https://www.ticketmaster.com/eric-paslay-tickets/artist/1496878",
+                "locale": "en-us",
+                "externalLinks": {
+                  "twitter": [
+                    {
+                      "url": "https://twitter.com/ericpaslay"
+                    }
+                  ],
+                  "wiki": [
+                    {
+                      "url": "https://en.wikipedia.org/wiki/Eric_Paslay"
+                    }
+                  ],
+                  "musicbrainz": [
+                    {
+                      "id": "4b624758-58a1-42b3-9133-55a687f417ad"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAeA",
+                      "name": "Rock"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7v6F1",
+                      "name": "Pop"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7nI",
+                      "name": "Undefined"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7v7lJ",
+                      "name": "Undefined"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ917u6if?locale=en-us"
+                  }
+                }
+              },
+              {
+                "name": "Carolyn Miller",
+                "type": "attraction",
+                "id": "K8vZ917bFM0",
+                "test": false,
+                "url": "https://www.ticketmaster.com/carolyn-miller-tickets/artist/2648316",
+                "locale": "en-us",
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": true
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAv6",
+                      "name": "Country"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7vAFa",
+                      "name": "Country"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7la",
+                      "name": "Individual"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7vAd7",
+                      "name": "Musician"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ917bFM0?locale=en-us"
+                  }
+                }
+              },
+              {
+                "name": "Blake Noble",
+                "type": "attraction",
+                "id": "K8vZ9172lBf",
+                "test": false,
+                "url": "https://www.ticketmaster.com/blake-noble-tickets/artist/1717686",
+                "locale": "en-us",
+                "images": [
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": true
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAeA",
+                      "name": "Rock"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7v6dt",
+                      "name": "Alternative Rock"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7nI",
+                      "name": "Undefined"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7v7lJ",
+                      "name": "Undefined"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ9172lBf?locale=en-us"
+                  }
+                }
+              },
+              {
+                "name": "Drake White and The Big Fire",
+                "type": "attraction",
+                "id": "K8vZ91734RV",
+                "test": false,
+                "url": "https://www.ticketmaster.com/drake-white-and-the-big-fire-tickets/artist/1980375",
+                "locale": "en-us",
+                "externalLinks": {
+                  "musicbrainz": [
+                    {
+                      "id": "1dfd4f8e-4eb4-4f10-907d-1901d7c5c2fe"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAv6",
+                      "name": "Country"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7vAFa",
+                      "name": "Country"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7nI",
+                      "name": "Undefined"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7v7lJ",
+                      "name": "Undefined"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ91734RV?locale=en-us"
+                  }
+                }
+              },
+              {
+                "name": "Scooter Brown Band",
+                "type": "attraction",
+                "id": "K8vZ9173Jm7",
+                "test": false,
+                "url": "https://www.ticketmaster.com/scooter-brown-band-tickets/artist/2008420",
+                "locale": "en-us",
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": true
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAv6",
+                      "name": "Country"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7vAFa",
+                      "name": "Country"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7nI",
+                      "name": "Undefined"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7v7lJ",
+                      "name": "Undefined"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 2,
+                  "ticketmaster": 2
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ9173Jm7?locale=en-us"
+                  }
+                }
+              },
+              {
+                "name": "Stephanie Quayle",
+                "type": "attraction",
+                "id": "K8vZ91741Hf",
+                "test": false,
+                "url": "https://www.ticketmaster.com/stephanie-quayle-tickets/artist/2266908",
+                "locale": "en-us",
+                "externalLinks": {
+                  "youtube": [
+                    {
+                      "url": "https://www.youtube.com/user/STEPHANIEQUAYLE"
+                    }
+                  ],
+                  "twitter": [
+                    {
+                      "url": "https://twitter.com/StephanieQuayle"
+                    }
+                  ],
+                  "facebook": [
+                    {
+                      "url": "https://www.facebook.com/stephaniequayle"
+                    }
+                  ],
+                  "instagram": [
+                    {
+                      "url": "https://instagram.com/stephaniequayle"
+                    },
+                    {
+                      "url": "https://instagram.com/stephaniequayle/"
+                    }
+                  ],
+                  "musicbrainz": [
+                    {
+                      "id": "8cb88c03-37fb-451e-96ff-7709a3a1f87b"
+                    }
+                  ],
+                  "homepage": [
+                    {
+                      "url": "http://www.stephaniequayle.com/"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": true
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": true
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAv6",
+                      "name": "Country"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7vAFa",
+                      "name": "Country"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7la",
+                      "name": "Individual"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7vAd7",
+                      "name": "Musician"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 3,
+                  "ticketmaster": 3
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ91741Hf?locale=en-us"
+                  }
+                }
+              },
+              {
+                "name": "Corb Lund",
+                "type": "attraction",
+                "id": "K8vZ9175L20",
+                "test": false,
+                "url": "https://www.ticketmaster.com/corb-lund-tickets/artist/896481",
+                "locale": "en-us",
+                "externalLinks": {
+                  "youtube": [
+                    {
+                      "url": "https://www.youtube.com/user/corblundvids"
+                    }
+                  ],
+                  "twitter": [
+                    {
+                      "url": "https://twitter.com/corblund"
+                    }
+                  ],
+                  "facebook": [
+                    {
+                      "url": "https://www.facebook.com/CorbLundMusic"
+                    }
+                  ],
+                  "musicbrainz": [
+                    {
+                      "id": "2546bbcd-01b9-481f-95e0-81bdd821f823"
+                    }
+                  ],
+                  "homepage": [
+                    {
+                      "url": "http://corblund.com/"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAva",
+                      "name": "Folk"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7vAn7",
+                      "name": "Folk"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7nI",
+                      "name": "Undefined"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7v7lJ",
+                      "name": "Undefined"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 19,
+                  "tmr": 1,
+                  "ticketweb": 6,
+                  "ticketmaster": 12
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ9175L20?locale=en-us"
+                  }
+                }
+              },
+              {
+                "name": "Dillon Carmichael",
+                "type": "attraction",
+                "id": "K8vZ917f8G0",
+                "test": false,
+                "url": "https://www.ticketmaster.com/dillon-carmichael-tickets/artist/2198509",
+                "locale": "en-us",
+                "externalLinks": {
+                  "youtube": [
+                    {
+                      "url": "https://www.youtube.com/dilloncarmichael"
+                    }
+                  ],
+                  "twitter": [
+                    {
+                      "url": "https://twitter.com/dilloncmusic"
+                    }
+                  ],
+                  "itunes": [
+                    {
+                      "url": "https://itunes.apple.com/us/artist/id683342951"
+                    }
+                  ],
+                  "facebook": [
+                    {
+                      "url": "https://www.facebook.com/dilloncarmichaelmusic"
+                    }
+                  ],
+                  "instagram": [
+                    {
+                      "url": "https://www.instagram.com/dilloncmusic/"
+                    }
+                  ],
+                  "musicbrainz": [
+                    {
+                      "id": "d1820c48-4af0-47d9-83b6-1009bbd49ac2"
+                    }
+                  ],
+                  "homepage": [
+                    {
+                      "url": "http://dilloncarmichael.com/"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAv6",
+                      "name": "Country"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7vAFa",
+                      "name": "Country"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7la",
+                      "name": "Individual"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7vAd7",
+                      "name": "Musician"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 1,
+                  "ticketmaster": 1
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ917f8G0?locale=en-us"
+                  }
+                }
+              }
+            ]
+          },
+          "source": "ticketmaster",
+          "sourceUrl": "https://ticketmaster.com",
+          "date": "Fri, Sep 3, 2021",
+          "time": null,
+          "venue": "FarmJam",
+          "isPriceEstimated": false,
+          "priceBeforeFees": null,
+          "priceAfterFees": null
+        }
+      ]
+    }
+  ],
+  "headers": {
+    "x-powered-by": "Express",
+    "access-control-allow-origin": "*",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "56166",
+    "etag": "W/\"db66-5nKXK4wV2nRgKZxsaFCs+Z4qnBQ\"",
+    "date": "Sat, 29 Aug 2020 18:58:27 GMT",
+    "connection": "keep-alive"
+  },
+  "status": 200,
+  "statusText": "OK",
+  "isOkStatusCode": true,
+  "requestHeaders": {
+    "Connection": "keep-alive",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36",
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate"
+  },
+  "duration": 502,
+  "allRequestResponses": [
+    {
+      "Request Body": null,
+      "Request Headers": {
+        "Connection": "keep-alive",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36",
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate"
+      },
+      "Request URL": "http://localhost:8080/api/search/events?keyword=drake",
+      "Response Body": "[{\"date\":\"Wed, Sep 2, 2020\",\"events\":[{\"id\":104524646,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Drake Bell Tickets (Reschduled from March 19, 2020)\",\"description\":\"Buy and sell Drake Bell Lancaster Tickets for September 2 at Chameleon Club in Lancaster, PA at StubHub! Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"drake-bell-tickets-drake-bell-lancaster-chameleon-club-9-2-2020/event/104524646/\",\"eventDateLocal\":\"2020-09-02T15:00:00-0400\",\"eventDateUTC\":\"2020-09-02T19:00:00+0000\",\"createdDate\":\"2019-12-21T19:19:50+0000\",\"lastUpdatedDate\":\"2020-04-09T17:23:30+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"Chameleon Club\",\"timezone\":\"EDT\",\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}],\"ancestors\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}],\"groupings\":[{\"id\":63911,\"name\":\"Artists D - G\"}],\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"},{\"id\":441193,\"name\":\"Rock, Pop and Hip-Hop\"},{\"id\":195743,\"name\":\"Pop Music\"},{\"id\":209736,\"name\":\"Rock Music\"}]},\"currencyCode\":\"USD\",\"ticketInfo\":{\"minPrice\":48.81,\"minListPrice\":37.35,\"maxListPrice\":150,\"totalTickets\":59,\"totalListings\":6},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Wed, Sep 2, 2020\",\"time\":\"03:00 PM\",\"priceBeforeFees\":37.35,\"priceAfterFees\":48.81,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/drake-bell-tickets-drake-bell-lancaster-chameleon-club-9-2-2020/event/104524646/\"}]},{\"date\":\"Thu, Sep 3, 2020\",\"events\":[{\"id\":104561458,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Drake Bell Tickets (Rescheduled from March 18, 2020)\",\"description\":\"Buy and sell Drake Bell Pittsburgh Tickets for September 3 at Lawrence Hall Ballroom at Point Park University in Pittsburgh, PA at StubHub! Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"drake-bell-tickets-drake-bell-pittsburgh-lawrence-hall-ballroom-at-point-park-university-9-3-2020/event/104561458/\",\"eventDateLocal\":\"2020-09-03T19:00:00-0400\",\"eventDateUTC\":\"2020-09-03T23:00:00+0000\",\"createdDate\":\"2020-01-21T23:13:15+0000\",\"lastUpdatedDate\":\"2020-04-13T17:34:04+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"Lawrence Hall Ballroom at Point Park University\",\"timezone\":\"EDT\",\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}],\"ancestors\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}],\"groupings\":[{\"id\":63911,\"name\":\"Artists D - G\"}],\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"},{\"id\":441193,\"name\":\"Rock, Pop and Hip-Hop\"},{\"id\":195743,\"name\":\"Pop Music\"},{\"id\":209736,\"name\":\"Rock Music\"}]},\"currencyCode\":\"USD\",\"ticketInfo\":{\"minPrice\":0,\"minListPrice\":0,\"maxListPrice\":0,\"totalTickets\":0,\"totalListings\":0},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Thu, Sep 3, 2020\",\"time\":\"07:00 PM\",\"priceBeforeFees\":0,\"priceAfterFees\":0,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/drake-bell-tickets-drake-bell-pittsburgh-lawrence-hall-ballroom-at-point-park-university-9-3-2020/event/104561458/\"}]},{\"date\":\"Mon, Sep 7, 2020\",\"events\":[{\"id\":104546013,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Drake Bell Tickets (Rescheduled from April 14, 2020)\",\"description\":\"Buy and sell Drake Bell Worcester Tickets for September 7 at The Palladium Worcester in Worcester, MA at StubHub! Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"drake-bell-tickets-drake-bell-worcester-the-palladium-worcester-9-7-2020/event/104546013/\",\"eventDateLocal\":\"2020-09-07T19:30:00-0400\",\"eventDateUTC\":\"2020-09-07T23:30:00+0000\",\"createdDate\":\"2020-01-09T22:46:26+0000\",\"lastUpdatedDate\":\"2020-04-09T17:37:26+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"The Palladium Worcester\",\"timezone\":\"EDT\",\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}],\"ancestors\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}],\"groupings\":[{\"id\":63911,\"name\":\"Artists D - G\"}],\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"},{\"id\":441193,\"name\":\"Rock, Pop and Hip-Hop\"},{\"id\":195743,\"name\":\"Pop Music\"},{\"id\":209736,\"name\":\"Rock Music\"}]},\"currencyCode\":\"USD\",\"ticketInfo\":{\"minPrice\":50.05,\"minListPrice\":38.35,\"maxListPrice\":150,\"totalTickets\":52,\"totalListings\":10},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Mon, Sep 7, 2020\",\"time\":\"07:30 PM\",\"priceBeforeFees\":38.35,\"priceAfterFees\":50.05,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/drake-bell-tickets-drake-bell-worcester-the-palladium-worcester-9-7-2020/event/104546013/\"}]},{\"date\":\"Tue, Sep 8, 2020\",\"events\":[{\"id\":104546015,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Drake Bell Tickets (Postponed from April 15, 2020)\",\"description\":\"Buy and sell Drake Bell Hartford Tickets for September 8 at The Webster Underground in Hartford, CT at StubHub! Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"drake-bell-tickets-drake-bell-hartford-the-webster-underground-9-8-2020/event/104546015/\",\"eventDateLocal\":\"2020-09-08T19:30:00-0400\",\"eventDateUTC\":\"2020-09-08T23:30:00+0000\",\"createdDate\":\"2020-01-09T22:48:21+0000\",\"lastUpdatedDate\":\"2020-06-03T17:09:31+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"The Webster Underground\",\"timezone\":\"EDT\",\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}],\"ancestors\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}],\"groupings\":[{\"id\":63911,\"name\":\"Artists D - G\"}],\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"},{\"id\":441193,\"name\":\"Rock, Pop and Hip-Hop\"},{\"id\":195743,\"name\":\"Pop Music\"},{\"id\":209736,\"name\":\"Rock Music\"}]},\"currencyCode\":\"USD\",\"ticketInfo\":{\"minPrice\":0,\"minListPrice\":0,\"maxListPrice\":0,\"totalTickets\":0,\"totalListings\":0},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Tue, Sep 8, 2020\",\"time\":\"07:30 PM\",\"priceBeforeFees\":0,\"priceAfterFees\":0,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/drake-bell-tickets-drake-bell-hartford-the-webster-underground-9-8-2020/event/104546015/\"}]},{\"date\":\"Wed, Sep 23, 2020\",\"events\":[{\"id\":104612143,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Drake Bell Tickets (Rescheduled from May 21, 2020)\",\"description\":\"Buy and sell Drake Bell Kent Tickets for September 23 at The Outpost Concert Club in Kent, OH at StubHub! Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"drake-bell-tickets-drake-bell-kent-the-outpost-concert-club-9-23-2020/event/104612143/\",\"eventDateLocal\":\"2020-09-23T18:00:00-0400\",\"eventDateUTC\":\"2020-09-23T22:00:00+0000\",\"createdDate\":\"2020-02-26T16:27:12+0000\",\"lastUpdatedDate\":\"2020-05-28T19:01:16+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"The Outpost Concert Club\",\"timezone\":\"EDT\",\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}],\"ancestors\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}],\"groupings\":[{\"id\":63911,\"name\":\"Artists D - G\"}],\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"},{\"id\":441193,\"name\":\"Rock, Pop and Hip-Hop\"},{\"id\":195743,\"name\":\"Pop Music\"},{\"id\":209736,\"name\":\"Rock Music\"}]},\"currencyCode\":\"USD\",\"ticketInfo\":{\"minPrice\":0,\"minListPrice\":0,\"maxListPrice\":0,\"totalTickets\":0,\"totalListings\":0},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Wed, Sep 23, 2020\",\"time\":\"06:00 PM\",\"priceBeforeFees\":0,\"priceAfterFees\":0,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/drake-bell-tickets-drake-bell-kent-the-outpost-concert-club-9-23-2020/event/104612143/\"}]},{\"date\":\"Thu, Sep 24, 2020\",\"events\":[{\"id\":104612145,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Drake Bell with Connor Stratton Tickets (Rescheduled from May 22, 2020)\",\"description\":\"Buy and sell Drake Bell Kankakee Tickets for September 24 at Majestic Theater in Kankakee in Kankakee, Illinois at StubHub! Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"drake-bell-tickets-drake-bell-kankakee-majestic-theater-in-kankakee-9-24-2020/event/104612145/\",\"eventDateLocal\":\"2020-09-24T19:00:00-0500\",\"eventDateUTC\":\"2020-09-25T00:00:00+0000\",\"createdDate\":\"2020-02-26T16:34:41+0000\",\"lastUpdatedDate\":\"2020-05-26T22:30:18+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"Majestic Theater in Kankakee\",\"timezone\":\"CDT\",\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}],\"ancestors\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}],\"groupings\":[{\"id\":63911,\"name\":\"Artists D - G\"}],\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"},{\"id\":441193,\"name\":\"Rock, Pop and Hip-Hop\"},{\"id\":195743,\"name\":\"Pop Music\"},{\"id\":209736,\"name\":\"Rock Music\"}]},\"currencyCode\":\"USD\",\"ticketInfo\":{\"minPrice\":0,\"minListPrice\":0,\"maxListPrice\":0,\"totalTickets\":0,\"totalListings\":0},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Thu, Sep 24, 2020\",\"time\":\"08:00 PM\",\"priceBeforeFees\":0,\"priceAfterFees\":0,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/drake-bell-tickets-drake-bell-kankakee-majestic-theater-in-kankakee-9-24-2020/event/104612145/\"}]},{\"date\":\"Fri, Sep 25, 2020\",\"events\":[{\"name\":\"The Project 100.7/106.3 Presents Drake Bell\",\"type\":\"event\",\"id\":\"rZ7HnEZ1A8o-k4\",\"test\":false,\"url\":\"https://www.ticketweb.com/event/the-project-10071063-presents-drake-the-thompson-house-tickets/10461195\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"1_1\",\"url\":\"https://i.ticketweb.com/i/00/09/68/62/59_Edp.jpg\",\"width\":427,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false}],\"sales\":{\"public\":{\"startDateTime\":\"2020-02-24T20:00:00Z\",\"startTBD\":false,\"startTBA\":false,\"endDateTime\":\"2020-09-25T23:00:00Z\"}},\"dates\":{\"access\":{\"startDateTime\":\"2020-09-25T22:00:00Z\",\"startApproximate\":false,\"endApproximate\":false},\"start\":{\"localDate\":\"2020-09-25\",\"localTime\":\"19:00:00\",\"dateTime\":\"2020-09-25T23:00:00Z\",\"dateTBD\":false,\"dateTBA\":false,\"timeTBA\":false,\"noSpecificTime\":false},\"end\":{\"approximate\":false,\"noSpecificTime\":false},\"timezone\":\"America/New_York\",\"status\":{\"code\":\"onsale\"},\"spanMultipleDays\":false},\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAeA\",\"name\":\"Rock\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7v6F1\",\"name\":\"Pop\"},\"family\":false}],\"info\":\"American actor and musician, Drake Bell gained international notoriety for his lead role on the Award-Winning Nickelodeon Comedy Series, Drake & Josh. Following the premiere in 2004, Bell became an instant household name which continues to resonate with fans across multiple generations after more than a decade.Through the combined power of social media and streaming platforms, Bell has permeated the music industry too, independently releasing music and visuals while maintaining artistic authenticity and creative control. Bell released his latest single, Fuego Lento, in November 2018 garnering over 40 million streams across streaming platforms and 14 million views on its official music video.Drake recently released two new singles, MIA and Vertigo, and is currently working on a new album.\",\"priceRanges\":[{\"type\":\"standard\",\"currency\":\"USD\",\"min\":20,\"max\":25}],\"_links\":{\"self\":{\"href\":\"/discovery/v2/events/rZ7HnEZ1A8o-k4?locale=en-us\"},\"attractions\":[{\"href\":\"/discovery/v2/attractions/K8vZ9175g2f?locale=en-us\"}],\"venues\":[{\"href\":\"/discovery/v2/venues/KovZpZAFJJeA?locale=en-us\"}]},\"_embedded\":{\"venues\":[{\"name\":\"The Thompson House\",\"type\":\"venue\",\"id\":\"KovZpZAFJJeA\",\"test\":false,\"url\":\"https://www.ticketmaster.com/the-thompson-house-tickets-newport/venue/341535\",\"locale\":\"en-us\",\"postalCode\":\"41071\",\"timezone\":\"America/New_York\",\"city\":{\"name\":\"Newport \"},\"state\":{\"name\":\"Kentucky\",\"stateCode\":\"KY\"},\"country\":{\"name\":\"United States Of America\",\"countryCode\":\"US\"},\"address\":{\"line1\":\"24 E. 3rd Street\"},\"location\":{\"longitude\":\"-84.49619275\",\"latitude\":\"39.09357316\"},\"markets\":[{\"name\":\"Cincinnati and Dayton\",\"id\":\"4\"}],\"dmas\":[{\"id\":251},{\"id\":263}],\"upcomingEvents\":{\"_total\":5,\"ticketweb\":5},\"_links\":{\"self\":{\"href\":\"/discovery/v2/venues/KovZpZAFJJeA?locale=en-us\"}}}],\"attractions\":[{\"name\":\"Drake Bell\",\"type\":\"attraction\",\"id\":\"K8vZ9175g2f\",\"test\":false,\"url\":\"https://www.ticketmaster.com/drake-bell-tickets/artist/991253\",\"locale\":\"en-us\",\"externalLinks\":{\"youtube\":[{\"url\":\"https://www.youtube.com/user/DrakeBellLive\"}],\"twitter\":[{\"url\":\"https://twitter.com/DrakeBell\"}],\"itunes\":[{\"url\":\"https://itunes.apple.com/artist/id49635456\"}],\"facebook\":[{\"url\":\"https://www.facebook.com/bell.drake\"}],\"wiki\":[{\"url\":\"https://en.wikipedia.org/wiki/Drake_Bell\"}],\"musicbrainz\":[{\"id\":\"094f10e7-27d5-400d-a145-331013e67229\"}],\"homepage\":[{\"url\":\"http://drakebell.com/\"}]},\"images\":[{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAeA\",\"name\":\"Rock\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7v6F1\",\"name\":\"Pop\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7nI\",\"name\":\"Undefined\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7v7lJ\",\"name\":\"Undefined\"},\"family\":false}],\"upcomingEvents\":{\"_total\":2,\"ticketweb\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ9175g2f?locale=en-us\"}}}]},\"source\":\"ticketmaster\",\"sourceUrl\":\"https://ticketmaster.com\",\"date\":\"Fri, Sep 25, 2020\",\"time\":\"07:00 PM\",\"venue\":\"The Thompson House\",\"isPriceEstimated\":true,\"priceBeforeFees\":20,\"priceAfterFees\":26}]},{\"date\":\"Sat, Sep 26, 2020\",\"events\":[{\"id\":104608894,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Drake Bell Tickets (Rescheduled from May 23, 2020)\",\"description\":\"Buy and sell Drake Bell Hobart Tickets for September 26 at Hobart Art Theater in Hobart, IN at StubHub! Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"drake-bell-tickets-drake-bell-hobart-hobart-art-theater-9-26-2020/event/104608894/\",\"eventDateLocal\":\"2020-09-26T19:00:00-0500\",\"eventDateUTC\":\"2020-09-27T00:00:00+0000\",\"createdDate\":\"2020-02-26T16:39:01+0000\",\"lastUpdatedDate\":\"2020-06-03T18:17:31+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"Hobart Art Theater\",\"timezone\":\"CDT\",\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}],\"ancestors\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}],\"groupings\":[{\"id\":63911,\"name\":\"Artists D - G\"}],\"performers\":[{\"id\":405020,\"name\":\"Drake Bell\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"},{\"id\":441193,\"name\":\"Rock, Pop and Hip-Hop\"},{\"id\":195743,\"name\":\"Pop Music\"},{\"id\":209736,\"name\":\"Rock Music\"}]},\"currencyCode\":\"USD\",\"ticketInfo\":{\"minPrice\":0,\"minListPrice\":0,\"maxListPrice\":0,\"totalTickets\":0,\"totalListings\":0},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Sat, Sep 26, 2020\",\"time\":\"08:00 PM\",\"priceBeforeFees\":0,\"priceAfterFees\":0,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/drake-bell-tickets-drake-bell-hobart-hobart-art-theater-9-26-2020/event/104608894/\"}]},{\"date\":\"Sat, Nov 21, 2020\",\"events\":[{\"id\":104610871,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Drake Bulldogs at Stetson Hatters Football\",\"description\":\"Buy and sell Drake Bulldogs vs Stetson Hatters Football Tickets for Nov 21 at Spec Martin Stadium in DeLand at StubHub! Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"stetson-hatters-football-tickets-stetson-hatters-football-deland-spec-martin-stadium-11-21-2020/event/104610871/\",\"eventDateLocal\":\"2020-11-21T13:00:00-0500\",\"eventDateUTC\":\"2020-11-21T18:00:00+0000\",\"createdDate\":\"2020-02-25T21:57:23+0000\",\"lastUpdatedDate\":\"2020-02-25T21:57:24+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"Spec Martin Stadium\",\"timezone\":\"EST\",\"performers\":[{\"id\":735473,\"name\":\"Stetson Hatters Football\"},{\"id\":491332,\"name\":\"Drake Bulldogs Football\",\"role\":\"AWAY_TEAM\"}],\"ancestors\":{\"categories\":[{\"id\":28,\"name\":\"Sports\"},{\"id\":31,\"name\":\"Football\"}],\"groupings\":[{\"id\":122,\"name\":\"NCAA Football\"},{\"id\":491324,\"name\":\"Pioneer Football League\"}],\"performers\":[{\"id\":735473,\"name\":\"Stetson Hatters Football\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":31,\"name\":\"Football\"}]},\"currencyCode\":\"USD\",\"ticketInfo\":{\"minPrice\":0,\"minListPrice\":0,\"maxListPrice\":0,\"totalTickets\":0,\"totalListings\":0},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Sat, Nov 21, 2020\",\"time\":\"01:00 PM\",\"priceBeforeFees\":0,\"priceAfterFees\":0,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/stetson-hatters-football-tickets-stetson-hatters-football-deland-spec-martin-stadium-11-21-2020/event/104610871/\"}]},{\"date\":\"Thu, Apr 8, 2021\",\"events\":[{\"name\":\"Drake Bell\",\"type\":\"event\",\"id\":\"vv16eZAro7ZZA82AG2\",\"test\":false,\"url\":\"https://www.ticketmaster.com/drake-bell-lancaster-pennsylvania-04-08-2021/event/02005791100FE4BE\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false}],\"sales\":{\"public\":{\"startDateTime\":\"2019-12-20T15:00:00Z\",\"startTBD\":false,\"startTBA\":false,\"endDateTime\":\"2021-04-08T22:00:00Z\"}},\"dates\":{\"start\":{\"localDate\":\"2021-04-08\",\"localTime\":\"18:00:00\",\"dateTime\":\"2021-04-08T22:00:00Z\",\"dateTBD\":false,\"dateTBA\":false,\"timeTBA\":false,\"noSpecificTime\":false},\"initialStartDate\":{\"localDate\":\"2020-09-02\",\"localTime\":\"18:00:00\",\"dateTime\":\"2020-09-02T22:00:00Z\"},\"timezone\":\"America/New_York\",\"status\":{\"code\":\"rescheduled\"},\"spanMultipleDays\":false},\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAeA\",\"name\":\"Rock\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7v6F1\",\"name\":\"Pop\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7nI\",\"name\":\"Undefined\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7v7lJ\",\"name\":\"Undefined\"},\"family\":false}],\"promoter\":{\"id\":\"756\",\"name\":\"STAN LEVINSTONE PRESENTS\",\"description\":\"STAN LEVINSTONE PRESENTS / LOC / WDC\"},\"promoters\":[{\"id\":\"756\",\"name\":\"STAN LEVINSTONE PRESENTS\",\"description\":\"STAN LEVINSTONE PRESENTS / LOC / WDC\"}],\"info\":\"This event has been rescheduled to 4/8/2021. All tickets honored.\",\"pleaseNote\":\"ALL AGES ADMITTED MUST BE 21 TO DRINK-I.D. REQUIRED This event has been reschedueld from 3/19/20 to 9/2/20. All tickets honored.\",\"priceRanges\":[{\"type\":\"standard\",\"currency\":\"USD\",\"min\":20,\"max\":20}],\"seatmap\":{\"staticUrl\":\"https://maps.ticketmaster.com/maps/geometry/3/event/02005791100FE4BE/staticImage?type=png&systemId=HOST\"},\"accessibility\":{},\"ageRestrictions\":{\"legalAgeEnforced\":false},\"_links\":{\"self\":{\"href\":\"/discovery/v2/events/vv16eZAro7ZZA82AG2?locale=en-us\"},\"attractions\":[{\"href\":\"/discovery/v2/attractions/K8vZ9175g2f?locale=en-us\"}],\"venues\":[{\"href\":\"/discovery/v2/venues/KovZpZAa1t1A?locale=en-us\"}]},\"_embedded\":{\"venues\":[{\"name\":\"Chameleon Club\",\"type\":\"venue\",\"id\":\"KovZpZAa1t1A\",\"test\":false,\"url\":\"https://www.ticketmaster.com/chameleon-club-tickets-lancaster/venue/16471\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dbimages/6986v.jpg\",\"width\":205,\"height\":115,\"fallback\":false}],\"postalCode\":\"17603\",\"timezone\":\"America/New_York\",\"city\":{\"name\":\"Lancaster\"},\"state\":{\"name\":\"Pennsylvania\",\"stateCode\":\"PA\"},\"country\":{\"name\":\"United States Of America\",\"countryCode\":\"US\"},\"address\":{\"line1\":\"223 N. Water St\"},\"location\":{\"longitude\":\"-76.308822\",\"latitude\":\"40.041535\"},\"markets\":[{\"name\":\"Philadelphia\",\"id\":\"18\"}],\"dmas\":[{\"id\":294},{\"id\":358},{\"id\":416}],\"boxOfficeInfo\":{\"phoneNumberDetail\":\"General Information telephone # is 717-299-9684/recorded hotline\",\"openHoursDetail\":\"Whenever club is open for concerts. Tuesday - Saturday 9pm-2am .\",\"acceptedPaymentDetail\":\"Cash, American Express, MasterCard, and Visa.\",\"willCallDetail\":\"Will call opens at doors. see website (www.chameleonclub.net) and/or ticket for information\"},\"parkingDetail\":\"Ample Public Parking Garage is located directly across from entrance to club.The fee for parking is $ 2.00 after 5pm. There is On Street Parking on surrounding streets. Accessible parking is available at public garage.\",\"accessibleSeatingDetail\":\"Main floor is accessible. No restrooms on main floor.\",\"generalInfo\":{\"generalRule\":\"Cameras and recording devices allowed ONLY if allowed by bands. There is no dress code and smoking is permitted. If under 21 - no re-entry. There is no group sales discount and all ages require a ticket.\"},\"upcomingEvents\":{\"_total\":8,\"tmr\":1,\"ticketmaster\":7},\"_links\":{\"self\":{\"href\":\"/discovery/v2/venues/KovZpZAa1t1A?locale=en-us\"}}}],\"attractions\":[{\"name\":\"Drake Bell\",\"type\":\"attraction\",\"id\":\"K8vZ9175g2f\",\"test\":false,\"url\":\"https://www.ticketmaster.com/drake-bell-tickets/artist/991253\",\"locale\":\"en-us\",\"externalLinks\":{\"youtube\":[{\"url\":\"https://www.youtube.com/user/DrakeBellLive\"}],\"twitter\":[{\"url\":\"https://twitter.com/DrakeBell\"}],\"itunes\":[{\"url\":\"https://itunes.apple.com/artist/id49635456\"}],\"facebook\":[{\"url\":\"https://www.facebook.com/bell.drake\"}],\"wiki\":[{\"url\":\"https://en.wikipedia.org/wiki/Drake_Bell\"}],\"musicbrainz\":[{\"id\":\"094f10e7-27d5-400d-a145-331013e67229\"}],\"homepage\":[{\"url\":\"http://drakebell.com/\"}]},\"images\":[{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/e02/5525c2b6-5de2-4eed-ae08-fa7ed0035e02_1235631_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAeA\",\"name\":\"Rock\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7v6F1\",\"name\":\"Pop\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7nI\",\"name\":\"Undefined\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7v7lJ\",\"name\":\"Undefined\"},\"family\":false}],\"upcomingEvents\":{\"_total\":2,\"ticketweb\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ9175g2f?locale=en-us\"}}}]},\"source\":\"ticketmaster\",\"sourceUrl\":\"https://ticketmaster.com\",\"date\":\"Thu, Apr 8, 2021\",\"time\":\"06:00 PM\",\"venue\":\"Chameleon Club\",\"isPriceEstimated\":true,\"priceBeforeFees\":20,\"priceAfterFees\":26}]},{\"date\":\"Sun, Apr 25, 2021\",\"events\":[{\"id\":104566312,\"status\":\"Active\",\"locale\":\"en_US\",\"name\":\"Lauren Sanderson Tickets (Rescheduled from April 8, 2020, Relocated from The Drake Hotel)\",\"description\":\"Buy and sell Lauren Sanderson Tickets for Apr 25 at Velvet Underground Toronto in Toronto, ON at StubHub. Tickets are 100% guaranteed by FanProtect.\",\"webURI\":\"lauren-sanderson-tickets-toronto-velvet-underground-toronto-4-25-2021/event/104566312/\",\"eventDateLocal\":\"2021-04-25T19:00:00-0400\",\"eventDateUTC\":\"2021-04-25T23:00:00+0000\",\"createdDate\":\"2020-01-25T21:38:43+0000\",\"lastUpdatedDate\":\"2020-08-14T17:20:48+0000\",\"hideEventDate\":false,\"hideEventTime\":false,\"venue\":\"Velvet Underground Toronto\",\"timezone\":\"EDT\",\"performers\":[{\"id\":100282795,\"name\":\"Lauren Sanderson\"}],\"ancestors\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}],\"groupings\":[{\"id\":63912,\"name\":\"Artists L - O\"}],\"performers\":[{\"id\":100282795,\"name\":\"Lauren Sanderson\"}]},\"categoriesCollection\":{\"categories\":[{\"id\":1,\"name\":\"Concert\"}]},\"currencyCode\":\"CAD\",\"ticketInfo\":{\"minPrice\":161.75,\"minListPrice\":131.08,\"maxListPrice\":1418.97,\"totalTickets\":5,\"totalListings\":2},\"source\":\"stubhub\",\"sourceUrl\":\"https://stubhub.com\",\"date\":\"Sun, Apr 25, 2021\",\"time\":\"07:00 PM\",\"priceBeforeFees\":131.08,\"priceAfterFees\":161.75,\"isPriceEstimated\":false,\"url\":\"https://www.stubhub.com/lauren-sanderson-tickets-toronto-velvet-underground-toronto-4-25-2021/event/104566312/\"}]},{\"date\":\"Fri, Sep 3, 2021\",\"events\":[{\"name\":\"FarmJam Music & Camping Festival\",\"type\":\"event\",\"id\":\"vvG1HZp515CS9I\",\"test\":false,\"url\":\"https://on.fgtix.com/trk/VdmF\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false}],\"sales\":{\"public\":{\"startDateTime\":\"2020-05-18T16:54:00Z\",\"startTBD\":false,\"startTBA\":false,\"endDateTime\":\"2021-09-06T06:00:00Z\"}},\"dates\":{\"start\":{\"localDate\":\"2021-09-03\",\"dateTBD\":false,\"dateTBA\":false,\"timeTBA\":false,\"noSpecificTime\":true},\"end\":{\"localDate\":\"2021-09-05\",\"approximate\":false,\"noSpecificTime\":true},\"timezone\":\"America/Los_Angeles\",\"status\":{\"code\":\"rescheduled\"},\"spanMultipleDays\":false},\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAe6\",\"name\":\"Undefined\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7v6JI\",\"name\":\"Undefined\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7lt\",\"name\":\"Event Style\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7vA6E\",\"name\":\"Festival\"},\"family\":false}],\"promoter\":{\"id\":\"494\",\"name\":\"PROMOTED BY VENUE\",\"description\":\"PROMOTED BY VENUE / NTL / USA\"},\"promoters\":[{\"id\":\"494\",\"name\":\"PROMOTED BY VENUE\",\"description\":\"PROMOTED BY VENUE / NTL / USA\"}],\"accessibility\":{},\"ageRestrictions\":{\"legalAgeEnforced\":false},\"_links\":{\"self\":{\"href\":\"/discovery/v2/events/vvG1HZp515CS9I?locale=en-us\"},\"attractions\":[{\"href\":\"/discovery/v2/attractions/K8vZ917bz0f?locale=en-us\"},{\"href\":\"/discovery/v2/attractions/K8vZ917u6if?locale=en-us\"},{\"href\":\"/discovery/v2/attractions/K8vZ917bFM0?locale=en-us\"},{\"href\":\"/discovery/v2/attractions/K8vZ9172lBf?locale=en-us\"},{\"href\":\"/discovery/v2/attractions/K8vZ91734RV?locale=en-us\"},{\"href\":\"/discovery/v2/attractions/K8vZ9173Jm7?locale=en-us\"},{\"href\":\"/discovery/v2/attractions/K8vZ91741Hf?locale=en-us\"},{\"href\":\"/discovery/v2/attractions/K8vZ9175L20?locale=en-us\"},{\"href\":\"/discovery/v2/attractions/K8vZ917f8G0?locale=en-us\"}],\"venues\":[{\"href\":\"/discovery/v2/venues/KovZ917ANVi?locale=en-us\"}]},\"_embedded\":{\"venues\":[{\"name\":\"FarmJam\",\"type\":\"venue\",\"id\":\"KovZ917ANVi\",\"test\":false,\"url\":\"https://www.ticketmaster.com/farmjam-tickets-colville/venue/123954\",\"locale\":\"en-us\",\"postalCode\":\"99114\",\"timezone\":\"America/Los_Angeles\",\"city\":{\"name\":\"Colville\"},\"state\":{\"name\":\"Washington\",\"stateCode\":\"WA\"},\"country\":{\"name\":\"United States Of America\",\"countryCode\":\"US\"},\"address\":{\"line1\":\"73 Oakshott Road\"},\"location\":{\"longitude\":\"-117.920102\",\"latitude\":\"48.54308\"},\"markets\":[{\"name\":\"Seattle Area\",\"id\":\"42\"}],\"dmas\":[{\"id\":385},{\"id\":391},{\"id\":418}],\"upcomingEvents\":{\"_total\":2,\"frontgate\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/venues/KovZ917ANVi?locale=en-us\"}}}],\"attractions\":[{\"name\":\"FarmJam Music & Camping Festival\",\"type\":\"attraction\",\"id\":\"K8vZ917bz0f\",\"test\":false,\"url\":\"https://www.ticketmaster.com/farmjam-music-camping-festival-tickets/artist/2756301\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/71b/c60537e1-47d6-4344-ad23-899a82da171b_1339601_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAe6\",\"name\":\"Undefined\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7v6JI\",\"name\":\"Undefined\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7lt\",\"name\":\"Event Style\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7vA6E\",\"name\":\"Festival\"},\"family\":false}],\"upcomingEvents\":{\"_total\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ917bz0f?locale=en-us\"}}},{\"name\":\"Eric Paslay\",\"type\":\"attraction\",\"id\":\"K8vZ917u6if\",\"test\":false,\"url\":\"https://www.ticketmaster.com/eric-paslay-tickets/artist/1496878\",\"locale\":\"en-us\",\"externalLinks\":{\"twitter\":[{\"url\":\"https://twitter.com/ericpaslay\"}],\"wiki\":[{\"url\":\"https://en.wikipedia.org/wiki/Eric_Paslay\"}],\"musicbrainz\":[{\"id\":\"4b624758-58a1-42b3-9133-55a687f417ad\"}]},\"images\":[{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/f58/e6433839-9f1f-48bd-a904-64c9831c6f58_146861_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAeA\",\"name\":\"Rock\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7v6F1\",\"name\":\"Pop\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7nI\",\"name\":\"Undefined\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7v7lJ\",\"name\":\"Undefined\"},\"family\":false}],\"upcomingEvents\":{\"_total\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ917u6if?locale=en-us\"}}},{\"name\":\"Carolyn Miller\",\"type\":\"attraction\",\"id\":\"K8vZ917bFM0\",\"test\":false,\"url\":\"https://www.ticketmaster.com/carolyn-miller-tickets/artist/2648316\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":true},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":true}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAv6\",\"name\":\"Country\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vAFa\",\"name\":\"Country\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7la\",\"name\":\"Individual\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7vAd7\",\"name\":\"Musician\"},\"family\":false}],\"upcomingEvents\":{\"_total\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ917bFM0?locale=en-us\"}}},{\"name\":\"Blake Noble\",\"type\":\"attraction\",\"id\":\"K8vZ9172lBf\",\"test\":false,\"url\":\"https://www.ticketmaster.com/blake-noble-tickets/artist/1717686\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":true},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":true}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAeA\",\"name\":\"Rock\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7v6dt\",\"name\":\"Alternative Rock\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7nI\",\"name\":\"Undefined\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7v7lJ\",\"name\":\"Undefined\"},\"family\":false}],\"upcomingEvents\":{\"_total\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ9172lBf?locale=en-us\"}}},{\"name\":\"Drake White and The Big Fire\",\"type\":\"attraction\",\"id\":\"K8vZ91734RV\",\"test\":false,\"url\":\"https://www.ticketmaster.com/drake-white-and-the-big-fire-tickets/artist/1980375\",\"locale\":\"en-us\",\"externalLinks\":{\"musicbrainz\":[{\"id\":\"1dfd4f8e-4eb4-4f10-907d-1901d7c5c2fe\"}]},\"images\":[{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/161/22941f73-c29e-44e2-8eb0-3d14c036c161_238241_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAv6\",\"name\":\"Country\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vAFa\",\"name\":\"Country\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7nI\",\"name\":\"Undefined\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7v7lJ\",\"name\":\"Undefined\"},\"family\":false}],\"upcomingEvents\":{\"_total\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ91734RV?locale=en-us\"}}},{\"name\":\"Scooter Brown Band\",\"type\":\"attraction\",\"id\":\"K8vZ9173Jm7\",\"test\":false,\"url\":\"https://www.ticketmaster.com/scooter-brown-band-tickets/artist/2008420\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":true},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":true}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAv6\",\"name\":\"Country\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vAFa\",\"name\":\"Country\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7nI\",\"name\":\"Undefined\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7v7lJ\",\"name\":\"Undefined\"},\"family\":false}],\"upcomingEvents\":{\"_total\":2,\"ticketmaster\":2},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ9173Jm7?locale=en-us\"}}},{\"name\":\"Stephanie Quayle\",\"type\":\"attraction\",\"id\":\"K8vZ91741Hf\",\"test\":false,\"url\":\"https://www.ticketmaster.com/stephanie-quayle-tickets/artist/2266908\",\"locale\":\"en-us\",\"externalLinks\":{\"youtube\":[{\"url\":\"https://www.youtube.com/user/STEPHANIEQUAYLE\"}],\"twitter\":[{\"url\":\"https://twitter.com/StephanieQuayle\"}],\"facebook\":[{\"url\":\"https://www.facebook.com/stephaniequayle\"}],\"instagram\":[{\"url\":\"https://instagram.com/stephaniequayle\"},{\"url\":\"https://instagram.com/stephaniequayle/\"}],\"musicbrainz\":[{\"id\":\"8cb88c03-37fb-451e-96ff-7709a3a1f87b\"}],\"homepage\":[{\"url\":\"http://www.stephaniequayle.com/\"}]},\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":true},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":true},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":true},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/c/677/c58dd0af-cda8-49b2-bdaf-068540c3a677_106541_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":true}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAv6\",\"name\":\"Country\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vAFa\",\"name\":\"Country\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7la\",\"name\":\"Individual\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7vAd7\",\"name\":\"Musician\"},\"family\":false}],\"upcomingEvents\":{\"_total\":3,\"ticketmaster\":3},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ91741Hf?locale=en-us\"}}},{\"name\":\"Corb Lund\",\"type\":\"attraction\",\"id\":\"K8vZ9175L20\",\"test\":false,\"url\":\"https://www.ticketmaster.com/corb-lund-tickets/artist/896481\",\"locale\":\"en-us\",\"externalLinks\":{\"youtube\":[{\"url\":\"https://www.youtube.com/user/corblundvids\"}],\"twitter\":[{\"url\":\"https://twitter.com/corblund\"}],\"facebook\":[{\"url\":\"https://www.facebook.com/CorbLundMusic\"}],\"musicbrainz\":[{\"id\":\"2546bbcd-01b9-481f-95e0-81bdd821f823\"}],\"homepage\":[{\"url\":\"http://corblund.com/\"}]},\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/dd8/f85a4074-ffe9-4d29-a2b5-3048a9e6add8_1284761_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAva\",\"name\":\"Folk\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vAn7\",\"name\":\"Folk\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7nI\",\"name\":\"Undefined\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7v7lJ\",\"name\":\"Undefined\"},\"family\":false}],\"upcomingEvents\":{\"_total\":19,\"tmr\":1,\"ticketweb\":6,\"ticketmaster\":12},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ9175L20?locale=en-us\"}}},{\"name\":\"Dillon Carmichael\",\"type\":\"attraction\",\"id\":\"K8vZ917f8G0\",\"test\":false,\"url\":\"https://www.ticketmaster.com/dillon-carmichael-tickets/artist/2198509\",\"locale\":\"en-us\",\"externalLinks\":{\"youtube\":[{\"url\":\"https://www.youtube.com/dilloncarmichael\"}],\"twitter\":[{\"url\":\"https://twitter.com/dilloncmusic\"}],\"itunes\":[{\"url\":\"https://itunes.apple.com/us/artist/id683342951\"}],\"facebook\":[{\"url\":\"https://www.facebook.com/dilloncarmichaelmusic\"}],\"instagram\":[{\"url\":\"https://www.instagram.com/dilloncmusic/\"}],\"musicbrainz\":[{\"id\":\"d1820c48-4af0-47d9-83b6-1009bbd49ac2\"}],\"homepage\":[{\"url\":\"http://dilloncarmichael.com/\"}]},\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/5aa/b6607b05-18c0-4453-95f4-66924f5535aa_803621_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAv6\",\"name\":\"Country\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vAFa\",\"name\":\"Country\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7la\",\"name\":\"Individual\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7vAd7\",\"name\":\"Musician\"},\"family\":false}],\"upcomingEvents\":{\"_total\":1,\"ticketmaster\":1},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ917f8G0?locale=en-us\"}}}]},\"source\":\"ticketmaster\",\"sourceUrl\":\"https://ticketmaster.com\",\"date\":\"Fri, Sep 3, 2021\",\"time\":null,\"venue\":\"FarmJam\",\"isPriceEstimated\":false,\"priceBeforeFees\":null,\"priceAfterFees\":null}]}]",
+      "Response Headers": {
+        "x-powered-by": "Express",
+        "access-control-allow-origin": "*",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "56166",
+        "etag": "W/\"db66-5nKXK4wV2nRgKZxsaFCs+Z4qnBQ\"",
+        "date": "Sat, 29 Aug 2020 18:58:27 GMT",
+        "connection": "keep-alive"
+      },
+      "Response Status": 200
+    }
+  ]
+}

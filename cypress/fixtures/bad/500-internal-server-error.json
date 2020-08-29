@@ -1,0 +1,22 @@
+{
+    "body": [],
+    "headers": {
+      "x-powered-by": "Express",
+      "access-control-allow-origin": "*",
+      "content-type": "application/json; charset=utf-8",
+      "content-length": "97530",
+      "etag": "W/\"17cfa-X5F3mZ2QRZgdjir/Ei0lHSM5tsE\"",
+      "date": "Sat, 29 Aug 2020 18:58:29 GMT",
+      "connection": "keep-alive"
+    },
+    "status": 500,
+    "statusText": "Internal Server Error",
+    "isOkStatusCode": false,
+    "requestHeaders": {
+      "Connection": "keep-alive",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36",
+      "accept": "*/*",
+      "accept-encoding": "gzip, deflate"
+    },
+    "duration": 1940
+  }

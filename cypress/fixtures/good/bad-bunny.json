@@ -1,0 +1,1227 @@
+{
+  "body": [
+    {
+      "date": "Fri, Oct 30, 2020",
+      "events": [
+        {
+          "name": "Bad Bunny",
+          "type": "event",
+          "id": "Z7r9jZ1AeJbpp",
+          "test": false,
+          "url": "http://www.ticketsnow.com/InventoryBrowse/TicketList.aspx?PID=2998596",
+          "locale": "en-us",
+          "images": [
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_EVENT_DETAIL_PAGE_16_9.jpg",
+              "width": 205,
+              "height": 115,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_LANDSCAPE_16_9.jpg",
+              "width": 1136,
+              "height": 639,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_3_2.jpg",
+              "width": 640,
+              "height": 427,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_16_9.jpg",
+              "width": 640,
+              "height": 360,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+              "width": 2048,
+              "height": 1152,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_3_2.jpg",
+              "width": 1024,
+              "height": 683,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_ARTIST_PAGE_3_2.jpg",
+              "width": 305,
+              "height": 203,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RECOMENDATION_16_9.jpg",
+              "width": 100,
+              "height": 56,
+              "fallback": false
+            },
+            {
+              "ratio": "4_3",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_CUSTOM.jpg",
+              "width": 305,
+              "height": 225,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_16_9.jpg",
+              "width": 1024,
+              "height": 576,
+              "fallback": false
+            }
+          ],
+          "sales": {
+            "public": {
+              "startDateTime": "1900-01-01T06:00:00Z",
+              "startTBD": false,
+              "startTBA": false,
+              "endDateTime": "2020-10-30T22:00:00Z"
+            }
+          },
+          "dates": {
+            "start": {
+              "localDate": "2020-10-30",
+              "localTime": "19:00:00",
+              "dateTime": "2020-10-30T22:00:00Z",
+              "dateTBD": false,
+              "dateTBA": false,
+              "timeTBA": false,
+              "noSpecificTime": false
+            },
+            "status": {
+              "code": "rescheduled"
+            },
+            "spanMultipleDays": false
+          },
+          "classifications": [
+            {
+              "primary": true,
+              "segment": {
+                "id": "KZFzniwnSyZfZ7v7nJ",
+                "name": "Music"
+              },
+              "genre": {
+                "id": "KnvZfZ7vAvl",
+                "name": "Other"
+              },
+              "subGenre": {
+                "id": "KZazBEonSMnZfZ7vk1I",
+                "name": "Other"
+              },
+              "family": false
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/discovery/v2/events/Z7r9jZ1AeJbpp?locale=en-us"
+            },
+            "attractions": [
+              {
+                "href": "/discovery/v2/attractions/K8vZ9174l1f?locale=en-us"
+              }
+            ],
+            "venues": [
+              {
+                "href": "/discovery/v2/venues/ZFr9jZdFak?locale=en-us"
+              }
+            ]
+          },
+          "_embedded": {
+            "venues": [
+              {
+                "name": "Estadio Hiram Bithorn",
+                "type": "venue",
+                "id": "ZFr9jZdFak",
+                "test": false,
+                "locale": "en-us",
+                "postalCode": "00920",
+                "timezone": "America/Halifax",
+                "city": {
+                  "name": "San Juan"
+                },
+                "state": {
+                  "name": "Puerto Rico",
+                  "stateCode": "PR"
+                },
+                "country": {
+                  "name": "United States Of America",
+                  "countryCode": "US"
+                },
+                "address": {
+                  "line2": "Hato Rey, PR"
+                },
+                "location": {
+                  "longitude": "-66.0933",
+                  "latitude": "18.408001"
+                },
+                "upcomingEvents": {
+                  "_total": 2,
+                  "tmr": 2
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/venues/ZFr9jZdFak?locale=en-us"
+                  }
+                }
+              }
+            ],
+            "attractions": [
+              {
+                "name": "Bad Bunny",
+                "type": "attraction",
+                "id": "K8vZ9174l1f",
+                "test": false,
+                "url": "https://www.ticketmaster.com/bad-bunny-tickets/artist/2317395",
+                "locale": "en-us",
+                "externalLinks": {
+                  "youtube": [
+                    {
+                      "url": "https://www.youtube.com/channel/UCmBA_wu8xGg1OfOkfW13Q0Q"
+                    }
+                  ],
+                  "twitter": [
+                    {
+                      "url": "https://twitter.com/badbunnypr"
+                    }
+                  ],
+                  "itunes": [
+                    {
+                      "url": "https://itunes.apple.com/us/artist/id1126808565"
+                    }
+                  ],
+                  "facebook": [
+                    {
+                      "url": "https://www.facebook.com/BadBunyPR"
+                    }
+                  ],
+                  "instagram": [
+                    {
+                      "url": "https://www.instagram.com/badbunnypr/"
+                    }
+                  ],
+                  "musicbrainz": [
+                    {
+                      "id": "89aa5ecb-59ad-46f5-b3eb-2d424e941f19"
+                    }
+                  ],
+                  "homepage": [
+                    {
+                      "url": "https://badbunny.pro/"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAv1",
+                      "name": "Hip-Hop/Rap"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7vke1",
+                      "name": "Latin Hip-Hop"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7la",
+                      "name": "Individual"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7vAd7",
+                      "name": "Musician"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 2,
+                  "tmr": 2
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ9174l1f?locale=en-us"
+                  }
+                }
+              }
+            ]
+          },
+          "source": "ticketmaster",
+          "sourceUrl": "https://ticketmaster.com",
+          "date": "Fri, Oct 30, 2020",
+          "time": "06:00 PM",
+          "venue": "Estadio Hiram Bithorn",
+          "isPriceEstimated": false,
+          "priceBeforeFees": null,
+          "priceAfterFees": null
+        },
+        {
+          "links": [],
+          "event_promotion": null,
+          "conditional": false,
+          "is_open": false,
+          "id": 5283533,
+          "stats": {
+            "visible_listing_count": null,
+            "dq_bucket_counts": null,
+            "average_price": null,
+            "lowest_sg_base_price_good_deals": null,
+            "lowest_price_good_deals": null,
+            "median_price": null,
+            "listing_count": null,
+            "lowest_price": null,
+            "lowest_sg_base_price": null,
+            "highest_price": null
+          },
+          "title": "Bad Bunny",
+          "announce_date": "2020-04-12T00:00:00",
+          "score": 0,
+          "access_method": null,
+          "announcements": {},
+          "taxonomies": [
+            {
+              "name": "concert",
+              "rank": 1,
+              "parent_id": null,
+              "id": 2000000
+            }
+          ],
+          "type": "concert",
+          "status": "normal",
+          "description": "",
+          "datetime_local": "2020-10-30T19:00:00",
+          "visible_until_utc": "2020-10-31T03:00:00",
+          "time_tbd": false,
+          "date_tbd": false,
+          "performers": [
+            {
+              "image": "https://seatgeek.com/images/performers-landscape/bad-bunny-9946f8/616548/23519/huge.jpg",
+              "primary": true,
+              "colors": null,
+              "images": {
+                "huge": "https://seatgeek.com/images/performers-landscape/bad-bunny-9946f8/616548/23519/huge.jpg"
+              },
+              "has_upcoming_events": true,
+              "id": 616548,
+              "genres": [
+                {
+                  "name": "Hip-Hop",
+                  "image": "https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg",
+                  "primary": true,
+                  "id": 491,
+                  "images": {
+                    "500_700": "https://seatgeek.com/images/performers-landscape/the-weeknd-b91997/13733/500_700.jpg",
+                    "huge": "https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg",
+                    "fb_100x72": "https://seatgeek.com/images/performers-landscape/the-weeknd-cf28c3/13733/fb_100x72.jpg",
+                    "criteo_170_235": "https://seatgeek.com/images/performers-landscape/the-weeknd-3478bc/13733/criteo_170_235.jpg",
+                    "mongo": "https://seatgeek.com/images/performers-landscape/the-weeknd-db10c4/13733/mongo.jpg",
+                    "800x320": "https://seatgeek.com/images/performers-landscape/the-weeknd-4dd3e7/13733/800x320.jpg",
+                    "fb_600_315": "https://seatgeek.com/images/performers-landscape/the-weeknd-a75598/13733/fb_600_315.jpg",
+                    "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/the-weeknd-ddbce2/13733/ipad_mini_explore.jpg",
+                    "criteo_130_160": "https://seatgeek.com/images/performers-landscape/the-weeknd-920f82/13733/criteo_130_160.jpg",
+                    "1200x525": "https://seatgeek.com/images/performers-landscape/the-weeknd-890ca0/13733/1200x525.jpg",
+                    "criteo_205_100": "https://seatgeek.com/images/performers-landscape/the-weeknd-3468a4/13733/criteo_205_100.jpg",
+                    "1200x627": "https://seatgeek.com/images/performers-landscape/the-weeknd-d78d6a/13733/1200x627.jpg",
+                    "square_mid": "https://seatgeek.com/images/performers-landscape/the-weeknd-639496/13733/square_mid.jpg",
+                    "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/the-weeknd-be1c88/13733/triggit_fb_ad.jpg",
+                    "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/the-weeknd-9128f2/13733/ipad_event_modal.jpg",
+                    "criteo_400_300": "https://seatgeek.com/images/performers-landscape/the-weeknd-85a6e8/13733/criteo_400_300.jpg",
+                    "136x136": "https://seatgeek.com/images/performers-landscape/the-weeknd-f0f8f2/13733/136x136.jpg",
+                    "banner": "https://seatgeek.com/images/performers-landscape/the-weeknd-9a1f39/13733/banner.jpg",
+                    "block": "https://seatgeek.com/images/performers-landscape/the-weeknd-0df824/13733/block.jpg",
+                    "ipad_header": "https://seatgeek.com/images/performers-landscape/the-weeknd-330be6/13733/ipad_header.jpg"
+                  },
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  },
+                  "slug": "hip-hop"
+                },
+                {
+                  "name": "Rap",
+                  "image": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg",
+                  "primary": false,
+                  "id": 493,
+                  "images": {
+                    "500_700": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-57514d/313443/500_700.jpg",
+                    "huge": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg",
+                    "fb_100x72": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e91d26/313443/fb_100x72.jpg",
+                    "criteo_170_235": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c446d9/313443/criteo_170_235.jpg",
+                    "mongo": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-395ead/313443/mongo.jpg",
+                    "800x320": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-8f9ed2/313443/800x320.jpg",
+                    "fb_600_315": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5cbffb/313443/fb_600_315.jpg",
+                    "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5c9c79/313443/ipad_mini_explore.jpg",
+                    "criteo_130_160": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-845643/313443/criteo_130_160.jpg",
+                    "1200x525": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-faa3da/313443/1200x525.jpg",
+                    "criteo_205_100": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-dcd1b2/313443/criteo_205_100.jpg",
+                    "1200x627": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-efddbf/313443/1200x627.jpg",
+                    "square_mid": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c4c1d9/313443/square_mid.jpg",
+                    "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-06895a/313443/triggit_fb_ad.jpg",
+                    "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-2c90f5/313443/ipad_event_modal.jpg",
+                    "criteo_400_300": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e79eb8/313443/criteo_400_300.jpg",
+                    "136x136": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-336b90/313443/136x136.jpg",
+                    "banner": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-6c2c62/313443/banner.jpg",
+                    "block": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-fd3579/313443/block.jpg",
+                    "ipad_header": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-81ca47/313443/ipad_header.jpg"
+                  },
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  },
+                  "slug": "rap"
+                }
+              ],
+              "stats": {
+                "event_count": 3
+              },
+              "image_license": "rightsmanaged",
+              "score": 0.66,
+              "location": null,
+              "taxonomies": [
+                {
+                  "name": "concerts",
+                  "rank": 1,
+                  "parent_id": null,
+                  "id": 2000000,
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  }
+                }
+              ],
+              "type": "band",
+              "num_upcoming_events": 3,
+              "short_name": "Bad Bunny",
+              "home_venue_id": null,
+              "slug": "bad-bunny",
+              "divisions": null,
+              "name": "Bad Bunny",
+              "url": "https://seatgeek.com/bad-bunny-tickets",
+              "popularity": 0,
+              "image_attribution": "Michael Tran / Getty Images Entertainment / Getty Images"
+            }
+          ],
+          "url": "https://seatgeek.com/bad-bunny-tickets/san-juan-puerto-rico-hiram-bithorn-stadium-2020-10-30-7-pm/concert/5283533",
+          "created_at": "2020-04-12T16:04:22",
+          "popularity": 0,
+          "venue": "Hiram Bithorn Stadium",
+          "enddatetime_utc": null,
+          "short_title": "Bad Bunny",
+          "datetime_utc": "2020-10-30T23:00:00",
+          "datetime_tbd": false,
+          "source": "seatgeek",
+          "sourceUrl": "https://seatgeek.com",
+          "date": "Fri, Oct 30, 2020",
+          "time": "07:00 PM",
+          "name": "Bad Bunny",
+          "priceBeforeFees": null,
+          "priceAfterFees": null,
+          "isPriceEstimated": false
+        }
+      ]
+    },
+    {
+      "date": "Sat, Oct 31, 2020",
+      "events": [
+        {
+          "name": "Bad Bunny",
+          "type": "event",
+          "id": "Z7r9jZ1AeJKvf",
+          "test": false,
+          "url": "http://www.ticketsnow.com/InventoryBrowse/TicketList.aspx?PID=2993054",
+          "locale": "en-us",
+          "images": [
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_EVENT_DETAIL_PAGE_16_9.jpg",
+              "width": 205,
+              "height": 115,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_LANDSCAPE_16_9.jpg",
+              "width": 1136,
+              "height": 639,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_3_2.jpg",
+              "width": 640,
+              "height": 427,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_16_9.jpg",
+              "width": 640,
+              "height": 360,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+              "width": 2048,
+              "height": 1152,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_3_2.jpg",
+              "width": 1024,
+              "height": 683,
+              "fallback": false
+            },
+            {
+              "ratio": "3_2",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_ARTIST_PAGE_3_2.jpg",
+              "width": 305,
+              "height": 203,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RECOMENDATION_16_9.jpg",
+              "width": 100,
+              "height": 56,
+              "fallback": false
+            },
+            {
+              "ratio": "4_3",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_CUSTOM.jpg",
+              "width": 305,
+              "height": 225,
+              "fallback": false
+            },
+            {
+              "ratio": "16_9",
+              "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_16_9.jpg",
+              "width": 1024,
+              "height": 576,
+              "fallback": false
+            }
+          ],
+          "sales": {
+            "public": {
+              "startDateTime": "1900-01-01T06:00:00Z",
+              "startTBD": false,
+              "startTBA": false,
+              "endDateTime": "2020-10-31T22:00:00Z"
+            }
+          },
+          "dates": {
+            "start": {
+              "localDate": "2020-10-31",
+              "localTime": "19:00:00",
+              "dateTime": "2020-10-31T22:00:00Z",
+              "dateTBD": false,
+              "dateTBA": false,
+              "timeTBA": false,
+              "noSpecificTime": false
+            },
+            "status": {
+              "code": "rescheduled"
+            },
+            "spanMultipleDays": false
+          },
+          "classifications": [
+            {
+              "primary": true,
+              "segment": {
+                "id": "KZFzniwnSyZfZ7v7nJ",
+                "name": "Music"
+              },
+              "genre": {
+                "id": "KnvZfZ7vAvl",
+                "name": "Other"
+              },
+              "subGenre": {
+                "id": "KZazBEonSMnZfZ7vk1I",
+                "name": "Other"
+              },
+              "family": false
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/discovery/v2/events/Z7r9jZ1AeJKvf?locale=en-us"
+            },
+            "attractions": [
+              {
+                "href": "/discovery/v2/attractions/K8vZ9174l1f?locale=en-us"
+              }
+            ],
+            "venues": [
+              {
+                "href": "/discovery/v2/venues/ZFr9jZdFak?locale=en-us"
+              }
+            ]
+          },
+          "_embedded": {
+            "venues": [
+              {
+                "name": "Estadio Hiram Bithorn",
+                "type": "venue",
+                "id": "ZFr9jZdFak",
+                "test": false,
+                "locale": "en-us",
+                "postalCode": "00920",
+                "timezone": "America/Halifax",
+                "city": {
+                  "name": "San Juan"
+                },
+                "state": {
+                  "name": "Puerto Rico",
+                  "stateCode": "PR"
+                },
+                "country": {
+                  "name": "United States Of America",
+                  "countryCode": "US"
+                },
+                "address": {
+                  "line2": "Hato Rey, PR"
+                },
+                "location": {
+                  "longitude": "-66.0933",
+                  "latitude": "18.408001"
+                },
+                "upcomingEvents": {
+                  "_total": 2,
+                  "tmr": 2
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/venues/ZFr9jZdFak?locale=en-us"
+                  }
+                }
+              }
+            ],
+            "attractions": [
+              {
+                "name": "Bad Bunny",
+                "type": "attraction",
+                "id": "K8vZ9174l1f",
+                "test": false,
+                "url": "https://www.ticketmaster.com/bad-bunny-tickets/artist/2317395",
+                "locale": "en-us",
+                "externalLinks": {
+                  "youtube": [
+                    {
+                      "url": "https://www.youtube.com/channel/UCmBA_wu8xGg1OfOkfW13Q0Q"
+                    }
+                  ],
+                  "twitter": [
+                    {
+                      "url": "https://twitter.com/badbunnypr"
+                    }
+                  ],
+                  "itunes": [
+                    {
+                      "url": "https://itunes.apple.com/us/artist/id1126808565"
+                    }
+                  ],
+                  "facebook": [
+                    {
+                      "url": "https://www.facebook.com/BadBunyPR"
+                    }
+                  ],
+                  "instagram": [
+                    {
+                      "url": "https://www.instagram.com/badbunnypr/"
+                    }
+                  ],
+                  "musicbrainz": [
+                    {
+                      "id": "89aa5ecb-59ad-46f5-b3eb-2d424e941f19"
+                    }
+                  ],
+                  "homepage": [
+                    {
+                      "url": "https://badbunny.pro/"
+                    }
+                  ]
+                },
+                "images": [
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_EVENT_DETAIL_PAGE_16_9.jpg",
+                    "width": 205,
+                    "height": 115,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_LANDSCAPE_16_9.jpg",
+                    "width": 1136,
+                    "height": 639,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_3_2.jpg",
+                    "width": 640,
+                    "height": 427,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                    "width": 2048,
+                    "height": 1152,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_3_2.jpg",
+                    "width": 1024,
+                    "height": 683,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "3_2",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_ARTIST_PAGE_3_2.jpg",
+                    "width": 305,
+                    "height": 203,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RECOMENDATION_16_9.jpg",
+                    "width": 100,
+                    "height": 56,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "4_3",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_CUSTOM.jpg",
+                    "width": 305,
+                    "height": 225,
+                    "fallback": false
+                  },
+                  {
+                    "ratio": "16_9",
+                    "url": "https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_16_9.jpg",
+                    "width": 1024,
+                    "height": 576,
+                    "fallback": false
+                  }
+                ],
+                "classifications": [
+                  {
+                    "primary": true,
+                    "segment": {
+                      "id": "KZFzniwnSyZfZ7v7nJ",
+                      "name": "Music"
+                    },
+                    "genre": {
+                      "id": "KnvZfZ7vAv1",
+                      "name": "Hip-Hop/Rap"
+                    },
+                    "subGenre": {
+                      "id": "KZazBEonSMnZfZ7vke1",
+                      "name": "Latin Hip-Hop"
+                    },
+                    "type": {
+                      "id": "KZAyXgnZfZ7v7la",
+                      "name": "Individual"
+                    },
+                    "subType": {
+                      "id": "KZFzBErXgnZfZ7vAd7",
+                      "name": "Musician"
+                    },
+                    "family": false
+                  }
+                ],
+                "upcomingEvents": {
+                  "_total": 2,
+                  "tmr": 2
+                },
+                "_links": {
+                  "self": {
+                    "href": "/discovery/v2/attractions/K8vZ9174l1f?locale=en-us"
+                  }
+                }
+              }
+            ]
+          },
+          "source": "ticketmaster",
+          "sourceUrl": "https://ticketmaster.com",
+          "date": "Sat, Oct 31, 2020",
+          "time": "06:00 PM",
+          "venue": "Estadio Hiram Bithorn",
+          "isPriceEstimated": false,
+          "priceBeforeFees": null,
+          "priceAfterFees": null
+        },
+        {
+          "links": [],
+          "event_promotion": null,
+          "conditional": false,
+          "is_open": false,
+          "id": 5283534,
+          "stats": {
+            "visible_listing_count": null,
+            "dq_bucket_counts": null,
+            "average_price": null,
+            "lowest_sg_base_price_good_deals": null,
+            "lowest_price_good_deals": null,
+            "median_price": null,
+            "listing_count": null,
+            "lowest_price": null,
+            "lowest_sg_base_price": null,
+            "highest_price": null
+          },
+          "title": "Bad Bunny",
+          "announce_date": "2020-04-12T00:00:00",
+          "score": 0,
+          "access_method": null,
+          "announcements": {},
+          "taxonomies": [
+            {
+              "name": "concert",
+              "rank": 1,
+              "parent_id": null,
+              "id": 2000000
+            }
+          ],
+          "type": "concert",
+          "status": "normal",
+          "description": "",
+          "datetime_local": "2020-10-31T19:00:00",
+          "visible_until_utc": "2020-11-01T03:00:00",
+          "time_tbd": false,
+          "date_tbd": false,
+          "performers": [
+            {
+              "image": "https://seatgeek.com/images/performers-landscape/bad-bunny-476c76/616548/huge.jpg",
+              "primary": true,
+              "colors": null,
+              "images": {
+                "huge": "https://seatgeek.com/images/performers-landscape/bad-bunny-476c76/616548/huge.jpg"
+              },
+              "has_upcoming_events": true,
+              "id": 616548,
+              "genres": [
+                {
+                  "name": "Hip-Hop",
+                  "image": "https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg",
+                  "primary": true,
+                  "id": 491,
+                  "images": {
+                    "500_700": "https://seatgeek.com/images/performers-landscape/the-weeknd-b91997/13733/500_700.jpg",
+                    "huge": "https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg",
+                    "fb_100x72": "https://seatgeek.com/images/performers-landscape/the-weeknd-cf28c3/13733/fb_100x72.jpg",
+                    "criteo_170_235": "https://seatgeek.com/images/performers-landscape/the-weeknd-3478bc/13733/criteo_170_235.jpg",
+                    "mongo": "https://seatgeek.com/images/performers-landscape/the-weeknd-db10c4/13733/mongo.jpg",
+                    "800x320": "https://seatgeek.com/images/performers-landscape/the-weeknd-4dd3e7/13733/800x320.jpg",
+                    "fb_600_315": "https://seatgeek.com/images/performers-landscape/the-weeknd-a75598/13733/fb_600_315.jpg",
+                    "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/the-weeknd-ddbce2/13733/ipad_mini_explore.jpg",
+                    "criteo_130_160": "https://seatgeek.com/images/performers-landscape/the-weeknd-920f82/13733/criteo_130_160.jpg",
+                    "1200x525": "https://seatgeek.com/images/performers-landscape/the-weeknd-890ca0/13733/1200x525.jpg",
+                    "criteo_205_100": "https://seatgeek.com/images/performers-landscape/the-weeknd-3468a4/13733/criteo_205_100.jpg",
+                    "1200x627": "https://seatgeek.com/images/performers-landscape/the-weeknd-d78d6a/13733/1200x627.jpg",
+                    "square_mid": "https://seatgeek.com/images/performers-landscape/the-weeknd-639496/13733/square_mid.jpg",
+                    "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/the-weeknd-be1c88/13733/triggit_fb_ad.jpg",
+                    "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/the-weeknd-9128f2/13733/ipad_event_modal.jpg",
+                    "criteo_400_300": "https://seatgeek.com/images/performers-landscape/the-weeknd-85a6e8/13733/criteo_400_300.jpg",
+                    "136x136": "https://seatgeek.com/images/performers-landscape/the-weeknd-f0f8f2/13733/136x136.jpg",
+                    "banner": "https://seatgeek.com/images/performers-landscape/the-weeknd-9a1f39/13733/banner.jpg",
+                    "block": "https://seatgeek.com/images/performers-landscape/the-weeknd-0df824/13733/block.jpg",
+                    "ipad_header": "https://seatgeek.com/images/performers-landscape/the-weeknd-330be6/13733/ipad_header.jpg"
+                  },
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  },
+                  "slug": "hip-hop"
+                },
+                {
+                  "name": "Rap",
+                  "image": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg",
+                  "primary": false,
+                  "id": 493,
+                  "images": {
+                    "500_700": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-57514d/313443/500_700.jpg",
+                    "huge": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg",
+                    "fb_100x72": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e91d26/313443/fb_100x72.jpg",
+                    "criteo_170_235": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c446d9/313443/criteo_170_235.jpg",
+                    "mongo": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-395ead/313443/mongo.jpg",
+                    "800x320": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-8f9ed2/313443/800x320.jpg",
+                    "fb_600_315": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5cbffb/313443/fb_600_315.jpg",
+                    "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5c9c79/313443/ipad_mini_explore.jpg",
+                    "criteo_130_160": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-845643/313443/criteo_130_160.jpg",
+                    "1200x525": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-faa3da/313443/1200x525.jpg",
+                    "criteo_205_100": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-dcd1b2/313443/criteo_205_100.jpg",
+                    "1200x627": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-efddbf/313443/1200x627.jpg",
+                    "square_mid": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c4c1d9/313443/square_mid.jpg",
+                    "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-06895a/313443/triggit_fb_ad.jpg",
+                    "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-2c90f5/313443/ipad_event_modal.jpg",
+                    "criteo_400_300": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e79eb8/313443/criteo_400_300.jpg",
+                    "136x136": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-336b90/313443/136x136.jpg",
+                    "banner": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-6c2c62/313443/banner.jpg",
+                    "block": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-fd3579/313443/block.jpg",
+                    "ipad_header": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-81ca47/313443/ipad_header.jpg"
+                  },
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  },
+                  "slug": "rap"
+                }
+              ],
+              "stats": {
+                "event_count": 3
+              },
+              "image_license": "rightsmanaged",
+              "score": 0.66,
+              "location": null,
+              "taxonomies": [
+                {
+                  "name": "concerts",
+                  "rank": 1,
+                  "parent_id": null,
+                  "id": 2000000,
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  }
+                }
+              ],
+              "type": "band",
+              "num_upcoming_events": 3,
+              "short_name": "Bad Bunny",
+              "home_venue_id": null,
+              "slug": "bad-bunny",
+              "divisions": null,
+              "name": "Bad Bunny",
+              "url": "https://seatgeek.com/bad-bunny-tickets",
+              "popularity": 0,
+              "image_attribution": "Alexander Tamargo / Getty Images Entertainment / Getty Images"
+            }
+          ],
+          "url": "https://seatgeek.com/bad-bunny-tickets/san-juan-puerto-rico-hiram-bithorn-stadium-2020-10-31-7-pm/concert/5283534",
+          "created_at": "2020-04-12T16:04:22",
+          "popularity": 0,
+          "venue": "Hiram Bithorn Stadium",
+          "enddatetime_utc": null,
+          "short_title": "Bad Bunny",
+          "datetime_utc": "2020-10-31T23:00:00",
+          "datetime_tbd": false,
+          "source": "seatgeek",
+          "sourceUrl": "https://seatgeek.com",
+          "date": "Sat, Oct 31, 2020",
+          "time": "07:00 PM",
+          "name": "Bad Bunny",
+          "priceBeforeFees": null,
+          "priceAfterFees": null,
+          "isPriceEstimated": false
+        }
+      ]
+    },
+    {
+      "date": "Sun, Mar 28, 2021",
+      "events": [
+        {
+          "links": [],
+          "event_promotion": null,
+          "conditional": false,
+          "is_open": false,
+          "id": 5251850,
+          "stats": {
+            "visible_listing_count": null,
+            "dq_bucket_counts": null,
+            "average_price": null,
+            "lowest_sg_base_price_good_deals": null,
+            "lowest_price_good_deals": null,
+            "median_price": null,
+            "listing_count": null,
+            "lowest_price": null,
+            "lowest_sg_base_price": null,
+            "highest_price": null
+          },
+          "title": "Bad Bunny (21+)",
+          "announce_date": "2020-03-15T00:00:00",
+          "score": 0.606,
+          "access_method": null,
+          "announcements": {},
+          "taxonomies": [
+            {
+              "name": "concert",
+              "rank": 1,
+              "parent_id": null,
+              "id": 2000000
+            }
+          ],
+          "type": "concert",
+          "status": "normal",
+          "description": "",
+          "datetime_local": "2021-03-28T03:30:00",
+          "visible_until_utc": "2021-03-29T04:00:00",
+          "time_tbd": true,
+          "date_tbd": true,
+          "performers": [
+            {
+              "image": "https://seatgeek.com/images/performers-landscape/bad-bunny-9946f8/616548/23519/huge.jpg",
+              "primary": true,
+              "colors": null,
+              "images": {
+                "huge": "https://seatgeek.com/images/performers-landscape/bad-bunny-9946f8/616548/23519/huge.jpg"
+              },
+              "has_upcoming_events": true,
+              "id": 616548,
+              "genres": [
+                {
+                  "name": "Hip-Hop",
+                  "image": "https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg",
+                  "primary": true,
+                  "id": 491,
+                  "images": {
+                    "500_700": "https://seatgeek.com/images/performers-landscape/the-weeknd-b91997/13733/500_700.jpg",
+                    "huge": "https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg",
+                    "fb_100x72": "https://seatgeek.com/images/performers-landscape/the-weeknd-cf28c3/13733/fb_100x72.jpg",
+                    "criteo_170_235": "https://seatgeek.com/images/performers-landscape/the-weeknd-3478bc/13733/criteo_170_235.jpg",
+                    "mongo": "https://seatgeek.com/images/performers-landscape/the-weeknd-db10c4/13733/mongo.jpg",
+                    "800x320": "https://seatgeek.com/images/performers-landscape/the-weeknd-4dd3e7/13733/800x320.jpg",
+                    "fb_600_315": "https://seatgeek.com/images/performers-landscape/the-weeknd-a75598/13733/fb_600_315.jpg",
+                    "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/the-weeknd-ddbce2/13733/ipad_mini_explore.jpg",
+                    "criteo_130_160": "https://seatgeek.com/images/performers-landscape/the-weeknd-920f82/13733/criteo_130_160.jpg",
+                    "1200x525": "https://seatgeek.com/images/performers-landscape/the-weeknd-890ca0/13733/1200x525.jpg",
+                    "criteo_205_100": "https://seatgeek.com/images/performers-landscape/the-weeknd-3468a4/13733/criteo_205_100.jpg",
+                    "1200x627": "https://seatgeek.com/images/performers-landscape/the-weeknd-d78d6a/13733/1200x627.jpg",
+                    "square_mid": "https://seatgeek.com/images/performers-landscape/the-weeknd-639496/13733/square_mid.jpg",
+                    "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/the-weeknd-be1c88/13733/triggit_fb_ad.jpg",
+                    "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/the-weeknd-9128f2/13733/ipad_event_modal.jpg",
+                    "criteo_400_300": "https://seatgeek.com/images/performers-landscape/the-weeknd-85a6e8/13733/criteo_400_300.jpg",
+                    "136x136": "https://seatgeek.com/images/performers-landscape/the-weeknd-f0f8f2/13733/136x136.jpg",
+                    "banner": "https://seatgeek.com/images/performers-landscape/the-weeknd-9a1f39/13733/banner.jpg",
+                    "block": "https://seatgeek.com/images/performers-landscape/the-weeknd-0df824/13733/block.jpg",
+                    "ipad_header": "https://seatgeek.com/images/performers-landscape/the-weeknd-330be6/13733/ipad_header.jpg"
+                  },
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  },
+                  "slug": "hip-hop"
+                },
+                {
+                  "name": "Rap",
+                  "image": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg",
+                  "primary": false,
+                  "id": 493,
+                  "images": {
+                    "500_700": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-57514d/313443/500_700.jpg",
+                    "huge": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg",
+                    "fb_100x72": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e91d26/313443/fb_100x72.jpg",
+                    "criteo_170_235": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c446d9/313443/criteo_170_235.jpg",
+                    "mongo": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-395ead/313443/mongo.jpg",
+                    "800x320": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-8f9ed2/313443/800x320.jpg",
+                    "fb_600_315": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5cbffb/313443/fb_600_315.jpg",
+                    "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5c9c79/313443/ipad_mini_explore.jpg",
+                    "criteo_130_160": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-845643/313443/criteo_130_160.jpg",
+                    "1200x525": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-faa3da/313443/1200x525.jpg",
+                    "criteo_205_100": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-dcd1b2/313443/criteo_205_100.jpg",
+                    "1200x627": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-efddbf/313443/1200x627.jpg",
+                    "square_mid": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c4c1d9/313443/square_mid.jpg",
+                    "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-06895a/313443/triggit_fb_ad.jpg",
+                    "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-2c90f5/313443/ipad_event_modal.jpg",
+                    "criteo_400_300": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e79eb8/313443/criteo_400_300.jpg",
+                    "136x136": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-336b90/313443/136x136.jpg",
+                    "banner": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-6c2c62/313443/banner.jpg",
+                    "block": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-fd3579/313443/block.jpg",
+                    "ipad_header": "https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-81ca47/313443/ipad_header.jpg"
+                  },
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  },
+                  "slug": "rap"
+                }
+              ],
+              "stats": {
+                "event_count": 3
+              },
+              "image_license": "rightsmanaged",
+              "score": 0.66,
+              "location": null,
+              "taxonomies": [
+                {
+                  "name": "concerts",
+                  "rank": 1,
+                  "parent_id": null,
+                  "id": 2000000,
+                  "document_source": {
+                    "source_type": "ELASTIC",
+                    "generation_type": "FULL"
+                  }
+                }
+              ],
+              "type": "band",
+              "num_upcoming_events": 3,
+              "short_name": "Bad Bunny",
+              "home_venue_id": null,
+              "slug": "bad-bunny",
+              "divisions": null,
+              "name": "Bad Bunny",
+              "url": "https://seatgeek.com/bad-bunny-tickets",
+              "popularity": 0,
+              "image_attribution": "Michael Tran / Getty Images Entertainment / Getty Images"
+            }
+          ],
+          "url": "https://seatgeek.com/bad-bunny-21-tickets/detroit-michigan-el-club-1-2021-03-28-3-30-am/concert/5251850",
+          "created_at": "2020-03-15T16:04:08",
+          "popularity": 0.58,
+          "venue": "El Club",
+          "enddatetime_utc": null,
+          "short_title": "Bad Bunny (21+)",
+          "datetime_utc": "2021-03-28T07:30:00",
+          "general_admission": true,
+          "datetime_tbd": true,
+          "source": "seatgeek",
+          "sourceUrl": "https://seatgeek.com",
+          "date": "Sun, Mar 28, 2021",
+          "time": "03:30 AM",
+          "name": "Bad Bunny (21+)",
+          "priceBeforeFees": null,
+          "priceAfterFees": null,
+          "isPriceEstimated": false
+        }
+      ]
+    }
+  ],
+  "headers": {
+    "x-powered-by": "Express",
+    "access-control-allow-origin": "*",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "32740",
+    "etag": "W/\"7fe4-OTCyLD2Tw/d8ttxgYOVFqNadoDE\"",
+    "date": "Sat, 29 Aug 2020 18:58:33 GMT",
+    "connection": "keep-alive"
+  },
+  "status": 200,
+  "statusText": "OK",
+  "isOkStatusCode": true,
+  "requestHeaders": {
+    "Connection": "keep-alive",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36",
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate"
+  },
+  "duration": 1910,
+  "allRequestResponses": [
+    {
+      "Request Body": null,
+      "Request Headers": {
+        "Connection": "keep-alive",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36",
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate"
+      },
+      "Request URL": "http://localhost:8080/api/search/events?keyword=bad+bunny",
+      "Response Body": "[{\"date\":\"Fri, Oct 30, 2020\",\"events\":[{\"name\":\"Bad Bunny\",\"type\":\"event\",\"id\":\"Z7r9jZ1AeJbpp\",\"test\":false,\"url\":\"http://www.ticketsnow.com/InventoryBrowse/TicketList.aspx?PID=2998596\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false}],\"sales\":{\"public\":{\"startDateTime\":\"1900-01-01T06:00:00Z\",\"startTBD\":false,\"startTBA\":false,\"endDateTime\":\"2020-10-30T22:00:00Z\"}},\"dates\":{\"start\":{\"localDate\":\"2020-10-30\",\"localTime\":\"19:00:00\",\"dateTime\":\"2020-10-30T22:00:00Z\",\"dateTBD\":false,\"dateTBA\":false,\"timeTBA\":false,\"noSpecificTime\":false},\"status\":{\"code\":\"rescheduled\"},\"spanMultipleDays\":false},\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAvl\",\"name\":\"Other\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vk1I\",\"name\":\"Other\"},\"family\":false}],\"_links\":{\"self\":{\"href\":\"/discovery/v2/events/Z7r9jZ1AeJbpp?locale=en-us\"},\"attractions\":[{\"href\":\"/discovery/v2/attractions/K8vZ9174l1f?locale=en-us\"}],\"venues\":[{\"href\":\"/discovery/v2/venues/ZFr9jZdFak?locale=en-us\"}]},\"_embedded\":{\"venues\":[{\"name\":\"Estadio Hiram Bithorn\",\"type\":\"venue\",\"id\":\"ZFr9jZdFak\",\"test\":false,\"locale\":\"en-us\",\"postalCode\":\"00920\",\"timezone\":\"America/Halifax\",\"city\":{\"name\":\"San Juan\"},\"state\":{\"name\":\"Puerto Rico\",\"stateCode\":\"PR\"},\"country\":{\"name\":\"United States Of America\",\"countryCode\":\"US\"},\"address\":{\"line2\":\"Hato Rey, PR\"},\"location\":{\"longitude\":\"-66.0933\",\"latitude\":\"18.408001\"},\"upcomingEvents\":{\"_total\":2,\"tmr\":2},\"_links\":{\"self\":{\"href\":\"/discovery/v2/venues/ZFr9jZdFak?locale=en-us\"}}}],\"attractions\":[{\"name\":\"Bad Bunny\",\"type\":\"attraction\",\"id\":\"K8vZ9174l1f\",\"test\":false,\"url\":\"https://www.ticketmaster.com/bad-bunny-tickets/artist/2317395\",\"locale\":\"en-us\",\"externalLinks\":{\"youtube\":[{\"url\":\"https://www.youtube.com/channel/UCmBA_wu8xGg1OfOkfW13Q0Q\"}],\"twitter\":[{\"url\":\"https://twitter.com/badbunnypr\"}],\"itunes\":[{\"url\":\"https://itunes.apple.com/us/artist/id1126808565\"}],\"facebook\":[{\"url\":\"https://www.facebook.com/BadBunyPR\"}],\"instagram\":[{\"url\":\"https://www.instagram.com/badbunnypr/\"}],\"musicbrainz\":[{\"id\":\"89aa5ecb-59ad-46f5-b3eb-2d424e941f19\"}],\"homepage\":[{\"url\":\"https://badbunny.pro/\"}]},\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAv1\",\"name\":\"Hip-Hop/Rap\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vke1\",\"name\":\"Latin Hip-Hop\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7la\",\"name\":\"Individual\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7vAd7\",\"name\":\"Musician\"},\"family\":false}],\"upcomingEvents\":{\"_total\":2,\"tmr\":2},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ9174l1f?locale=en-us\"}}}]},\"source\":\"ticketmaster\",\"sourceUrl\":\"https://ticketmaster.com\",\"date\":\"Fri, Oct 30, 2020\",\"time\":\"06:00 PM\",\"venue\":\"Estadio Hiram Bithorn\",\"isPriceEstimated\":false,\"priceBeforeFees\":null,\"priceAfterFees\":null},{\"links\":[],\"event_promotion\":null,\"conditional\":false,\"is_open\":false,\"id\":5283533,\"stats\":{\"visible_listing_count\":null,\"dq_bucket_counts\":null,\"average_price\":null,\"lowest_sg_base_price_good_deals\":null,\"lowest_price_good_deals\":null,\"median_price\":null,\"listing_count\":null,\"lowest_price\":null,\"lowest_sg_base_price\":null,\"highest_price\":null},\"title\":\"Bad Bunny\",\"announce_date\":\"2020-04-12T00:00:00\",\"score\":0,\"access_method\":null,\"announcements\":{},\"taxonomies\":[{\"name\":\"concert\",\"rank\":1,\"parent_id\":null,\"id\":2000000}],\"type\":\"concert\",\"status\":\"normal\",\"description\":\"\",\"datetime_local\":\"2020-10-30T19:00:00\",\"visible_until_utc\":\"2020-10-31T03:00:00\",\"time_tbd\":false,\"date_tbd\":false,\"performers\":[{\"image\":\"https://seatgeek.com/images/performers-landscape/bad-bunny-9946f8/616548/23519/huge.jpg\",\"primary\":true,\"colors\":null,\"images\":{\"huge\":\"https://seatgeek.com/images/performers-landscape/bad-bunny-9946f8/616548/23519/huge.jpg\"},\"has_upcoming_events\":true,\"id\":616548,\"genres\":[{\"name\":\"Hip-Hop\",\"image\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg\",\"primary\":true,\"id\":491,\"images\":{\"500_700\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-b91997/13733/500_700.jpg\",\"huge\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg\",\"fb_100x72\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-cf28c3/13733/fb_100x72.jpg\",\"criteo_170_235\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-3478bc/13733/criteo_170_235.jpg\",\"mongo\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-db10c4/13733/mongo.jpg\",\"800x320\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-4dd3e7/13733/800x320.jpg\",\"fb_600_315\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-a75598/13733/fb_600_315.jpg\",\"ipad_mini_explore\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-ddbce2/13733/ipad_mini_explore.jpg\",\"criteo_130_160\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-920f82/13733/criteo_130_160.jpg\",\"1200x525\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-890ca0/13733/1200x525.jpg\",\"criteo_205_100\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-3468a4/13733/criteo_205_100.jpg\",\"1200x627\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-d78d6a/13733/1200x627.jpg\",\"square_mid\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-639496/13733/square_mid.jpg\",\"triggit_fb_ad\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-be1c88/13733/triggit_fb_ad.jpg\",\"ipad_event_modal\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-9128f2/13733/ipad_event_modal.jpg\",\"criteo_400_300\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-85a6e8/13733/criteo_400_300.jpg\",\"136x136\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-f0f8f2/13733/136x136.jpg\",\"banner\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-9a1f39/13733/banner.jpg\",\"block\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-0df824/13733/block.jpg\",\"ipad_header\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-330be6/13733/ipad_header.jpg\"},\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"},\"slug\":\"hip-hop\"},{\"name\":\"Rap\",\"image\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg\",\"primary\":false,\"id\":493,\"images\":{\"500_700\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-57514d/313443/500_700.jpg\",\"huge\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg\",\"fb_100x72\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e91d26/313443/fb_100x72.jpg\",\"criteo_170_235\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c446d9/313443/criteo_170_235.jpg\",\"mongo\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-395ead/313443/mongo.jpg\",\"800x320\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-8f9ed2/313443/800x320.jpg\",\"fb_600_315\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5cbffb/313443/fb_600_315.jpg\",\"ipad_mini_explore\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5c9c79/313443/ipad_mini_explore.jpg\",\"criteo_130_160\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-845643/313443/criteo_130_160.jpg\",\"1200x525\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-faa3da/313443/1200x525.jpg\",\"criteo_205_100\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-dcd1b2/313443/criteo_205_100.jpg\",\"1200x627\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-efddbf/313443/1200x627.jpg\",\"square_mid\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c4c1d9/313443/square_mid.jpg\",\"triggit_fb_ad\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-06895a/313443/triggit_fb_ad.jpg\",\"ipad_event_modal\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-2c90f5/313443/ipad_event_modal.jpg\",\"criteo_400_300\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e79eb8/313443/criteo_400_300.jpg\",\"136x136\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-336b90/313443/136x136.jpg\",\"banner\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-6c2c62/313443/banner.jpg\",\"block\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-fd3579/313443/block.jpg\",\"ipad_header\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-81ca47/313443/ipad_header.jpg\"},\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"},\"slug\":\"rap\"}],\"stats\":{\"event_count\":3},\"image_license\":\"rightsmanaged\",\"score\":0.66,\"location\":null,\"taxonomies\":[{\"name\":\"concerts\",\"rank\":1,\"parent_id\":null,\"id\":2000000,\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"}}],\"type\":\"band\",\"num_upcoming_events\":3,\"short_name\":\"Bad Bunny\",\"home_venue_id\":null,\"slug\":\"bad-bunny\",\"divisions\":null,\"name\":\"Bad Bunny\",\"url\":\"https://seatgeek.com/bad-bunny-tickets\",\"popularity\":0,\"image_attribution\":\"Michael Tran / Getty Images Entertainment / Getty Images\"}],\"url\":\"https://seatgeek.com/bad-bunny-tickets/san-juan-puerto-rico-hiram-bithorn-stadium-2020-10-30-7-pm/concert/5283533\",\"created_at\":\"2020-04-12T16:04:22\",\"popularity\":0,\"venue\":\"Hiram Bithorn Stadium\",\"enddatetime_utc\":null,\"short_title\":\"Bad Bunny\",\"datetime_utc\":\"2020-10-30T23:00:00\",\"datetime_tbd\":false,\"source\":\"seatgeek\",\"sourceUrl\":\"https://seatgeek.com\",\"date\":\"Fri, Oct 30, 2020\",\"time\":\"07:00 PM\",\"name\":\"Bad Bunny\",\"priceBeforeFees\":null,\"priceAfterFees\":null,\"isPriceEstimated\":false}]},{\"date\":\"Sat, Oct 31, 2020\",\"events\":[{\"name\":\"Bad Bunny\",\"type\":\"event\",\"id\":\"Z7r9jZ1AeJKvf\",\"test\":false,\"url\":\"http://www.ticketsnow.com/InventoryBrowse/TicketList.aspx?PID=2993054\",\"locale\":\"en-us\",\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false}],\"sales\":{\"public\":{\"startDateTime\":\"1900-01-01T06:00:00Z\",\"startTBD\":false,\"startTBA\":false,\"endDateTime\":\"2020-10-31T22:00:00Z\"}},\"dates\":{\"start\":{\"localDate\":\"2020-10-31\",\"localTime\":\"19:00:00\",\"dateTime\":\"2020-10-31T22:00:00Z\",\"dateTBD\":false,\"dateTBA\":false,\"timeTBA\":false,\"noSpecificTime\":false},\"status\":{\"code\":\"rescheduled\"},\"spanMultipleDays\":false},\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAvl\",\"name\":\"Other\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vk1I\",\"name\":\"Other\"},\"family\":false}],\"_links\":{\"self\":{\"href\":\"/discovery/v2/events/Z7r9jZ1AeJKvf?locale=en-us\"},\"attractions\":[{\"href\":\"/discovery/v2/attractions/K8vZ9174l1f?locale=en-us\"}],\"venues\":[{\"href\":\"/discovery/v2/venues/ZFr9jZdFak?locale=en-us\"}]},\"_embedded\":{\"venues\":[{\"name\":\"Estadio Hiram Bithorn\",\"type\":\"venue\",\"id\":\"ZFr9jZdFak\",\"test\":false,\"locale\":\"en-us\",\"postalCode\":\"00920\",\"timezone\":\"America/Halifax\",\"city\":{\"name\":\"San Juan\"},\"state\":{\"name\":\"Puerto Rico\",\"stateCode\":\"PR\"},\"country\":{\"name\":\"United States Of America\",\"countryCode\":\"US\"},\"address\":{\"line2\":\"Hato Rey, PR\"},\"location\":{\"longitude\":\"-66.0933\",\"latitude\":\"18.408001\"},\"upcomingEvents\":{\"_total\":2,\"tmr\":2},\"_links\":{\"self\":{\"href\":\"/discovery/v2/venues/ZFr9jZdFak?locale=en-us\"}}}],\"attractions\":[{\"name\":\"Bad Bunny\",\"type\":\"attraction\",\"id\":\"K8vZ9174l1f\",\"test\":false,\"url\":\"https://www.ticketmaster.com/bad-bunny-tickets/artist/2317395\",\"locale\":\"en-us\",\"externalLinks\":{\"youtube\":[{\"url\":\"https://www.youtube.com/channel/UCmBA_wu8xGg1OfOkfW13Q0Q\"}],\"twitter\":[{\"url\":\"https://twitter.com/badbunnypr\"}],\"itunes\":[{\"url\":\"https://itunes.apple.com/us/artist/id1126808565\"}],\"facebook\":[{\"url\":\"https://www.facebook.com/BadBunyPR\"}],\"instagram\":[{\"url\":\"https://www.instagram.com/badbunnypr/\"}],\"musicbrainz\":[{\"id\":\"89aa5ecb-59ad-46f5-b3eb-2d424e941f19\"}],\"homepage\":[{\"url\":\"https://badbunny.pro/\"}]},\"images\":[{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_EVENT_DETAIL_PAGE_16_9.jpg\",\"width\":205,\"height\":115,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_LANDSCAPE_16_9.jpg\",\"width\":1136,\"height\":639,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_3_2.jpg\",\"width\":640,\"height\":427,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RETINA_PORTRAIT_16_9.jpg\",\"width\":640,\"height\":360,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_LARGE_16_9.jpg\",\"width\":2048,\"height\":1152,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_3_2.jpg\",\"width\":1024,\"height\":683,\"fallback\":false},{\"ratio\":\"3_2\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_ARTIST_PAGE_3_2.jpg\",\"width\":305,\"height\":203,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_RECOMENDATION_16_9.jpg\",\"width\":100,\"height\":56,\"fallback\":false},{\"ratio\":\"4_3\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_CUSTOM.jpg\",\"width\":305,\"height\":225,\"fallback\":false},{\"ratio\":\"16_9\",\"url\":\"https://s1.ticketm.net/dam/a/3d1/ac6e19d2-2bf7-4035-bb42-4deae968f3d1_1026531_TABLET_LANDSCAPE_16_9.jpg\",\"width\":1024,\"height\":576,\"fallback\":false}],\"classifications\":[{\"primary\":true,\"segment\":{\"id\":\"KZFzniwnSyZfZ7v7nJ\",\"name\":\"Music\"},\"genre\":{\"id\":\"KnvZfZ7vAv1\",\"name\":\"Hip-Hop/Rap\"},\"subGenre\":{\"id\":\"KZazBEonSMnZfZ7vke1\",\"name\":\"Latin Hip-Hop\"},\"type\":{\"id\":\"KZAyXgnZfZ7v7la\",\"name\":\"Individual\"},\"subType\":{\"id\":\"KZFzBErXgnZfZ7vAd7\",\"name\":\"Musician\"},\"family\":false}],\"upcomingEvents\":{\"_total\":2,\"tmr\":2},\"_links\":{\"self\":{\"href\":\"/discovery/v2/attractions/K8vZ9174l1f?locale=en-us\"}}}]},\"source\":\"ticketmaster\",\"sourceUrl\":\"https://ticketmaster.com\",\"date\":\"Sat, Oct 31, 2020\",\"time\":\"06:00 PM\",\"venue\":\"Estadio Hiram Bithorn\",\"isPriceEstimated\":false,\"priceBeforeFees\":null,\"priceAfterFees\":null},{\"links\":[],\"event_promotion\":null,\"conditional\":false,\"is_open\":false,\"id\":5283534,\"stats\":{\"visible_listing_count\":null,\"dq_bucket_counts\":null,\"average_price\":null,\"lowest_sg_base_price_good_deals\":null,\"lowest_price_good_deals\":null,\"median_price\":null,\"listing_count\":null,\"lowest_price\":null,\"lowest_sg_base_price\":null,\"highest_price\":null},\"title\":\"Bad Bunny\",\"announce_date\":\"2020-04-12T00:00:00\",\"score\":0,\"access_method\":null,\"announcements\":{},\"taxonomies\":[{\"name\":\"concert\",\"rank\":1,\"parent_id\":null,\"id\":2000000}],\"type\":\"concert\",\"status\":\"normal\",\"description\":\"\",\"datetime_local\":\"2020-10-31T19:00:00\",\"visible_until_utc\":\"2020-11-01T03:00:00\",\"time_tbd\":false,\"date_tbd\":false,\"performers\":[{\"image\":\"https://seatgeek.com/images/performers-landscape/bad-bunny-476c76/616548/huge.jpg\",\"primary\":true,\"colors\":null,\"images\":{\"huge\":\"https://seatgeek.com/images/performers-landscape/bad-bunny-476c76/616548/huge.jpg\"},\"has_upcoming_events\":true,\"id\":616548,\"genres\":[{\"name\":\"Hip-Hop\",\"image\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg\",\"primary\":true,\"id\":491,\"images\":{\"500_700\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-b91997/13733/500_700.jpg\",\"huge\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg\",\"fb_100x72\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-cf28c3/13733/fb_100x72.jpg\",\"criteo_170_235\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-3478bc/13733/criteo_170_235.jpg\",\"mongo\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-db10c4/13733/mongo.jpg\",\"800x320\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-4dd3e7/13733/800x320.jpg\",\"fb_600_315\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-a75598/13733/fb_600_315.jpg\",\"ipad_mini_explore\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-ddbce2/13733/ipad_mini_explore.jpg\",\"criteo_130_160\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-920f82/13733/criteo_130_160.jpg\",\"1200x525\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-890ca0/13733/1200x525.jpg\",\"criteo_205_100\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-3468a4/13733/criteo_205_100.jpg\",\"1200x627\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-d78d6a/13733/1200x627.jpg\",\"square_mid\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-639496/13733/square_mid.jpg\",\"triggit_fb_ad\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-be1c88/13733/triggit_fb_ad.jpg\",\"ipad_event_modal\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-9128f2/13733/ipad_event_modal.jpg\",\"criteo_400_300\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-85a6e8/13733/criteo_400_300.jpg\",\"136x136\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-f0f8f2/13733/136x136.jpg\",\"banner\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-9a1f39/13733/banner.jpg\",\"block\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-0df824/13733/block.jpg\",\"ipad_header\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-330be6/13733/ipad_header.jpg\"},\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"},\"slug\":\"hip-hop\"},{\"name\":\"Rap\",\"image\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg\",\"primary\":false,\"id\":493,\"images\":{\"500_700\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-57514d/313443/500_700.jpg\",\"huge\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg\",\"fb_100x72\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e91d26/313443/fb_100x72.jpg\",\"criteo_170_235\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c446d9/313443/criteo_170_235.jpg\",\"mongo\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-395ead/313443/mongo.jpg\",\"800x320\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-8f9ed2/313443/800x320.jpg\",\"fb_600_315\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5cbffb/313443/fb_600_315.jpg\",\"ipad_mini_explore\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5c9c79/313443/ipad_mini_explore.jpg\",\"criteo_130_160\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-845643/313443/criteo_130_160.jpg\",\"1200x525\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-faa3da/313443/1200x525.jpg\",\"criteo_205_100\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-dcd1b2/313443/criteo_205_100.jpg\",\"1200x627\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-efddbf/313443/1200x627.jpg\",\"square_mid\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c4c1d9/313443/square_mid.jpg\",\"triggit_fb_ad\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-06895a/313443/triggit_fb_ad.jpg\",\"ipad_event_modal\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-2c90f5/313443/ipad_event_modal.jpg\",\"criteo_400_300\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e79eb8/313443/criteo_400_300.jpg\",\"136x136\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-336b90/313443/136x136.jpg\",\"banner\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-6c2c62/313443/banner.jpg\",\"block\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-fd3579/313443/block.jpg\",\"ipad_header\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-81ca47/313443/ipad_header.jpg\"},\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"},\"slug\":\"rap\"}],\"stats\":{\"event_count\":3},\"image_license\":\"rightsmanaged\",\"score\":0.66,\"location\":null,\"taxonomies\":[{\"name\":\"concerts\",\"rank\":1,\"parent_id\":null,\"id\":2000000,\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"}}],\"type\":\"band\",\"num_upcoming_events\":3,\"short_name\":\"Bad Bunny\",\"home_venue_id\":null,\"slug\":\"bad-bunny\",\"divisions\":null,\"name\":\"Bad Bunny\",\"url\":\"https://seatgeek.com/bad-bunny-tickets\",\"popularity\":0,\"image_attribution\":\"Alexander Tamargo / Getty Images Entertainment / Getty Images\"}],\"url\":\"https://seatgeek.com/bad-bunny-tickets/san-juan-puerto-rico-hiram-bithorn-stadium-2020-10-31-7-pm/concert/5283534\",\"created_at\":\"2020-04-12T16:04:22\",\"popularity\":0,\"venue\":\"Hiram Bithorn Stadium\",\"enddatetime_utc\":null,\"short_title\":\"Bad Bunny\",\"datetime_utc\":\"2020-10-31T23:00:00\",\"datetime_tbd\":false,\"source\":\"seatgeek\",\"sourceUrl\":\"https://seatgeek.com\",\"date\":\"Sat, Oct 31, 2020\",\"time\":\"07:00 PM\",\"name\":\"Bad Bunny\",\"priceBeforeFees\":null,\"priceAfterFees\":null,\"isPriceEstimated\":false}]},{\"date\":\"Sun, Mar 28, 2021\",\"events\":[{\"links\":[],\"event_promotion\":null,\"conditional\":false,\"is_open\":false,\"id\":5251850,\"stats\":{\"visible_listing_count\":null,\"dq_bucket_counts\":null,\"average_price\":null,\"lowest_sg_base_price_good_deals\":null,\"lowest_price_good_deals\":null,\"median_price\":null,\"listing_count\":null,\"lowest_price\":null,\"lowest_sg_base_price\":null,\"highest_price\":null},\"title\":\"Bad Bunny (21+)\",\"announce_date\":\"2020-03-15T00:00:00\",\"score\":0.606,\"access_method\":null,\"announcements\":{},\"taxonomies\":[{\"name\":\"concert\",\"rank\":1,\"parent_id\":null,\"id\":2000000}],\"type\":\"concert\",\"status\":\"normal\",\"description\":\"\",\"datetime_local\":\"2021-03-28T03:30:00\",\"visible_until_utc\":\"2021-03-29T04:00:00\",\"time_tbd\":true,\"date_tbd\":true,\"performers\":[{\"image\":\"https://seatgeek.com/images/performers-landscape/bad-bunny-9946f8/616548/23519/huge.jpg\",\"primary\":true,\"colors\":null,\"images\":{\"huge\":\"https://seatgeek.com/images/performers-landscape/bad-bunny-9946f8/616548/23519/huge.jpg\"},\"has_upcoming_events\":true,\"id\":616548,\"genres\":[{\"name\":\"Hip-Hop\",\"image\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg\",\"primary\":true,\"id\":491,\"images\":{\"500_700\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-b91997/13733/500_700.jpg\",\"huge\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-248266/13733/huge.jpg\",\"fb_100x72\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-cf28c3/13733/fb_100x72.jpg\",\"criteo_170_235\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-3478bc/13733/criteo_170_235.jpg\",\"mongo\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-db10c4/13733/mongo.jpg\",\"800x320\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-4dd3e7/13733/800x320.jpg\",\"fb_600_315\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-a75598/13733/fb_600_315.jpg\",\"ipad_mini_explore\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-ddbce2/13733/ipad_mini_explore.jpg\",\"criteo_130_160\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-920f82/13733/criteo_130_160.jpg\",\"1200x525\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-890ca0/13733/1200x525.jpg\",\"criteo_205_100\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-3468a4/13733/criteo_205_100.jpg\",\"1200x627\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-d78d6a/13733/1200x627.jpg\",\"square_mid\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-639496/13733/square_mid.jpg\",\"triggit_fb_ad\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-be1c88/13733/triggit_fb_ad.jpg\",\"ipad_event_modal\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-9128f2/13733/ipad_event_modal.jpg\",\"criteo_400_300\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-85a6e8/13733/criteo_400_300.jpg\",\"136x136\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-f0f8f2/13733/136x136.jpg\",\"banner\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-9a1f39/13733/banner.jpg\",\"block\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-0df824/13733/block.jpg\",\"ipad_header\":\"https://seatgeek.com/images/performers-landscape/the-weeknd-330be6/13733/ipad_header.jpg\"},\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"},\"slug\":\"hip-hop\"},{\"name\":\"Rap\",\"image\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg\",\"primary\":false,\"id\":493,\"images\":{\"500_700\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-57514d/313443/500_700.jpg\",\"huge\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-f855bf/313443/huge.jpg\",\"fb_100x72\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e91d26/313443/fb_100x72.jpg\",\"criteo_170_235\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c446d9/313443/criteo_170_235.jpg\",\"mongo\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-395ead/313443/mongo.jpg\",\"800x320\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-8f9ed2/313443/800x320.jpg\",\"fb_600_315\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5cbffb/313443/fb_600_315.jpg\",\"ipad_mini_explore\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-5c9c79/313443/ipad_mini_explore.jpg\",\"criteo_130_160\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-845643/313443/criteo_130_160.jpg\",\"1200x525\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-faa3da/313443/1200x525.jpg\",\"criteo_205_100\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-dcd1b2/313443/criteo_205_100.jpg\",\"1200x627\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-efddbf/313443/1200x627.jpg\",\"square_mid\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-c4c1d9/313443/square_mid.jpg\",\"triggit_fb_ad\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-06895a/313443/triggit_fb_ad.jpg\",\"ipad_event_modal\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-2c90f5/313443/ipad_event_modal.jpg\",\"criteo_400_300\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-e79eb8/313443/criteo_400_300.jpg\",\"136x136\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-336b90/313443/136x136.jpg\",\"banner\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-6c2c62/313443/banner.jpg\",\"block\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-fd3579/313443/block.jpg\",\"ipad_header\":\"https://seatgeek.com/images/performers-landscape/nf-nate-feuerstein-81ca47/313443/ipad_header.jpg\"},\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"},\"slug\":\"rap\"}],\"stats\":{\"event_count\":3},\"image_license\":\"rightsmanaged\",\"score\":0.66,\"location\":null,\"taxonomies\":[{\"name\":\"concerts\",\"rank\":1,\"parent_id\":null,\"id\":2000000,\"document_source\":{\"source_type\":\"ELASTIC\",\"generation_type\":\"FULL\"}}],\"type\":\"band\",\"num_upcoming_events\":3,\"short_name\":\"Bad Bunny\",\"home_venue_id\":null,\"slug\":\"bad-bunny\",\"divisions\":null,\"name\":\"Bad Bunny\",\"url\":\"https://seatgeek.com/bad-bunny-tickets\",\"popularity\":0,\"image_attribution\":\"Michael Tran / Getty Images Entertainment / Getty Images\"}],\"url\":\"https://seatgeek.com/bad-bunny-21-tickets/detroit-michigan-el-club-1-2021-03-28-3-30-am/concert/5251850\",\"created_at\":\"2020-03-15T16:04:08\",\"popularity\":0.58,\"venue\":\"El Club\",\"enddatetime_utc\":null,\"short_title\":\"Bad Bunny (21+)\",\"datetime_utc\":\"2021-03-28T07:30:00\",\"general_admission\":true,\"datetime_tbd\":true,\"source\":\"seatgeek\",\"sourceUrl\":\"https://seatgeek.com\",\"date\":\"Sun, Mar 28, 2021\",\"time\":\"03:30 AM\",\"name\":\"Bad Bunny (21+)\",\"priceBeforeFees\":null,\"priceAfterFees\":null,\"isPriceEstimated\":false}]}]",
+      "Response Headers": {
+        "x-powered-by": "Express",
+        "access-control-allow-origin": "*",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "32740",
+        "etag": "W/\"7fe4-OTCyLD2Tw/d8ttxgYOVFqNadoDE\"",
+        "date": "Sat, 29 Aug 2020 18:58:33 GMT",
+        "connection": "keep-alive"
+      },
+      "Response Status": 200
+    }
+  ]
+}

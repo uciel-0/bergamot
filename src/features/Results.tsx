@@ -28,6 +28,7 @@ export const ResultsGroup = (searchResult: SearchResults) => {
         searchResult.events.map((e: any, index: number) => 
           <Card 
             name={e.name} 
+            status={e.status}
             date={searchResult.date} 
             time={e.time}
             priceBeforeFees={e.priceBeforeFees}

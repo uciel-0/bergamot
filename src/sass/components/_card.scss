@@ -23,8 +23,8 @@
     vertical-align: center;
   }
   &_prices { 
+    text-align: right;
     &-text {
-      text-align: right;
       &--tiny {
         font-size: .8rem;
       }
@@ -35,6 +35,10 @@
     &-bold {
       font-size: $font-size-large;
       width: 50%;
+    }
+    &-cancelled {
+      font-weight: 500;
+      color: red;
     }
   }
   &_button {

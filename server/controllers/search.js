@@ -65,6 +65,7 @@ export const getEvents = (req, res) => {
     data[0].events.map(e => {
       e.source = 'ticketmaster';
       e.sourceUrl = 'https://ticketmaster.com';
+      e.status = e.dates.status.code;
       e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
       // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
       e.time = formatTime(e.dates.start.dateTime);
@@ -83,6 +84,7 @@ export const getEvents = (req, res) => {
     data[1].events.map(e => {
       e.source = 'stubhub';
       e.sourceUrl = 'https://stubhub.com';
+      e.status = null;
       e.date = formatLocalDate(e.eventDateLocal);
       e.time = formatTime(e.eventDateUTC);
       e.venue = e.venue.name;
@@ -95,6 +97,7 @@ export const getEvents = (req, res) => {
     data[2].events.map(e => {
       e.source = 'seatgeek';
       e.sourceUrl = 'https://seatgeek.com';
+      e.status = null;
       e.date = formatDate(e.datetime_utc);
       e.time = formatTime(e.datetime_utc + "Z");
       e.venue = e.venue.name;

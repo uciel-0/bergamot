@@ -1,12 +1,12 @@
 import * as React from 'react'
 // stubhub has a field called ticketInfo -> if ticketInfo.totalListings = 0, show some sort of message indicating that fact
-export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstimated, source, name, venue, url, sourceUrl}: any) => {
+export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstimated, source, name, venue, url, sourceUrl, status}: any) => {
   const priceBeforeFeesText = "Price before fees: ";
   const priceAfterFeesText = "Price after fees: ";
   const priceDisclaimerText = "*Estimated fees based on the average amount from source website. Prices may vary.";
-  const priceBeforeFeesFormatted = priceBeforeFees ? '$'+ priceBeforeFees.toFixed(2) : 'N/A';
+  const priceBeforeFeesFormatted = priceBeforeFees ? '$'+ priceBeforeFees.toFixed(2) : '';
   const priceAfterFeesFormatted = priceAfterFees ? '$' + priceAfterFees.toFixed(2) : 'This vendor is not currently listing prices for this event. Please visit link for additional details.';
-  const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p> :  <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p>;
+  const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p> : null;
   const priceAfterFeesHTML = priceAfterFees ? <p className="Card_prices-text">{priceAfterFeesText}<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
   const priceDisclaimer = isPriceEstimated ? <p className="Card_prices-text Card_prices-text--tiny">{priceDisclaimerText}</p> : null;
   const venueText = venue || 'Venue TBD';
@@ -22,27 +22,57 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
       return <><p>Date: TBD</p></>
     }
   }
+  const renderCardLogo = () => (
+    <span className="Card_logo">
+      <SourceLogo source={source}/>
+    </span>
+  );
+  // need some logic here for when status = cancelled 
+  const renderCardInfo = () => (
+    <div className="Card_info">
+      <p>{name}</p>
+      <p>{venueText}</p>
+      {displayDateText(date)}
+    </div>
+  );
+
+  const renderCardPrices = () => {
+    const cardPrices = ( 
+      <div className="Card_prices">
+        {priceBeforeFeesHTML}
+        {priceAfterFeesHTML}
+        {priceDisclaimer}
+      </div> 
+    );
+    const eventCancelledMessage = (
+      <div className="Card_prices Card_prices-cancelled">
+        <p>Cancelled/Postponed Event</p>
+      </div> 
+    );
+    return status !== 'cancelled' ? cardPrices : eventCancelledMessage;
+  }
+  
+  const renderButton = () => {
+    // currently two indicators of a faulty event 
+    // one is if the status is cancelled, the other is if the priceAfterFees = null 
+    // in either of these cases, return the "View Info" text
+    const buttonText = status !== 'cancelled' && priceAfterFees !== null ? 'View Tickets' : 'View Info';
+    return (
+      <a href={urlContent} target="_blank" rel="noopener noreferrer" className="Card_button margin-tiny">
+        <p>{buttonText}</p>
+      </a>
+    );
+  }
+
   return name ? (
     <div className="Card">
       <div className="Card_content">
-        <span className="Card_logo">
-          <SourceLogo source={source}/>
-        </span>
-        <div className="Card_info">
-          <p>{name}</p>
-          <p>{venueText}</p>
-          {displayDateText(date)}
-        </div>
-        <div className="Card_prices">
-          {priceBeforeFeesHTML}
-          {priceAfterFeesHTML}
-          {priceDisclaimer}
-        </div>
+        {renderCardLogo()}
+        {renderCardInfo()}
+        {renderCardPrices()}
       </div>
       <div className="Card_button-row">
-        <a href={urlContent} target="_blank" rel="noopener noreferrer" className="Card_button margin-tiny">
-          <p>View Tickets</p>
-        </a>
+        {renderButton()}
       </div>
     </div>
   ) : null;

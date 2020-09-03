@@ -62,15 +62,18 @@ body {
       padding-bottom: 1rem; }
   .Card_content {
     vertical-align: center; }
-  .Card_prices-text {
+  .Card_prices {
     text-align: right; }
     .Card_prices-text--tiny {
       font-size: .8rem; }
     .Card_prices-text:not(:last-child) {
       padding-bottom: 1rem; }
-  .Card_prices-bold {
-    font-size: 2rem;
-    width: 50%; }
+    .Card_prices-bold {
+      font-size: 2rem;
+      width: 50%; }
+    .Card_prices-cancelled {
+      font-weight: 500;
+      color: red; }
   .Card_button:link, .Card_button:visited {
     display: inline-block;
     text-decoration: none;

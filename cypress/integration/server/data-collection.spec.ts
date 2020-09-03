@@ -1,7 +1,6 @@
 describe("Bulk search data collection", () => {
     beforeEach(() => {
         cy.server();
-        cy.route('GET','/api/search/events').as('getEvents');
     });
     // our backend calls resolve too fast - we'll have to get our data via direct xhr calls to our api
     it('should make a direct call to bop api for drake data', () => {

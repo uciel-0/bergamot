@@ -5,14 +5,19 @@ import {SpinnerContext} from '../store/spinner/Context';
 import {setSearchResults} from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
+import {useHistory} from 'react-router-dom';
 
 export const Search = () => {
   const [formValue, setFormValue] = React.useState<string>('');
   const {searchResultsDispatch} = React.useContext(SearchResultsContext);
   const {spinnerDispatch} = React.useContext(SpinnerContext);
+  let history = useHistory();
 
   const onSubmit = (e: any) => {
     e.preventDefault();
+    if (formValue === "") {
+      return;
+    }
     spinnerDispatch(setSpinnerState(true));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
@@ -21,11 +26,14 @@ export const Search = () => {
     })
     .then((res) => {
       console.log('master search api response', res.data);
+      history.push('/search');
       searchResultsDispatch(setSearchResults(res.data));
       spinnerDispatch(setSpinnerState(false));
+
     })
     .catch((err) => {
       spinnerDispatch(setSpinnerState(false));
+      history.push('/error');
       console.log('master search api rejection', err)
     });
     // for testing puposes

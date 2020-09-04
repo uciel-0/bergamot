@@ -35,7 +35,6 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
       {displayDateText(date)}
     </div>
   );
-
   const renderCardPrices = () => {
     const cardPrices = ( 
       <div className="Card_prices">
@@ -51,7 +50,6 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
     );
     return status !== 'cancelled' ? cardPrices : eventCancelledMessage;
   }
-  
   const renderButton = () => {
     // currently two indicators of a faulty event 
     // one is if the status is cancelled, the other is if the priceAfterFees = null 
@@ -63,7 +61,6 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
       </a>
     );
   }
-
   return name ? (
     <div className="Card">
       <div className="Card_content">

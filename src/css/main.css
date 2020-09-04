@@ -166,6 +166,10 @@ body {
   .Results_group {
     padding-bottom: 1rem; }
 
+.Error {
+  padding-top: 8rem;
+  text-align: center; }
+
 .Search {
   /* flex-direction: row; */
   display: inline-flex;
@@ -183,3 +187,8 @@ body {
     height: 3.2rem;
     outline: none;
     padding-left: 8px; }
+
+.Home {
+  text-align: center; }
+  .Home_title {
+    padding-top: 8rem; }

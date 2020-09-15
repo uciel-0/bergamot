@@ -12,14 +12,14 @@ export const Results = () => {
   return (
     <div className="Results">
       {
-        searchResultsState.searchResults.map((e: any, index) => 
+        searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
           <ResultsGroup date={e.date} events={e.events} key={index}/>
-        )
+        ) : null
       }
     </div>
   )
 }
-// expected input is {date, events}
+
 export const ResultsGroup = (searchResult: SearchResults) => {
   return (
     <div className="Results_group">
@@ -35,7 +35,7 @@ export const ResultsGroup = (searchResult: SearchResults) => {
             priceAfterFees={e.priceAfterFees}
             isPriceEstimated={e.isPriceEstimated}
             source={e.source} 
-            venue={e.venue}
+            venueName={e.venueName}
             url={e.url}
             sourceUrl={e.sourceUrl}
             key={index}

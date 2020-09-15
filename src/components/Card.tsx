@@ -1,6 +1,6 @@
 import * as React from 'react'
 // stubhub has a field called ticketInfo -> if ticketInfo.totalListings = 0, show some sort of message indicating that fact
-export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstimated, source, name, venue, url, sourceUrl, status}: any) => {
+export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstimated, source, name, venueName, url, sourceUrl, status}: any) => {
   const priceBeforeFeesText = "Price before fees: ";
   const priceAfterFeesText = "Price after fees: ";
   const priceDisclaimerText = "*Estimated fees based on the average amount from source website. Prices may vary.";
@@ -9,7 +9,7 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
   const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p> : null;
   const priceAfterFeesHTML = priceAfterFees ? <p className="Card_prices-text">{priceAfterFeesText}<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
   const priceDisclaimer = isPriceEstimated ? <p className="Card_prices-text Card_prices-text--tiny">{priceDisclaimerText}</p> : null;
-  const venueText = venue || 'Venue TBD';
+  const venueText = venueName || 'Venue TBD';
   const urlContent = url || sourceUrl;
   const displayDateText = (date: string) => {
     if (date) {

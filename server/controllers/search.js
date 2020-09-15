@@ -14,7 +14,8 @@ export const wideSearchResults = (req, res) => {
       e.sourceUrl = 'https://ticketmaster.com';
       e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
       e.time = e.dates.start.localTime;
-      e.venue = e._embedded.venues[0].name;
+      e.venueName = e._embedded.venues[0].name;
+      e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
       if (e.priceRanges) {
         e.priceBeforeFees = e.priceRanges[0].min;
         e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
@@ -27,7 +28,8 @@ export const wideSearchResults = (req, res) => {
       e.source = 'stubhub';
       e.sourceUrl = 'https://stubhub.com';
       e.date = formatDate(e.eventDateLocal);
-      e.venue = e.venue.name;
+      e.venueName = e.venue.name;
+      e.venueCity = e.venue.city + ', ' + e.venue.state;
       e.priceBeforeFees = e.ticketInfo.minListPrice;
       e.priceAfterFees = e.ticketInfo.minPrice
     });
@@ -36,7 +38,8 @@ export const wideSearchResults = (req, res) => {
       e.sourceUrl = 'https://seatgeek.com';
       e.date = formatDate(e.datetime_utc);
       e.time = formatTime(e.datetime_local);
-      e.venue = e.venue.name;
+      e.venueName = e.venue.name;
+      e.venueCity = e.venue.display_location;
       e.name = e.title;
       e.priceBeforeFees = e.stats.lowest_sg_base_price;
       e.priceAfterFees = e.stats.lowest_price;
@@ -69,7 +72,8 @@ export const getEvents = (req, res) => {
       e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
       // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
       e.time = formatTime(e.dates.start.dateTime);
-      e.venue = e._embedded.venues[0].name;
+      e.venueName = e._embedded.venues[0].name;
+      e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
       e.isPriceEstimated = false;
       if (e.priceRanges) {
         e.priceBeforeFees = e.priceRanges[0].min;
@@ -87,7 +91,8 @@ export const getEvents = (req, res) => {
       e.status = null;
       e.date = formatLocalDate(e.eventDateLocal);
       e.time = formatTime(e.eventDateUTC);
-      e.venue = e.venue.name;
+      e.venueName = e.venue.name;
+      e.venueCity = e.venue.city + ', ' + e.venue.state;
       e.priceBeforeFees = e.ticketInfo.minListPrice;
       e.priceAfterFees = e.ticketInfo.minPrice;
       e.isPriceEstimated = false;
@@ -100,7 +105,8 @@ export const getEvents = (req, res) => {
       e.status = null;
       e.date = formatDate(e.datetime_utc);
       e.time = formatTime(e.datetime_utc + "Z");
-      e.venue = e.venue.name;
+      e.venueName = e.venue.name;
+      e.venueCity = e.venue.display_location;
       e.name = e.title;
       e.priceBeforeFees = e.stats.lowest_sg_base_price;
       e.priceAfterFees = e.stats.lowest_price;

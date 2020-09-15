@@ -36,6 +36,7 @@ export const ResultsGroup = (searchResult: SearchResults) => {
             isPriceEstimated={e.isPriceEstimated}
             source={e.source} 
             venueName={e.venueName}
+            venueCity={e.venueCity}
             url={e.url}
             sourceUrl={e.sourceUrl}
             key={index}

@@ -71,7 +71,7 @@ export const getEvents = (req, res) => {
       e.status = e.dates.status.code;
       e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
       // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
-      e.time = formatTime(e.dates.start.dateTime);
+      e.time = formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
       e.venueName = e._embedded.venues[0].name;
       e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
       e.isPriceEstimated = false;

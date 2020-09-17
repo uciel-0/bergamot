@@ -71,7 +71,7 @@ export const getEvents = (req, res) => {
       e.status = e.dates.status.code;
       e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
       // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
-      e.time = formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
+      e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
       e.venueName = e._embedded.venues[0].name;
       e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
       e.isPriceEstimated = false;
@@ -103,8 +103,8 @@ export const getEvents = (req, res) => {
       e.source = 'seatgeek';
       e.sourceUrl = 'https://seatgeek.com';
       e.status = null;
-      e.date = formatDate(e.datetime_utc);
-      e.time = formatTime(e.datetime_utc + "Z");
+      e.date = e.date_tbd ? null : formatDate(e.datetime_utc);
+      e.time = e.datetime_tbd ? null : formatTime(e.datetime_utc + "Z");
       e.venueName = e.venue.name;
       e.venueCity = e.venue.display_location;
       e.name = e.title;
@@ -115,6 +115,10 @@ export const getEvents = (req, res) => {
     const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);
+    if (groupedData[0].date === 'null') {
+      const datesTBD = groupedData.shift();
+      groupedData.push(datesTBD);
+    };
     res.send(groupedData);
   })
   .catch((err) => {

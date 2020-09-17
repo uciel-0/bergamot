@@ -23,13 +23,13 @@ export const Results = () => {
 export const ResultsGroup = (searchResult: SearchResults) => {
   return (
     <div className="Results_group">
-      <h1 className="Results_date">{searchResult.date}</h1>
+      <h1 className="Results_date">{searchResult.date !== 'null' ? searchResult.date : 'Date TBD'}</h1>
       {
         searchResult.events.map((e: any, index: number) => 
           <Card 
             name={e.name} 
             status={e.status}
-            date={searchResult.date} 
+            date={e.date} 
             time={e.time}
             priceBeforeFees={e.priceBeforeFees}
             priceAfterFees={e.priceAfterFees}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/main.css';
 import {Search} from './features/Search';
-import {Results} from './features/Results';
+import {Results, InfiniteScrollResults} from './features/Results';
 import {Home} from './features/Home';
 import {ErrorScreen} from './features/ErrorScreen';
 import {SpinnerContext} from './store/spinner/Context';
@@ -21,7 +21,7 @@ const App = () => {
             <Home />
           </Route>
           <Route path="/search">
-            <Results />
+            <InfiniteScrollResults />
           </Route>
           <Route path="/error"> 
             <ErrorScreen />

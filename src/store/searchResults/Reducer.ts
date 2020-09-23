@@ -1,7 +1,12 @@
 import {SearchResultActionTypes, SearchResultsActions} from './Actions';
 
 export interface SearchResultsState {
-  searchResults: any[];
+  searchResults: SearchResult[];
+}
+
+export interface SearchResult {
+  date: string;
+  events: any
 }
   
 export const searchResultsReducer = (state: SearchResultsState, action: SearchResultsActions) => {

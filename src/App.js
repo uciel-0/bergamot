@@ -21,7 +21,7 @@ const App = () => {
             <Home />
           </Route>
           <Route path="/search">
-            <InfiniteScrollResults />
+            <Results />
           </Route>
           <Route path="/error"> 
             <ErrorScreen />

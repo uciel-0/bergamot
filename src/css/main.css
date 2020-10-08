@@ -160,7 +160,8 @@ body {
   flex-direction: column;
   display: inline-block;
   padding-top: 8rem;
-  padding-left: 1rem; }
+  padding-left: 1rem;
+  width: 75%; }
   .Results_date {
     font-size: 1rem; }
   .Results_group {
@@ -188,7 +189,20 @@ body {
     outline: none;
     padding-left: 8px; }
 
+.Filter {
+  width: 25%;
+  height: 100vh;
+  border: 1px solid black;
+  margin-top: 8rem;
+  margin-bottom: 10px;
+  background-color: rgba(196, 196, 196, 0.4);
+  margin-left: 1rem; }
+
 .Home {
   text-align: center; }
   .Home_title {
     padding-top: 8rem; }
+
+.SearchResults {
+  display: inline-flex;
+  flex-direction: row; }

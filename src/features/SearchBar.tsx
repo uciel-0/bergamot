@@ -7,7 +7,7 @@ import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';
 
-export const Search = () => {
+export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
   const {searchResultsDispatch} = React.useContext(SearchResultsContext);
   const {spinnerDispatch} = React.useContext(SpinnerContext);

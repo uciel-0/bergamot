@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/main.css';
-import {Search} from './features/Search';
-import {Results, InfiniteScrollResults} from './features/Results';
+import {SearchBar} from './features/SearchBar';
+import {Results} from './features/Results';
 import {Home} from './features/Home';
 import {ErrorScreen} from './features/ErrorScreen';
 import {SpinnerContext} from './store/spinner/Context';
@@ -14,7 +14,7 @@ const App = () => {
     <Router>
       <div className="App">
         {spinnerState.isLoading ? <Spinner /> : null}
-        <Search />
+        <SearchBar />
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route path="/home">

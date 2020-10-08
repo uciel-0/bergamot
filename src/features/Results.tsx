@@ -2,8 +2,8 @@ import * as React from 'react';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {Card} from '../components/Card';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import ts from 'typescript';
 import { SearchResult } from '../store/searchResults/Reducer';
+import {Filter} from './Filter';
 
 export interface SearchResults {
   date: string;
@@ -12,15 +12,23 @@ export interface SearchResults {
 
 export const Results = () => {
   const {searchResultsState} = React.useContext(SearchResultsContext);
+  const searchResults = searchResultsState.searchResults;
   return (
-    <div className="Results">
-      {
-        searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
-          <ResultsGroup date={e.date} events={e.events} key={index}/>
-        ) : null
-      }
+    <div className="SearchResults">
+      <Filter />
+      <div className="Results">
+        {
+          searchResults.length > 0 ? searchResults.map((e: any, index) => 
+            <ResultsGroup date={e.date} events={e.events} key={index}/>
+          ) : null
+        }
+      </div>
     </div>
   )
+}
+
+export const filterByDistributor = () => {
+
 }
 
 export const InfiniteScrollResults = () => {

@@ -200,8 +200,21 @@ body {
 
 .Home {
   text-align: center; }
-  .Home_title {
-    padding-top: 8rem; }
+
+.Banner {
+  padding-top: 8rem;
+  position: relative; }
+  .Banner_box {
+    display: inline-block; }
+  .Banner_overlay {
+    padding-left: 2.4rem;
+    padding-top: 1.5rem;
+    position: absolute;
+    text-align: left;
+    width: 100%;
+    margin: 0; }
+    .Banner_overlay-white {
+      color: white; }
 
 .SearchResults {
   display: inline-flex;

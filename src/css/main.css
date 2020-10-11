@@ -202,7 +202,7 @@ body {
   text-align: center; }
 
 .Banner {
-  padding-top: 8rem;
+  margin-top: 8rem;
   position: relative; }
   .Banner_box {
     display: inline-block; }

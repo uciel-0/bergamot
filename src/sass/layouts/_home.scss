@@ -6,21 +6,21 @@
 .Banner{
     margin-top: $cheat-padding;
     position: relative;
+
     &_box{
-    display: inline-block;
+        display: inline-block;
     }
-    // &_text{
-    //   position: absolute;
-    // }
+
     &_overlay{
-    padding-left: 2.4rem;
-    padding-top: 1.5rem;
-    position: absolute;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    &-white{
-        color:white;
+        padding-left: 2.4rem;
+        padding-top: 1.5rem;
+        position: absolute;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        &-white{
+            color:white;
+        }
     }
-    }
+
 }

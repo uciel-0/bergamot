@@ -2,7 +2,6 @@ import * as React from 'react';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {Card} from '../components/Card';
 // import InfiniteScroll from 'react-infinite-scroll-component';
-import { SearchFilters, SearchResult } from '../store/searchResults/Reducer';
 import {Filter} from './Filter';
 
 export interface SearchResults {
@@ -13,10 +12,7 @@ export interface SearchResults {
 export const Results = () => {
   const {searchResultsState} = React.useContext(SearchResultsContext);
   const searchResults = searchResultsState.searchResults;
-
-  if (searchResultsState.searchFilters === SearchFilters.DISTRIBUTOR) {
-    filterByDistributor();
-  }
+ 
   return (
     <div className="SearchResults">
       <Filter />

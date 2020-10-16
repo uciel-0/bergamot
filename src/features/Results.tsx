@@ -3,16 +3,45 @@ import {SearchResultsContext} from '../store/searchResults/Context';
 import {Card} from '../components/Card';
 // import InfiniteScroll from 'react-infinite-scroll-component';
 import {Filter} from './Filter';
+// import { SearchResultActionTypes } from '../store/searchResults/Actions';
 
-export interface SearchResults {
+export interface SearchResult {
   date: string;
   events: any[];
 }
 
 export const Results = () => {
   const {searchResultsState} = React.useContext(SearchResultsContext);
-  const searchResults = searchResultsState.searchResults;
- 
+  const searchResults: SearchResult[] = searchResultsState.searchResults;
+  
+  React.useEffect(() => {
+    console.log('filter changed', searchResultsState.searchFilters);
+    console.log(searchResults);
+
+    const filteredResults = searchResults.reduce((accumulator: SearchResult[], searchResult: SearchResult) => {
+      const events = searchResult.events;
+      const filteredEvents = events.filter((event) => {
+        if (event.source === 'ticketmaster' && searchResultsState.searchFilters.filterTicketmaster) {
+          console.log('source is ticketmaster and ticketmaster is selected', event.source === 'ticketmaster' && searchResultsState.searchFilters.filterTicketmaster)
+          return event;
+        } else if (event.source === 'stubhub' && searchResultsState.searchFilters.filterStubhub) {
+          console.log('source is stubhub and stubhub is selected', event.source === 'stubhub' && searchResultsState.searchFilters.filterStubhub)
+          return event;
+        } else if (event.source === 'seatgeek' && searchResultsState.searchFilters.filterSeatgeek) {
+          console.log('source is seatgeek and seatgeek is selected', event.source === 'seatgeek' && searchResultsState.searchFilters.filterSeatgeek)
+          return event;
+        };
+      });
+      console.log(filteredEvents);
+      const filteredResult: SearchResult = {
+        date: searchResult.date,
+        events: filteredEvents
+      }
+      return filteredResult;
+    }, []);
+    console.log(filteredResults);
+  }, [searchResultsState.searchFilters]);
+
   return (
     <div className="SearchResults">
       <Filter />

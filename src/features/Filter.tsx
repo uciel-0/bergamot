@@ -26,9 +26,6 @@ export const Filter = () => {
   }, [ticketmasterFilter, stubhubFilter, seatgeekFilter])
 
   const handleFilterToggle = (event: any) => {
-    // if (onlyOneCheckboxLeftCheck()) {
-    //   return;
-    // }
     const target = event.target;
     const name = target.name;
     const newCheckState = target.checked;
@@ -40,21 +37,6 @@ export const Filter = () => {
       searchResultsDispatch(setSeatgeekFilterAction(newCheckState))
     }
   }
-
-  // const onlyOneCheckboxLeftCheck = (): boolean => {
-  //   const filters = [
-  //     searchResultsState.searchFilters.filterSeatgeek, 
-  //     searchResultsState.searchFilters.filterTicketmaster, 
-  //     searchResultsState.searchFilters.filterStubhub
-  //   ];
-  //   const numberOfUncheckedBoxes = filters.reduce((total, currentVal) => {
-  //    return !currentVal ? total += 1 : total + 0;
-  //   }, 0);
-  //   console.log(numberOfUncheckedBoxes, 'numberof unchecked boxes')
-  //   if (numberOfUncheckedBoxes === 2) {
-  //     return true;
-  //   } else return false;
-  // }
 
   return (
     <div className="Filter">

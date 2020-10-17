@@ -2,7 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {SpinnerContext} from '../store/spinner/Context';
-import {setSearchResults} from '../store/searchResults/Actions';
+import {setSearchResults, setBulkFilterAction, setIsStableAction} from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';
@@ -11,6 +11,7 @@ export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
   const {searchResultsDispatch} = React.useContext(SearchResultsContext);
   const {spinnerDispatch} = React.useContext(SpinnerContext);
+  // const {} = React.useContext();
   let history = useHistory();
 
   const onSubmit = (e: any) => {
@@ -19,17 +20,22 @@ export const SearchBar = () => {
       return;
     }
     spinnerDispatch(setSpinnerState(true));
+    // reset the isStable flag so the distributor filters can reset as expected
+    searchResultsDispatch(setIsStableAction(false));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,
       }
     })
     .then((res) => {
-      console.log('master search api response', res.data);
+      console.log('master search api response', res.data.data);
       history.push('/search');
-      searchResultsDispatch(setSearchResults(res.data));
+      // set our search result data to the response from the api call
+      searchResultsDispatch(setSearchResults(res.data.data));
+      // from the data, determine which distributor actually returned data for this search query
+      // set these booleans in the filter state so we can use them to render the checkboxes appropriately
+      searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek));
       spinnerDispatch(setSpinnerState(false));
-
     })
     .catch((err) => {
       spinnerDispatch(setSpinnerState(false));

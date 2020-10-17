@@ -1,9 +1,11 @@
 export enum SearchResultActionTypes {
   SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS',
   SET_SEARCH_FILTERS = 'SET_SEARCH_FILTERS',
-  TOGGLE_TICKETMASTER_FILTER = 'TOGGLE_TICKETMASTER_FILTER',
-  TOGGLE_STUBHUB_FILTER = 'TOGGLE_STUBHUB_FILTER',
-  TOGGLE_SEATGEEK_FILTER = 'TOGGLE_SEATGEEK_FILTER'
+  SET_TICKETMASTER_FILTER = 'SET_TICKETMASTER_FILTER',
+  SET_STUBHUB_FILTER = 'SET_STUBHUB_FILTER',
+  SET_SEATGEEK_FILTER = 'SET_SEATGEEK_FILTER',
+  SET_BULK_FILTER = 'SET_BULK_FILTER',
+  SET_IS_STABLE = 'SET_IS_STABLE',
 }
 
 interface SetSearchResults {
@@ -16,34 +18,58 @@ export const setSearchResults = (payload: any): SetSearchResults => ({
   payload
 });
 
-interface ToggleTicketerMasterFilter {
-  type: SearchResultActionTypes.TOGGLE_TICKETMASTER_FILTER;
+interface SetTicketerMasterFilter {
+  type: SearchResultActionTypes.SET_TICKETMASTER_FILTER;
   payload: boolean;
 }
 
-export const toggleTicketMasterFilterAction = (payload: boolean): ToggleTicketerMasterFilter => ({
-  type: SearchResultActionTypes.TOGGLE_TICKETMASTER_FILTER,
+export const setTicketMasterFilterAction = (payload: boolean): SetTicketerMasterFilter => ({
+  type: SearchResultActionTypes.SET_TICKETMASTER_FILTER,
   payload 
 });
 
-interface ToggleStubhubFilter {
-  type: SearchResultActionTypes.TOGGLE_STUBHUB_FILTER;
+interface SetStubhubFilter {
+  type: SearchResultActionTypes.SET_STUBHUB_FILTER;
   payload: boolean;
 }
 
-export const toggleStubhubFilterAction = (payload: boolean): ToggleStubhubFilter => ({
-  type: SearchResultActionTypes.TOGGLE_STUBHUB_FILTER,
+export const setStubhubFilterAction = (payload: boolean): SetStubhubFilter => ({
+  type: SearchResultActionTypes.SET_STUBHUB_FILTER,
   payload 
 });
 
-interface ToggleSeatgeekFilter {
-  type: SearchResultActionTypes.TOGGLE_SEATGEEK_FILTER;
+interface SetSeatgeekFilter {
+  type: SearchResultActionTypes.SET_SEATGEEK_FILTER;
   payload: boolean;
 }
 
-export const toggleSeatgeekFilterAction = (payload: boolean): ToggleSeatgeekFilter => ({
-  type: SearchResultActionTypes.TOGGLE_SEATGEEK_FILTER,
+export const setSeatgeekFilterAction = (payload: boolean): SetSeatgeekFilter => ({
+  type: SearchResultActionTypes.SET_SEATGEEK_FILTER,
   payload
 });
 
-export type SearchResultsActions = SetSearchResults | ToggleTicketerMasterFilter | ToggleStubhubFilter | ToggleSeatgeekFilter;
+interface SetBulkFilter {
+  type: SearchResultActionTypes.SET_BULK_FILTER;
+  ticketmaster: boolean;
+  stubhub: boolean;
+  seatgeek: boolean;
+}
+
+export const setBulkFilterAction = (ticketmaster: boolean, stubhub: boolean, seatgeek: boolean): SetBulkFilter => ({
+  type: SearchResultActionTypes.SET_BULK_FILTER, 
+  ticketmaster,
+  stubhub,
+  seatgeek
+});
+
+interface SetIsStable {
+  type: SearchResultActionTypes.SET_IS_STABLE;
+  payload: boolean;
+}
+
+export const setIsStableAction = (payload: boolean): SetIsStable => ({
+  type: SearchResultActionTypes.SET_IS_STABLE,
+  payload
+});
+
+export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable;

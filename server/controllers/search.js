@@ -112,14 +112,29 @@ export const getEvents = (req, res) => {
       e.priceAfterFees = e.stats.lowest_price;
       e.isPriceEstimated = false;
     });
+    // process for combining the data, sorting then grouping it by date
     const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);
+    // data with an unknown date ends up sorted into a null bucket by default
+    // this line makes it so that null bucket is the last item, so it will show up last in the front end
     if (groupedData[0].date === 'null') {
       const datesTBD = groupedData.shift();
       groupedData.push(datesTBD);
     };
-    res.send(groupedData);
+    // if any of these results sets have a length of zero, we'll let the front end know via boolean
+    const hasTicketmasterData = data[0].events.length > 0;
+    const hasStubhubData = data[1].events.length > 0;
+    const hasSeatgeekData = data[2].events.length > 0;
+    const response = {
+      data: groupedData,
+      source: {
+        ticketmaster: hasTicketmasterData,
+        stubhub: hasStubhubData,
+        seatgeek: hasSeatgeekData,
+      }
+    }
+    res.send(response);
   })
   .catch((err) => {
     console.log('error in event search', err);

@@ -12,42 +12,41 @@ export interface SearchResult {
 
 export const Results = () => {
   const {searchResultsState} = React.useContext(SearchResultsContext);
-  const searchResults: SearchResult[] = searchResultsState.searchResults;
+  const [filteredResults, setFilteredResults] = React.useState(searchResultsState.searchResults);
   
   React.useEffect(() => {
-    console.log('filter changed', searchResultsState.searchFilters);
-    console.log(searchResults);
-
-    const filteredResults = searchResults.reduce((accumulator: SearchResult[], searchResult: SearchResult) => {
-      const events = searchResult.events;
-      const filteredEvents = events.filter((event) => {
-        if (event.source === 'ticketmaster' && searchResultsState.searchFilters.filterTicketmaster) {
-          console.log('source is ticketmaster and ticketmaster is selected', event.source === 'ticketmaster' && searchResultsState.searchFilters.filterTicketmaster)
-          return event;
-        } else if (event.source === 'stubhub' && searchResultsState.searchFilters.filterStubhub) {
-          console.log('source is stubhub and stubhub is selected', event.source === 'stubhub' && searchResultsState.searchFilters.filterStubhub)
-          return event;
-        } else if (event.source === 'seatgeek' && searchResultsState.searchFilters.filterSeatgeek) {
-          console.log('source is seatgeek and seatgeek is selected', event.source === 'seatgeek' && searchResultsState.searchFilters.filterSeatgeek)
-          return event;
-        };
-      });
-      console.log(filteredEvents);
-      const filteredResult: SearchResult = {
-        date: searchResult.date,
-        events: filteredEvents
+    if (searchResultsState.searchFilters.filterTicketmaster || searchResultsState.searchFilters.filterSeatgeek || searchResultsState.searchFilters.filterStubhub) {
+      const searchResults: SearchResult[] = searchResultsState.searchResults;
+      const filteredResults: SearchResult[] = [];
+      for (let i = 0; i < searchResults.length; i++) {
+        const events = searchResults[i].events;
+        const filteredEvents = events.filter((event) => {
+          if (event.source === 'ticketmaster') {
+            return searchResultsState.searchFilters.filterTicketmaster;
+          } else if (event.source === 'stubhub') {
+            return searchResultsState.searchFilters.filterStubhub;
+          } else if (event.source === 'seatgeek') {
+            return searchResultsState.searchFilters.filterSeatgeek;
+          }
+        });
+        if (filteredEvents.length !== 0) {
+          const filteredResult: SearchResult = {
+            date: searchResults[i].date,
+            events: filteredEvents
+          }
+          filteredResults.push(filteredResult);
+        }
       }
-      return filteredResult;
-    }, []);
-    console.log(filteredResults);
-  }, [searchResultsState.searchFilters]);
+      setFilteredResults(filteredResults);
+    } else setFilteredResults(searchResultsState.searchResults);
+  }, [searchResultsState.searchFilters, searchResultsState.searchResults]);
 
   return (
     <div className="SearchResults">
       <Filter />
       <div className="Results">
         {
-          searchResults.length > 0 ? searchResults.map((e: any, index) => 
+          filteredResults.length > 0 ? filteredResults.map((e: any, index) => 
             <ResultsGroup date={e.date} events={e.events} key={index}/>
           ) : null
         }
@@ -56,9 +55,6 @@ export const Results = () => {
   )
 }
 
-export const filterByDistributor = () => {
-  // 
-}
 
 // export const InfiniteScrollResults = () => {
 //   const {searchResultsState} = React.useContext(SearchResultsContext);
@@ -134,7 +130,7 @@ export const filterByDistributor = () => {
 //   )
 // }
 
-export const ResultsGroup = (searchResult: SearchResults) => {
+export const ResultsGroup = (searchResult: SearchResult) => {
   return (
     <div className="Results_group">
       <h1 className="Results_date">{searchResult.date !== 'null' ? searchResult.date : 'Date TBD'}</h1>

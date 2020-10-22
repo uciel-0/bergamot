@@ -196,7 +196,71 @@ body {
   margin-top: 8rem;
   margin-bottom: 10px;
   background-color: rgba(196, 196, 196, 0.4);
-  margin-left: 1rem; }
+  margin-left: 1rem;
+  padding-left: 3px; }
+  .Filter input {
+    margin-right: 4px; }
+  .Filter .rs-slider {
+    position: relative; }
+  .Filter .rs-slider-bar {
+    height: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #3c3f43; }
+    .Filter .rs-slider-bar:hover {
+      background-color: #3c3f43; }
+  .Filter .rs-slider-progress-bar {
+    position: absolute;
+    height: 6px;
+    border-radius: 3px 0 0 3px;
+    background-color: #34c3ff; }
+  .Filter .rs-slider-handle {
+    position: absolute;
+    top: -50%; }
+    .Filter .rs-slider-handle:before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #34c3ff;
+      background-color: #292d33;
+      margin-left: -6px;
+      cursor: pointer;
+      -webkit-transition: background-color .3s ease-in-out,-webkit-box-shadow .3s ease-in-out,-webkit-transform .3s ease-in-out;
+      transition: background-color .3s ease-in-out,-webkit-box-shadow .3s ease-in-out,-webkit-transform .3s ease-in-out;
+      transition: box-shadow .3s ease-in-out,background-color .3s ease-in-out,transform .3s ease-in-out;
+      transition: box-shadow .3s ease-in-out,background-color .3s ease-in-out,transform .3s ease-in-out,-webkit-box-shadow .3s ease-in-out,-webkit-transform .3s ease-in-out; }
+  .Filter .rs-tooltip {
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    font-size: 12px;
+    opacity: 0;
+    line-height: 1.66666667; }
+  .Filter .rs-tooltip[class*=placement-top] {
+    margin-top: -6px;
+    -webkit-transform: translate(0);
+    transform: translate(0); }
+  .Filter .rs-tooltip[class*=placement-top] .rs-tooltip-arrow {
+    bottom: -6px;
+    margin-left: -6px;
+    border-width: 6px 6px 0;
+    border-top-color: #5c6066; }
+  .Filter .rs-tooltip .rs-tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid; }
+  .Filter .rs-tooltip .rs-tooltip-inner {
+    max-width: 250px;
+    padding: 2px 10px;
+    color: #fff;
+    text-align: center;
+    background-color: #5c6066;
+    border-radius: 4px;
+    overflow-wrap: break-word; }
 
 .Home {
   text-align: center; }

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { setSeatgeekFilterAction, setStubhubFilterAction, setTicketMasterFilterAction, setIsStableAction } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
+import { RangeSlider } from 'rsuite';
+
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -44,7 +46,7 @@ export const Filter = () => {
       <form className="Filter_section">
         {
           ticketmasterFilter && isStable && (
-            <label>
+            <label htmlFor="ticketmaster">
               <input 
                 type="checkbox" 
                 name="filterTicketmaster" 
@@ -52,6 +54,7 @@ export const Filter = () => {
                 onChange={handleFilterToggle}
               />
               Ticketmaster
+              <br></br>
             </label>
           )
         }
@@ -65,6 +68,7 @@ export const Filter = () => {
                 onChange={handleFilterToggle}
               />   
               Stubhub
+              <br></br>
             </label>
           )
         }
@@ -78,9 +82,14 @@ export const Filter = () => {
                 onChange={handleFilterToggle}
               />
               SeatGeek
+              <br></br>
             </label>
           )
         }
+        <RangeSlider 
+          defaultValue={[10, 50]}
+          progress={true}
+        />
       </form>
     </div>
   )

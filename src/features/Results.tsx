@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {Card} from '../components/Card';
-// import InfiniteScroll from 'react-infinite-scroll-component';
 import {Filter} from './Filter';
-// import { SearchResultActionTypes } from '../store/searchResults/Actions';
+import { setNoResultsState } from '../store/searchResults/Actions';
+import { ErrorScreen } from './ErrorScreen';
 
 export interface SearchResult {
   date: string;
@@ -11,7 +11,7 @@ export interface SearchResult {
 }
 
 export const Results = () => {
-  const {searchResultsState} = React.useContext(SearchResultsContext);
+  const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
   const [filteredResults, setFilteredResults] = React.useState(searchResultsState.searchResults);
   
   React.useEffect(() => {
@@ -38,17 +38,25 @@ export const Results = () => {
         }
       }
       setFilteredResults(filteredResults);
-    } else setFilteredResults(searchResultsState.searchResults);
-  }, [searchResultsState.searchFilters, searchResultsState.searchResults]);
+      searchResultsDispatch(setNoResultsState(false));
+    } else if (!searchResultsState.searchFilters.filterTicketmaster && !searchResultsState.searchFilters.filterSeatgeek && !searchResultsState.searchFilters.filterStubhub) {
+      setFilteredResults([]);
+      searchResultsDispatch(setNoResultsState(true));
+    }
+    else {
+      setFilteredResults(searchResultsState.searchResults);
+      searchResultsDispatch(setNoResultsState(false));
+    }
+  }, [searchResultsDispatch, searchResultsState.searchFilters, searchResultsState.searchResults]);
 
   return (
     <div className="SearchResults">
       <Filter />
       <div className="Results">
-        {
+        { !searchResultsState.noResults ?
           filteredResults.length > 0 ? filteredResults.map((e: any, index) => 
             <ResultsGroup date={e.date} events={e.events} key={index}/>
-          ) : null
+          ) : null : <ErrorScreen/>
         }
       </div>
     </div>

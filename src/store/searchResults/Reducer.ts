@@ -4,6 +4,7 @@ export interface SearchResultsState {
   searchResults: SearchResult[];
   searchFilters: SearchFilterState;
   isStable: boolean;
+  noResults: boolean;
 }
 
 export interface SearchResult {
@@ -33,6 +34,8 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, searchFilters: {...state.searchFilters, filterTicketmaster: action.ticketmaster, filterStubhub: action.stubhub, filterSeatgeek: action.seatgeek}};
     case SearchResultActionTypes.SET_IS_STABLE: 
       return {...state, isStable: action.payload};
+    case SearchResultActionTypes.SET_NO_RESULTS:
+      return {...state, noResults: action.payload};
     case SearchResultActionTypes.SET_MIN_PRICE:
       return {...state, searchFilters: {...state.searchFilters, minPrice: action.payload}};
     case SearchResultActionTypes.SET_MAX_PRICE:
@@ -52,4 +55,5 @@ export const initialSearchResultsState: SearchResultsState = {
     minPrice: null
   },
   isStable: false,
+  noResults: false,
 }

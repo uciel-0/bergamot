@@ -6,6 +6,7 @@ export enum SearchResultActionTypes {
   SET_SEATGEEK_FILTER = 'SET_SEATGEEK_FILTER',
   SET_BULK_FILTER = 'SET_BULK_FILTER',
   SET_IS_STABLE = 'SET_IS_STABLE',
+  SET_NO_RESULTS = 'SET_NO_RESULTS'
 }
 
 interface SetSearchResults {
@@ -72,4 +73,14 @@ export const setIsStableAction = (payload: boolean): SetIsStable => ({
   payload
 });
 
-export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable;
+interface SetNoResults {
+  type: SearchResultActionTypes.SET_NO_RESULTS;
+  payload: boolean;
+}
+
+export const setNoResultsState = (payload: boolean): SetNoResults => ({
+  type: SearchResultActionTypes.SET_NO_RESULTS,
+  payload
+});
+
+export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable | SetNoResults;

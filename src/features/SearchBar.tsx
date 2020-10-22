@@ -2,7 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {SpinnerContext} from '../store/spinner/Context';
-import {setSearchResults, setBulkFilterAction, setIsStableAction,setMaxPriceAction,setMinPriceAction} from '../store/searchResults/Actions';
+import {setSearchResults, setBulkFilterAction, setIsStableAction,setMaxPriceAction,setMinPriceAction, setNoResultsState} from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';

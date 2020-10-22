@@ -29,7 +29,7 @@ export const SearchBar = () => {
       }
     })
     .then((res) => {
-      console.log('master search api response', res.data.data);
+      console.log('master search api response', res.data);
       history.push('/search');
       // set our search result data to the response from the api call
       searchResultsDispatch(setSearchResults(res.data.data));
@@ -38,8 +38,8 @@ export const SearchBar = () => {
       searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek));
       spinnerDispatch(setSpinnerState(false));
       //set min/max price from the backend.
-      searchResultsDispatch(setMinPriceAction(0));
-      searchResultsDispatch(setMaxPriceAction(0));
+      searchResultsDispatch(setMinPriceAction(res.data.minPrice));
+      searchResultsDispatch(setMaxPriceAction(res.data.maxPrice));
     })
     .catch((err) => {
       spinnerDispatch(setSpinnerState(false));

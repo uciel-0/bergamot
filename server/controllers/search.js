@@ -114,6 +114,22 @@ export const getEvents = (req, res) => {
     });
     // process for combining the data, sorting then grouping it by date
     const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
+    // include a function to find the max
+    const minPrice = combinedData.reduce((accumulator, event) => {
+      // when you encounter a number, set the accumulator to that number 
+      // if the current price is less than the accumulator, set the accumulator to that number
+      if (event.priceAfterFees < accumulator) {
+        accumulator = event.priceAfterFees;
+        return accumulator;
+      }
+    }); 
+    const maxPrice = combinedData.reduce((accumulator, event) => {
+      if (event.priceAfterFees > accumulator) {
+        accumulator = event.priceAfterFees;
+        return accumulator;
+      } 
+    }, 0); 
+    // include a function to find the min
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);
     // data with an unknown date ends up sorted into a null bucket by default
@@ -132,7 +148,9 @@ export const getEvents = (req, res) => {
         ticketmaster: hasTicketmasterData,
         stubhub: hasStubhubData,
         seatgeek: hasSeatgeekData,
-      }
+      },
+      maxPrice,
+      minPrice
     }
     res.send(response);
   })

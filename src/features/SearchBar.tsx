@@ -2,10 +2,11 @@ import * as React from 'react';
 import axios from 'axios';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {SpinnerContext} from '../store/spinner/Context';
-import {setSearchResults, setBulkFilterAction, setIsStableAction} from '../store/searchResults/Actions';
+import {setSearchResults, setBulkFilterAction, setIsStableAction,setMaxPriceAction,setMinPriceAction} from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';
+
 
 export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
@@ -36,6 +37,9 @@ export const SearchBar = () => {
       // set these booleans in the filter state so we can use them to render the checkboxes appropriately
       searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek));
       spinnerDispatch(setSpinnerState(false));
+      //set min/max price from the backend.
+      searchResultsDispatch(setMinPriceAction(0));
+      searchResultsDispatch(setMaxPriceAction(0));
     })
     .catch((err) => {
       spinnerDispatch(setSpinnerState(false));

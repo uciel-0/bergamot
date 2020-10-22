@@ -6,6 +6,8 @@ export enum SearchResultActionTypes {
   SET_SEATGEEK_FILTER = 'SET_SEATGEEK_FILTER',
   SET_BULK_FILTER = 'SET_BULK_FILTER',
   SET_IS_STABLE = 'SET_IS_STABLE',
+  SET_MAX_PRICE = 'SET_MAX_PRICE',
+  SET_MIN_PRICE = 'SET_MIN_PRICE'
 }
 
 interface SetSearchResults {
@@ -25,7 +27,7 @@ interface SetTicketerMasterFilter {
 
 export const setTicketMasterFilterAction = (payload: boolean): SetTicketerMasterFilter => ({
   type: SearchResultActionTypes.SET_TICKETMASTER_FILTER,
-  payload 
+  payload
 });
 
 interface SetStubhubFilter {
@@ -35,7 +37,7 @@ interface SetStubhubFilter {
 
 export const setStubhubFilterAction = (payload: boolean): SetStubhubFilter => ({
   type: SearchResultActionTypes.SET_STUBHUB_FILTER,
-  payload 
+  payload
 });
 
 interface SetSeatgeekFilter {
@@ -56,7 +58,7 @@ interface SetBulkFilter {
 }
 
 export const setBulkFilterAction = (ticketmaster: boolean, stubhub: boolean, seatgeek: boolean): SetBulkFilter => ({
-  type: SearchResultActionTypes.SET_BULK_FILTER, 
+  type: SearchResultActionTypes.SET_BULK_FILTER,
   ticketmaster,
   stubhub,
   seatgeek
@@ -72,4 +74,24 @@ export const setIsStableAction = (payload: boolean): SetIsStable => ({
   payload
 });
 
-export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable;
+interface SetMaxPrice {
+  type: SearchResultActionTypes.SET_MAX_PRICE;
+  payload: number;
+}
+
+export const setMaxPriceAction = (payload: number): SetMaxPrice => ({
+  type: SearchResultActionTypes.SET_MAX_PRICE,
+  payload
+});
+
+interface SetMinPrice {
+  type: SearchResultActionTypes.SET_MIN_PRICE;
+  payload: number;
+}
+
+export const setMinPriceAction = (payload: number): SetMinPrice => ({
+  type: SearchResultActionTypes.SET_MIN_PRICE,
+  payload
+});
+
+export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable | SetMaxPrice | SetMinPrice;

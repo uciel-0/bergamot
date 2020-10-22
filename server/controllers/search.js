@@ -114,21 +114,15 @@ export const getEvents = (req, res) => {
     });
     // process for combining the data, sorting then grouping it by date
     const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
-    // include a function to find the max
-    const minPrice = combinedData.reduce((accumulator, event) => {
-      // when you encounter a number, set the accumulator to that number 
-      // if the current price is less than the accumulator, set the accumulator to that number
-      if (event.priceAfterFees < accumulator) {
-        accumulator = event.priceAfterFees;
-        return accumulator;
-      }
-    }); 
-    const maxPrice = combinedData.reduce((accumulator, event) => {
-      if (event.priceAfterFees > accumulator) {
-        accumulator = event.priceAfterFees;
-        return accumulator;
-      } 
-    }, 0); 
+    // finds the minimum and maximum values from the whole data set
+    const minMax = combinedData.reduce((accumulator, currentValue) => {
+      const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) :  Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
+      const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
+      return [
+        Math.round(minPrice),
+        Math.round(maxPrice)
+      ]
+    }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
     // include a function to find the min
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);
@@ -149,8 +143,8 @@ export const getEvents = (req, res) => {
         stubhub: hasStubhubData,
         seatgeek: hasSeatgeekData,
       },
-      maxPrice,
-      minPrice
+      minPrice: minMax[0],
+      maxPrice: minMax[1]
     }
     res.send(response);
   })

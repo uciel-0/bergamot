@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { setSeatgeekFilterAction, setStubhubFilterAction, setTicketMasterFilterAction, setIsStableAction } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
-import { RangeSlider } from 'rsuite';
+import { RangeSlider, DateRangePicker } from 'rsuite';
+
 
 
 export const Filter = () => {
@@ -89,6 +90,12 @@ export const Filter = () => {
         <RangeSlider 
           defaultValue={[10, 50]}
           progress={true}
+        />
+        <DateRangePicker block 
+          beforeToday={false}
+          cleanable={true}
+          appearance={'default'}
+          
         />
       </form>
     </div>

@@ -11,50 +11,14 @@ export interface SearchResult {
 }
 
 export const Results = () => {
-  const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
-  const [filteredResults, setFilteredResults] = React.useState(searchResultsState.searchResults);
+  const {searchResultsState} = React.useContext(SearchResultsContext);
   
-  React.useEffect(() => {
-    if (searchResultsState.searchFilters.filterTicketmaster || searchResultsState.searchFilters.filterSeatgeek || searchResultsState.searchFilters.filterStubhub) {
-      const searchResults: SearchResult[] = searchResultsState.searchResults;
-      const filteredResults: SearchResult[] = [];
-      for (let i = 0; i < searchResults.length; i++) {
-        const events = searchResults[i].events;
-        const filteredEvents = events.filter((event) => {
-          if (event.source === 'ticketmaster') {
-            return searchResultsState.searchFilters.filterTicketmaster;
-          } else if (event.source === 'stubhub') {
-            return searchResultsState.searchFilters.filterStubhub;
-          } else if (event.source === 'seatgeek') {
-            return searchResultsState.searchFilters.filterSeatgeek;
-          }
-        });
-        if (filteredEvents.length !== 0) {
-          const filteredResult: SearchResult = {
-            date: searchResults[i].date,
-            events: filteredEvents
-          }
-          filteredResults.push(filteredResult);
-        }
-      }
-      setFilteredResults(filteredResults);
-      searchResultsDispatch(setNoResultsState(false));
-    } else if (!searchResultsState.searchFilters.filterTicketmaster && !searchResultsState.searchFilters.filterSeatgeek && !searchResultsState.searchFilters.filterStubhub) {
-      setFilteredResults([]);
-      searchResultsDispatch(setNoResultsState(true));
-    }
-    else {
-      setFilteredResults(searchResultsState.searchResults);
-      searchResultsDispatch(setNoResultsState(false));
-    }
-  }, [searchResultsDispatch, searchResultsState.searchFilters, searchResultsState.searchResults]);
-
   return (
     <div className="SearchResults">
       <Filter />
       <div className="Results">
         { !searchResultsState.noResults ?
-          filteredResults.length > 0 ? filteredResults.map((e: any, index) => 
+          searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
             <ResultsGroup date={e.date} events={e.events} key={index}/>
           ) : null : <ErrorScreen/>
         }

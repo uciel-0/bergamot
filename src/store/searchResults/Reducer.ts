@@ -5,6 +5,7 @@ export interface SearchResultsState {
   searchFilters: SearchFilterState;
   isStable: boolean;
   noResults: boolean;
+  lastQuery: string;
 }
 
 export interface SearchResult {
@@ -40,6 +41,8 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, searchFilters: {...state.searchFilters, minPrice: action.payload}};
     case SearchResultActionTypes.SET_MAX_PRICE:
       return {...state, searchFilters: {...state.searchFilters, maxPrice: action.payload}};
+    case SearchResultActionTypes.SET_LAST_QUERY: 
+      return {...state, lastQuery: action.payload};
     default:
       return state;
   }
@@ -56,4 +59,5 @@ export const initialSearchResultsState: SearchResultsState = {
   },
   isStable: false,
   noResults: false,
+  lastQuery: '',
 }

@@ -65,14 +65,14 @@ export const getEvents = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
   const stubhub = getStubhubEvents(req, res);
   const seatgeek = getSeatGeekEvents(req, res); 
-  // create the key under which this data will be stored 
+    // create the key under which this data will be stored 
   const key = `getEvents_${req.query.keyword}`;
   // when the response is complete, store it in the cache 
-  return cache.get(key, () => Promise.all([ticketmaster, stubhub, seatgeek]))
+  cache.set(key, () => Promise.all([ticketmaster, stubhub, seatgeek]))
   .then(data => {
     // Step 1) Set some custom fields for easy front end access
     // ticketmaster events
-    data[0].events.map(e => {
+    data[0].events.forEach(e => {
       e.source = 'ticketmaster';
       e.sourceUrl = 'https://ticketmaster.com';
       e.status = e.dates.status.code;
@@ -92,7 +92,7 @@ export const getEvents = (req, res) => {
       }
     });
     // stubhub events
-    data[1].events.map(e => {
+    data[1].events.forEach(e => {
       e.source = 'stubhub';
       e.sourceUrl = 'https://stubhub.com';
       e.status = null;
@@ -106,7 +106,7 @@ export const getEvents = (req, res) => {
       e.url = "https://www.stubhub.com/" + e.webURI;
     });
     // seatgeek events
-    data[2].events.map(e => {
+    data[2].events.forEach(e => {
       e.source = 'seatgeek';
       e.sourceUrl = 'https://seatgeek.com';
       e.status = null;
@@ -119,11 +119,13 @@ export const getEvents = (req, res) => {
       e.priceAfterFees = e.stats.lowest_price;
       e.isPriceEstimated = false;
     });
+    // determine whether or not to send this data set based on the filters and if this is a filter call
+
     // Step 2) Combinine the data into one set
     const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
     // Step 3) Find the minimum and maximum values from the whole data set
     const minMax = combinedData.reduce((accumulator, currentValue) => {
-      const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) :  Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
+      const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
       const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
       return [
         Math.round(minPrice),
@@ -156,7 +158,7 @@ export const getEvents = (req, res) => {
       maxPrice: minMax[1]
     }
     // Step 8) Send the data
-    res.send(response);
+   res.send(response);
   })
   .catch((err) => {
     console.log('error in event search', err);
@@ -165,3 +167,112 @@ export const getEvents = (req, res) => {
 }
 // you also want to map out the individual arrays for the stuff they always return 
 // this way you're able to pull data off them
+
+export const flushCache = (req, res) => {
+  cache.flush();
+  res.sendStatus(200);
+}
+
+export const getCachedEvents = (req, res) => {
+  const key = `getEvents_${req.query.keyword}`;
+  const filterTicketmaster = req.query.filterTicketmaster;
+  const filterStubhub = req.query.filterStubhub;
+  const filterSeatgeek = req.query.filterSeatgeek;
+
+  cache.get(key).then(data => {
+    // let ticketmasterResults
+    let ticketmasterEvents = [];
+    if (filterTicketmaster === "true") {
+      console.log('ticketmaster filter happening')
+      data[0].events.forEach(e => {
+        e.source = 'ticketmaster';
+        e.sourceUrl = 'https://ticketmaster.com';
+        e.status = e.dates.status.code;
+        e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
+        // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
+        e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
+        e.venueName = e._embedded.venues[0].name;
+        e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
+        e.isPriceEstimated = false;
+        if (e.priceRanges) {
+          e.priceBeforeFees = e.priceRanges[0].min;
+          e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
+          e.isPriceEstimated = true;
+        } else {
+          e.priceBeforeFees = null;
+          e.priceAfterFees = null;
+        }
+      });
+      ticketmasterEvents = data[0].events;
+    }
+       // stubhub events
+    let stubhubEvents = [];
+    if (filterStubhub === "true") {
+      console.log('stubhub filter happening')
+      data[1].events.forEach(e => {
+        e.source = 'stubhub';
+        e.sourceUrl = 'https://stubhub.com';
+        e.status = null;
+        e.date = formatLocalDate(e.eventDateLocal);
+        e.time = formatTime(e.eventDateUTC);
+        e.venueName = e.venue.name;
+        e.venueCity = e.venue.city + ', ' + e.venue.state;
+        e.priceBeforeFees = e.ticketInfo.minListPrice;
+        e.priceAfterFees = e.ticketInfo.minPrice;
+        e.isPriceEstimated = false;
+        e.url = "https://www.stubhub.com/" + e.webURI;
+      });
+      stubhubEvents = data[1].events;
+    }
+    // seatgeek events
+    let seatgeekEvents = [];
+    if (filterSeatgeek === "true") {
+      console.log('seatgeek filter happening')
+      data[2].events.forEach(e => {
+        e.source = 'seatgeek';
+        e.sourceUrl = 'https://seatgeek.com';
+        e.status = null;
+        e.date = e.date_tbd ? null : formatDate(e.datetime_utc);
+        e.time = e.datetime_tbd ? null : formatTime(e.datetime_utc + "Z");
+        e.venueName = e.venue.name;
+        e.venueCity = e.venue.display_location;
+        e.name = e.title;
+        e.priceBeforeFees = e.stats.lowest_sg_base_price;
+        e.priceAfterFees = e.stats.lowest_price;
+        e.isPriceEstimated = false;
+      });
+      seatgeekEvents = data[2].events;
+    }
+    const combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
+    if (combinedData.length === 0) {
+      res.send({data: []})
+    }
+    const minMax = combinedData.reduce((accumulator, currentValue) => {
+      const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
+      const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
+      return [
+        Math.round(minPrice),
+        Math.round(maxPrice)
+      ]
+    }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
+
+    const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const groupedData = groupByDay(sortChronologically);
+
+    if (groupedData[0].date === 'null') {
+      const datesTBD = groupedData.shift();
+      groupedData.push(datesTBD);
+    };
+
+    const response = {
+      data: groupedData,
+      minPrice: minMax[0],
+      maxPrice: minMax[1]
+    }
+    res.send(response);
+  }) 
+  .catch(err => {
+    console.log('error in cache filtering call', err);
+    res.sendStatus(400);
+  });
+}

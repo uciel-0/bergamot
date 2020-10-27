@@ -6,19 +6,18 @@ class Cache {
     this.cache = new NodeCache({ stdTTL: ttlSeconds, checkperiod: ttlSeconds * 0.2, useClones: false });
   }
 
-  get(key, storeFunction) {
+  get(key) {
     const value = this.cache.get(key);
     if (value) {
       return Promise.resolve(value);
     }
+  }
 
+  set(key, storeFunction) {
     return storeFunction().then((result) => {
-      if (result.length === 0) {
-        return result
-      } else {
+      if (result.length !== 0) {
         this.cache.set(key, result);
-        return result;
-      }
+      } return result;
     });
   }
 

@@ -15,14 +15,17 @@ export const SearchBar = () => {
   let history = useHistory();
 
   const onSubmit = (e: any) => {
+    console.log('onSubmit function firing');
     e.preventDefault();
     if (formValue === "") {
       return;
     }
     spinnerDispatch(setSpinnerState(true));
     // reset the isStable flag so the distributor filters can reset as expected
-    searchResultsDispatch(setIsStableAction(false));
+    console.log('one isStable action expected');
     searchResultsDispatch(setLastQuery(formValue));
+    searchResultsDispatch(setIsStableAction(false));
+    searchResultsDispatch(setBulkFilterAction(false, false, false));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,
@@ -41,8 +44,6 @@ export const SearchBar = () => {
       searchResultsDispatch(setMinPriceAction(res.data.minPrice));
       searchResultsDispatch(setMaxPriceAction(res.data.maxPrice));
       searchResultsDispatch(setNoResultsState(false));
-
-      console.log('setIsStableAction(false) should have fired')
     })
     .catch((err) => {
       history.push('/search');

@@ -2,7 +2,6 @@ import * as React from 'react';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {Card} from '../components/Card';
 import {Filter} from './Filter';
-import { setNoResultsState } from '../store/searchResults/Actions';
 import { ErrorScreen } from './ErrorScreen';
 
 export interface SearchResult {
@@ -11,50 +10,14 @@ export interface SearchResult {
 }
 
 export const Results = () => {
-  const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
-  const [filteredResults, setFilteredResults] = React.useState(searchResultsState.searchResults);
+  const {searchResultsState} = React.useContext(SearchResultsContext);
   
-  React.useEffect(() => {
-    if (searchResultsState.searchFilters.filterTicketmaster || searchResultsState.searchFilters.filterSeatgeek || searchResultsState.searchFilters.filterStubhub) {
-      const searchResults: SearchResult[] = searchResultsState.searchResults;
-      const filteredResults: SearchResult[] = [];
-      for (let i = 0; i < searchResults.length; i++) {
-        const events = searchResults[i].events;
-        const filteredEvents = events.filter((event) => {
-          if (event.source === 'ticketmaster') {
-            return searchResultsState.searchFilters.filterTicketmaster;
-          } else if (event.source === 'stubhub') {
-            return searchResultsState.searchFilters.filterStubhub;
-          } else if (event.source === 'seatgeek') {
-            return searchResultsState.searchFilters.filterSeatgeek;
-          }
-        });
-        if (filteredEvents.length !== 0) {
-          const filteredResult: SearchResult = {
-            date: searchResults[i].date,
-            events: filteredEvents
-          }
-          filteredResults.push(filteredResult);
-        }
-      }
-      setFilteredResults(filteredResults);
-      searchResultsDispatch(setNoResultsState(false));
-    } else if (!searchResultsState.searchFilters.filterTicketmaster && !searchResultsState.searchFilters.filterSeatgeek && !searchResultsState.searchFilters.filterStubhub) {
-      setFilteredResults([]);
-      searchResultsDispatch(setNoResultsState(true));
-    }
-    else {
-      setFilteredResults(searchResultsState.searchResults);
-      searchResultsDispatch(setNoResultsState(false));
-    }
-  }, [searchResultsDispatch, searchResultsState.searchFilters, searchResultsState.searchResults]);
-
   return (
     <div className="SearchResults">
       <Filter />
       <div className="Results">
         { !searchResultsState.noResults ?
-          filteredResults.length > 0 ? filteredResults.map((e: any, index) => 
+          searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
             <ResultsGroup date={e.date} events={e.events} key={index}/>
           ) : null : <ErrorScreen/>
         }
@@ -62,81 +25,6 @@ export const Results = () => {
     </div>
   )
 }
-
-
-// export const InfiniteScrollResults = () => {
-//   const {searchResultsState} = React.useContext(SearchResultsContext);
-//   const [hasMore, setHasMore] = React.useState<boolean>(true);
-//   const [maxLength, setMaxLength] = React.useState<number>(0);
-//   const [visibleSearchResults, setVisibleSearchResults] = React.useState<SearchResult[]>([]);
-//   const [visibleSearchResultsLength, setVisibleSearchResultsLength] = React.useState<number>(0);
-//   const [startingIndex, setStartingIndex] = React.useState<number>(0);
-//   const prefferedNumberOfResults: number = 15;
-  
-//   // preffered number of results per page = 15
-//   // const setInitialData = React.useCallback(() => {
-//   //   const initialDataSet: SearchResult[] = [];
-//   //   while (visibleSearchResultsLength >= maxLength) {
-//   //     const currentSearchResult = searchResultsState.searchResults[startingIndex];
-//   //     initialDataSet.push(currentSearchResult);
-//   //     setVisibleSearchResultsLength(visibleSearchResults + currentSearchResult.events.length);
-//   //     setStartingIndex(startingIndex + 1);
-//   //   }
-//   // }, [maxLength, startingIndex, visibleSearchResults, searchResultsState.searchResults, visibleSearchResultsLength]);
-
-//   React.useEffect(() => {
-//     const maxLength: number = searchResultsState.searchResults.reduce((numberOfResults, searchResult) => 
-//       numberOfResults += searchResult.events.length
-//     , 0);
-
-//     setMaxLength(maxLength);
-//     //setInitialData();
-//   }, [searchResultsState]);
-
-//   const fetchMoreData = () => {
-//     const visibleSearchResultsLength: number = visibleSearchResults.reduce((numberOfResults, searchResult) => numberOfResults += searchResult.events.length, 0);
-//     if (visibleSearchResultsLength >= maxLength) {
-//       setHasMore(false);
-//       return
-//     }
-
-//     setTimeout(() => {
-//       setVisibleSearchResults([])
-//     }, 500)
-//   }
-  
-//   // we receieved the whole array - searchResultsState
-//   // search results length directly corresponds to the distinct number of dates returned from the call
-//   // the number of results however, is not available at a glance - and will need to be tracked separately 
-//   // we need to build up the visibleResults array with every scroll
-
-//   const determineVisibleResults = () => {
-//     // know your prefferedNumberOfResults
-//     // track your currentNumberOfResults
-//     // track the index of searchResultsState you're currently at
-//     // while the length of the visibleResults is still above the currentNumberOfResults
-//       // loop through the searchResultsState (starting at a certain index)
-//       // push the whole searchResult object to visibleResults
-//       // update currentNumberOfResults
-//   }
-
-//   return (
-//     <div className="Results"> 
-//       <InfiniteScroll
-//         dataLength={searchResultsState.searchResults.length || 0}
-//         hasMore={hasMore}
-//         next={fetchMoreData}
-//         loader={<h4>Loading...</h4>}
-//       >
-//         {
-//           searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
-//             <ResultsGroup date={e.date} events={e.events} key={index}/>
-//           ) : null
-//         }
-//       </InfiniteScroll>
-//     </div>
-//   )
-// }
 
 export const ResultsGroup = (searchResult: SearchResult) => {
   return (

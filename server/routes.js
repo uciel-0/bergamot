@@ -6,6 +6,8 @@ const router = express.Router();
 router.get('/api/search/wide', controller.search.wideSearchResults);
 // categories = events, preformers, venues, locations
 router.get('/api/search/events', controller.search.getEvents);
+router.get('/api/cache/flush', controller.search.flushCache);
+router.get('/api/cache/events', controller.search.getCachedEvents);
 // individual api calls
 // router.get('/api/ticketmaster/events', controller.ticketmaster.getTicketMasterSearchResults);
 // router.get('/api/stubhub/events', controller.seatgeek.getSeatGeekEvents);

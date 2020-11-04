@@ -8,7 +8,8 @@ export enum SearchResultActionTypes {
   SET_IS_STABLE = 'SET_IS_STABLE',
   SET_NO_RESULTS = 'SET_NO_RESULTS',
   SET_MAX_PRICE = 'SET_MAX_PRICE',
-  SET_MIN_PRICE = 'SET_MIN_PRICE'
+  SET_MIN_PRICE = 'SET_MIN_PRICE',
+  SET_LAST_QUERY = 'SET_LAST_QUERY'
 }
 
 interface SetSearchResults {
@@ -105,5 +106,15 @@ export const setMinPriceAction = (payload: number): SetMinPrice => ({
   payload
 });
 
-export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable | SetNoResults | SetMaxPrice | SetMinPrice;
+interface SetLastQuery {
+  type: SearchResultActionTypes.SET_LAST_QUERY;
+  payload: string;
+}
+
+export const setLastQuery = (payload: string): SetLastQuery => ({
+  type: SearchResultActionTypes.SET_LAST_QUERY,
+  payload
+});
+
+export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable | SetNoResults | SetMaxPrice | SetMinPrice | SetLastQuery;
 

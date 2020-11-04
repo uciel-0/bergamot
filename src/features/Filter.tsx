@@ -1,25 +1,55 @@
 import * as React from 'react';
-import { setSeatgeekFilterAction, setStubhubFilterAction, setTicketMasterFilterAction, setIsStableAction } from '../store/searchResults/Actions';
+import axios from 'axios';
+import { setSeatgeekFilterAction, setStubhubFilterAction, setTicketMasterFilterAction, setIsStableAction, setSearchResults, setNoResultsState } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
 import { RangeSlider, DateRangePicker } from 'rsuite';
-
-
+import { SpinnerContext } from '../store/spinner/Context';
+import { setSpinnerState } from '../store/spinner/Actions';
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
+  const {spinnerDispatch} = React.useContext(SpinnerContext);
   const [ticketmasterFilter, setTicketmasterFilter] = React.useState<boolean>(false);
   const [stubhubFilter, setStubhubFilter] = React.useState<boolean>(false);
   const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
+  // const [readyToFire, setReadyToFire] = React.useState<boolean>(false);
+  const globalFilterTicketmasterState = searchResultsState.searchFilters.filterTicketmaster;
+  const globalFilterStubhubState = searchResultsState.searchFilters.filterStubhub;
+  const globalFilterSeatgeekState = searchResultsState.searchFilters.filterSeatgeek;
   const isStable = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
   // first fire is when state is initialized; second is when call is made
   React.useEffect(() => {
     if (!isStable) {
-      setTicketmasterFilter(searchResultsState.searchFilters.filterTicketmaster);
-      setStubhubFilter(searchResultsState.searchFilters.filterStubhub);
-      setSeatgeekFilter(searchResultsState.searchFilters.filterSeatgeek);
+      setTicketmasterFilter(globalFilterTicketmasterState);
+      setStubhubFilter(globalFilterStubhubState);
+      setSeatgeekFilter(globalFilterSeatgeekState);
+    } else if (!globalFilterTicketmasterState && !globalFilterStubhubState && !globalFilterSeatgeekState) {
+      searchResultsDispatch(setNoResultsState(true));
+    } else if (isStable) {
+      const callCacheForFiltering = () => {
+        console.log('firing cache call for artist: ', searchResultsState.lastQuery);
+        spinnerDispatch(setSpinnerState(true));
+        axios.get('http://localhost:8080/api/cache/events', {
+          params: {
+            keyword: searchResultsState.lastQuery,
+            filterTicketmaster: globalFilterTicketmasterState,
+            filterStubhub: globalFilterStubhubState,
+            filterSeatgeek: globalFilterSeatgeekState,
+          }
+        }).then(res => {
+          searchResultsDispatch(setNoResultsState(false));
+          searchResultsDispatch(setSearchResults(res.data.data));
+          spinnerDispatch(setSpinnerState(false));
+        }).catch(err => {
+          setNoResultsState(true);
+          spinnerDispatch(setSpinnerState(false));
+        })
+      }
+      callCacheForFiltering();
     }
-  }, [searchResultsState.searchFilters.filterTicketmaster, searchResultsState.searchFilters.filterStubhub, searchResultsState.searchFilters.filterSeatgeek, isStable]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [globalFilterTicketmasterState, globalFilterStubhubState, globalFilterSeatgeekState]);
 
   React.useEffect(() => {
     if (ticketmasterFilter || stubhubFilter || seatgeekFilter) {
@@ -51,7 +81,7 @@ export const Filter = () => {
               <input 
                 type="checkbox" 
                 name="filterTicketmaster" 
-                checked={searchResultsState.searchFilters.filterTicketmaster}
+                checked={globalFilterTicketmasterState}
                 onChange={handleFilterToggle}
               />
               Ticketmaster
@@ -65,7 +95,7 @@ export const Filter = () => {
               <input
                 type="checkbox" 
                 name="filterStubhub" 
-                checked={searchResultsState.searchFilters.filterStubhub}
+                checked={globalFilterStubhubState}
                 onChange={handleFilterToggle}
               />   
               Stubhub
@@ -79,7 +109,7 @@ export const Filter = () => {
               <input 
                 type="checkbox" 
                 name="filterSeatgeek"  
-                checked={searchResultsState.searchFilters.filterSeatgeek}
+                checked={globalFilterSeatgeekState}
                 onChange={handleFilterToggle}
               />
               SeatGeek
@@ -95,7 +125,6 @@ export const Filter = () => {
           beforeToday={false}
           cleanable={true}
           appearance={'default'}
-          
         />
       </form>
     </div>

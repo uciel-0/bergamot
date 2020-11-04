@@ -2,11 +2,10 @@ import * as React from 'react';
 import axios from 'axios';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {SpinnerContext} from '../store/spinner/Context';
-import {setSearchResults, setBulkFilterAction, setIsStableAction,setMaxPriceAction,setMinPriceAction, setNoResultsState} from '../store/searchResults/Actions';
+import {setSearchResults, setBulkFilterAction, setIsStableAction,setMaxPriceAction,setMinPriceAction, setNoResultsState, setLastQuery} from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';
-
 
 export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
@@ -22,14 +21,16 @@ export const SearchBar = () => {
     }
     spinnerDispatch(setSpinnerState(true));
     // reset the isStable flag so the distributor filters can reset as expected
+    searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
+    searchResultsDispatch(setBulkFilterAction(false, false, false));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,
       }
     })
     .then((res) => {
-      console.log('master search api response', res.data);
+      console.log('master search api response for artist:', formValue, res.data);
       history.push('/search');
       // set our search result data to the response from the api call
       searchResultsDispatch(setSearchResults(res.data.data));
@@ -43,8 +44,9 @@ export const SearchBar = () => {
       searchResultsDispatch(setNoResultsState(false));
     })
     .catch((err) => {
+      history.push('/search');
       spinnerDispatch(setSpinnerState(false));
-      history.push('/error');
+      searchResultsDispatch(setNoResultsState(true));
       console.log('master search api rejection', err)
     });
     // for testing puposes

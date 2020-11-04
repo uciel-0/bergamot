@@ -28,7 +28,6 @@ export const Filter = () => {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
       const callCacheForFiltering = () => {
-        console.log('firing cache call for artist: ', searchResultsState.lastQuery);
         spinnerDispatch(setSpinnerState(true));
         axios.get('http://localhost:8080/api/cache/events', {
           params: {
@@ -38,6 +37,7 @@ export const Filter = () => {
             filterSeatgeek: globalFilterSeatgeekState,
           }
         }).then(res => {
+          console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
           searchResultsDispatch(setNoResultsState(false));
           searchResultsDispatch(setSearchResults(res.data.data));
           spinnerDispatch(setSpinnerState(false));

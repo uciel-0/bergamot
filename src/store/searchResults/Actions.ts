@@ -117,4 +117,3 @@ export const setLastQuery = (payload: string): SetLastQuery => ({
 });
 
 export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable | SetNoResults | SetMaxPrice | SetMinPrice | SetLastQuery;
-

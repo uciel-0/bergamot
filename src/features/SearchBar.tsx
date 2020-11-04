@@ -23,7 +23,7 @@ export const SearchBar = () => {
     // reset the isStable flag so the distributor filters can reset as expected
     searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
-    searchResultsDispatch(setBulkFilterAction(false, false, false));
+    searchResultsDispatch(setBulkFilterAction(false, false, false, false, false));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,
@@ -36,7 +36,7 @@ export const SearchBar = () => {
       searchResultsDispatch(setSearchResults(res.data.data));
       // from the data, determine which distributor actually returned data for this search query
       // set these booleans in the filter state so we can use them to render the checkboxes appropriately
-      searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek));
+      searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
       spinnerDispatch(setSpinnerState(false));
       //set min/max price from the backend.
       searchResultsDispatch(setMinPriceAction(res.data.minPrice));

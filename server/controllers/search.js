@@ -120,9 +120,16 @@ export const getEvents = (req, res) => {
       e.isPriceEstimated = false;
     });
     // determine whether or not to send this data set based on the filters and if this is a filter call
-
     // Step 2) Combinine the data into one set
     const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
+    // Step 2a) Check to see if there any cancelled events in here
+    const hasCancelledEvents = combinedData.reduce((result, event) => 
+      event.status === 'cancelled' ? true : result
+    , false);
+    // Step 2c) Check to see if there are any events with no listings 
+    const hasNoListingEvents = combinedData.reduce((result, event) => 
+        event.priceAfterFees ? true : result
+    , false);
     // Step 3) Find the minimum and maximum values from the whole data set
     const minMax = combinedData.reduce((accumulator, currentValue) => {
       const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
@@ -155,7 +162,9 @@ export const getEvents = (req, res) => {
         seatgeek: hasSeatgeekData,
       },
       minPrice: minMax[0],
-      maxPrice: minMax[1]
+      maxPrice: minMax[1], 
+      hasCancelledEvents,
+      hasNoListingEvents
     }
     // Step 8) Send the data
    res.send(response);
@@ -175,15 +184,16 @@ export const flushCache = (req, res) => {
 
 export const getCachedEvents = (req, res) => {
   const key = `getEvents_${req.query.keyword}`;
-  const filterTicketmaster = req.query.filterTicketmaster;
-  const filterStubhub = req.query.filterStubhub;
-  const filterSeatgeek = req.query.filterSeatgeek;
-
+  const showTicketmaster = req.query.showTicketmaster;
+  const showStubhub = req.query.showStubhub;
+  const showSeatgeek = req.query.showSeatgeek;
+  const showCancelled = req.query.showCancelled;
+  const showNoListings = req.query.showNoListings;
+  // call the cache for this data 
   cache.get(key).then(data => {
     // let ticketmasterResults
     let ticketmasterEvents = [];
-    if (filterTicketmaster === "true") {
-      console.log('ticketmaster filter happening')
+    if (showTicketmaster === "true") {
       data[0].events.forEach(e => {
         e.source = 'ticketmaster';
         e.sourceUrl = 'https://ticketmaster.com';
@@ -207,8 +217,7 @@ export const getCachedEvents = (req, res) => {
     }
        // stubhub events
     let stubhubEvents = [];
-    if (filterStubhub === "true") {
-      console.log('stubhub filter happening')
+    if (showStubhub === "true") {
       data[1].events.forEach(e => {
         e.source = 'stubhub';
         e.sourceUrl = 'https://stubhub.com';
@@ -226,8 +235,7 @@ export const getCachedEvents = (req, res) => {
     }
     // seatgeek events
     let seatgeekEvents = [];
-    if (filterSeatgeek === "true") {
-      console.log('seatgeek filter happening')
+    if (showSeatgeek === "true") {
       data[2].events.forEach(e => {
         e.source = 'seatgeek';
         e.sourceUrl = 'https://seatgeek.com';
@@ -243,10 +251,21 @@ export const getCachedEvents = (req, res) => {
       });
       seatgeekEvents = data[2].events;
     }
-    const combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
+    
+    let combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
     if (combinedData.length === 0) {
       res.send({data: []})
     }
+
+    if (showCancelled === 'false') {
+      combinedData = combinedData.filter(e => e.status !== 'cancelled');
+    }
+
+    if (showNoListings === 'false') {
+      console.log(showNoListings, 'showNoListings is false')
+      combinedData = combinedData.filter(e => e.priceAfterFees);
+    }
+  
     const minMax = combinedData.reduce((accumulator, currentValue) => {
       const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
       const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
@@ -267,7 +286,7 @@ export const getCachedEvents = (req, res) => {
     const response = {
       data: groupedData,
       minPrice: minMax[0],
-      maxPrice: minMax[1]
+      maxPrice: minMax[1],
     }
     res.send(response);
   }) 

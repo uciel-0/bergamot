@@ -1,15 +1,18 @@
+import { BlockquoteHTMLAttributes } from "react";
+
 export enum SearchResultActionTypes {
   SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS',
-  SET_SEARCH_FILTERS = 'SET_SEARCH_FILTERS',
-  SET_TICKETMASTER_FILTER = 'SET_TICKETMASTER_FILTER',
-  SET_STUBHUB_FILTER = 'SET_STUBHUB_FILTER',
-  SET_SEATGEEK_FILTER = 'SET_SEATGEEK_FILTER',
+  SET_SHOW_TICKETMASTER = 'SET_SHOW_TICKETMASTER',
+  SET_SHOW_STUBHUB = 'SET_SHOW_STUBHUB',
+  SET_SHOW_SEATGEEK = 'SET_SHOW_SEATGEEK',
   SET_BULK_FILTER = 'SET_BULK_FILTER',
+  SET_SHOW_CANCELLED = 'SET_SHOW_CANCELLED',
+  SET_SHOW_NO_LISTINGS = 'SET_SHOW_NO_LISTINGS',
   SET_IS_STABLE = 'SET_IS_STABLE',
   SET_NO_RESULTS = 'SET_NO_RESULTS',
   SET_MAX_PRICE = 'SET_MAX_PRICE',
   SET_MIN_PRICE = 'SET_MIN_PRICE',
-  SET_LAST_QUERY = 'SET_LAST_QUERY'
+  SET_LAST_QUERY = 'SET_LAST_QUERY',
 }
 
 interface SetSearchResults {
@@ -22,33 +25,53 @@ export const setSearchResults = (payload: any): SetSearchResults => ({
   payload
 });
 
-interface SetTicketerMasterFilter {
-  type: SearchResultActionTypes.SET_TICKETMASTER_FILTER;
+interface SetShowTicketMaster {
+  type: SearchResultActionTypes.SET_SHOW_TICKETMASTER;
   payload: boolean;
 }
 
-export const setTicketMasterFilterAction = (payload: boolean): SetTicketerMasterFilter => ({
-  type: SearchResultActionTypes.SET_TICKETMASTER_FILTER,
+export const setShowTicketmasterAction = (payload: boolean): SetShowTicketMaster => ({
+  type: SearchResultActionTypes.SET_SHOW_TICKETMASTER,
   payload
 });
 
-interface SetStubhubFilter {
-  type: SearchResultActionTypes.SET_STUBHUB_FILTER;
+interface SetShowStubhub {
+  type: SearchResultActionTypes.SET_SHOW_STUBHUB;
   payload: boolean;
 }
 
-export const setStubhubFilterAction = (payload: boolean): SetStubhubFilter => ({
-  type: SearchResultActionTypes.SET_STUBHUB_FILTER,
+export const setShowStubhubAction = (payload: boolean): SetShowStubhub => ({
+  type: SearchResultActionTypes.SET_SHOW_STUBHUB,
   payload
 });
 
-interface SetSeatgeekFilter {
-  type: SearchResultActionTypes.SET_SEATGEEK_FILTER;
+interface SetShowSeatgeek {
+  type: SearchResultActionTypes.SET_SHOW_SEATGEEK;
   payload: boolean;
 }
 
-export const setSeatgeekFilterAction = (payload: boolean): SetSeatgeekFilter => ({
-  type: SearchResultActionTypes.SET_SEATGEEK_FILTER,
+export const setShowSeatgeekAction = (payload: boolean): SetShowSeatgeek => ({
+  type: SearchResultActionTypes.SET_SHOW_SEATGEEK,
+  payload
+});
+
+interface SetShowCancelled {
+  type: SearchResultActionTypes.SET_SHOW_CANCELLED;
+  payload: boolean;
+}
+
+export const setShowCancelledAction = (payload: boolean): SetShowCancelled => ({
+  type: SearchResultActionTypes.SET_SHOW_CANCELLED,
+  payload
+});
+
+interface SetShowNoListings {
+  type: SearchResultActionTypes.SET_SHOW_NO_LISTINGS;
+  payload: boolean;
+}
+
+export const setShowNoListingsAction = (payload: boolean): SetShowNoListings => ({
+  type: SearchResultActionTypes.SET_SHOW_NO_LISTINGS,
   payload
 });
 
@@ -57,13 +80,17 @@ interface SetBulkFilter {
   ticketmaster: boolean;
   stubhub: boolean;
   seatgeek: boolean;
+  cancelled: boolean;
+  noListings: boolean;
 }
 
-export const setBulkFilterAction = (ticketmaster: boolean, stubhub: boolean, seatgeek: boolean): SetBulkFilter => ({
+export const setBulkFilterAction = (ticketmaster: boolean, stubhub: boolean, seatgeek: boolean, cancelled: boolean, noListings: boolean): SetBulkFilter => ({
   type: SearchResultActionTypes.SET_BULK_FILTER,
   ticketmaster,
   stubhub,
-  seatgeek
+  seatgeek,
+  cancelled,
+  noListings,
 });
 
 interface SetIsStable {
@@ -116,4 +143,5 @@ export const setLastQuery = (payload: string): SetLastQuery => ({
   payload
 });
 
-export type SearchResultsActions = SetSearchResults | SetTicketerMasterFilter | SetStubhubFilter | SetSeatgeekFilter | SetBulkFilter | SetIsStable | SetNoResults | SetMaxPrice | SetMinPrice | SetLastQuery;
+export type SearchResultsActions = SetSearchResults | SetShowTicketMaster | SetShowStubhub | SetShowSeatgeek | SetBulkFilter | SetIsStable | SetNoResults | SetMaxPrice | SetMinPrice | SetLastQuery | SetShowCancelled | SetShowNoListings; 
+

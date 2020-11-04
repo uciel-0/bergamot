@@ -14,9 +14,11 @@ export interface SearchResult {
 }
 
 export interface SearchFilterState {
-  filterTicketmaster: boolean;
-  filterStubhub: boolean;
-  filterSeatgeek: boolean;
+  showTicketmaster: boolean;
+  showStubhub: boolean;
+  showSeatgeek: boolean;
+  showCancelled: boolean;
+  showNoListings: boolean;
   maxPrice: number | null;
   minPrice: number | null;
 }
@@ -25,14 +27,18 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
   switch(action.type) {
     case SearchResultActionTypes.SET_SEARCH_RESULTS:
       return {...state, searchResults: action.payload};
-    case SearchResultActionTypes.SET_TICKETMASTER_FILTER:
-      return {...state, searchFilters: {...state.searchFilters, filterTicketmaster: action.payload}}
-    case SearchResultActionTypes.SET_STUBHUB_FILTER:
-      return {...state, searchFilters: {...state.searchFilters, filterStubhub: action.payload}}; 
-    case SearchResultActionTypes.SET_SEATGEEK_FILTER:
-      return {...state, searchFilters: {...state.searchFilters, filterSeatgeek: action.payload}};   
+    case SearchResultActionTypes.SET_SHOW_TICKETMASTER:
+      return {...state, searchFilters: {...state.searchFilters, showTicketmaster: action.payload}}
+    case SearchResultActionTypes.SET_SHOW_STUBHUB:
+      return {...state, searchFilters: {...state.searchFilters, showStubhub: action.payload}}; 
+    case SearchResultActionTypes.SET_SHOW_SEATGEEK:
+      return {...state, searchFilters: {...state.searchFilters, showSeatgeek: action.payload}};
+    case SearchResultActionTypes.SET_SHOW_CANCELLED: 
+      return {...state, searchFilters: {...state.searchFilters, showCancelled: action.payload}};
+    case SearchResultActionTypes.SET_SHOW_NO_LISTINGS:
+      return {...state, searchFilters: {...state.searchFilters, showNoListings: action.payload}};
     case SearchResultActionTypes.SET_BULK_FILTER: 
-      return {...state, searchFilters: {...state.searchFilters, filterTicketmaster: action.ticketmaster, filterStubhub: action.stubhub, filterSeatgeek: action.seatgeek}};
+      return {...state, searchFilters: {...state.searchFilters, showTicketmaster: action.ticketmaster, showStubhub: action.stubhub, showSeatgeek: action.seatgeek, showCancelled: action.cancelled, showNoListings: action.noListings}};
     case SearchResultActionTypes.SET_IS_STABLE: 
       return {...state, isStable: action.payload};
     case SearchResultActionTypes.SET_NO_RESULTS:
@@ -43,6 +49,7 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, searchFilters: {...state.searchFilters, maxPrice: action.payload}};
     case SearchResultActionTypes.SET_LAST_QUERY: 
       return {...state, lastQuery: action.payload};
+
     default:
       return state;
   }
@@ -51,9 +58,11 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
 export const initialSearchResultsState: SearchResultsState = {
   searchResults: [],
   searchFilters: {
-    filterTicketmaster: false,
-    filterStubhub: false,
-    filterSeatgeek: false,
+    showTicketmaster: false,
+    showStubhub: false,
+    showSeatgeek: false,
+    showCancelled: false,
+    showNoListings: false,
     maxPrice: null,
     minPrice: null
   },

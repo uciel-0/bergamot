@@ -15,14 +15,12 @@ export const SearchBar = () => {
   let history = useHistory();
 
   const onSubmit = (e: any) => {
-    console.log('onSubmit function firing');
     e.preventDefault();
     if (formValue === "") {
       return;
     }
     spinnerDispatch(setSpinnerState(true));
     // reset the isStable flag so the distributor filters can reset as expected
-    console.log('one isStable action expected');
     searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
     searchResultsDispatch(setBulkFilterAction(false, false, false));

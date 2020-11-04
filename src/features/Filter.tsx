@@ -20,16 +20,13 @@ export const Filter = () => {
   // fires when the filter states from global context are updated 
   // first fire is when state is initialized; second is when call is made
   React.useEffect(() => {
-    console.log('useEffect firing')
     if (!isStable) {
-      console.log('!isStable: setting local form checkboxes to what arrived in search call', isStable);
       setTicketmasterFilter(globalFilterTicketmasterState);
       setStubhubFilter(globalFilterStubhubState);
       setSeatgeekFilter(globalFilterSeatgeekState);
     } else if (!globalFilterTicketmasterState && !globalFilterStubhubState && !globalFilterSeatgeekState) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
-      console.log(isStable, 'isStable boolean is true');
       const callCacheForFiltering = () => {
         console.log('firing cache call for artist: ', searchResultsState.lastQuery);
         spinnerDispatch(setSpinnerState(true));
@@ -41,14 +38,12 @@ export const Filter = () => {
             filterSeatgeek: globalFilterSeatgeekState,
           }
         }).then(res => {
-          console.log('response from filtered cache data', res.data.data);
           searchResultsDispatch(setNoResultsState(false));
           searchResultsDispatch(setSearchResults(res.data.data));
           spinnerDispatch(setSpinnerState(false));
         }).catch(err => {
           setNoResultsState(true);
           spinnerDispatch(setSpinnerState(false));
-          console.log('filter function api call error', err);
         })
       }
       callCacheForFiltering();

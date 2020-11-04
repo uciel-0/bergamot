@@ -34,7 +34,6 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
     case SearchResultActionTypes.SET_BULK_FILTER: 
       return {...state, searchFilters: {...state.searchFilters, filterTicketmaster: action.ticketmaster, filterStubhub: action.stubhub, filterSeatgeek: action.seatgeek}};
     case SearchResultActionTypes.SET_IS_STABLE: 
-      console.log('isStable action firing with payload:', action.payload);
       return {...state, isStable: action.payload};
     case SearchResultActionTypes.SET_NO_RESULTS:
       return {...state, noResults: action.payload};
@@ -43,7 +42,6 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
     case SearchResultActionTypes.SET_MAX_PRICE:
       return {...state, searchFilters: {...state.searchFilters, maxPrice: action.payload}};
     case SearchResultActionTypes.SET_LAST_QUERY: 
-      console.log('lastQuery action firing')
       return {...state, lastQuery: action.payload};
     default:
       return state;

@@ -64,7 +64,7 @@ const cache = new Cache(ttl);
 export const getEvents = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
   const stubhub = getStubhubEvents(req, res);
-  const seatgeek = getSeatGeekEvents(req, res); 
+  const seatgeek = getSeatGeekEvents(req, res);
     // create the key under which this data will be stored 
   const key = `getEvents_${req.query.keyword}`;
   // when the response is complete, store it in the cache 
@@ -153,6 +153,8 @@ export const getEvents = (req, res) => {
     const hasTicketmasterData = data[0].events.length > 0;
     const hasStubhubData = data[1].events.length > 0;
     const hasSeatgeekData = data[2].events.length > 0;
+    const providerResultLengths = [data[0].events.length, data[1].events.length, data[2].events.length]
+    const totalResultsLength = providerResultLengths.reduce((total, current) => total += current, 0)
     // Step 7) Arrange the data together
     const response = {
       data: groupedData,
@@ -164,7 +166,9 @@ export const getEvents = (req, res) => {
       minPrice: minMax[0],
       maxPrice: minMax[1], 
       hasCancelledEvents,
-      hasNoListingEvents
+      hasNoListingEvents,
+      providerResultLengths,
+      totalResultsLength
     }
     // Step 8) Send the data
    res.send(response);
@@ -262,7 +266,6 @@ export const getCachedEvents = (req, res) => {
     }
 
     if (showNoListings === 'false') {
-      console.log(showNoListings, 'showNoListings is false')
       combinedData = combinedData.filter(e => e.priceAfterFees);
     }
   
@@ -283,11 +286,17 @@ export const getCachedEvents = (req, res) => {
       groupedData.push(datesTBD);
     };
 
+    const providerResultLengths = [ticketmasterEvents.length, stubhubEvents.length, seatgeekEvents.length]
+    const totalResultsLength = providerResultLengths.reduce((total, current) => total += current, 0)
+
     const response = {
       data: groupedData,
       minPrice: minMax[0],
       maxPrice: minMax[1],
+      providerResultLengths,
+      totalResultsLength
     }
+
     res.send(response);
   }) 
   .catch(err => {

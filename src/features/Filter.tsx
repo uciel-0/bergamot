@@ -46,6 +46,10 @@ export const Filter = () => {
           }
         }).then(res => {
           console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
+          console.log('total length of events:', res.data.totalResultsLength);
+          console.log('ticketmaster events:', res.data.providerResultLengths[0]);
+          console.log('stubhub events:', res.data.providerResultLengths[1]);
+          console.log('seatgeek events:', res.data.providerResultLengths[2]);
           spinnerDispatch(setSpinnerState(false))
           searchResultsDispatch(setNoResultsState(false));
           searchResultsDispatch(setSearchResults(res.data.data));

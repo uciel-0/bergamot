@@ -7,7 +7,7 @@ export const getStubhubEvents = (req) => {
       name: keyword,
     },
     headers: {
-      'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP',
+      'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1',
       'Accept': 'application/json'
     }
   })
@@ -27,7 +27,7 @@ const getStubhubPerformers = (req) => {
       name: keyword
     },
     headers: {
-      'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP'
+      'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1'
     }
   }).then((data) => {
     return data.data
@@ -45,7 +45,7 @@ const getStubhubVenues = (req) => {
       name: keyword,
     },
     headers: {
-      'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP',
+      'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1',
       'Accept': 'application/json'
     }
   })
@@ -65,7 +65,7 @@ const getStubhubLocations = (req) => {
       name: keyword,
     },
     headers: {
-      'Authorization': 'Bearer kkdYmnxlNAdt7Me5BShGcwtIHgHP',
+      'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1',
       'Accept': 'application/json'
     }
   })

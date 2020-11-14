@@ -34,6 +34,10 @@ export const SearchBar = () => {
       history.push('/search');
       // set our search result data to the response from the api call
       searchResultsDispatch(setSearchResults(res.data.data));
+      console.log('total length of events:', res.data.totalResultsLength);
+      console.log('ticketmaster events:', res.data.providerResultLengths[0]);
+      console.log('seatgeek events:', res.data.providerResultLengths[1]);
+      console.log('stubhub events:', res.data.providerResultLengths[2]);
       // from the data, determine which distributor actually returned data for this search query
       // set these booleans in the filter state so we can use them to render the checkboxes appropriately
       searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
@@ -61,7 +65,6 @@ export const SearchBar = () => {
     .catch((err) => {
       console.log('individual api responses', err)
     });
-
   }
 
   return (

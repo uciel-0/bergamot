@@ -184,6 +184,9 @@ export const Filter = () => {
             </label>
           )
         }
+        <label htmlFor="showNoListings">
+        <b>Price</b>
+        <br></br>
         <Slider 
           aria-labelledby="range-slider"
           valueLabelDisplay="auto"
@@ -193,6 +196,7 @@ export const Filter = () => {
           onChange={(event: any, values: any) => setMaxMinPriceRange(values)}
           onChangeCommitted={() => callCacheForFiltering()}
         />
+        </label>
       </form>
     </div>
   )

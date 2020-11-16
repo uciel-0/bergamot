@@ -2,9 +2,10 @@ import * as React from 'react';
 import axios from 'axios';
 import { setShowSeatgeekAction, setShowStubhubAction, setShowTicketmasterAction, setIsStableAction, setSearchResults, setNoResultsState, setShowCancelledAction, setShowNoListingsAction } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
-import { RangeSlider, DateRangePicker } from 'rsuite';
+// import { DateRangePicker } from 'rsuite';
 import { SpinnerContext } from '../store/spinner/Context';
 import { setSpinnerState } from '../store/spinner/Actions';
+import Slider from '@material-ui/core/Slider';
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -14,12 +15,15 @@ export const Filter = () => {
   const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
   const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
-  // const [readyToFire, setReadyToFire] = React.useState<boolean>(false);
+  const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
+
   const globalShowTicketmasterState = searchResultsState.searchFilters.showTicketmaster;
   const globalShowStubhubState = searchResultsState.searchFilters.showStubhub;
   const globalShowSeatgeekState = searchResultsState.searchFilters.showSeatgeek;
   const globalShowCancelledState = searchResultsState.searchFilters.showCancelled;
   const globalShowNoListingsState = searchResultsState.searchFilters.showNoListings;
+  const globalMaxPriceState = searchResultsState.searchFilters.maxPrice;
+  const globalMinPriceState = searchResultsState.searchFilters.minPrice;
   const isStable = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
   // first fire is when state is initialized; second is when call is made
@@ -33,32 +37,6 @@ export const Filter = () => {
     } else if (!globalShowTicketmasterState && !globalShowStubhubState && !globalShowSeatgeekState) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
-      const callCacheForFiltering = () => {
-        spinnerDispatch(setSpinnerState(true));
-        axios.get('http://localhost:8080/api/cache/events', {
-          params: {
-            keyword: searchResultsState.lastQuery,
-            showTicketmaster: globalShowTicketmasterState,
-            showStubhub: globalShowStubhubState,
-            showSeatgeek: globalShowSeatgeekState,
-            showCancelled: globalShowCancelledState,
-            showNoListings: globalShowNoListingsState,
-          }
-        }).then(res => {
-          console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
-          console.log('total length of events:', res.data.totalResultsLength);
-          console.log('ticketmaster events:', res.data.providerResultLengths[0]);
-          console.log('stubhub events:', res.data.providerResultLengths[1]);
-          console.log('seatgeek events:', res.data.providerResultLengths[2]);
-          spinnerDispatch(setSpinnerState(false))
-          searchResultsDispatch(setNoResultsState(false));
-          searchResultsDispatch(setSearchResults(res.data.data));
-        }).catch(err => {
-          console.log('filter function api call error', err);
-          setNoResultsState(true);
-          spinnerDispatch(setSpinnerState(false));
-        })
-      }
       callCacheForFiltering();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +47,48 @@ export const Filter = () => {
       searchResultsDispatch(setIsStableAction(true));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ticketmasterFilter, stubhubFilter, seatgeekFilter])
+  }, [ticketmasterFilter, stubhubFilter, seatgeekFilter]);
+
+  React.useEffect(() => {
+    setMaxMinPriceRange([globalMinPriceState, globalMaxPriceState]);
+  }, [globalMinPriceState, globalMaxPriceState]);
+
+  const callCacheForFiltering = () => {
+    spinnerDispatch(setSpinnerState(true));
+    console.log(maxMinPriceRange, 'from the cache call')
+    axios.get('http://localhost:8080/api/cache/events', {
+      params: {
+        keyword: searchResultsState.lastQuery,
+        showTicketmaster: globalShowTicketmasterState,
+        showStubhub: globalShowStubhubState,
+        showSeatgeek: globalShowSeatgeekState,
+        showCancelled: globalShowCancelledState,
+        showNoListings: globalShowNoListingsState,
+        minPrice: maxMinPriceRange[0],
+        maxPrice: maxMinPriceRange[1]
+      }
+    }).then(res => {
+      console.log(res.data.data)
+      if (res.data.data.length === 0) {
+        searchResultsDispatch(setNoResultsState(true));
+        spinnerDispatch(setSpinnerState(false));
+        console.log('no results found matching these filters');
+      } else {
+        console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
+        console.log('total length of events:', res.data.totalResultsLength);
+        console.log('ticketmaster events:', res.data.providerResultLengths[0]);
+        console.log('stubhub events:', res.data.providerResultLengths[1]);
+        console.log('seatgeek events:', res.data.providerResultLengths[2]);
+        spinnerDispatch(setSpinnerState(false));
+        searchResultsDispatch(setNoResultsState(false));
+        searchResultsDispatch(setSearchResults(res.data.data));
+      }
+    }).catch(err => {
+      console.log('filter function api call error', err);
+      searchResultsDispatch(setNoResultsState(true));
+      spinnerDispatch(setSpinnerState(false));
+    })
+  }
 
   const handleFilterToggle = (event: any) => {
     const target = event.target;
@@ -86,7 +105,7 @@ export const Filter = () => {
     } else if (name === "showNoListings") {
       searchResultsDispatch(setShowNoListingsAction(newCheckState));
     }
-  }
+  }  
 
   return (
     <div className="Filter">
@@ -165,14 +184,14 @@ export const Filter = () => {
             </label>
           )
         }
-        <RangeSlider 
-          defaultValue={[10, 50]}
-          progress={true}
-        />
-        <DateRangePicker block 
-          beforeToday={false}
-          cleanable={true}
-          appearance={'default'}
+        <Slider 
+          aria-labelledby="range-slider"
+          valueLabelDisplay="auto"
+          value={maxMinPriceRange}
+          max={globalMaxPriceState}
+          min={globalMinPriceState}
+          onChange={(event: any, values: any) => setMaxMinPriceRange(values)}
+          onChangeCommitted={() => callCacheForFiltering()}
         />
       </form>
     </div>

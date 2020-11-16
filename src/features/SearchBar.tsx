@@ -24,6 +24,8 @@ export const SearchBar = () => {
     searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
     searchResultsDispatch(setBulkFilterAction(false, false, false, false, false));
+    searchResultsDispatch(setMinPriceAction(0));
+    searchResultsDispatch(setMaxPriceAction(0));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,
@@ -43,6 +45,7 @@ export const SearchBar = () => {
       searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
       spinnerDispatch(setSpinnerState(false));
       //set min/max price from the backend.
+      console.log(res.data.maxPrice, res.data.minPrice, 'from the search results')
       searchResultsDispatch(setMinPriceAction(res.data.minPrice));
       searchResultsDispatch(setMaxPriceAction(res.data.maxPrice));
       searchResultsDispatch(setNoResultsState(false));

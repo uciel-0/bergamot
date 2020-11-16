@@ -201,6 +201,8 @@ body {
   padding-left: 3px; }
   .Filter input {
     margin-right: 4px; }
+  .Filter .MuiSlider-root {
+    color: black; }
 
 .Home {
   text-align: center; }

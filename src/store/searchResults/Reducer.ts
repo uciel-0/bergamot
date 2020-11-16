@@ -19,8 +19,8 @@ export interface SearchFilterState {
   showSeatgeek: boolean;
   showCancelled: boolean;
   showNoListings: boolean;
-  maxPrice: number | null;
-  minPrice: number | null;
+  maxPrice: number;
+  minPrice: number;
 }
 
 export const searchResultsReducer = (state: SearchResultsState, action: SearchResultsActions) => {
@@ -49,7 +49,6 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, searchFilters: {...state.searchFilters, maxPrice: action.payload}};
     case SearchResultActionTypes.SET_LAST_QUERY: 
       return {...state, lastQuery: action.payload};
-
     default:
       return state;
   }
@@ -63,8 +62,8 @@ export const initialSearchResultsState: SearchResultsState = {
     showSeatgeek: false,
     showCancelled: false,
     showNoListings: false,
-    maxPrice: null,
-    minPrice: null
+    maxPrice: 0,
+    minPrice: 0
   },
   isStable: false,
   noResults: false,

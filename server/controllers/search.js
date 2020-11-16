@@ -193,6 +193,9 @@ export const getCachedEvents = (req, res) => {
   const showSeatgeek = req.query.showSeatgeek;
   const showCancelled = req.query.showCancelled;
   const showNoListings = req.query.showNoListings;
+  const minPrice = req.query.minPrice
+  const maxPrice = req.query.maxPrice;
+  console.log('maxMin price range from slider recieved on back end', minPrice, maxPrice);
   // call the cache for this data 
   cache.get(key).then(data => {
     // let ticketmasterResults
@@ -259,6 +262,7 @@ export const getCachedEvents = (req, res) => {
     let combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
     if (combinedData.length === 0) {
       res.send({data: []})
+      return;
     }
 
     if (showCancelled === 'false') {
@@ -277,6 +281,14 @@ export const getCachedEvents = (req, res) => {
         Math.round(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
+
+    if (minPrice > minMax[0] || maxPrice < minMax[1]) {
+      combinedData = combinedData.filter(e => e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice);
+      if (combinedData.length === 0) {
+        res.send({data: []});
+        return;
+      }
+    }
 
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);

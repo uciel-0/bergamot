@@ -1,5 +1,3 @@
-import { BlockquoteHTMLAttributes } from "react";
-
 export enum SearchResultActionTypes {
   SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS',
   SET_SHOW_TICKETMASTER = 'SET_SHOW_TICKETMASTER',

@@ -202,7 +202,11 @@ body {
   .Filter input {
     margin-right: 4px; }
   .Filter .MuiSlider-root {
-    color: black; }
+    color: black;
+    width: 84%; }
+  .Filter_priceSlider {
+    margin-top: 40px;
+    margin-left: 20px; }
 
 .Home {
   text-align: center; }

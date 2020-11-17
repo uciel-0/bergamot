@@ -185,17 +185,19 @@ export const Filter = () => {
           )
         }
         <label htmlFor="showNoListings">
-        <b>Price</b>
-        <br></br>
-        <Slider 
-          aria-labelledby="range-slider"
-          valueLabelDisplay="auto"
-          value={maxMinPriceRange}
-          max={globalMaxPriceState}
-          min={globalMinPriceState}
-          onChange={(event: any, values: any) => setMaxMinPriceRange(values)}
-          onChangeCommitted={() => callCacheForFiltering()}
-        />
+          <b>Price</b>
+          <br></br>
+          <div></div>
+          <Slider 
+            aria-labelledby="range-slider"
+            valueLabelDisplay="on"
+            value={maxMinPriceRange}
+            max={globalMaxPriceState}
+            min={globalMinPriceState}
+            onChange={(event: any, values: any) => setMaxMinPriceRange(values)}
+            onChangeCommitted={() => callCacheForFiltering()}
+            className="Filter_priceSlider"
+          />
         </label>
       </form>
     </div>

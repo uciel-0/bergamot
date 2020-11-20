@@ -2,6 +2,7 @@ import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
 import {groupByDay, formatDate, formatLocalDate, formatTime} from '../utils/dateUtils';
+import moment from 'moment';
 import Cache from '../cache';
 // final modifications to the array we recieve on the front-end are made here 
 export const wideSearchResults = (req, res) => {
@@ -139,6 +140,9 @@ export const getEvents = (req, res) => {
         Math.round(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
+    const dates = combinedData.map(e => moment(e.date));
+    const latestDate = moment.max(dates);
+    const earliestDate = moment.min(dates);
     // Step 4) Sort the data chronologically
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     // Step 5a) Group the chronologically sorted data by date
@@ -168,7 +172,9 @@ export const getEvents = (req, res) => {
       hasCancelledEvents,
       hasNoListingEvents,
       providerResultLengths,
-      totalResultsLength
+      totalResultsLength,
+      earliestDate,
+      latestDate
     }
     // Step 8) Send the data
    res.send(response);

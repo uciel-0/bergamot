@@ -6,6 +6,13 @@ import { SearchResultsContext } from '../store/searchResults/Context';
 import { SpinnerContext } from '../store/spinner/Context';
 import { setSpinnerState } from '../store/spinner/Actions';
 import Slider from '@material-ui/core/Slider';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import Button from '@material-ui/core/Button';
+
+import moment from 'moment';
+
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -16,6 +23,9 @@ export const Filter = () => {
   const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
+
+  const [startDate, setStartDate] = React.useState(moment());
+  const [endDate, setEndDate] = React.useState(moment().add(1, 'days'));
 
   const globalShowTicketmasterState = searchResultsState.searchFilters.showTicketmaster;
   const globalShowStubhubState = searchResultsState.searchFilters.showStubhub;
@@ -184,7 +194,7 @@ export const Filter = () => {
             </label>
           )
         }
-        <label htmlFor="showNoListings">
+        <label>
           <b>Price</b>
           <br></br>
           <div></div>
@@ -198,6 +208,35 @@ export const Filter = () => {
             onChangeCommitted={() => callCacheForFiltering()}
             className="Filter_priceSlider"
           />
+        </label>
+        <label>
+          <b>Dates</b>
+          <br></br>
+          <div></div>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justify="space-around">
+              <DatePicker
+                value={startDate}
+                onChange={(newStartDate: any) => setStartDate(newStartDate)}
+                variant="inline"
+                disableToolbar
+                disablePast
+                autoOk
+              />
+              <DatePicker
+                value={endDate}
+                onChange={(newEndDate: any) => setEndDate(newEndDate)}
+                variant="inline"
+                disableToolbar
+                disablePast
+                autoOk
+              />
+              <Button>
+                Search
+              </Button>
+            </Grid>
+
+          </MuiPickersUtilsProvider>
         </label>
       </form>
     </div>

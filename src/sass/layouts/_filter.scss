@@ -1,22 +1,21 @@
 .Filter {
-    width: 25%;
-    height:100vh;
-    border: 1px solid black;
-    margin-top: $cheat-padding;
-    margin-bottom:10px;
-    background-color: $color-gray--main;
-    margin-left: 1rem;
-    padding-left: 3px;
-    input {
-      margin-right: 4px;
-    }
-    .MuiSlider-root	{
-      color: black;
-      width: 84%;
-    }
-    &_priceSlider {
-      margin-top: 40px;
-      margin-left: 20px;
-    }
-
+  width: 25%;
+  height:100vh;
+  border: 1px solid black;
+  margin-top: $cheat-padding;
+  margin-bottom:10px;
+  background-color: $color-gray--main;
+  margin-left: 1rem;
+  padding-left: 3px;
+  input {
+    margin-right: 4px;
+  }
+  .MuiSlider-root	{
+    color: black;
+    width: 84%;
+  }
+  &_priceSlider {
+    margin-top: 40px;
+    margin-left: 20px;
+  }
 }

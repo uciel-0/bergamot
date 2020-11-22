@@ -10,9 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import Button from '@material-ui/core/Button';
-
 import moment from 'moment';
-
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -65,7 +63,7 @@ export const Filter = () => {
 
   const callCacheForFiltering = () => {
     spinnerDispatch(setSpinnerState(true));
-    console.log(maxMinPriceRange, 'from the cache call')
+    console.log(startDate.utc().format(), endDate.utc().format(), 'from the cache call')
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -75,7 +73,9 @@ export const Filter = () => {
         showCancelled: globalShowCancelledState,
         showNoListings: globalShowNoListingsState,
         minPrice: maxMinPriceRange[0],
-        maxPrice: maxMinPriceRange[1]
+        maxPrice: maxMinPriceRange[1],
+        earliestDate: startDate,
+        latestDate: endDate,
       }
     }).then(res => {
       console.log(res.data.data)
@@ -217,7 +217,7 @@ export const Filter = () => {
             <Grid container justify="space-around">
               <DatePicker
                 value={startDate}
-                onChange={(newStartDate: any) => setStartDate(newStartDate)}
+                onChange={(newStartDate: any) => setStartDate(moment(newStartDate))}
                 variant="inline"
                 disableToolbar
                 disablePast
@@ -225,13 +225,15 @@ export const Filter = () => {
               />
               <DatePicker
                 value={endDate}
-                onChange={(newEndDate: any) => setEndDate(newEndDate)}
+                onChange={(newEndDate: any) => setEndDate(moment(newEndDate))}
                 variant="inline"
                 disableToolbar
                 disablePast
                 autoOk
               />
-              <Button>
+              <Button
+                onClick={() => callCacheForFiltering()}
+              >
                 Search
               </Button>
             </Grid>

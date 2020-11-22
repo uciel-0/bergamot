@@ -201,7 +201,8 @@ export const getCachedEvents = (req, res) => {
   const showNoListings = req.query.showNoListings;
   const minPrice = req.query.minPrice
   const maxPrice = req.query.maxPrice;
-  console.log('maxMin price range from slider recieved on back end', minPrice, maxPrice);
+  const earliestDate = req.query.earliestDate;
+  const latestDate = req.query.latestDate;
   // call the cache for this data 
   cache.get(key).then(data => {
     // let ticketmasterResults
@@ -212,6 +213,7 @@ export const getCachedEvents = (req, res) => {
         e.sourceUrl = 'https://ticketmaster.com';
         e.status = e.dates.status.code;
         e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
+        e.unformattedDate = e.dates.start.dateTime || e.dates.start.localDate;
         // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
         e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
         e.venueName = e._embedded.venues[0].name;
@@ -236,6 +238,7 @@ export const getCachedEvents = (req, res) => {
         e.sourceUrl = 'https://stubhub.com';
         e.status = null;
         e.date = formatLocalDate(e.eventDateLocal);
+        e.unformattedDate = e.eventDateLocal;
         e.time = formatTime(e.eventDateUTC);
         e.venueName = e.venue.name;
         e.venueCity = e.venue.city + ', ' + e.venue.state;
@@ -254,6 +257,7 @@ export const getCachedEvents = (req, res) => {
         e.sourceUrl = 'https://seatgeek.com';
         e.status = null;
         e.date = e.date_tbd ? null : formatDate(e.datetime_utc);
+        e.unformattedDate = e.datetime_utc;
         e.time = e.datetime_tbd ? null : formatTime(e.datetime_utc + "Z");
         e.venueName = e.venue.name;
         e.venueCity = e.venue.display_location;
@@ -290,6 +294,21 @@ export const getCachedEvents = (req, res) => {
 
     if (minPrice > minMax[0] || maxPrice < minMax[1]) {
       combinedData = combinedData.filter(e => e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice);
+      if (combinedData.length === 0) {
+        res.send({data: []});
+        return;
+      }
+    }
+    // find the earliest and latest dates in the entire data set
+    const dates = combinedData.map(e => moment(e.date));
+    const latestOfWholeSet = moment.max(dates).startOf('day');
+    const earliestOfWholeSet = moment.min(dates).endOf('day');
+    // convert the high and low ends of date range from query to properly formatted moment objects
+    const earliestCutoffDate = moment(earliestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').startOf('day');
+    const latestCutoffDate = moment(latestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').endOf('day')
+    // if we detect that the date filter has changed, do the work
+    if (earliestCutoffDate.isAfter(earliestOfWholeSet.utc().format()) || latestCutoffDate.isBefore(latestOfWholeSet.utc().format())) {
+      combinedData = combinedData.filter(e => moment(e.unformattedDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));
       if (combinedData.length === 0) {
         res.send({data: []});
         return;

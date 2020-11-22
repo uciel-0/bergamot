@@ -1,3 +1,4 @@
+import moment, { Moment } from 'moment';
 import {SearchResultActionTypes, SearchResultsActions} from './Actions';
 
 export interface SearchResultsState {
@@ -21,6 +22,8 @@ export interface SearchFilterState {
   showNoListings: boolean;
   maxPrice: number;
   minPrice: number;
+  earliestDate: Moment;
+  latestDate: Moment;
 }
 
 export const searchResultsReducer = (state: SearchResultsState, action: SearchResultsActions) => {
@@ -47,7 +50,11 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, searchFilters: {...state.searchFilters, minPrice: action.payload}};
     case SearchResultActionTypes.SET_MAX_PRICE:
       return {...state, searchFilters: {...state.searchFilters, maxPrice: action.payload}};
-    case SearchResultActionTypes.SET_LAST_QUERY: 
+    case SearchResultActionTypes.SET_EARLIEST_DATE: 
+      return {...state, searchFilters: {...state.searchFilters, earliestDate: action.payload}};
+    case SearchResultActionTypes.SET_LATEST_DATE: 
+      return {...state, searchFilters: {...state.searchFilters, latestDate: action.payload}};
+    case SearchResultActionTypes.SET_LAST_QUERY:
       return {...state, lastQuery: action.payload};
     default:
       return state;
@@ -63,7 +70,9 @@ export const initialSearchResultsState: SearchResultsState = {
     showCancelled: false,
     showNoListings: false,
     maxPrice: 0,
-    minPrice: 0
+    minPrice: 0,
+    earliestDate: moment(),
+    latestDate: moment()
   },
   isStable: false,
   noResults: false,

@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import Button from '@material-ui/core/Button';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -21,18 +21,19 @@ export const Filter = () => {
   const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
+  const [startDate, setStartDate] = React.useState<Moment>(moment());
+  const [endDate, setEndDate] = React.useState<Moment>(moment);
 
-  const [startDate, setStartDate] = React.useState(moment());
-  const [endDate, setEndDate] = React.useState(moment().add(1, 'days'));
-
-  const globalShowTicketmasterState = searchResultsState.searchFilters.showTicketmaster;
-  const globalShowStubhubState = searchResultsState.searchFilters.showStubhub;
-  const globalShowSeatgeekState = searchResultsState.searchFilters.showSeatgeek;
-  const globalShowCancelledState = searchResultsState.searchFilters.showCancelled;
-  const globalShowNoListingsState = searchResultsState.searchFilters.showNoListings;
-  const globalMaxPriceState = searchResultsState.searchFilters.maxPrice;
-  const globalMinPriceState = searchResultsState.searchFilters.minPrice;
-  const isStable = searchResultsState.isStable;
+  const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
+  const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
+  const globalShowSeatgeekState: boolean = searchResultsState.searchFilters.showSeatgeek;
+  const globalShowCancelledState: boolean = searchResultsState.searchFilters.showCancelled;
+  const globalShowNoListingsState: boolean = searchResultsState.searchFilters.showNoListings;
+  const globalMaxPriceState: number = searchResultsState.searchFilters.maxPrice;
+  const globalMinPriceState: number = searchResultsState.searchFilters.minPrice;
+  const globalStartDateState: Moment = searchResultsState.searchFilters.earliestDate;
+  const globalEndDateState: Moment = searchResultsState.searchFilters.latestDate;
+  const isStable: boolean = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
   // first fire is when state is initialized; second is when call is made
   React.useEffect(() => {
@@ -61,9 +62,13 @@ export const Filter = () => {
     setMaxMinPriceRange([globalMinPriceState, globalMaxPriceState]);
   }, [globalMinPriceState, globalMaxPriceState]);
 
+  React.useEffect(() => {
+    setStartDate(globalStartDateState);
+    setEndDate(globalEndDateState);
+  }, [globalStartDateState, globalEndDateState]);
+
   const callCacheForFiltering = () => {
     spinnerDispatch(setSpinnerState(true));
-    console.log(startDate.utc().format(), endDate.utc().format(), 'from the cache call')
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -78,11 +83,9 @@ export const Filter = () => {
         latestDate: endDate,
       }
     }).then(res => {
-      console.log(res.data.data)
       if (res.data.data.length === 0) {
         searchResultsDispatch(setNoResultsState(true));
         spinnerDispatch(setSpinnerState(false));
-        console.log('no results found matching these filters');
       } else {
         console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
         console.log('total length of events:', res.data.totalResultsLength);
@@ -168,7 +171,7 @@ export const Filter = () => {
         <br></br>
         {
           cancelledFilter && isStable && (
-            <label htmlFor="showCancelled">
+          <label htmlFor="showCancelled">
             <input 
               type="checkbox" 
               name="showCancelled"  
@@ -194,10 +197,9 @@ export const Filter = () => {
             </label>
           )
         }
-        <label>
+        <div>
           <b>Price</b>
           <br></br>
-          <div></div>
           <Slider 
             aria-labelledby="range-slider"
             valueLabelDisplay="on"
@@ -208,14 +210,15 @@ export const Filter = () => {
             onChangeCommitted={() => callCacheForFiltering()}
             className="Filter_priceSlider"
           />
-        </label>
-        <label>
+        </div>
+        <div>
           <b>Dates</b>
           <br></br>
-          <div></div>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">
               <DatePicker
+                minDate={globalStartDateState}
+                maxDate={globalEndDateState}
                 value={startDate}
                 onChange={(newStartDate: any) => setStartDate(moment(newStartDate))}
                 variant="inline"
@@ -224,6 +227,8 @@ export const Filter = () => {
                 autoOk
               />
               <DatePicker
+                minDate={globalStartDateState}
+                maxDate={globalEndDateState}
                 value={endDate}
                 onChange={(newEndDate: any) => setEndDate(moment(newEndDate))}
                 variant="inline"
@@ -237,9 +242,8 @@ export const Filter = () => {
                 Search
               </Button>
             </Grid>
-
           </MuiPickersUtilsProvider>
-        </label>
+        </div>
       </form>
     </div>
   )

@@ -78,6 +78,7 @@ export const getEvents = (req, res) => {
       e.sourceUrl = 'https://ticketmaster.com';
       e.status = e.dates.status.code;
       e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
+      e.unformattedDate = e.dates.start.dateTime || e.dates.start.localDate;
       // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
       e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
       e.venueName = e._embedded.venues[0].name;
@@ -98,6 +99,7 @@ export const getEvents = (req, res) => {
       e.sourceUrl = 'https://stubhub.com';
       e.status = null;
       e.date = formatLocalDate(e.eventDateLocal);
+      e.unformattedDate = e.eventDateLocal;
       e.time = formatTime(e.eventDateUTC);
       e.venueName = e.venue.name;
       e.venueCity = e.venue.city + ', ' + e.venue.state;
@@ -112,6 +114,7 @@ export const getEvents = (req, res) => {
       e.sourceUrl = 'https://seatgeek.com';
       e.status = null;
       e.date = e.date_tbd ? null : formatDate(e.datetime_utc);
+      e.unformattedDate = e.datetime_utc;
       e.time = e.datetime_tbd ? null : formatTime(e.datetime_utc + "Z");
       e.venueName = e.venue.name;
       e.venueCity = e.venue.display_location;
@@ -140,7 +143,7 @@ export const getEvents = (req, res) => {
         Math.round(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
-    const dates = combinedData.map(e => moment(e.date));
+    const dates = combinedData.map(e => moment(e.unformattedDate));
     const latestDate = moment.max(dates);
     const earliestDate = moment.min(dates);
     // Step 4) Sort the data chronologically
@@ -300,7 +303,7 @@ export const getCachedEvents = (req, res) => {
       }
     }
     // find the earliest and latest dates in the entire data set
-    const dates = combinedData.map(e => moment(e.date));
+    const dates = combinedData.map(e => moment(e.unformattedDate));
     const latestOfWholeSet = moment.max(dates).startOf('day');
     const earliestOfWholeSet = moment.min(dates).endOf('day');
     // convert the high and low ends of date range from query to properly formatted moment objects

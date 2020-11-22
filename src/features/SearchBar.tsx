@@ -2,10 +2,11 @@ import * as React from 'react';
 import axios from 'axios';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {SpinnerContext} from '../store/spinner/Context';
-import {setSearchResults, setBulkFilterAction, setIsStableAction,setMaxPriceAction,setMinPriceAction, setNoResultsState, setLastQuery} from '../store/searchResults/Actions';
+import {setSearchResults, setBulkFilterAction, setIsStableAction,setMaxPriceAction,setMinPriceAction, setNoResultsState, setLastQuery, setEarliestDateAction, setLatestDateAction} from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';
+import moment from 'moment';
 
 export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
@@ -48,6 +49,8 @@ export const SearchBar = () => {
       console.log(res.data.maxPrice, res.data.minPrice, 'from the search results')
       searchResultsDispatch(setMinPriceAction(res.data.minPrice));
       searchResultsDispatch(setMaxPriceAction(res.data.maxPrice));
+      searchResultsDispatch(setEarliestDateAction(moment(res.data.earliestDate)));
+      searchResultsDispatch(setLatestDateAction(moment(res.data.latestDate)));
       searchResultsDispatch(setNoResultsState(false));
     })
     .catch((err) => {

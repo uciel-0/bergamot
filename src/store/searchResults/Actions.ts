@@ -1,3 +1,5 @@
+import { Moment } from "moment";
+
 export enum SearchResultActionTypes {
   SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS',
   SET_SHOW_TICKETMASTER = 'SET_SHOW_TICKETMASTER',
@@ -10,6 +12,8 @@ export enum SearchResultActionTypes {
   SET_NO_RESULTS = 'SET_NO_RESULTS',
   SET_MAX_PRICE = 'SET_MAX_PRICE',
   SET_MIN_PRICE = 'SET_MIN_PRICE',
+  SET_EARLIEST_DATE = 'SET_EARLIEST_DATE',
+  SET_LATEST_DATE = 'SET_LATEST_DATE',
   SET_LAST_QUERY = 'SET_LAST_QUERY',
 }
 
@@ -131,6 +135,26 @@ export const setMinPriceAction = (payload: number): SetMinPrice => ({
   payload
 });
 
+export interface SetEarliestDate {
+  type: SearchResultActionTypes.SET_EARLIEST_DATE,
+  payload: Moment;
+}
+
+export const setEarliestDateAction = (payload: Moment): SetEarliestDate => ({
+  type: SearchResultActionTypes.SET_EARLIEST_DATE,
+  payload
+});
+
+export interface SetLatestDate {
+  type: SearchResultActionTypes.SET_LATEST_DATE,
+  payload: Moment;
+}
+
+export const setLatestDateAction = (payload: Moment): SetLatestDate => ({
+  type: SearchResultActionTypes.SET_LATEST_DATE,
+  payload
+});
+
 interface SetLastQuery {
   type: SearchResultActionTypes.SET_LAST_QUERY;
   payload: string;
@@ -141,5 +165,6 @@ export const setLastQuery = (payload: string): SetLastQuery => ({
   payload
 });
 
-export type SearchResultsActions = SetSearchResults | SetShowTicketMaster | SetShowStubhub | SetShowSeatgeek | SetBulkFilter | SetIsStable | SetNoResults | SetMaxPrice | SetMinPrice | SetLastQuery | SetShowCancelled | SetShowNoListings; 
+export type SearchResultsActions = SetSearchResults | SetShowTicketMaster | SetShowStubhub | SetShowSeatgeek | SetBulkFilter | SetIsStable | 
+SetNoResults | SetMaxPrice | SetMinPrice | SetLastQuery | SetShowCancelled | SetShowNoListings | SetEarliestDate | SetLatestDate; 
 

@@ -22,7 +22,7 @@ export const Filter = () => {
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
   const [startDate, setStartDate] = React.useState<Moment>(moment());
-  const [endDate, setEndDate] = React.useState<Moment>(moment);
+  const [endDate, setEndDate] = React.useState<Moment>(moment());
 
   const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
   const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
@@ -167,8 +167,14 @@ export const Filter = () => {
             </label>
           )
         }
-        <b>Status Filters</b>
-        <br></br>
+        {
+         (cancelledFilter || noListingsFilter) && (
+          <div>
+            <b>Status Filters</b>
+            <br></br>
+          </div>
+         )
+        }
         {
           cancelledFilter && isStable && (
           <label htmlFor="showCancelled">
@@ -208,6 +214,7 @@ export const Filter = () => {
             min={globalMinPriceState}
             onChange={(event: any, values: any) => setMaxMinPriceRange(values)}
             onChangeCommitted={() => callCacheForFiltering()}
+            valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"
           />
         </div>

@@ -132,7 +132,7 @@ export const getEvents = (req, res) => {
     , false);
     // Step 2c) Check to see if there are any events with no listings 
     const hasNoListingEvents = combinedData.reduce((result, event) => 
-        event.priceAfterFees ? true : result
+        !event.priceAfterFees ? true : result
     , false);
     // Step 3) Find the minimum and maximum values from the whole data set
     const minMax = combinedData.reduce((accumulator, currentValue) => {
@@ -325,9 +325,21 @@ export const getCachedEvents = (req, res) => {
       const datesTBD = groupedData.shift();
       groupedData.push(datesTBD);
     };
+    // count the number of events being returned for every provider
+    const providerResultLengths = [0,0,0];
+    groupedData.forEach((data) => {
+      data.events.forEach((e) => {
+        if (e.source === 'ticketmaster') {
+          providerResultLengths[0] += 1
+        } else if (e.source === 'stubhub') {
+          providerResultLengths[1] += 1;
+        } else if (e.source === 'seatgeek') {
+          providerResultLengths[2] += 1;
+        }
+      });
+    });
 
-    const providerResultLengths = [ticketmasterEvents.length, stubhubEvents.length, seatgeekEvents.length]
-    const totalResultsLength = providerResultLengths.reduce((total, current) => total += current, 0)
+    const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0)
 
     const response = {
       data: groupedData,

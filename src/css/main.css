@@ -206,7 +206,10 @@ body {
     width: 84%; }
   .Filter_priceSlider {
     margin-top: 40px;
-    margin-left: 20px; }
+    margin-left: 20px;
+    font-size: 1px; }
+  .Filter .PrivateValueLabel-label-5 {
+    font-size: 0.65rem; }
 
 .Home {
   text-align: center; }

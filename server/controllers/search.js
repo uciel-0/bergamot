@@ -139,8 +139,8 @@ export const getEvents = (req, res) => {
       const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
       const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
       return [
-        Math.round(minPrice),
-        Math.round(maxPrice)
+        Math.floor(minPrice),
+        Math.ceil(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
     const dates = combinedData.map(e => moment(e.unformattedDate));
@@ -290,8 +290,8 @@ export const getCachedEvents = (req, res) => {
       const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
       const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
       return [
-        Math.round(minPrice),
-        Math.round(maxPrice)
+        Math.floor(minPrice),
+        Math.ceil(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
 

@@ -46,9 +46,14 @@ export const SearchBar = () => {
       searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
       spinnerDispatch(setSpinnerState(false));
       //set min/max price from the backend.
-      console.log(res.data.maxPrice, res.data.minPrice, 'from the search results')
       searchResultsDispatch(setMinPriceAction(res.data.minPrice));
       searchResultsDispatch(setMaxPriceAction(res.data.maxPrice));
+      // date from the server side is being sent in UTC 
+      // data on the front end should default to their locale 
+      // date in the calendar picker is currently is the locale
+      // which means the date in the card is... utc?
+      console.log(moment(res.data.earliestDate));
+      console.log(moment(res.data.latestDate));
       searchResultsDispatch(setEarliestDateAction(moment(res.data.earliestDate)));
       searchResultsDispatch(setLatestDateAction(moment(res.data.latestDate)));
       searchResultsDispatch(setNoResultsState(false));

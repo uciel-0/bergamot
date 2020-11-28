@@ -120,6 +120,15 @@ export const Filter = () => {
     }
   }  
 
+  const handleSliderChange = (event: any, values: number[]) => {
+    console.log(values[0], values[1])
+    if (values[0] === globalMaxPriceState) {
+      setMaxMinPriceRange([globalMaxPriceState-1, globalMaxPriceState]);
+    } else if (values[1] === globalMinPriceState) {
+      setMaxMinPriceRange([globalMinPriceState, globalMinPriceState + 1])
+    } else setMaxMinPriceRange(values)
+  }
+
   return (
     <div className="Filter">
       <form className="Filter_section">
@@ -212,7 +221,7 @@ export const Filter = () => {
             value={maxMinPriceRange}
             max={globalMaxPriceState}
             min={globalMinPriceState}
-            onChange={(event: any, values: any) => setMaxMinPriceRange(values)}
+            onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
             onChangeCommitted={() => callCacheForFiltering()}
             valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"

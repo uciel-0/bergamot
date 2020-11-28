@@ -1,7 +1,7 @@
 import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
-import {groupByDay, formatDate, formatLocalDate, formatTime} from '../utils/dateUtils';
+import {groupByDay, formatDate, formatTime} from '../utils/dateUtils';
 import moment from 'moment';
 import Cache from '../cache';
 // final modifications to the array we recieve on the front-end are made here 
@@ -14,7 +14,7 @@ export const wideSearchResults = (req, res) => {
     data[0].events.map(e => {
       e.source = 'ticketmaster';
       e.sourceUrl = 'https://ticketmaster.com';
-      e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
+      e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
       e.time = e.dates.start.localTime;
       e.venueName = e._embedded.venues[0].name;
       e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
@@ -77,7 +77,7 @@ export const getEvents = (req, res) => {
       e.source = 'ticketmaster';
       e.sourceUrl = 'https://ticketmaster.com';
       e.status = e.dates.status.code;
-      e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
+      e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
       e.unformattedDate = e.dates.start.dateTime || e.dates.start.localDate;
       // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
       e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
@@ -98,7 +98,7 @@ export const getEvents = (req, res) => {
       e.source = 'stubhub';
       e.sourceUrl = 'https://stubhub.com';
       e.status = null;
-      e.date = formatLocalDate(e.eventDateLocal);
+      e.date = formatDate(e.eventDateLocal);
       e.unformattedDate = e.eventDateLocal;
       e.time = formatTime(e.eventDateUTC);
       e.venueName = e.venue.name;
@@ -143,7 +143,8 @@ export const getEvents = (req, res) => {
         Math.ceil(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
-    const dates = combinedData.map(e => moment(e.unformattedDate));
+    // Step ) Get the latest and earliest dates of the data set 
+    const dates = combinedData.map(e => moment(e.unformattedDate).utc());
     const latestDate = moment.max(dates);
     const earliestDate = moment.min(dates);
     // Step 4) Sort the data chronologically
@@ -160,8 +161,21 @@ export const getEvents = (req, res) => {
     const hasTicketmasterData = data[0].events.length > 0;
     const hasStubhubData = data[1].events.length > 0;
     const hasSeatgeekData = data[2].events.length > 0;
-    const providerResultLengths = [data[0].events.length, data[1].events.length, data[2].events.length]
-    const totalResultsLength = providerResultLengths.reduce((total, current) => total += current, 0)
+
+    const providerResultLengths = [0,0,0];
+    groupedData.forEach((data) => {
+      data.events.forEach((e) => {
+        if (e.source === 'ticketmaster') {
+          providerResultLengths[0] += 1
+        } else if (e.source === 'stubhub') {
+          providerResultLengths[1] += 1;
+        } else if (e.source === 'seatgeek') {
+          providerResultLengths[2] += 1;
+        }
+      });
+    });
+
+    const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0)
     // Step 7) Arrange the data together
     const response = {
       data: groupedData,
@@ -215,7 +229,7 @@ export const getCachedEvents = (req, res) => {
         e.source = 'ticketmaster';
         e.sourceUrl = 'https://ticketmaster.com';
         e.status = e.dates.status.code;
-        e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
+        e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
         e.unformattedDate = e.dates.start.dateTime || e.dates.start.localDate;
         // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
         e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
@@ -240,7 +254,7 @@ export const getCachedEvents = (req, res) => {
         e.source = 'stubhub';
         e.sourceUrl = 'https://stubhub.com';
         e.status = null;
-        e.date = formatLocalDate(e.eventDateLocal);
+        e.date = formatDate(e.eventDateLocal);
         e.unformattedDate = e.eventDateLocal;
         e.time = formatTime(e.eventDateUTC);
         e.venueName = e.venue.name;
@@ -303,14 +317,14 @@ export const getCachedEvents = (req, res) => {
       }
     }
     // find the earliest and latest dates in the entire data set
-    const dates = combinedData.map(e => moment(e.unformattedDate));
-    const latestOfWholeSet = moment.max(dates).startOf('day');
-    const earliestOfWholeSet = moment.min(dates).endOf('day');
+    const dates = combinedData.map(e => moment(e.unformattedDate).utc());
+    const earliestOfWholeSet = moment.min(dates).startOf('day');
+    const latestOfWholeSet = moment.max(dates).endOf('day');
     // convert the high and low ends of date range from query to properly formatted moment objects
     const earliestCutoffDate = moment(earliestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').startOf('day');
     const latestCutoffDate = moment(latestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').endOf('day')
     // if we detect that the date filter has changed, do the work
-    if (earliestCutoffDate.isAfter(earliestOfWholeSet.utc().format()) || latestCutoffDate.isBefore(latestOfWholeSet.utc().format())) {
+    if (earliestCutoffDate.isAfter(earliestOfWholeSet) || latestCutoffDate.isBefore(latestOfWholeSet)) {
       combinedData = combinedData.filter(e => moment(e.unformattedDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));
       if (combinedData.length === 0) {
         res.send({data: []});
@@ -339,7 +353,7 @@ export const getCachedEvents = (req, res) => {
       });
     });
 
-    const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0)
+    const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0);
 
     const response = {
       data: groupedData,

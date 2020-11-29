@@ -1,6 +1,16 @@
 import * as React from 'react';
 import axios from 'axios';
-import { setShowSeatgeekAction, setShowStubhubAction, setShowTicketmasterAction, setIsStableAction, setSearchResults, setNoResultsState, setShowCancelledAction, setShowNoListingsAction } from '../store/searchResults/Actions';
+import { 
+  setShowSeatgeekAction, 
+  setShowStubhubAction, 
+  setShowTicketmasterAction, 
+  setIsStableAction, 
+  setSearchResults,
+  setNoResultsState, 
+  setShowCancelledAction,
+  setShowNoListingsAction, 
+  setUserDateRangeSelectedAction
+} from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
 // import { DateRangePicker } from 'rsuite';
 import { SpinnerContext } from '../store/spinner/Context';
@@ -9,7 +19,6 @@ import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import Button from '@material-ui/core/Button';
 import moment, { Moment } from 'moment';
 
 export const Filter = () => {
@@ -21,18 +30,18 @@ export const Filter = () => {
   const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
-  const [startDate, setStartDate] = React.useState<Moment>(moment());
-  const [endDate, setEndDate] = React.useState<Moment>(moment());
+  const [dateRangeState, setDateRangeState] = React.useState<Moment[]>([]);
 
   const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
   const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
   const globalShowSeatgeekState: boolean = searchResultsState.searchFilters.showSeatgeek;
   const globalShowCancelledState: boolean = searchResultsState.searchFilters.showCancelled;
   const globalShowNoListingsState: boolean = searchResultsState.searchFilters.showNoListings;
-  const globalMaxPriceState: number = searchResultsState.searchFilters.maxPrice;
-  const globalMinPriceState: number = searchResultsState.searchFilters.minPrice;
-  const globalStartDateState: Moment = searchResultsState.searchFilters.earliestDate;
-  const globalEndDateState: Moment = searchResultsState.searchFilters.latestDate;
+  const globalPriceRangeState: number[] = searchResultsState.searchFilters.priceRange;
+  const globalDateRangeState: Moment[] = searchResultsState.searchFilters.dateRange;
+  const globalUserDateRangeSelectedState: boolean = searchResultsState.userDateRangeSelected;
+  // const globalStartDateState: Moment = searchResultsState.searchFilters.earliestDate;
+  // const globalEndDateState: Moment = searchResultsState.searchFilters.latestDate;
   const isStable: boolean = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
   // first fire is when state is initialized; second is when call is made
@@ -59,13 +68,19 @@ export const Filter = () => {
   }, [ticketmasterFilter, stubhubFilter, seatgeekFilter]);
 
   React.useEffect(() => {
-    setMaxMinPriceRange([globalMinPriceState, globalMaxPriceState]);
-  }, [globalMinPriceState, globalMaxPriceState]);
+    setMaxMinPriceRange(globalPriceRangeState);
+  }, [globalPriceRangeState]);
 
   React.useEffect(() => {
-    setStartDate(globalStartDateState);
-    setEndDate(globalEndDateState);
-  }, [globalStartDateState, globalEndDateState]);
+    setDateRangeState(globalDateRangeState);
+  }, [globalDateRangeState]);
+
+  React.useEffect(() => {
+    if (globalUserDateRangeSelectedState) {
+      callCacheForFiltering();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [globalUserDateRangeSelectedState, dateRangeState]);
 
   const callCacheForFiltering = () => {
     spinnerDispatch(setSpinnerState(true));
@@ -79,8 +94,8 @@ export const Filter = () => {
         showNoListings: globalShowNoListingsState,
         minPrice: maxMinPriceRange[0],
         maxPrice: maxMinPriceRange[1],
-        earliestDate: startDate,
-        latestDate: endDate,
+        earliestDate: dateRangeState[0],
+        latestDate: dateRangeState[1],
       }
     }).then(res => {
       if (res.data.data.length === 0) {
@@ -105,6 +120,7 @@ export const Filter = () => {
 
   const handleFilterToggle = (event: any) => {
     const target = event.target;
+
     const name = target.name;
     const newCheckState = target.checked;
     if (name === "showTicketmaster") {
@@ -121,12 +137,21 @@ export const Filter = () => {
   }  
 
   const handleSliderChange = (event: any, values: number[]) => {
-    console.log(values[0], values[1])
-    if (values[0] === globalMaxPriceState) {
-      setMaxMinPriceRange([globalMaxPriceState-1, globalMaxPriceState]);
-    } else if (values[1] === globalMinPriceState) {
-      setMaxMinPriceRange([globalMinPriceState, globalMinPriceState + 1])
-    } else setMaxMinPriceRange(values)
+    // if the lowest value equals the highest value
+    if (values[0] === globalPriceRangeState[1]) {
+      // force the low value to be one lower than the highest value
+      setMaxMinPriceRange([globalPriceRangeState[1]-1, globalPriceRangeState[1]]);
+    } // if the highest value is equal to the lowest value
+    else if (values[1] === globalPriceRangeState[0]) {
+      // set the high value to be one higher than the lowest value
+      setMaxMinPriceRange([globalPriceRangeState[0], globalPriceRangeState[0] + 1])
+    } // otherwise set the values as usual
+    else setMaxMinPriceRange(values)
+  }
+
+  const handleDateSelect = (newDateRange: Moment[]) => {
+    searchResultsDispatch(setUserDateRangeSelectedAction(true));
+    setDateRangeState(newDateRange);
   }
 
   return (
@@ -219,8 +244,8 @@ export const Filter = () => {
             aria-labelledby="range-slider"
             valueLabelDisplay="on"
             value={maxMinPriceRange}
-            max={globalMaxPriceState}
-            min={globalMinPriceState}
+            min={globalPriceRangeState[0]}
+            max={globalPriceRangeState[1]}
             onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
             onChangeCommitted={() => callCacheForFiltering()}
             valueLabelFormat={(x) => '$' + x.toLocaleString()}
@@ -233,30 +258,27 @@ export const Filter = () => {
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">
               <DatePicker
-                minDate={globalStartDateState}
-                maxDate={globalEndDateState}
-                value={startDate}
-                onChange={(newStartDate: any) => setStartDate(moment(newStartDate))}
+                minDate={globalDateRangeState[0]}
+                maxDate={globalDateRangeState[1]}
+                value={dateRangeState[0]}
+                onChange={(newStartDate: any) => handleDateSelect([moment(newStartDate), dateRangeState[1]])}
                 variant="inline"
+                format="MMM, d, yyyy"
                 disableToolbar
                 disablePast
                 autoOk
               />
               <DatePicker
-                minDate={globalStartDateState}
-                maxDate={globalEndDateState}
-                value={endDate}
-                onChange={(newEndDate: any) => setEndDate(moment(newEndDate))}
+                minDate={globalDateRangeState[0]}
+                maxDate={globalDateRangeState[1]}
+                value={dateRangeState[1]}
+                onChange={(newEndDate: any) => handleDateSelect([dateRangeState[0], moment(newEndDate)])}
                 variant="inline"
+                format="MMM, d, yyyy"
                 disableToolbar
                 disablePast
                 autoOk
               />
-              <Button
-                onClick={() => callCacheForFiltering()}
-              >
-                Search
-              </Button>
             </Grid>
           </MuiPickersUtilsProvider>
         </div>

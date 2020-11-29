@@ -10,11 +10,10 @@ export enum SearchResultActionTypes {
   SET_SHOW_NO_LISTINGS = 'SET_SHOW_NO_LISTINGS',
   SET_IS_STABLE = 'SET_IS_STABLE',
   SET_NO_RESULTS = 'SET_NO_RESULTS',
-  SET_MAX_PRICE = 'SET_MAX_PRICE',
-  SET_MIN_PRICE = 'SET_MIN_PRICE',
-  SET_EARLIEST_DATE = 'SET_EARLIEST_DATE',
-  SET_LATEST_DATE = 'SET_LATEST_DATE',
+  SET_PRICE_RANGE = 'SET_PRICE_RANGE',
+  SET_DATE_RANGE = 'SET_DATE_RANGE',
   SET_LAST_QUERY = 'SET_LAST_QUERY',
+  SET_USER_DATE_RANGE_SELECTED = 'SET_USER_DATE_RANGE_SELECTED'
 }
 
 interface SetSearchResults {
@@ -115,44 +114,34 @@ export const setNoResultsState = (payload: boolean): SetNoResults => ({
   payload
 });
 
-interface SetMaxPrice {
-  type: SearchResultActionTypes.SET_MAX_PRICE;
-  payload: number;
+interface SetPriceRange {
+  type: SearchResultActionTypes.SET_PRICE_RANGE;
+  payload: number[];
 }
 
-export const setMaxPriceAction = (payload: number): SetMaxPrice => ({
-  type: SearchResultActionTypes.SET_MAX_PRICE,
+export const setPriceRangeAction = (payload: number[]): SetPriceRange => ({
+  type: SearchResultActionTypes.SET_PRICE_RANGE,
   payload
 });
 
-interface SetMinPrice {
-  type: SearchResultActionTypes.SET_MIN_PRICE;
-  payload: number;
+interface SetDateRange {
+  type: SearchResultActionTypes.SET_DATE_RANGE;
+  payload: Moment[]
 }
 
-export const setMinPriceAction = (payload: number): SetMinPrice => ({
-  type: SearchResultActionTypes.SET_MIN_PRICE,
+export const setDateRangeAction = (payload: Moment[]): SetDateRange => ({
+  type: SearchResultActionTypes.SET_DATE_RANGE,
   payload
-});
+})
 
-export interface SetEarliestDate {
-  type: SearchResultActionTypes.SET_EARLIEST_DATE,
-  payload: Moment;
+interface SetUserDateRangeSelected {
+  type: SearchResultActionTypes.SET_USER_DATE_RANGE_SELECTED;
+  payload: boolean;
 }
 
-export const setEarliestDateAction = (payload: Moment): SetEarliestDate => ({
-  type: SearchResultActionTypes.SET_EARLIEST_DATE,
-  payload
-});
-
-export interface SetLatestDate {
-  type: SearchResultActionTypes.SET_LATEST_DATE,
-  payload: Moment;
-}
-
-export const setLatestDateAction = (payload: Moment): SetLatestDate => ({
-  type: SearchResultActionTypes.SET_LATEST_DATE,
-  payload
+export const setUserDateRangeSelectedAction = (payload: boolean): SetUserDateRangeSelected => ({
+  type: SearchResultActionTypes.SET_USER_DATE_RANGE_SELECTED,
+  payload,
 });
 
 interface SetLastQuery {
@@ -166,5 +155,4 @@ export const setLastQuery = (payload: string): SetLastQuery => ({
 });
 
 export type SearchResultsActions = SetSearchResults | SetShowTicketMaster | SetShowStubhub | SetShowSeatgeek | SetBulkFilter | SetIsStable | 
-SetNoResults | SetMaxPrice | SetMinPrice | SetLastQuery | SetShowCancelled | SetShowNoListings | SetEarliestDate | SetLatestDate; 
-
+SetNoResults | SetPriceRange | SetLastQuery | SetShowCancelled | SetShowNoListings | SetDateRange | SetUserDateRangeSelected;

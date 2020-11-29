@@ -144,9 +144,9 @@ export const getEvents = (req, res) => {
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
     // Step ) Get the latest and earliest dates of the data set 
-    const dates = combinedData.map(e => moment(e.unformattedDate).utc());
-    const latestDate = moment.max(dates);
-    const earliestDate = moment.min(dates);
+    const dates = combinedData.map(e => moment.utc(e.unformattedDate).local());
+    const earliestDate = moment.min(dates).startOf('day');
+    const latestDate = moment.max(dates).endOf('day');
     // Step 4) Sort the data chronologically
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     // Step 5a) Group the chronologically sorted data by date
@@ -184,14 +184,12 @@ export const getEvents = (req, res) => {
         stubhub: hasStubhubData,
         seatgeek: hasSeatgeekData,
       },
-      minPrice: minMax[0],
-      maxPrice: minMax[1], 
+      priceRange: minMax,
+      dateRange: [earliestDate, latestDate],
       hasCancelledEvents,
       hasNoListingEvents,
       providerResultLengths,
       totalResultsLength,
-      earliestDate,
-      latestDate
     }
     // Step 8) Send the data
    res.send(response);
@@ -317,15 +315,15 @@ export const getCachedEvents = (req, res) => {
       }
     }
     // find the earliest and latest dates in the entire data set
-    const dates = combinedData.map(e => moment(e.unformattedDate).utc());
+    const dates = combinedData.map(e => moment.utc(e.unformattedDate));
     const earliestOfWholeSet = moment.min(dates).startOf('day');
     const latestOfWholeSet = moment.max(dates).endOf('day');
     // convert the high and low ends of date range from query to properly formatted moment objects
-    const earliestCutoffDate = moment(earliestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').startOf('day');
-    const latestCutoffDate = moment(latestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').endOf('day')
+    const earliestCutoffDate = moment.utc(earliestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').startOf('day');
+    const latestCutoffDate = moment.utc(latestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').endOf('day')
     // if we detect that the date filter has changed, do the work
     if (earliestCutoffDate.isAfter(earliestOfWholeSet) || latestCutoffDate.isBefore(latestOfWholeSet)) {
-      combinedData = combinedData.filter(e => moment(e.unformattedDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));
+      combinedData = combinedData.filter(e => moment.utc(e.unformattedDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));
       if (combinedData.length === 0) {
         res.send({data: []});
         return;

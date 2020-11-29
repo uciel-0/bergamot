@@ -2,7 +2,16 @@ import * as React from 'react';
 import axios from 'axios';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {SpinnerContext} from '../store/spinner/Context';
-import {setSearchResults, setBulkFilterAction, setIsStableAction,setMaxPriceAction,setMinPriceAction, setNoResultsState, setLastQuery, setEarliestDateAction, setLatestDateAction} from '../store/searchResults/Actions';
+import {
+  setSearchResults, 
+  setBulkFilterAction,
+  setIsStableAction,
+  setPriceRangeAction,
+  setNoResultsState, 
+  setLastQuery, 
+  setDateRangeAction, 
+  setUserDateRangeSelectedAction 
+} from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';
@@ -25,8 +34,8 @@ export const SearchBar = () => {
     searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
     searchResultsDispatch(setBulkFilterAction(false, false, false, false, false));
-    searchResultsDispatch(setMinPriceAction(0));
-    searchResultsDispatch(setMaxPriceAction(0));
+    searchResultsDispatch(setPriceRangeAction([0,0]));
+    searchResultsDispatch(setUserDateRangeSelectedAction(false));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,
@@ -46,16 +55,8 @@ export const SearchBar = () => {
       searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
       spinnerDispatch(setSpinnerState(false));
       //set min/max price from the backend.
-      searchResultsDispatch(setMinPriceAction(res.data.minPrice));
-      searchResultsDispatch(setMaxPriceAction(res.data.maxPrice));
-      // date from the server side is being sent in UTC 
-      // data on the front end should default to their locale 
-      // date in the calendar picker is currently is the locale
-      // which means the date in the card is... utc?
-      console.log(moment(res.data.earliestDate));
-      console.log(moment(res.data.latestDate));
-      searchResultsDispatch(setEarliestDateAction(moment(res.data.earliestDate)));
-      searchResultsDispatch(setLatestDateAction(moment(res.data.latestDate)));
+      searchResultsDispatch(setPriceRangeAction(res.data.priceRange));
+      searchResultsDispatch(setDateRangeAction([moment(res.data.dateRange[0]), moment(res.data.dateRange[1])]));
       searchResultsDispatch(setNoResultsState(false));
     })
     .catch((err) => {

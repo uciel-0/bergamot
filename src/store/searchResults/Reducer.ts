@@ -1,4 +1,4 @@
-import moment, { Moment } from 'moment';
+import { Moment } from 'moment';
 import {SearchResultActionTypes, SearchResultsActions} from './Actions';
 
 export interface SearchResultsState {
@@ -7,6 +7,7 @@ export interface SearchResultsState {
   isStable: boolean;
   noResults: boolean;
   lastQuery: string;
+  userDateRangeSelected: boolean;
 }
 
 export interface SearchResult {
@@ -20,10 +21,8 @@ export interface SearchFilterState {
   showSeatgeek: boolean;
   showCancelled: boolean;
   showNoListings: boolean;
-  maxPrice: number;
-  minPrice: number;
-  earliestDate: Moment;
-  latestDate: Moment;
+  priceRange: number[];
+  dateRange: Moment[];
 }
 
 export const searchResultsReducer = (state: SearchResultsState, action: SearchResultsActions) => {
@@ -46,14 +45,12 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, isStable: action.payload};
     case SearchResultActionTypes.SET_NO_RESULTS:
       return {...state, noResults: action.payload};
-    case SearchResultActionTypes.SET_MIN_PRICE:
-      return {...state, searchFilters: {...state.searchFilters, minPrice: action.payload}};
-    case SearchResultActionTypes.SET_MAX_PRICE:
-      return {...state, searchFilters: {...state.searchFilters, maxPrice: action.payload}};
-    case SearchResultActionTypes.SET_EARLIEST_DATE: 
-      return {...state, searchFilters: {...state.searchFilters, earliestDate: action.payload}};
-    case SearchResultActionTypes.SET_LATEST_DATE: 
-      return {...state, searchFilters: {...state.searchFilters, latestDate: action.payload}};
+    case SearchResultActionTypes.SET_PRICE_RANGE: 
+     return {...state, searchFilters: {...state.searchFilters, priceRange: action.payload}};
+    case SearchResultActionTypes.SET_DATE_RANGE:
+      return {...state, searchFilters: {...state.searchFilters, dateRange: action.payload}};
+    case SearchResultActionTypes.SET_USER_DATE_RANGE_SELECTED:
+      return {...state, userDateRangeSelected: action.payload};
     case SearchResultActionTypes.SET_LAST_QUERY:
       return {...state, lastQuery: action.payload};
     default:
@@ -69,12 +66,11 @@ export const initialSearchResultsState: SearchResultsState = {
     showSeatgeek: false,
     showCancelled: false,
     showNoListings: false,
-    maxPrice: 0,
-    minPrice: 0,
-    earliestDate: moment(),
-    latestDate: moment()
+    priceRange: [0,0],
+    dateRange: []
   },
   isStable: false,
   noResults: false,
   lastQuery: '',
+  userDateRangeSelected: false,
 }

@@ -160,7 +160,7 @@ export const getEvents = (req, res) => {
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
     // Step ) Get the latest and earliest dates of the data set 
     // TODO: something is happening where where the first date is popped out
-    const dates = combinedData.map(e => moment.utc(e.datetime_local));
+    const dates = combinedData.map(e => moment(e.datetime_local));
     const earliestOfWholeSet = moment.min(dates).startOf('day');
     const latestOfWholeSet = moment.max(dates).endOf('day');
     console.log(earliestOfWholeSet, 'earliest from initial search');

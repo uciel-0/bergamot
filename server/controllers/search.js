@@ -81,16 +81,14 @@ export const getEvents = (req, res) => {
       e.source = 'ticketmaster';
       e.sourceUrl = 'https://ticketmaster.com';
       e.status = e.dates.status.code;
-      e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
-      e.unformattedDate = e.dates.start.dateTime || e.dates.start.localDate;
       console.log(10100101, "ticketmaster dates before normalization", e.dates.start.localDate, e.dates.start.localTime,",",e.dates.start.dateTime);
       // combine the local date and time fields to create a local dateTime string - if no localtime, use start of day (00:00:00)
       e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
       // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
       e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
       console.log(10100101, "ticketmaster e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
-      // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
-      e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
+      e.date = formatLocalDate(e.datetime_local);
+      e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
       e.venueName = e._embedded.venues[0].name;
       e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
       e.isPriceEstimated = false;
@@ -109,11 +107,10 @@ export const getEvents = (req, res) => {
       e.source = 'stubhub';
       e.sourceUrl = 'https://stubhub.com';
       e.status = null;
-      e.date = formatDate(e.eventDateLocal);
-      e.unformattedDate = e.eventDateUTC;
-      e.time = formatTime(e.eventDateUTC);
       e.datetime_local = e.eventDateLocal;
       e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
+      e.date = formatLocalDate(e.eventDateLocal);
+      e.time = formatTime(e.eventDateUTC);
       console.log(10100101, "stubhub e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
       e.venueName = e.venue.name;
       e.venueCity = e.venue.city + ', ' + e.venue.state;
@@ -128,13 +125,12 @@ export const getEvents = (req, res) => {
       e.source = 'seatgeek';
       e.sourceUrl = 'https://seatgeek.com';
       e.status = null;
-      e.date = e.date_tbd ? null : formatDate(e.datetime_utc);
-      e.unformattedDate = e.datetime_utc;
-      e.time = e.datetime_tbd ? null : formatTime(e.datetime_utc + "Z");
       console.log('seatgeek datetimes before server side normalization', e.datetime_local, e.datetime_utc);
       e.datetime_utc = normalizeUTCDate(e.datetime_utc);
       e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
       console.log(10100101, "seatgeek e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
+      e.date = e.date_tbd ? null : formatLocalDate(e.datetime_local);
+      e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
       e.venueName = e.venue.name;
       e.venueCity = e.venue.display_location;
       e.name = e.title;
@@ -163,9 +159,8 @@ export const getEvents = (req, res) => {
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
     // Step ) Get the latest and earliest dates of the data set 
-    const consoleLogger = combinedData.forEach(e => console.log(moment.utc(e.unformattedDate)));
     // TODO: something is happening where where the first date is popped out
-    const dates = combinedData.map(e => moment.utc(e.unformattedDate));
+    const dates = combinedData.map(e => moment.utc(e.datetime_local));
     const earliestOfWholeSet = moment.min(dates).startOf('day');
     const latestOfWholeSet = moment.max(dates).endOf('day');
     console.log(earliestOfWholeSet, 'earliest from initial search');
@@ -253,7 +248,12 @@ export const getCachedEvents = (req, res) => {
         e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
         console.log(e.date, 'ticketmaster formatted date');
         e.unformattedDate = e.dates.start.dateTime || e.dates.start.localDate;
-        console.log(e.unformattedDate, 'ticketmaster unformatted date');
+        console.log(10100101, "ticketmaster dates before normalization", e.dates.start.localDate, e.dates.start.localTime,",",e.dates.start.dateTime);
+        // combine the local date and time fields to create a local dateTime string - if no localtime, use start of day (00:00:00)
+        e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
+        // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
+        e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
+        console.log(10100101, "ticketmaster e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
         // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
         e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
         e.venueName = e._embedded.venues[0].name;
@@ -282,6 +282,9 @@ export const getCachedEvents = (req, res) => {
         e.date = formatDate(e.eventDateLocal);
         e.unformattedDate = e.eventDateUTC;
         console.log(e.unformattedDate, 'stubhub unformatted date');
+        e.datetime_local = e.eventDateLocal;
+        e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
+        console.log(10100101, "stubhub e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
         e.time = formatTime(e.eventDateUTC);
         e.venueName = e.venue.name;
         e.venueCity = e.venue.city + ', ' + e.venue.state;
@@ -303,6 +306,10 @@ export const getCachedEvents = (req, res) => {
         e.date = e.date_tbd ? null : formatDate(e.datetime_utc);
         e.unformattedDate = e.datetime_utc;
         console.log(e.unformattedDate, 'seatgeek unformatted date');
+        console.log('seatgeek datetimes before server side normalization', e.datetime_local, e.datetime_utc);
+        e.datetime_utc = normalizeUTCDate(e.datetime_utc);
+        e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
+        console.log(10100101, "seatgeek e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
         e.time = e.datetime_tbd ? null : formatTime(e.datetime_utc + "Z");
         e.venueName = e.venue.name;
         e.venueCity = e.venue.display_location;

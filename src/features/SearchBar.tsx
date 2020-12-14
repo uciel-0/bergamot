@@ -56,7 +56,7 @@ export const SearchBar = () => {
       spinnerDispatch(setSpinnerState(false));
       //set min/max price from the backend.
       searchResultsDispatch(setPriceRangeAction(res.data.priceRange));
-      searchResultsDispatch(setDateRangeAction([moment(res.data.dateRange[0]), moment(res.data.dateRange[1])]));
+      searchResultsDispatch(setDateRangeAction([res.data.dateRange[0], res.data.dateRange[1]]));
       searchResultsDispatch(setNoResultsState(false));
     })
     .catch((err) => {

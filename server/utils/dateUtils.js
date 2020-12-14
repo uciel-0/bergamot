@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export const groupByDay = (data) => {
   // array of objects 
@@ -44,7 +44,25 @@ export const reformatDate = (date) => {
   day = day.length > 1 ? day : '0' + day;
   return month + '-' + day + '-' + year;
 }
-// date is normalized to UTC, then converted to a date 
-export const formatDate = (date) => date ? moment.utc(date).local().format('ddd, MMM D, YYYY') : null;
+// for UTC dates, to bring them to local time zone
+export const formatDate = (date) =>  date ? moment.utc(date).local().format('ddd, MMM D, YYYY') : null;
+
+// for dates that are already local 
+export const formatLocalDate = (date) => date ? moment(date).format('ddd, MMM D, YYYY') : null;
+
+export const normalizeUTCDate = (utcDate) => {
+  return utcDate ? moment.utc(utcDate).format() : null;
+}
+
+export const normalizeLocalDate = (localDate, timezone) => {
+  if (timezone) {
+    return localDate ? moment.tz(localDate, timezone).format() : null;
+  } else return localDate ? moment(localDate).format() : null;
+}
+
+// normalizing the dates also means attaching the appropriate timezone offset the local dates 
+// ticketmasater can use dates.timezone field 
+// stubhub can use 
+// seatgeek can use venue.timezone
 
 export const formatTime = (dateTime) => dateTime ? moment(dateTime).format('hh:mm A') : null; 

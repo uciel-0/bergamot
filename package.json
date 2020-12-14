@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "hoist-non-react-statics": "^3.3.2",
     "moment": "^2.27.0",
+    "moment-timezone": "^0.5.32",
     "node-cache": "^5.1.2",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",

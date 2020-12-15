@@ -9,7 +9,8 @@ import {
   setNoResultsState, 
   setShowCancelledAction,
   setShowNoListingsAction, 
-  setUserDateRangeSelectedAction
+  setUserDateRangeSelectedAction,
+  setBulkFilterAction
 } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
 // import { DateRangePicker } from 'rsuite';
@@ -20,6 +21,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import moment, { Moment } from 'moment';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -30,7 +32,8 @@ export const Filter = () => {
   const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
-  const [dateRangeState, setDateRangeState] = React.useState<Moment[]>([]);
+  const [dateRangeState, setDateRangeState] = React.useState<(Moment | string)[]>([]);
+  // const [maxMinDateRange, setMaxMinDateRange] = React.useState<(Moment | string)[]>([]);
 
   const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
   const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
@@ -40,8 +43,6 @@ export const Filter = () => {
   const globalPriceRangeState: number[] = searchResultsState.searchFilters.priceRange;
   const globalDateRangeState: Moment[] = searchResultsState.searchFilters.dateRange;
   const globalUserDateRangeSelectedState: boolean = searchResultsState.userDateRangeSelected;
-  // const globalStartDateState: Moment = searchResultsState.searchFilters.earliestDate;
-  // const globalEndDateState: Moment = searchResultsState.searchFilters.latestDate;
   const isStable: boolean = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
   // first fire is when state is initialized; second is when call is made
@@ -84,6 +85,7 @@ export const Filter = () => {
 
   const callCacheForFiltering = () => {
     spinnerDispatch(setSpinnerState(true));
+    searchResultsDispatch(setUserDateRangeSelectedAction(false));
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -103,13 +105,19 @@ export const Filter = () => {
         spinnerDispatch(setSpinnerState(false));
       } else {
         console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
+        console.log('troubleshooting helper', res.data.cacheTroubleShoot);
         console.log('total length of events:', res.data.totalResultsLength);
         console.log('ticketmaster events:', res.data.providerResultLengths[0]);
         console.log('stubhub events:', res.data.providerResultLengths[1]);
         console.log('seatgeek events:', res.data.providerResultLengths[2]);
-        spinnerDispatch(setSpinnerState(false));
         searchResultsDispatch(setNoResultsState(false));
         searchResultsDispatch(setSearchResults(res.data.data));
+        // update the filter results as the cache results come back 
+        searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
+        setMaxMinPriceRange(res.data.filteredPriceRange);
+        // setDateRangeState(res.data.filteredDateRange);
+        // setMaxMinDateRange(res.data.maxMinDateRange)
+        spinnerDispatch(setSpinnerState(false));
       }
     }).catch(err => {
       console.log('filter function api call error', err);
@@ -120,7 +128,6 @@ export const Filter = () => {
 
   const handleFilterToggle = (event: any) => {
     const target = event.target;
-
     const name = target.name;
     const newCheckState = target.checked;
     if (name === "showTicketmaster") {
@@ -149,9 +156,14 @@ export const Filter = () => {
     else setMaxMinPriceRange(values)
   }
 
-  const handleDateSelect = (newDateRange: Moment[]) => {
+  const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState(newDateRange);
+    setDateRangeState([moment(newStartDate).format(), dateRangeState[1]])
+  }
+
+  const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
+    searchResultsDispatch(setUserDateRangeSelectedAction(true));
+    setDateRangeState([dateRangeState[0], moment(newEndDate).format()])
   }
 
   return (
@@ -261,7 +273,7 @@ export const Filter = () => {
                 minDate={globalDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
                 value={dateRangeState[0]}
-                onChange={(newStartDate: any) => handleDateSelect([moment(newStartDate), dateRangeState[1]])}
+                onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
                 variant="inline"
                 format="MMM, d, yyyy"
                 disableToolbar
@@ -272,7 +284,7 @@ export const Filter = () => {
                 minDate={globalDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
                 value={dateRangeState[1]}
-                onChange={(newEndDate: any) => handleDateSelect([dateRangeState[0], moment(newEndDate)])}
+                onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
                 variant="inline"
                 format="MMM, d, yyyy"
                 disableToolbar

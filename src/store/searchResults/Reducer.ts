@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import moment from 'moment-timezone';
 import {SearchResultActionTypes, SearchResultsActions} from './Actions';
 
 export interface SearchResultsState {
@@ -8,6 +9,7 @@ export interface SearchResultsState {
   noResults: boolean;
   lastQuery: string;
   userDateRangeSelected: boolean;
+  timezone: string;
 }
 
 export interface SearchResult {
@@ -58,6 +60,8 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
   }
 }
 
+const timezone = moment.tz.guess();
+
 export const initialSearchResultsState: SearchResultsState = {
   searchResults: [],
   searchFilters: {
@@ -73,4 +77,5 @@ export const initialSearchResultsState: SearchResultsState = {
   noResults: false,
   lastQuery: '',
   userDateRangeSelected: false,
+  timezone
 }

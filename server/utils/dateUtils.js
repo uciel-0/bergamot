@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export const groupByDay = (data) => {
   // array of objects 
@@ -44,7 +44,13 @@ export const reformatDate = (date) => {
   day = day.length > 1 ? day : '0' + day;
   return month + '-' + day + '-' + year;
 }
-// date is normalized to UTC, then converted to a date 
-export const formatDate = (date) => date ? moment.utc(date).local().format('ddd, MMM D, YYYY') : null;
+// 
+export const formatDate = (date) =>  date ? moment.utc(date).format('ddd, MMM D, YYYY') : null;
+// for dates that are already local 
+export const formatLocalDate = (date) => date ? moment(date).format('ddd, MMM D, YYYY') : null;
 
-export const formatTime = (dateTime) => dateTime ? moment(dateTime).format('hh:mm A') : null; 
+export const normalizeUTCDate = (utcDate) => utcDate ? moment.utc(utcDate).format() : null;
+
+export const normalizeLocalDate = (localDate, timezone) => localDate ? moment.tz(localDate, timezone).format() : null;
+
+export const formatTime = (dateTime) => dateTime ? moment.parseZone(dateTime).format('h:mm A') :  null;

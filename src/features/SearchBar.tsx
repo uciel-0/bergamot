@@ -15,7 +15,6 @@ import {
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';
-import moment from 'moment';
 
 export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
@@ -55,6 +54,7 @@ export const SearchBar = () => {
       searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
       spinnerDispatch(setSpinnerState(false));
       //set min/max price from the backend.
+      console.log(res.data.dateRange, 'res.data.dateRange');
       searchResultsDispatch(setPriceRangeAction(res.data.priceRange));
       searchResultsDispatch(setDateRangeAction([res.data.dateRange[0], res.data.dateRange[1]]));
       searchResultsDispatch(setNoResultsState(false));

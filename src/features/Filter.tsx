@@ -10,9 +10,7 @@ import {
   setShowCancelledAction,
   setShowNoListingsAction, 
   setUserDateRangeSelectedAction,
-  setBulkFilterAction,
-  setPriceRangeAction,
-  setDateRangeAction
+  setBulkFilterAction
 } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
 // import { DateRangePicker } from 'rsuite';
@@ -23,6 +21,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import moment, { Moment } from 'moment';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -87,8 +86,6 @@ export const Filter = () => {
   const callCacheForFiltering = () => {
     spinnerDispatch(setSpinnerState(true));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
-    console.log('startDate', dateRangeState[0], 101010101);
-    console.log('endDate', dateRangeState[1], 101010101010);
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -159,9 +156,14 @@ export const Filter = () => {
     else setMaxMinPriceRange(values)
   }
 
-  const handleDateSelect = (newDateRange: (Moment | string)[]) => {
+  const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState(newDateRange);
+    setDateRangeState([moment(newStartDate).format(), dateRangeState[1]])
+  }
+
+  const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
+    searchResultsDispatch(setUserDateRangeSelectedAction(true));
+    setDateRangeState([dateRangeState[0], moment(newEndDate).format()])
   }
 
   return (
@@ -271,7 +273,7 @@ export const Filter = () => {
                 minDate={globalDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
                 value={dateRangeState[0]}
-                onChange={(newStartDate: any) => handleDateSelect([moment(newStartDate).utc(), dateRangeState[1]])}
+                onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
                 variant="inline"
                 format="MMM, d, yyyy"
                 disableToolbar
@@ -282,7 +284,7 @@ export const Filter = () => {
                 minDate={globalDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
                 value={dateRangeState[1]}
-                onChange={(newEndDate: any) => handleDateSelect([dateRangeState[0], moment(newEndDate).utc()])}
+                onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
                 variant="inline"
                 format="MMM, d, yyyy"
                 disableToolbar

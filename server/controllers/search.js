@@ -69,9 +69,6 @@ export const getEvents = (req, res) => {
     // create the key under which this data will be stored 
   const key = `getEvents_${req.query.keyword}`;
   // when the response is complete, store it in the cache 
-  console.log();
-  console.log('getEvents call for', req.query.keyword);
-  console.log();
   cache.set(key, () => Promise.all([ticketmaster, stubhub, seatgeek]))
   .then(data => {
     // Step 1) Set some custom fields for easy front end access
@@ -81,12 +78,10 @@ export const getEvents = (req, res) => {
       e.source = 'ticketmaster';
       e.sourceUrl = 'https://ticketmaster.com';
       e.status = e.dates.status.code;
-      console.log(10100101, "ticketmaster dates before normalization", e.dates.start.localDate, e.dates.start.localTime,",",e.dates.start.dateTime);
       // combine the local date and time fields to create a local dateTime string - if no localtime, use start of day (00:00:00)
       e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
       // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
       e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
-      console.log(10100101, "ticketmaster e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
       e.date = formatLocalDate(e.datetime_local);
       e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
       e.venueName = e._embedded.venues[0].name;
@@ -111,7 +106,6 @@ export const getEvents = (req, res) => {
       e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
       e.date = formatLocalDate(e.eventDateLocal);
       e.time = formatTime(e.eventDateUTC);
-      console.log(10100101, "stubhub e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
       e.venueName = e.venue.name;
       e.venueCity = e.venue.city + ', ' + e.venue.state;
       e.priceBeforeFees = e.ticketInfo.minListPrice;
@@ -125,10 +119,8 @@ export const getEvents = (req, res) => {
       e.source = 'seatgeek';
       e.sourceUrl = 'https://seatgeek.com';
       e.status = null;
-      console.log('seatgeek datetimes before server side normalization', e.datetime_local, e.datetime_utc);
       e.datetime_utc = normalizeUTCDate(e.datetime_utc);
       e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
-      console.log(10100101, "seatgeek e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
       e.date = e.date_tbd ? null : formatLocalDate(e.datetime_local);
       e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
       e.venueName = e.venue.name;
@@ -159,10 +151,9 @@ export const getEvents = (req, res) => {
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
     // Step ) Get the latest and earliest dates of the data set 
-    // TODO: something is happening where where the first date is popped out
     const dates = combinedData.map(e => moment(e.datetime_local));
-    const earliestOfWholeSet = moment.min(dates).startOf('day');
-    const latestOfWholeSet = moment.max(dates).endOf('day');
+    const earliestOfWholeSet = moment.min(dates);
+    const latestOfWholeSet = moment.max(dates);
     console.log(earliestOfWholeSet, 'earliest from initial search');
     console.log(latestOfWholeSet, 'latest from initial search');
     // Step 4) Sort the data chronologically
@@ -193,7 +184,7 @@ export const getEvents = (req, res) => {
       });
     });
 
-    const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0)
+    const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0);
     // Step 7) Arrange the data together
     const response = {
       data: groupedData,
@@ -203,7 +194,7 @@ export const getEvents = (req, res) => {
         seatgeek: hasSeatgeekData,
       },
       priceRange: minMax,
-      dateRange: [earliestOfWholeSet, latestOfWholeSet],
+      dateRange: [earliestOfWholeSet.format(), latestOfWholeSet.format()],
       hasCancelledEvents,
       hasNoListingEvents,
       providerResultLengths,
@@ -222,9 +213,10 @@ export const flushCache = (req, res) => {
   cache.flush();
   res.sendStatus(200);
 }
-
+// NEXT THING TO DO 
+// must implement the datetime_utc and datetime_local here in the 
 export const getCachedEvents = (req, res) => {
-  console.log('cache call happening', 101010101010101);
+  console.log('cache call happening for keyword', req.query.keyword, 101010101010101);
   const key = `getEvents_${req.query.keyword}`;
   const showTicketmaster = req.query.showTicketmaster;
   const showStubhub = req.query.showStubhub;
@@ -246,16 +238,11 @@ export const getCachedEvents = (req, res) => {
         e.sourceUrl = 'https://ticketmaster.com';
         e.status = e.dates.status.code;
         e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
-        console.log(e.date, 'ticketmaster formatted date');
-        e.unformattedDate = e.dates.start.dateTime || e.dates.start.localDate;
-        console.log(10100101, "ticketmaster dates before normalization", e.dates.start.localDate, e.dates.start.localTime,",",e.dates.start.dateTime);
         // combine the local date and time fields to create a local dateTime string - if no localtime, use start of day (00:00:00)
         e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
         // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
         e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
-        console.log(10100101, "ticketmaster e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
-        // ticketmaster's date arrives in UTC, this is the format we expect from the rest of the apis as well
-        e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.dates.start.localDate + 'T' + e.dates.start.localTime);
+        e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
         e.venueName = e._embedded.venues[0].name;
         e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
         e.isPriceEstimated = false;
@@ -272,19 +259,16 @@ export const getCachedEvents = (req, res) => {
       });
       ticketmasterEvents = data[0].events;
     }
-       // stubhub events
+    // stubhub events
     let stubhubEvents = [];
     if (showStubhub === "true") {
       data[1].events.forEach(e => {
         e.source = 'stubhub';
         e.sourceUrl = 'https://stubhub.com';
         e.status = null;
-        e.date = formatDate(e.eventDateLocal);
-        e.unformattedDate = e.eventDateUTC;
-        console.log(e.unformattedDate, 'stubhub unformatted date');
         e.datetime_local = e.eventDateLocal;
         e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
-        console.log(10100101, "stubhub e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
+        e.date = formatLocalDate(e.eventDateLocal);
         e.time = formatTime(e.eventDateUTC);
         e.venueName = e.venue.name;
         e.venueCity = e.venue.city + ', ' + e.venue.state;
@@ -303,14 +287,10 @@ export const getCachedEvents = (req, res) => {
         e.source = 'seatgeek';
         e.sourceUrl = 'https://seatgeek.com';
         e.status = null;
-        e.date = e.date_tbd ? null : formatDate(e.datetime_utc);
-        e.unformattedDate = e.datetime_utc;
-        console.log(e.unformattedDate, 'seatgeek unformatted date');
-        console.log('seatgeek datetimes before server side normalization', e.datetime_local, e.datetime_utc);
         e.datetime_utc = normalizeUTCDate(e.datetime_utc);
         e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
-        console.log(10100101, "seatgeek e.datetime_local, e.datetime_utc", e.datetime_local, ",", e.datetime_utc);
-        e.time = e.datetime_tbd ? null : formatTime(e.datetime_utc + "Z");
+        e.date = e.date_tbd ? null : formatLocalDate(e.datetime_local);
+        e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
         e.venueName = e.venue.name;
         e.venueCity = e.venue.display_location;
         e.name = e.title;
@@ -344,43 +324,11 @@ export const getCachedEvents = (req, res) => {
         Math.ceil(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
-    // find the earliest and latest dates in the entire data set
-    const dates = combinedData.map(e => moment.utc(e.unformattedDate));
-    // ideally supposed 
-    const earliestOfWholeSet = moment.min(dates).startOf('day');
-    const latestOfWholeSet = moment.max(dates).endOf('day');
-    // convert the high and low ends of date range from query to properly formatted moment objects
-    const earliestCutoffDate = moment.utc(earliestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').startOf('day');
-    const latestCutoffDate = moment.utc(latestDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').endOf('day');
-    console.log(earliestCutoffDate, 'earliest cutoff date sent from front end');
-    console.log(latestCutoffDate, 'latest cutoff date sent from front end');
-    console.log(earliestOfWholeSet, 'earliest of whole set');
-    console.log(latestOfWholeSet, 'latest of whole set');
 
     // 2) Do your filtrations 
     // a) Price Filtration 
     if (minPrice > minMax[0] || maxPrice < minMax[1]) {
       combinedData = combinedData.filter(e => e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice);
-      if (combinedData.length === 0) {
-        res.send({data: []});
-        return;
-      }
-    }
-    // b) Date filtration 
-    // if we detect that the date filter has changed, do the work
-    if (earliestCutoffDate.isAfter(earliestOfWholeSet) || latestCutoffDate.isBefore(latestOfWholeSet)) {
-      console.log(1010101, 'date filtration code reached');
-      combinedData = combinedData.filter(e => {
-        if (e.unformattedDate) {
-          console.log(e.unformattedDate, 'unformattedDate in the filter');
-          console.log(1010101010111010101010, moment.utc(e.unformattedDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'date to be compared',1010100101101010101010);
-          console.log('criteria to return this date in the filtered data is met?', moment.utc(e.unformattedDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));
-          return moment.utc(e.unformattedDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]');
-        } else {
-          console.log('a null date is encountered', e.unformattedDate);
-          return true;
-        }
-      });
       if (combinedData.length === 0) {
         res.send({data: []});
         return;
@@ -395,10 +343,27 @@ export const getCachedEvents = (req, res) => {
         Math.ceil(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
-
-    const filteredDates = combinedData.map(e => moment.utc(e.unformattedDate));
-    const filteredEarliestDate = moment.min(filteredDates).startOf('day');
-    const filteredLatestDate = moment.max(filteredDates).endOf('day');
+    // b) Date filtration 
+    // find the earliest and latest dates in the entire data set
+    const dates = combinedData.map(e => moment.utc(e.datetime_utc));
+    // these dates are in utc 
+    const earliestOfWholeSet = moment.min(dates);
+    const latestOfWholeSet = moment.max(dates);
+    // convert the high and low ends of date range from query to UTC, so they can be properly operated on in the functions
+    const earliestCutoffDate = moment.utc(earliestDate);
+    const latestCutoffDate = moment.utc(latestDate);
+    // if we detect that the date filter has changed, do the work
+    if (earliestCutoffDate.isAfter(earliestOfWholeSet) || latestCutoffDate.isBefore(latestOfWholeSet)) {
+      combinedData = combinedData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));
+      if (combinedData.length === 0) {
+        res.send({data: []});
+        return;
+      }
+    }
+    // now that the data set is filtered, get the earliest and latest local dates, to be sent to the front end
+    const filteredDates = combinedData.map(e => moment(e.datetime_local));
+    const filteredEarliestDate = moment.min(filteredDates);
+    const filteredLatestDate = moment.max(filteredDates);
 
     const hasCancelledEvents = combinedData.reduce((result, event) => 
       event.status === 'cancelled' ? true : result

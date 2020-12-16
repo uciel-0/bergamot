@@ -352,6 +352,8 @@ export const getCachedEvents = (req, res) => {
     // convert the high and low ends of date range from query to UTC, so they can be properly operated on in the functions
     const earliestCutoffDate = moment.utc(earliestDate);
     const latestCutoffDate = moment.utc(latestDate);
+    console.log(earliestDate, latestDate, 'earliest and latest date as sent from front end');
+    console.log(earliestCutoffDate, latestCutoffDate, 'earliest and latest cutoff date in UTC');
     // if we detect that the date filter has changed, do the work
     if (earliestCutoffDate.isAfter(earliestOfWholeSet) || latestCutoffDate.isBefore(latestOfWholeSet)) {
       combinedData = combinedData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));

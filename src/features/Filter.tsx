@@ -158,12 +158,14 @@ export const Filter = () => {
 
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState([moment(newStartDate).format(), dateRangeState[1]])
+    console.log(moment(newStartDate).startOf('day').format(), 'start date being sent to back end');
+    setDateRangeState([moment(newStartDate).startOf('day').format(), dateRangeState[1]])
   }
 
   const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState([dateRangeState[0], moment(newEndDate).format()])
+    console.log(moment(newEndDate).endOf('day').format(), 'end date being sent to back end');
+    setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()])
   }
 
   return (

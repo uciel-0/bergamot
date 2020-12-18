@@ -227,6 +227,8 @@ export const getCachedEvents = (req, res) => {
   const maxPrice = req.query.maxPrice;
   const earliestDate = req.query.earliestDate;
   const latestDate = req.query.latestDate;
+  const isSliderCall = Boolean(req.query.isSliderCall === "true");
+  console.log(earliestDate, latestDate, 'earliest and latest date')
   // call the cache for this data 
   cache.get(key).then(data => {
     // let ticketmasterResults
@@ -237,11 +239,10 @@ export const getCachedEvents = (req, res) => {
         e.source = 'ticketmaster';
         e.sourceUrl = 'https://ticketmaster.com';
         e.status = e.dates.status.code;
-        e.date = formatDate(e.dates.start.dateTime) || formatLocalDate(e.dates.start.localDate);
-        // combine the local date and time fields to create a local dateTime string - if no localtime, use start of day (00:00:00)
         e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
         // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
         e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
+        e.date = formatLocalDate(e.datetime_local);
         e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
         e.venueName = e._embedded.venues[0].name;
         e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
@@ -316,7 +317,7 @@ export const getCachedEvents = (req, res) => {
       combinedData = combinedData.filter(e => e.priceAfterFees);
     }
     // !) Get the highs and lows, earliest and latest for WHOLE data set 
-    const minMax = combinedData.reduce((accumulator, currentValue) => {
+    const minMaxPriceOfWholeSet = combinedData.reduce((accumulator, currentValue) => {
       const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
       const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
       return [
@@ -324,17 +325,24 @@ export const getCachedEvents = (req, res) => {
         Math.ceil(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
-
+    console.log(minMaxPriceOfWholeSet, 'minMax');
+    // earliest and latest dates in the entire data set
+    const dates = combinedData.map(e => moment.utc(e.datetime_utc));
+    // these dates are in utc
+    const earliestOfWholeSet = moment.min(dates);
+    const latestOfWholeSet = moment.max(dates);
     // 2) Do your filtrations 
     // a) Price Filtration 
-    if (minPrice > minMax[0] || maxPrice < minMax[1]) {
+    // if the call is from the calendar, filter against the highest and lowest
+    console.log(minPrice, maxPrice, 'min and max sent by front end');
+    if (minPrice > minMaxPriceOfWholeSet[0] || maxPrice < minMaxPriceOfWholeSet[1]) {
       combinedData = combinedData.filter(e => e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice);
       if (combinedData.length === 0) {
         res.send({data: []});
         return;
       }
     }
-
+    
     const filteredPriceRange = combinedData.reduce((accumulator, currentValue) => {
       const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
       const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
@@ -343,17 +351,11 @@ export const getCachedEvents = (req, res) => {
         Math.ceil(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
+
     // b) Date filtration 
-    // find the earliest and latest dates in the entire data set
-    const dates = combinedData.map(e => moment.utc(e.datetime_utc));
-    // these dates are in utc 
-    const earliestOfWholeSet = moment.min(dates);
-    const latestOfWholeSet = moment.max(dates);
-    // convert the high and low ends of date range from query to UTC, so they can be properly operated on in the functions
-    const earliestCutoffDate = moment.utc(earliestDate);
-    const latestCutoffDate = moment.utc(latestDate);
-    console.log(earliestDate, latestDate, 'earliest and latest date as sent from front end');
-    console.log(earliestCutoffDate, latestCutoffDate, 'earliest and latest cutoff date in UTC');
+    // convert the high and low ends of date range from query to UTC, so they can be properly operated on in the block below
+    const earliestCutoffDate = isSliderCall ? earliestOfWholeSet : moment.utc(earliestDate);
+    const latestCutoffDate = isSliderCall ? latestOfWholeSet : moment.utc(latestDate);
     // if we detect that the date filter has changed, do the work
     if (earliestCutoffDate.isAfter(earliestOfWholeSet) || latestCutoffDate.isBefore(latestOfWholeSet)) {
       combinedData = combinedData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));
@@ -366,6 +368,7 @@ export const getCachedEvents = (req, res) => {
     const filteredDates = combinedData.map(e => moment(e.datetime_local));
     const filteredEarliestDate = moment.min(filteredDates);
     const filteredLatestDate = moment.max(filteredDates);
+    console.log(filteredEarliestDate, filteredLatestDate, 'ideally, this is changing as the dates change');
 
     const hasCancelledEvents = combinedData.reduce((result, event) => 
       event.status === 'cancelled' ? true : result
@@ -411,23 +414,14 @@ export const getCachedEvents = (req, res) => {
         stubhub: hasStubhubData,
         seatgeek: hasSeatgeekData,
       },
-      priceRange: minMax,
+      priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
       filteredDateRange: [filteredEarliestDate, filteredLatestDate],
-      maxMinDateRange: [earliestOfWholeSet, latestOfWholeSet],
       filteredPriceRange,
       providerResultLengths,
       totalResultsLength,
       hasCancelledEvents,
       hasNoListingEvents,
-      cacheTroubleShoot: {
-        calendarRangeStart: earliestDate,
-        calendarRangeEnd: latestDate,
-        earliestOfWholeSet,
-        latestOfWholeSet,
-        filteredEarliestDate,
-        filteredLatestDate
-      }
     }
     res.send(response);
   }) 

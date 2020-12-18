@@ -56,7 +56,7 @@ export const Filter = () => {
     } else if (!globalShowTicketmasterState && !globalShowStubhubState && !globalShowSeatgeekState) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
-      callCacheForFiltering();
+      callCacheForFiltering(false, false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalShowTicketmasterState, globalShowStubhubState, globalShowSeatgeekState, globalShowCancelledState, globalShowNoListingsState]);
@@ -78,12 +78,12 @@ export const Filter = () => {
 
   React.useEffect(() => {
     if (globalUserDateRangeSelectedState) {
-      callCacheForFiltering();
+      callCacheForFiltering(false, true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalUserDateRangeSelectedState, dateRangeState]);
 
-  const callCacheForFiltering = () => {
+  const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     axios.get('http://localhost:8080/api/cache/events', {
@@ -98,6 +98,8 @@ export const Filter = () => {
         maxPrice: maxMinPriceRange[1],
         earliestDate: dateRangeState[0],
         latestDate: dateRangeState[1],
+        isSliderCall,
+        isCalendarCall,
       }
     }).then(res => {
       if (res.data.data.length === 0) {
@@ -105,7 +107,6 @@ export const Filter = () => {
         spinnerDispatch(setSpinnerState(false));
       } else {
         console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
-        console.log('troubleshooting helper', res.data.cacheTroubleShoot);
         console.log('total length of events:', res.data.totalResultsLength);
         console.log('ticketmaster events:', res.data.providerResultLengths[0]);
         console.log('stubhub events:', res.data.providerResultLengths[1]);
@@ -114,10 +115,10 @@ export const Filter = () => {
         searchResultsDispatch(setSearchResults(res.data.data));
         // update the filter results as the cache results come back 
         searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
-        setMaxMinPriceRange(res.data.filteredPriceRange);
-        // setDateRangeState(res.data.filteredDateRange);
-        // setMaxMinDateRange(res.data.maxMinDateRange)
         spinnerDispatch(setSpinnerState(false));
+        if (!isCalendarCall) {
+          setDateRangeState(res.data.filteredDateRange);
+        }
       }
     }).catch(err => {
       console.log('filter function api call error', err);
@@ -144,6 +145,7 @@ export const Filter = () => {
   }  
 
   const handleSliderChange = (event: any, values: number[]) => {
+    searchResultsDispatch(setUserDateRangeSelectedAction(false));
     // if the lowest value equals the highest value
     if (values[0] === globalPriceRangeState[1]) {
       // force the low value to be one lower than the highest value
@@ -158,13 +160,11 @@ export const Filter = () => {
 
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    console.log(moment(newStartDate).startOf('day').format(), 'start date being sent to back end');
     setDateRangeState([moment(newStartDate).startOf('day').format(), dateRangeState[1]])
   }
 
   const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    console.log(moment(newEndDate).endOf('day').format(), 'end date being sent to back end');
     setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()])
   }
 
@@ -261,7 +261,7 @@ export const Filter = () => {
             min={globalPriceRangeState[0]}
             max={globalPriceRangeState[1]}
             onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
-            onChangeCommitted={() => callCacheForFiltering()}
+            onChangeCommitted={() => callCacheForFiltering(true, false)}
             valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"
           />

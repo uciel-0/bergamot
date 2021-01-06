@@ -11,45 +11,57 @@ export const wideSearchResults = (req, res) => {
   const seatgeek = getSeatGeekSearchResults(req, res);
   return Promise.all([ticketmaster, stubhub, seatgeek])
   .then((data) => {
-    data[0].events.map(e => {
-      e.source = 'ticketmaster';
-      e.sourceUrl = 'https://ticketmaster.com';
-      e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
-      e.time = e.dates.start.localTime;
-      e.venueName = e._embedded.venues[0].name;
-      e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
-      if (e.priceRanges) {
-        e.priceBeforeFees = e.priceRanges[0].min;
-        e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
-      } else {
-        e.priceBeforeFees = null;
-        e.priceAfterFees = null;
-      }
-    });
-    data[1].events.map(e => {
-      e.source = 'stubhub';
-      e.sourceUrl = 'https://stubhub.com';
-      e.date = formatDate(e.eventDateLocal);
-      e.venueName = e.venue.name;
-      e.venueCity = e.venue.city + ', ' + e.venue.state;
-      e.priceBeforeFees = e.ticketInfo.minListPrice;
-      e.priceAfterFees = e.ticketInfo.minPrice
-    });
-    data[2].events.map(e => {
-      e.source = 'seatgeek';
-      e.sourceUrl = 'https://seatgeek.com';
-      e.date = formatDate(e.datetime_utc);
-      e.time = formatTime(e.datetime_local);
-      e.venueName = e.venue.name;
-      e.venueCity = e.venue.display_location;
-      e.name = e.title;
-      e.priceBeforeFees = e.stats.lowest_sg_base_price;
-      e.priceAfterFees = e.stats.lowest_price;
-    });
+    let ticketmasterEvents = [];
+    if (data[0].events) {
+      data[0].events.forEach(e => {
+        e.source = 'ticketmaster';
+        e.sourceUrl = 'https://ticketmaster.com';
+        e.date = formatDate(e.dates.start.dateTime) || formatDate(e.dates.start.localDate);
+        e.time = e.dates.start.localTime;
+        e.venueName = e._embedded.venues[0].name;
+        e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
+        if (e.priceRanges) {
+          e.priceBeforeFees = e.priceRanges[0].min;
+          e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
+        } else {
+          e.priceBeforeFees = null;
+          e.priceAfterFees = null;
+        }
+      });
+      ticketmasterEvents = data[0].events;
+    }
+    let stubhubEvents = [];
+    if (data[1].events) {
+      data[1].events.forEach(e => {
+        e.source = 'stubhub';
+        e.sourceUrl = 'https://stubhub.com';
+        e.date = formatDate(e.eventDateLocal);
+        e.venueName = e.venue.name;
+        e.venueCity = e.venue.city + ', ' + e.venue.state;
+        e.priceBeforeFees = e.ticketInfo.minListPrice;
+        e.priceAfterFees = e.ticketInfo.minPrice
+      });
+      stubhubEvents = data[1].events;
+    }
+    let seatgeekEvents = [];
+    if (data[2].events) {
+      data[2].events.map(e => {
+        e.source = 'seatgeek';
+        e.sourceUrl = 'https://seatgeek.com';
+        e.date = formatDate(e.datetime_utc);
+        e.time = formatTime(e.datetime_local);
+        e.venueName = e.venue.name;
+        e.venueCity = e.venue.display_location;
+        e.name = e.title;
+        e.priceBeforeFees = e.stats.lowest_sg_base_price;
+        e.priceAfterFees = e.stats.lowest_price;
+      });
+      seatgeekEvents = data[2].events;
+    }
     const combinedData = {
-      ticketmaster: data[0].events,
-      stubhub: data[1].events,
-      seatgeek: data[2].events
+      ticketmasterEvents,
+      stubhubEvents,
+      seatgeekEvents
     }
     res.send(combinedData);
   })
@@ -73,66 +85,75 @@ export const getEvents = (req, res) => {
   .then(data => {
     // Step 1) Set some custom fields for easy front end access
     // ticketmaster events
-    console.log('ticketmaster events');
-    data[0].events.forEach(e => {
-      e.source = 'ticketmaster';
-      e.sourceUrl = 'https://ticketmaster.com';
-      e.status = e.dates.status.code;
-      // combine the local date and time fields to create a local dateTime string - if no localtime, use start of day (00:00:00)
-      e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
-      // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
-      e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
-      e.date = formatLocalDate(e.datetime_local);
-      e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
-      e.venueName = e._embedded.venues[0].name;
-      e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
-      e.isPriceEstimated = false;
-      if (e.priceRanges) {
-        e.priceBeforeFees = e.priceRanges[0].min;
-        e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
-        e.isPriceEstimated = true;
-      } else {
-        e.priceBeforeFees = null;
-        e.priceAfterFees = null;
-      }
-    });
+    let ticketmasterEvents = [];
+    if (data[0].events) {
+      data[0].events.forEach(e => {
+        e.source = 'ticketmaster';
+        e.sourceUrl = 'https://ticketmaster.com';
+        e.status = e.dates.status.code;
+        // combine the local date and time fields to create a local dateTime string - if no localtime, use start of day (00:00:00)
+        e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
+        // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
+        e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
+        e.date = formatLocalDate(e.datetime_local);
+        e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
+        e.venueName = e._embedded.venues[0].name;
+        e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
+        e.isPriceEstimated = false;
+        if (e.priceRanges) {
+          e.priceBeforeFees = e.priceRanges[0].min;
+          e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
+          e.isPriceEstimated = true;
+        } else {
+          e.priceBeforeFees = null;
+          e.priceAfterFees = null;
+        }
+      });
+      ticketmasterEvents = data[0].events;
+    }
     // stubhub events
-    console.log('stubhub events');
-    data[1].events.forEach(e => {
-      e.source = 'stubhub';
-      e.sourceUrl = 'https://stubhub.com';
-      e.status = null;
-      e.datetime_local = e.eventDateLocal;
-      e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
-      e.date = formatLocalDate(e.eventDateLocal);
-      e.time = formatTime(e.eventDateUTC);
-      e.venueName = e.venue.name;
-      e.venueCity = e.venue.city + ', ' + e.venue.state;
-      e.priceBeforeFees = e.ticketInfo.minListPrice;
-      e.priceAfterFees = e.ticketInfo.minPrice;
-      e.isPriceEstimated = false;
-      e.url = "https://www.stubhub.com/" + e.webURI;
-    });
+    let stubhubEvents = [];
+    if (data[1].events) {
+      data[1].events.forEach(e => {
+        e.source = 'stubhub';
+        e.sourceUrl = 'https://stubhub.com';
+        e.status = null;
+        e.datetime_local = e.eventDateLocal;
+        e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
+        e.date = formatLocalDate(e.eventDateLocal);
+        e.time = formatTime(e.eventDateUTC);
+        e.venueName = e.venue.name;
+        e.venueCity = e.venue.city + ', ' + e.venue.state;
+        e.priceBeforeFees = e.ticketInfo.minListPrice;
+        e.priceAfterFees = e.ticketInfo.minPrice;
+        e.isPriceEstimated = false;
+        e.url = "https://www.stubhub.com/" + e.webURI;
+      });
+      stubhubEvents = data[1].events;
+    }
     // seatgeek events
-    console.log('seatgeek events');
-    data[2].events.forEach(e => {
-      e.source = 'seatgeek';
-      e.sourceUrl = 'https://seatgeek.com';
-      e.status = null;
-      e.datetime_utc = normalizeUTCDate(e.datetime_utc);
-      e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
-      e.date = e.date_tbd ? null : formatLocalDate(e.datetime_local);
-      e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
-      e.venueName = e.venue.name;
-      e.venueCity = e.venue.display_location;
-      e.name = e.title;
-      e.priceBeforeFees = e.stats.lowest_sg_base_price;
-      e.priceAfterFees = e.stats.lowest_price;
-      e.isPriceEstimated = false;
-    });
+    let seatgeekEvents = [];
+    if (data[2].events) {
+      data[2].events.forEach(e => {
+        e.source = 'seatgeek';
+        e.sourceUrl = 'https://seatgeek.com';
+        e.status = null;
+        e.datetime_utc = normalizeUTCDate(e.datetime_utc);
+        e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
+        e.date = e.date_tbd ? null : formatLocalDate(e.datetime_local);
+        e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
+        e.venueName = e.venue.name;
+        e.venueCity = e.venue.display_location;
+        e.name = e.title;
+        e.priceBeforeFees = e.stats.lowest_sg_base_price;
+        e.priceAfterFees = e.stats.lowest_price;
+        e.isPriceEstimated = false;
+      });
+      seatgeekEvents = data[2].events;
+    }
     // determine whether or not to send this data set based on the filters and if this is a filter call
     // Step 2) Combinine the data into one set
-    const combinedData = [...data[0].events, ...data[1].events, ...data[2].events];
+    const combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
     // Step 2a) Check to see if there any cancelled events in here
     const hasCancelledEvents = combinedData.reduce((result, event) => 
       event.status === 'cancelled' ? true : result
@@ -149,13 +170,14 @@ export const getEvents = (req, res) => {
         Math.floor(minPrice),
         Math.ceil(maxPrice)
       ]
-    }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
+    }
+    , [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
     // Step ) Get the latest and earliest dates of the data set 
     const dates = combinedData.map(e => moment(e.datetime_local));
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
-    console.log(earliestOfWholeSet, 'earliest from initial search');
-    console.log(latestOfWholeSet, 'latest from initial search');
+    // console.log(earliestOfWholeSet, 'earliest from initial search');
+    // console.log(latestOfWholeSet, 'latest from initial search');
     // Step 4) Sort the data chronologically
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     // Step 5a) Group the chronologically sorted data by date
@@ -167,9 +189,9 @@ export const getEvents = (req, res) => {
       groupedData.push(datesTBD);
     };
     // Step 6) Determine which distributor returned data in this query
-    const hasTicketmasterData = data[0].events.length > 0;
-    const hasStubhubData = data[1].events.length > 0;
-    const hasSeatgeekData = data[2].events.length > 0;
+    const hasTicketmasterData = ticketmasterEvents.length > 0;
+    const hasStubhubData = stubhubEvents.length > 0;
+    const hasSeatgeekData = seatgeekEvents.length > 0;
 
     const providerResultLengths = [0,0,0];
     groupedData.forEach((data) => {
@@ -233,7 +255,6 @@ export const getCachedEvents = (req, res) => {
   cache.get(key).then(data => {
     // let ticketmasterResults
     let ticketmasterEvents = [];
-    // processTicketMasterData()
     if (showTicketmaster === "true") {
       data[0].events.forEach(e => {
         e.source = 'ticketmaster';

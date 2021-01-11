@@ -116,8 +116,11 @@ export const Filter = () => {
         // update the filter results as the cache results come back 
         searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
         spinnerDispatch(setSpinnerState(false));
-        if (!isCalendarCall) {
+        if (isSliderCall) {
           setDateRangeState(res.data.filteredDateRange);
+        }
+        if (isCalendarCall) {
+          setMaxMinPriceRange(res.data.filteredPriceRange);
         }
       }
     }).catch(err => {

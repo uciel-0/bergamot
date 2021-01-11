@@ -62,7 +62,7 @@ export const SearchBar = () => {
       history.push('/search');
       spinnerDispatch(setSpinnerState(false));
       searchResultsDispatch(setNoResultsState(true));
-      console.log('master search api rejection', err)
+      console.log('master search api rejection', err);
     });
     // for testing puposes
     axios.get('http://localhost:8080/api/search/wide', {

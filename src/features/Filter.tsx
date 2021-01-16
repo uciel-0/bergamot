@@ -42,6 +42,8 @@ export const Filter = () => {
   const globalShowNoListingsState: boolean = searchResultsState.searchFilters.showNoListings;
   const globalPriceRangeState: number[] = searchResultsState.searchFilters.priceRange;
   const globalDateRangeState: Moment[] = searchResultsState.searchFilters.dateRange;
+  const globalFilteredPriceRangeState: number[] = searchResultsState.searchFilters.filteredPriceRange;
+  const globalFilteredDateRangeState: Moment[] = searchResultsState.searchFilters.filteredDateRange;
   const globalUserDateRangeSelectedState: boolean = searchResultsState.userDateRangeSelected;
   const isStable: boolean = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
@@ -56,7 +58,8 @@ export const Filter = () => {
     } else if (!globalShowTicketmasterState && !globalShowStubhubState && !globalShowSeatgeekState) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
-      callCacheForFiltering(false, false);
+      console.log('this is firing')
+      callCacheForFiltering(false, false, true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalShowTicketmasterState, globalShowStubhubState, globalShowSeatgeekState, globalShowCancelledState, globalShowNoListingsState]);
@@ -78,14 +81,15 @@ export const Filter = () => {
 
   React.useEffect(() => {
     if (globalUserDateRangeSelectedState) {
-      callCacheForFiltering(false, true);
+      callCacheForFiltering(false, true, false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalUserDateRangeSelectedState, dateRangeState]);
 
-  const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean) => {
+  const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isCheckboxCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
+    console.log('cache call firing');
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -100,6 +104,7 @@ export const Filter = () => {
         latestDate: dateRangeState[1],
         isSliderCall,
         isCalendarCall,
+        isCheckboxCall,
       }
     }).then(res => {
       if (res.data.data.length === 0) {
@@ -114,14 +119,8 @@ export const Filter = () => {
         searchResultsDispatch(setNoResultsState(false));
         searchResultsDispatch(setSearchResults(res.data.data));
         // update the filter results as the cache results come back 
-        searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
         spinnerDispatch(setSpinnerState(false));
-        if (isSliderCall) {
-          setDateRangeState(res.data.filteredDateRange);
-        }
-        if (isCalendarCall) {
-          setMaxMinPriceRange(res.data.filteredPriceRange);
-        }
+        searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, res.data.priceRange,res.data.dateRange, res.data.filteredPriceRange, res.data.filteredDateRange));
       }
     }).catch(err => {
       console.log('filter function api call error', err);
@@ -260,11 +259,11 @@ export const Filter = () => {
           <Slider 
             aria-labelledby="range-slider"
             valueLabelDisplay="on"
-            value={maxMinPriceRange}
+            value={globalFilteredPriceRangeState}
             min={globalPriceRangeState[0]}
             max={globalPriceRangeState[1]}
             onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
-            onChangeCommitted={() => callCacheForFiltering(true, false)}
+            onChangeCommitted={() => callCacheForFiltering(true, false, false)}
             valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"
           />
@@ -277,7 +276,7 @@ export const Filter = () => {
               <DatePicker
                 minDate={globalDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
-                value={dateRangeState[0]}
+                value={globalFilteredDateRangeState[0]}
                 onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
                 variant="inline"
                 format="MMM, d, yyyy"
@@ -288,7 +287,7 @@ export const Filter = () => {
               <DatePicker
                 minDate={globalDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
-                value={dateRangeState[1]}
+                value={globalFilteredDateRangeState[1]}
                 onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
                 variant="inline"
                 format="MMM, d, yyyy"

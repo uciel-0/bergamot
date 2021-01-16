@@ -24,7 +24,6 @@ export const groupByDay = (data) => {
       events: groupedData[date]
     })
   }
-  console.log('finalArray', finalArray)
   if (finalArray[0] && finalArray.hasOwnProperty('date')) {
     const datesTBD = finalArray.shift();
     finalArray.push(datesTBD);

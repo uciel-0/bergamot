@@ -83,15 +83,25 @@ interface SetBulkFilter {
   seatgeek: boolean;
   cancelled: boolean;
   noListings: boolean;
+  priceRange: number[];
+  dateRange: Moment[];
+  filteredPriceRange: number[];
+  filteredDateRange: Moment[];
 }
 
-export const setBulkFilterAction = (ticketmaster: boolean, stubhub: boolean, seatgeek: boolean, cancelled: boolean, noListings: boolean): SetBulkFilter => ({
+export const setBulkFilterAction = (
+  ticketmaster: boolean, stubhub: boolean, seatgeek: boolean, cancelled: boolean, noListings: boolean, priceRange: number[], dateRange: Moment[], filteredPriceRange: number[], filteredDateRange: Moment[],
+  ): SetBulkFilter => ({
   type: SearchResultActionTypes.SET_BULK_FILTER,
   ticketmaster,
   stubhub,
   seatgeek,
   cancelled,
   noListings,
+  priceRange,
+  dateRange,
+  filteredPriceRange,
+  filteredDateRange,
 });
 
 interface SetIsStable {

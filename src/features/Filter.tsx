@@ -31,9 +31,11 @@ export const Filter = () => {
   const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
   const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
+  // maxMinPriceRange should never change - it should be the max/min for the whole set 
+  // maxMinPriceRange needs to be a state so it can be updated when a call is returned from the backend
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
   const [dateRangeState, setDateRangeState] = React.useState<(Moment | string)[]>([]);
-  // const [maxMinDateRange, setMaxMinDateRange] = React.useState<(Moment | string)[]>([]);
+  const [priceRangeState, setPriceRangeState] = React.useState<number[]>([]);
 
   const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
   const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
@@ -58,7 +60,7 @@ export const Filter = () => {
     } else if (!globalShowTicketmasterState && !globalShowStubhubState && !globalShowSeatgeekState) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
-      console.log('this is firing')
+      console.log('cache call firing');
       callCacheForFiltering(false, false, true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,6 +76,11 @@ export const Filter = () => {
   React.useEffect(() => {
     setMaxMinPriceRange(globalPriceRangeState);
   }, [globalPriceRangeState]);
+
+  React.useEffect(() => {
+    console.log('globalFilteredPricrRangeState is setting', globalFilteredPriceRangeState)
+    setPriceRangeState(globalFilteredPriceRangeState);
+  }, [globalFilteredPriceRangeState]);
 
   React.useEffect(() => {
     setDateRangeState(globalDateRangeState);
@@ -98,8 +105,8 @@ export const Filter = () => {
         showSeatgeek: globalShowSeatgeekState,
         showCancelled: globalShowCancelledState,
         showNoListings: globalShowNoListingsState,
-        minPrice: maxMinPriceRange[0],
-        maxPrice: maxMinPriceRange[1],
+        minPrice: priceRangeState[0],
+        maxPrice: priceRangeState[1],
         earliestDate: dateRangeState[0],
         latestDate: dateRangeState[1],
         isSliderCall,
@@ -144,25 +151,25 @@ export const Filter = () => {
     } else if (name === "showNoListings") {
       searchResultsDispatch(setShowNoListingsAction(newCheckState));
     }
-  }  
+  }
 
   const handleSliderChange = (event: any, values: number[]) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     // if the lowest value equals the highest value
     if (values[0] === globalPriceRangeState[1]) {
       // force the low value to be one lower than the highest value
-      setMaxMinPriceRange([globalPriceRangeState[1]-1, globalPriceRangeState[1]]);
+      setPriceRangeState([globalPriceRangeState[1]-1, globalPriceRangeState[1]]);
     } // if the highest value is equal to the lowest value
     else if (values[1] === globalPriceRangeState[0]) {
       // set the high value to be one higher than the lowest value
-      setMaxMinPriceRange([globalPriceRangeState[0], globalPriceRangeState[0] + 1])
+      setPriceRangeState([globalPriceRangeState[0], globalPriceRangeState[0] + 1])
     } // otherwise set the values as usual
-    else setMaxMinPriceRange(values)
+    else setPriceRangeState(values)
   }
 
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState([moment(newStartDate).startOf('day').format(), dateRangeState[1]])
+    setDateRangeState([moment(newStartDate).startOf('day').format(), dateRangeState[1]]);
   }
 
   const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
@@ -259,7 +266,7 @@ export const Filter = () => {
           <Slider 
             aria-labelledby="range-slider"
             valueLabelDisplay="on"
-            value={globalFilteredPriceRangeState}
+            value={priceRangeState}
             min={globalPriceRangeState[0]}
             max={globalPriceRangeState[1]}
             onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}

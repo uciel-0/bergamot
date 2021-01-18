@@ -9,7 +9,6 @@ import {
   setPriceRangeAction,
   setNoResultsState, 
   setLastQuery, 
-  setDateRangeAction, 
   setUserDateRangeSelectedAction 
 } from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';

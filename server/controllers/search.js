@@ -328,16 +328,9 @@ export const getCachedEvents = (req, res) => {
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
 
-    if (!showTicketmaster) {
-      ticketmasterEvents = [];
-    }
-
-    if (!showStubhub) {
-      stubhubEvents = [];
-    }
-    if (!showSeatgeek) {
-      seatgeekEvents = [];
-    }
+    if (!showTicketmaster) { ticketmasterEvents = [] }
+    if (!showStubhub) { stubhubEvents = [] }
+    if (!showSeatgeek) { seatgeekEvents = [] }
 
     combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
 
@@ -453,21 +446,6 @@ export const getCachedEvents = (req, res) => {
       hasCancelledEvents,
       hasNoListingEvents,
     }
-    console.log('response', {
-      source: {
-        ticketmaster: hasTicketmasterData,
-        stubhub: hasStubhubData,
-        seatgeek: hasSeatgeekData,
-      },
-      priceRange: minMaxPriceOfWholeSet,
-      dateRange: [earliestOfWholeSet, latestOfWholeSet],
-      filteredDateRange: [filteredEarliestDate, filteredLatestDate],
-      filteredPriceRange,
-      providerResultLengths,
-      totalResultsLength,
-      hasCancelledEvents,
-      hasNoListingEvents,
-    });
     res.send(response);
   }) 
   .catch(err => {

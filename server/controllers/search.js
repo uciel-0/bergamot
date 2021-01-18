@@ -235,7 +235,7 @@ export const flushCache = (req, res) => {
 }
 // NEXT THING TO DO 
 export const getCachedEvents = (req, res) => {
-  console.log('cache call starting')
+  console.log('cache call starting');
   const key = `getEvents_${req.query.keyword}`;
   const showTicketmaster = Boolean(req.query.showTicketmaster === "true");
   const showStubhub = Boolean(req.query.showStubhub === "true");
@@ -244,7 +244,8 @@ export const getCachedEvents = (req, res) => {
   const showNoListings = Boolean(req.query.showNoListings === "true");
   const isSliderCall = Boolean(req.query.isSliderCall === "true");
   const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
-  // const isCheckboxCall = Boolean(req.query.isCheckboxCall === 'true');
+  const frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)]
+  const isCheckboxCall = Boolean(req.query.isCheckboxCall === 'true');
   // call the cache for this data 
   cache.get(key).then(data => {
     // let ticketmasterResults
@@ -338,11 +339,12 @@ export const getCachedEvents = (req, res) => {
       combinedData = combinedData.filter(e => e.status !== 'cancelled');
     }
     if (!showNoListings) {
+      console.log('reaching show no listings filter');
       combinedData = combinedData.filter(e => e.priceAfterFees);
     }
     // FILTRATION INITIATION
     let filteredData = JSON.parse(JSON.stringify(combinedData));
-    let filteredPriceRange;
+    // let filteredPriceRange;
     let filteredEarliestDate;
     let filteredLatestDate;
     // 2) Do your filtrations 
@@ -350,8 +352,26 @@ export const getCachedEvents = (req, res) => {
     let maxPrice = req.query.maxPrice;
     let earliestDate = moment.utc(req.query.earliestDate);
     let latestDate = moment.utc(req.query.latestDate);
+    // if the call comes from the checkboxes, search against both the filters
+    if (isCheckboxCall) {
+      if (minPrice >= minMaxPriceOfWholeSet[0] || maxPrice <= minMaxPriceOfWholeSet[1]) {
+        filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
+        if (filteredData.length === 0) {
+          res.send({data: []});
+          return;
+        }
+      }
+
+      if (earliestDate.isAfter(earliestOfWholeSet) || latestDate.isBefore(latestOfWholeSet)) {
+        filteredData = filteredData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestDate, latestDate, undefined, '[]'));
+        if (filteredData.length === 0) {
+          res.send({data: []});
+          return;
+        }
+      }
+    }
     // if the call comes from the calendar, filter the set down to events only within those dates
-    if (isCalendarCall) {
+     else if (isCalendarCall) {
       minPrice = minMaxPriceOfWholeSet[0];
       maxPrice = minMaxPriceOfWholeSet[1];
       // filter the set down via the provided dates 
@@ -364,11 +384,7 @@ export const getCachedEvents = (req, res) => {
       }
     }
     // if the call comes from the slider, filter the entire set based on the price 
-    // TODO: somewhere in here, something is causing the events without listings to be filtered out of the set
-    // doing so i sresulting in a rerender when it comes back to the front end - investigate
-    // TODO: changing the slider seems to work - test further 
-    // TODO: Changing the dates breaks things - troubleshoot
-    if (isSliderCall) {
+    else if (isSliderCall) {
       earliestDate = earliestOfWholeSet;
       latestDate = latestOfWholeSet;
       // filter the set down via the provided price range
@@ -380,15 +396,16 @@ export const getCachedEvents = (req, res) => {
         }
       }
     }
+
     // get the highest and lowest price from the filtered set
-    filteredPriceRange = filteredData.reduce((accumulator, currentValue) => {
-      const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
-      const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
-      return [
-        Math.floor(minPrice),
-        Math.ceil(maxPrice)
-      ]
-    }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
+    // filteredPriceRange = filteredData.reduce((accumulator, currentValue) => {
+    //   const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
+    //   const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
+    //   return [
+    //     Math.floor(minPrice),
+    //     Math.ceil(maxPrice)
+    //   ]
+    // }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
     // now that the data set is filtered, get the earliest and latest local dates, to be sent to the front end
     const filteredDates = filteredData.map(e => moment(e.datetime_local));
     filteredEarliestDate = moment.min(filteredDates);
@@ -440,12 +457,27 @@ export const getCachedEvents = (req, res) => {
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
       filteredDateRange: [filteredEarliestDate, filteredLatestDate],
-      filteredPriceRange,
+      filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       totalResultsLength,
       hasCancelledEvents,
       hasNoListingEvents,
     }
+    console.log('response object', {
+      source: {
+        ticketmaster: hasTicketmasterData,
+        stubhub: hasStubhubData,
+        seatgeek: hasSeatgeekData,
+      },
+      priceRange: minMaxPriceOfWholeSet,
+      dateRange: [earliestOfWholeSet, latestOfWholeSet],
+      filteredDateRange: [filteredEarliestDate, filteredLatestDate],
+      filteredPriceRange: frontEndPriceFilterRange,
+      providerResultLengths,
+      totalResultsLength,
+      hasCancelledEvents,
+      hasNoListingEvents,
+    });
     res.send(response);
   }) 
   .catch(err => {

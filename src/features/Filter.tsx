@@ -60,7 +60,7 @@ export const Filter = () => {
     } else if (!globalShowTicketmasterState && !globalShowStubhubState && !globalShowSeatgeekState) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
-      console.log('cache call firing');
+      console.log('filter cache call firing');
       callCacheForFiltering(false, false, true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,7 +96,8 @@ export const Filter = () => {
   const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isCheckboxCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
-    console.log('cache call firing');
+    console.log('callCacheForFiltering firing');
+    console.log('price range sent to back end', priceRangeState);
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -127,7 +128,8 @@ export const Filter = () => {
         searchResultsDispatch(setSearchResults(res.data.data));
         // update the filter results as the cache results come back 
         spinnerDispatch(setSpinnerState(false));
-        searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, res.data.priceRange,res.data.dateRange, res.data.filteredPriceRange, res.data.filteredDateRange));
+        console.log(res.data.filteredPriceRange, 'filteredPriceRange from backend')
+        searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, res.data.priceRange, res.data.dateRange, res.data.filteredPriceRange, res.data.filteredDateRange));
       }
     }).catch(err => {
       console.log('filter function api call error', err);
@@ -267,8 +269,8 @@ export const Filter = () => {
             aria-labelledby="range-slider"
             valueLabelDisplay="on"
             value={priceRangeState}
-            min={globalPriceRangeState[0]}
-            max={globalPriceRangeState[1]}
+            min={maxMinPriceRange[0]}
+            max={maxMinPriceRange[1]}
             onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
             onChangeCommitted={() => callCacheForFiltering(true, false, false)}
             valueLabelFormat={(x) => '$' + x.toLocaleString()}

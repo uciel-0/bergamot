@@ -22,4 +22,19 @@
   .PrivateValueLabel-label-5 {
     font-size: 0.65rem;
   }
+
+  &_label {
+    &--disabled {
+      cursor: not-allowed;
+      user-select: none;
+      color: grey;
+    }
+  }
+
+  &_checkbox {
+    &--disabled {
+      pointer-events: none;
+
+    }
+  }
 }

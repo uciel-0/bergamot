@@ -250,6 +250,7 @@ export const getCachedEvents = (req, res) => {
   cache.get(key).then(data => {
     // let ticketmasterResults
     let ticketmasterEvents = [];
+    let ticketmasterInWholeSet;
     data[0].events.forEach(e => {
       e.source = 'ticketmaster';
       e.sourceUrl = 'https://ticketmaster.com';
@@ -272,8 +273,10 @@ export const getCachedEvents = (req, res) => {
       }
     });
     ticketmasterEvents = data[0].events;
+    ticketmasterInWholeSet = ticketmasterEvents.length > 0;
     // stubhub events
     let stubhubEvents = [];
+    let stubhubInWholeSet;
     data[1].events.forEach(e => {
       e.source = 'stubhub';
       e.sourceUrl = 'https://stubhub.com';
@@ -290,8 +293,10 @@ export const getCachedEvents = (req, res) => {
       e.url = "https://www.stubhub.com/" + e.webURI;
     });
     stubhubEvents = data[1].events;
+    stubhubInWholeSet = stubhubEvents.length > 0;
     // seatgeek events
     let seatgeekEvents = [];
+    let seatgeekInWholeSet;
     data[2].events.forEach(e => {
       e.source = 'seatgeek';
       e.sourceUrl = 'https://seatgeek.com';
@@ -308,6 +313,8 @@ export const getCachedEvents = (req, res) => {
       e.isPriceEstimated = false;
     });
     seatgeekEvents = data[2].events;
+    seatgeekInWholeSet = seatgeekEvents.length > 0;
+
     let combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
     if (combinedData.length === 0) {
       res.send({data: []});
@@ -396,7 +403,6 @@ export const getCachedEvents = (req, res) => {
         }
       }
     }
-
     // get the highest and lowest price from the filtered set
     // filteredPriceRange = filteredData.reduce((accumulator, currentValue) => {
     //   const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
@@ -418,6 +424,13 @@ export const getCachedEvents = (req, res) => {
     const hasNoListingEvents = filteredData.reduce((result, event) => 
       !event.priceAfterFees ? true : result
     , false);
+
+    const hasTicketmasterData = filteredData.reduce((result, e) => e.source === 'ticketmaster' ? true : result, false);
+    const hasStubhubData = filteredData.reduce((result, e) => e.source === 'stubhub' ? true : result, false);
+    const hasSeatgeekData = filteredData.reduce((result, e) => e.source === 'seatgeek' ? true : result, false);
+    console.log('hasTicketmasterData', hasTicketmasterData);
+    console.log('hasStubhubData', hasStubhubData);
+    console.log('hasSeatgeekData', hasSeatgeekData);
 
     const sortChronologically = filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);
@@ -441,18 +454,31 @@ export const getCachedEvents = (req, res) => {
     // 3) Get your highs and lows, earliests and latest on FILTERED data set
     const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0);
 
-    const hasTicketmasterData = ticketmasterEvents.length > 0;
-    const hasStubhubData = stubhubEvents.length > 0;
-    const hasSeatgeekData = seatgeekEvents.length > 0;
+    // On = Exists in whole and filterd set, Off = Does not exist in whole set, Greyed = Exists in set but not fitlered set  
+    const vendorShadingState = (existsInWholeSet, existsInFilteredSet) => {
+      let shadingState = '';
+      if (existsInWholeSet && existsInFilteredSet) {
+        shadingState = 'ON';
+      } else if (existsInWholeSet && !existsInFilteredSet) {
+        shadingState = 'GREYED';
+      } else if (!existsInWholeSet) {
+        shadingState = 'OFF'
+      }
+      return shadingState;
+    }
     // HIGH and LOW of whole set need to be sent with every cache call 
     // EARLIEST and LATEST of whole set need to be sent with every cache call 
     // these variables will go into the components in their range props 
+    // filtration state indicators 
     const response = {
       data: groupedData,
       source: {
         ticketmaster: hasTicketmasterData,
         stubhub: hasStubhubData,
         seatgeek: hasSeatgeekData,
+        ticketmasterDataState: vendorShadingState(ticketmasterInWholeSet, hasTicketmasterData),
+        stubhubDataState: vendorShadingState(stubhubInWholeSet, hasStubhubData),
+        seatgeekDataState: vendorShadingState(seatgeekInWholeSet, hasSeatgeekData),
       },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],

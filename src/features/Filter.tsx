@@ -22,6 +22,18 @@ import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import moment, { Moment } from 'moment';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+import { createObjectBindingPattern } from 'typescript';
+
+enum CheckboxShadingState {
+  OFF = 'OFF',
+  ON = 'ON', 
+  GREYED = 'GREYED'
+}
+interface CheckboxShading {
+  ticketmaster: CheckboxShadingState,
+  stubhub: CheckboxShadingState,
+  seatgeek: CheckboxShadingState,
+}
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -36,6 +48,9 @@ export const Filter = () => {
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
   const [dateRangeState, setDateRangeState] = React.useState<(Moment | string)[]>([]);
   const [priceRangeState, setPriceRangeState] = React.useState<number[]>([]);
+  const [checkboxShadingState, setCheckboxShadingState] = React.useState<CheckboxShading>({
+    ticketmaster : CheckboxShadingState.OFF, stubhub: CheckboxShadingState.OFF, seatgeek: CheckboxShadingState.OFF
+  });
 
   const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
   const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
@@ -78,7 +93,6 @@ export const Filter = () => {
   }, [globalPriceRangeState]);
 
   React.useEffect(() => {
-    console.log('globalFilteredPricrRangeState is setting', globalFilteredPriceRangeState)
     setPriceRangeState(globalFilteredPriceRangeState);
   }, [globalFilteredPriceRangeState]);
 
@@ -93,11 +107,16 @@ export const Filter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalUserDateRangeSelectedState, dateRangeState]);
 
+  React.useEffect(() => {
+    console.log(checkboxShadingState.ticketmaster === CheckboxShadingState.GREYED, checkboxShadingState.ticketmaster, 'ticketmaster');
+    console.log(checkboxShadingState.seatgeek === CheckboxShadingState.GREYED, checkboxShadingState.seatgeek, 'seatgeek');
+    console.log(checkboxShadingState.stubhub === CheckboxShadingState.GREYED, checkboxShadingState.stubhub, 'stubhub');
+  }, [checkboxShadingState]);
+
   const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isCheckboxCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     console.log('callCacheForFiltering firing');
-    console.log('price range sent to back end', priceRangeState);
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -119,7 +138,7 @@ export const Filter = () => {
         searchResultsDispatch(setNoResultsState(true));
         spinnerDispatch(setSpinnerState(false));
       } else {
-        console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
+        console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data);
         console.log('total length of events:', res.data.totalResultsLength);
         console.log('ticketmaster events:', res.data.providerResultLengths[0]);
         console.log('stubhub events:', res.data.providerResultLengths[1]);
@@ -128,8 +147,24 @@ export const Filter = () => {
         searchResultsDispatch(setSearchResults(res.data.data));
         // update the filter results as the cache results come back 
         spinnerDispatch(setSpinnerState(false));
-        console.log(res.data.filteredPriceRange, 'filteredPriceRange from backend')
-        searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, res.data.priceRange, res.data.dateRange, res.data.filteredPriceRange, res.data.filteredDateRange));
+        searchResultsDispatch(
+          setBulkFilterAction(
+            res.data.source.ticketmaster, 
+            res.data.source.stubhub,
+            res.data.source.seatgeek,
+            res.data.hasCancelledEvents,
+            res.data.hasNoListingEvents, 
+            res.data.priceRange, 
+            res.data.dateRange, 
+            res.data.filteredPriceRange, 
+            res.data.filteredDateRange
+          )
+        );
+        setCheckboxShadingState({
+          ticketmaster: res.data.source.ticketmasterDataState,
+          stubhub: res.data.source.stubhubDataState,
+          seatgeek: res.data.source.seatgeekDataState,
+        });
       }
     }).catch(err => {
       console.log('filter function api call error', err);
@@ -178,6 +213,16 @@ export const Filter = () => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
     setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()])
   }
+
+  // const ticketmasterDataState = checkboxShadingState.ticketmaster === CheckboxShadingState.GREYED;
+  // const stubhubDataState = checkboxShadingState.stubhub === CheckboxShadingState.GREYED;
+  // const seatgeekDataState = checkboxShadingState.seatgeek === CheckboxShadingState.GREYED;
+  // className={ticketmasterDataState ? 'Filter_label--disabled' : ''}
+  // className={ticketmasterDataState ? 'Filter_checkbox--disabled' : ''}
+  // className={stubhubDataState ? 'Filter_label--disabled' : ''}
+  // className={stubhubDataState ? 'Filter_checkbox--disabled': ''}
+  // className={seatgeekDataState ? 'Filter_label--disabled' : ''}
+  // className={seatgeekDataState ? 'Filter_checkbox--disabled' : ''}
 
   return (
     <div className="Filter">

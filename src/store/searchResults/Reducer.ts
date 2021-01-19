@@ -25,6 +25,8 @@ export interface SearchFilterState {
   showNoListings: boolean;
   priceRange: number[];
   dateRange: Moment[];
+  filteredPriceRange: number[];
+  filteredDateRange: Moment[];
 }
 
 export const searchResultsReducer = (state: SearchResultsState, action: SearchResultsActions) => {
@@ -42,7 +44,7 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
     case SearchResultActionTypes.SET_SHOW_NO_LISTINGS:
       return {...state, searchFilters: {...state.searchFilters, showNoListings: action.payload}};
     case SearchResultActionTypes.SET_BULK_FILTER: 
-      return {...state, searchFilters: {...state.searchFilters, showTicketmaster: action.ticketmaster, showStubhub: action.stubhub, showSeatgeek: action.seatgeek, showCancelled: action.cancelled, showNoListings: action.noListings}};
+      return {...state, searchFilters: {...state.searchFilters, showTicketmaster: action.ticketmaster, showStubhub: action.stubhub, showSeatgeek: action.seatgeek, showCancelled: action.cancelled, showNoListings: action.noListings, priceRange: action.priceRange, dateRange: action.dateRange, filteredPriceRange: action.filteredPriceRange, filteredDateRange: action.filteredDateRange}};
     case SearchResultActionTypes.SET_IS_STABLE: 
       return {...state, isStable: action.payload};
     case SearchResultActionTypes.SET_NO_RESULTS:
@@ -71,7 +73,9 @@ export const initialSearchResultsState: SearchResultsState = {
     showCancelled: false,
     showNoListings: false,
     priceRange: [0,0],
-    dateRange: []
+    dateRange: [],
+    filteredPriceRange: [],
+    filteredDateRange: [],
   },
   isStable: false,
   noResults: false,

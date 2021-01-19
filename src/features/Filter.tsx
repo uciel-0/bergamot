@@ -22,6 +22,18 @@ import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import moment, { Moment } from 'moment';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+import { createObjectBindingPattern } from 'typescript';
+
+enum CheckboxShadingState {
+  OFF = 'OFF',
+  ON = 'ON', 
+  GREYED = 'GREYED'
+}
+interface CheckboxShading {
+  ticketmaster: CheckboxShadingState,
+  stubhub: CheckboxShadingState,
+  seatgeek: CheckboxShadingState,
+}
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -31,9 +43,14 @@ export const Filter = () => {
   const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
   const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
+  // maxMinPriceRange should never change - it should be the max/min for the whole set 
+  // maxMinPriceRange needs to be a state so it can be updated when a call is returned from the backend
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
   const [dateRangeState, setDateRangeState] = React.useState<(Moment | string)[]>([]);
-  // const [maxMinDateRange, setMaxMinDateRange] = React.useState<(Moment | string)[]>([]);
+  const [priceRangeState, setPriceRangeState] = React.useState<number[]>([]);
+  const [checkboxShadingState, setCheckboxShadingState] = React.useState<CheckboxShading>({
+    ticketmaster : CheckboxShadingState.OFF, stubhub: CheckboxShadingState.OFF, seatgeek: CheckboxShadingState.OFF
+  });
 
   const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
   const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
@@ -42,6 +59,8 @@ export const Filter = () => {
   const globalShowNoListingsState: boolean = searchResultsState.searchFilters.showNoListings;
   const globalPriceRangeState: number[] = searchResultsState.searchFilters.priceRange;
   const globalDateRangeState: Moment[] = searchResultsState.searchFilters.dateRange;
+  const globalFilteredPriceRangeState: number[] = searchResultsState.searchFilters.filteredPriceRange;
+  const globalFilteredDateRangeState: Moment[] = searchResultsState.searchFilters.filteredDateRange;
   const globalUserDateRangeSelectedState: boolean = searchResultsState.userDateRangeSelected;
   const isStable: boolean = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
@@ -56,7 +75,8 @@ export const Filter = () => {
     } else if (!globalShowTicketmasterState && !globalShowStubhubState && !globalShowSeatgeekState) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
-      callCacheForFiltering(false, false);
+      console.log('filter cache call firing');
+      callCacheForFiltering(false, false, true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalShowTicketmasterState, globalShowStubhubState, globalShowSeatgeekState, globalShowCancelledState, globalShowNoListingsState]);
@@ -73,19 +93,30 @@ export const Filter = () => {
   }, [globalPriceRangeState]);
 
   React.useEffect(() => {
+    setPriceRangeState(globalFilteredPriceRangeState);
+  }, [globalFilteredPriceRangeState]);
+
+  React.useEffect(() => {
     setDateRangeState(globalDateRangeState);
   }, [globalDateRangeState]);
 
   React.useEffect(() => {
     if (globalUserDateRangeSelectedState) {
-      callCacheForFiltering(false, true);
+      callCacheForFiltering(false, true, false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalUserDateRangeSelectedState, dateRangeState]);
 
-  const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean) => {
+  React.useEffect(() => {
+    console.log(checkboxShadingState.ticketmaster === CheckboxShadingState.GREYED, checkboxShadingState.ticketmaster, 'ticketmaster');
+    console.log(checkboxShadingState.seatgeek === CheckboxShadingState.GREYED, checkboxShadingState.seatgeek, 'seatgeek');
+    console.log(checkboxShadingState.stubhub === CheckboxShadingState.GREYED, checkboxShadingState.stubhub, 'stubhub');
+  }, [checkboxShadingState]);
+
+  const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isCheckboxCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
+    console.log('callCacheForFiltering firing');
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -94,19 +125,20 @@ export const Filter = () => {
         showSeatgeek: globalShowSeatgeekState,
         showCancelled: globalShowCancelledState,
         showNoListings: globalShowNoListingsState,
-        minPrice: maxMinPriceRange[0],
-        maxPrice: maxMinPriceRange[1],
+        minPrice: priceRangeState[0],
+        maxPrice: priceRangeState[1],
         earliestDate: dateRangeState[0],
         latestDate: dateRangeState[1],
         isSliderCall,
         isCalendarCall,
+        isCheckboxCall,
       }
     }).then(res => {
       if (res.data.data.length === 0) {
         searchResultsDispatch(setNoResultsState(true));
         spinnerDispatch(setSpinnerState(false));
       } else {
-        console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data.data);
+        console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data);
         console.log('total length of events:', res.data.totalResultsLength);
         console.log('ticketmaster events:', res.data.providerResultLengths[0]);
         console.log('stubhub events:', res.data.providerResultLengths[1]);
@@ -114,11 +146,25 @@ export const Filter = () => {
         searchResultsDispatch(setNoResultsState(false));
         searchResultsDispatch(setSearchResults(res.data.data));
         // update the filter results as the cache results come back 
-        searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
         spinnerDispatch(setSpinnerState(false));
-        if (!isCalendarCall) {
-          setDateRangeState(res.data.filteredDateRange);
-        }
+        searchResultsDispatch(
+          setBulkFilterAction(
+            res.data.source.ticketmaster, 
+            res.data.source.stubhub,
+            res.data.source.seatgeek,
+            res.data.hasCancelledEvents,
+            res.data.hasNoListingEvents, 
+            res.data.priceRange, 
+            res.data.dateRange, 
+            res.data.filteredPriceRange, 
+            res.data.filteredDateRange
+          )
+        );
+        setCheckboxShadingState({
+          ticketmaster: res.data.source.ticketmasterDataState,
+          stubhub: res.data.source.stubhubDataState,
+          seatgeek: res.data.source.seatgeekDataState,
+        });
       }
     }).catch(err => {
       console.log('filter function api call error', err);
@@ -142,31 +188,41 @@ export const Filter = () => {
     } else if (name === "showNoListings") {
       searchResultsDispatch(setShowNoListingsAction(newCheckState));
     }
-  }  
+  }
 
   const handleSliderChange = (event: any, values: number[]) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     // if the lowest value equals the highest value
     if (values[0] === globalPriceRangeState[1]) {
       // force the low value to be one lower than the highest value
-      setMaxMinPriceRange([globalPriceRangeState[1]-1, globalPriceRangeState[1]]);
+      setPriceRangeState([globalPriceRangeState[1]-1, globalPriceRangeState[1]]);
     } // if the highest value is equal to the lowest value
     else if (values[1] === globalPriceRangeState[0]) {
       // set the high value to be one higher than the lowest value
-      setMaxMinPriceRange([globalPriceRangeState[0], globalPriceRangeState[0] + 1])
+      setPriceRangeState([globalPriceRangeState[0], globalPriceRangeState[0] + 1])
     } // otherwise set the values as usual
-    else setMaxMinPriceRange(values)
+    else setPriceRangeState(values)
   }
 
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState([moment(newStartDate).startOf('day').format(), dateRangeState[1]])
+    setDateRangeState([moment(newStartDate).startOf('day').format(), dateRangeState[1]]);
   }
 
   const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
     searchResultsDispatch(setUserDateRangeSelectedAction(true));
     setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()])
   }
+
+  // const ticketmasterDataState = checkboxShadingState.ticketmaster === CheckboxShadingState.GREYED;
+  // const stubhubDataState = checkboxShadingState.stubhub === CheckboxShadingState.GREYED;
+  // const seatgeekDataState = checkboxShadingState.seatgeek === CheckboxShadingState.GREYED;
+  // className={ticketmasterDataState ? 'Filter_label--disabled' : ''}
+  // className={ticketmasterDataState ? 'Filter_checkbox--disabled' : ''}
+  // className={stubhubDataState ? 'Filter_label--disabled' : ''}
+  // className={stubhubDataState ? 'Filter_checkbox--disabled': ''}
+  // className={seatgeekDataState ? 'Filter_label--disabled' : ''}
+  // className={seatgeekDataState ? 'Filter_checkbox--disabled' : ''}
 
   return (
     <div className="Filter">
@@ -257,11 +313,11 @@ export const Filter = () => {
           <Slider 
             aria-labelledby="range-slider"
             valueLabelDisplay="on"
-            value={maxMinPriceRange}
-            min={globalPriceRangeState[0]}
-            max={globalPriceRangeState[1]}
+            value={priceRangeState}
+            min={maxMinPriceRange[0]}
+            max={maxMinPriceRange[1]}
             onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
-            onChangeCommitted={() => callCacheForFiltering(true, false)}
+            onChangeCommitted={() => callCacheForFiltering(true, false, false)}
             valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"
           />
@@ -274,7 +330,7 @@ export const Filter = () => {
               <DatePicker
                 minDate={globalDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
-                value={dateRangeState[0]}
+                value={globalFilteredDateRangeState[0]}
                 onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
                 variant="inline"
                 format="MMM, d, yyyy"
@@ -285,7 +341,7 @@ export const Filter = () => {
               <DatePicker
                 minDate={globalDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
-                value={dateRangeState[1]}
+                value={globalFilteredDateRangeState[1]}
                 onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
                 variant="inline"
                 format="MMM, d, yyyy"

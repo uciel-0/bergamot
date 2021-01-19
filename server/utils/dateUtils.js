@@ -24,6 +24,10 @@ export const groupByDay = (data) => {
       events: groupedData[date]
     })
   }
+  if (finalArray[0] && finalArray.hasOwnProperty('date')) {
+    const datesTBD = finalArray.shift();
+    finalArray.push(datesTBD);
+  }
   return finalArray;
 }
   

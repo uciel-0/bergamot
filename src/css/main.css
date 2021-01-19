@@ -210,6 +210,12 @@ body {
     font-size: 1px; }
   .Filter .PrivateValueLabel-label-5 {
     font-size: 0.65rem; }
+  .Filter_label--disabled {
+    cursor: not-allowed;
+    user-select: none;
+    color: grey; }
+  .Filter_checkbox--disabled {
+    pointer-events: none; }
 
 .Home {
   text-align: center; }

@@ -9,7 +9,6 @@ import {
   setPriceRangeAction,
   setNoResultsState, 
   setLastQuery, 
-  setDateRangeAction, 
   setUserDateRangeSelectedAction 
 } from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
@@ -32,7 +31,7 @@ export const SearchBar = () => {
     // reset the isStable flag so the distributor filters can reset as expected
     searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
-    searchResultsDispatch(setBulkFilterAction(false, false, false, false, false));
+    searchResultsDispatch(setBulkFilterAction(false, false, false, false, false, [], [], [], []));
     searchResultsDispatch(setPriceRangeAction([0,0]));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     axios.get('http://localhost:8080/api/search/events', {
@@ -51,18 +50,17 @@ export const SearchBar = () => {
       console.log('stubhub events:', res.data.providerResultLengths[2]);
       // from the data, determine which distributor actually returned data for this search query
       // set these booleans in the filter state so we can use them to render the checkboxes appropriately
-      searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents));
+      const maxMinPriceRange = res.data.priceRange;
+      const maxMinDateRange = [res.data.dateRange[0], res.data.dateRange[1]];
+      searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, maxMinPriceRange, maxMinDateRange, maxMinPriceRange, maxMinDateRange));
       spinnerDispatch(setSpinnerState(false));
-      //set min/max price from the backend.
-      searchResultsDispatch(setPriceRangeAction(res.data.priceRange));
-      searchResultsDispatch(setDateRangeAction([res.data.dateRange[0], res.data.dateRange[1]]));
       searchResultsDispatch(setNoResultsState(false));
     })
     .catch((err) => {
       history.push('/search');
       spinnerDispatch(setSpinnerState(false));
       searchResultsDispatch(setNoResultsState(true));
-      console.log('master search api rejection', err)
+      console.log('master search api rejection', err);
     });
     // for testing puposes
     axios.get('http://localhost:8080/api/search/wide', {

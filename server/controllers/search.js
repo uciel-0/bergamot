@@ -176,8 +176,6 @@ export const getEvents = (req, res) => {
     const dates = combinedData.map(e => moment(e.datetime_local));
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
-    // console.log(earliestOfWholeSet, 'earliest from initial search');
-    // console.log(latestOfWholeSet, 'latest from initial search');
     // Step 4) Sort the data chronologically
     const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
     // Step 5a) Group the chronologically sorted data by date
@@ -236,108 +234,94 @@ export const flushCache = (req, res) => {
   res.sendStatus(200);
 }
 // NEXT THING TO DO 
-// must implement the datetime_utc and datetime_local here in the 
 export const getCachedEvents = (req, res) => {
-  console.log('cache call happening for keyword', req.query.keyword, 101010101010101);
+  console.log('cache call starting');
   const key = `getEvents_${req.query.keyword}`;
-  const showTicketmaster = req.query.showTicketmaster;
-  const showStubhub = req.query.showStubhub;
-  const showSeatgeek = req.query.showSeatgeek;
-  const showCancelled = req.query.showCancelled;
-  const showNoListings = req.query.showNoListings;
-  const minPrice = req.query.minPrice
-  const maxPrice = req.query.maxPrice;
-  const earliestDate = req.query.earliestDate;
-  const latestDate = req.query.latestDate;
+  const showTicketmaster = Boolean(req.query.showTicketmaster === "true");
+  const showStubhub = Boolean(req.query.showStubhub === "true");
+  const showSeatgeek = Boolean(req.query.showSeatgeek === "true");
+  const showCancelled = Boolean(req.query.showCancelled === "true")
+  const showNoListings = Boolean(req.query.showNoListings === "true");
   const isSliderCall = Boolean(req.query.isSliderCall === "true");
-  console.log(earliestDate, latestDate, 'earliest and latest date')
+  const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
+  const frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)]
+  const isCheckboxCall = Boolean(req.query.isCheckboxCall === 'true');
   // call the cache for this data 
   cache.get(key).then(data => {
     // let ticketmasterResults
     let ticketmasterEvents = [];
-    if (showTicketmaster === "true") {
-      data[0].events.forEach(e => {
-        e.source = 'ticketmaster';
-        e.sourceUrl = 'https://ticketmaster.com';
-        e.status = e.dates.status.code;
-        e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
-        // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
-        e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
-        e.date = formatLocalDate(e.datetime_local);
-        e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
-        e.venueName = e._embedded.venues[0].name;
-        e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
-        e.isPriceEstimated = false;
-        if (e.priceRanges) {
-          e.priceBeforeFees = e.priceRanges[0].min;
-          e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
-          e.isPriceEstimated = true;
-          // console.log(e.priceAfterFees, 'ticketmaster price after fees');
-        } else {
-          e.priceBeforeFees = null;
-          e.priceAfterFees = null;
-          // console.log(e.priceAfterFees, 'ticketmaster price after fees');
-        }
-      });
-      ticketmasterEvents = data[0].events;
-    }
+    let ticketmasterInWholeSet;
+    data[0].events.forEach(e => {
+      e.source = 'ticketmaster';
+      e.sourceUrl = 'https://ticketmaster.com';
+      e.status = e.dates.status.code;
+      e.datetime_local = normalizeLocalDate(e.dates.start.localDate + 'T' + (e.dates.start.localTime || '00:00:00'), e.dates.timezone);
+      // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
+      e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
+      e.date = formatLocalDate(e.datetime_local);
+      e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
+      e.venueName = e._embedded.venues[0].name;
+      e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
+      e.isPriceEstimated = false;
+      if (e.priceRanges) {
+        e.priceBeforeFees = e.priceRanges[0].min;
+        e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
+        e.isPriceEstimated = true;
+      } else {
+        e.priceBeforeFees = null;
+        e.priceAfterFees = null;
+      }
+    });
+    ticketmasterEvents = data[0].events;
+    ticketmasterInWholeSet = ticketmasterEvents.length > 0;
     // stubhub events
     let stubhubEvents = [];
-    if (showStubhub === "true") {
-      data[1].events.forEach(e => {
-        e.source = 'stubhub';
-        e.sourceUrl = 'https://stubhub.com';
-        e.status = null;
-        e.datetime_local = e.eventDateLocal;
-        e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
-        e.date = formatLocalDate(e.eventDateLocal);
-        e.time = formatTime(e.eventDateUTC);
-        e.venueName = e.venue.name;
-        e.venueCity = e.venue.city + ', ' + e.venue.state;
-        e.priceBeforeFees = e.ticketInfo.minListPrice;
-        e.priceAfterFees = e.ticketInfo.minPrice;
-        // console.log(e.priceAfterFees, 'stubhub price after fees');
-        e.isPriceEstimated = false;
-        e.url = "https://www.stubhub.com/" + e.webURI;
-      });
-      stubhubEvents = data[1].events;
-    }
+    let stubhubInWholeSet;
+    data[1].events.forEach(e => {
+      e.source = 'stubhub';
+      e.sourceUrl = 'https://stubhub.com';
+      e.status = null;
+      e.datetime_local = e.eventDateLocal;
+      e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
+      e.date = formatLocalDate(e.eventDateLocal);
+      e.time = formatTime(e.eventDateUTC);
+      e.venueName = e.venue.name;
+      e.venueCity = e.venue.city + ', ' + e.venue.state;
+      e.priceBeforeFees = e.ticketInfo.minListPrice || null;
+      e.priceAfterFees = e.ticketInfo.minPrice || null;
+      e.isPriceEstimated = false;
+      e.url = "https://www.stubhub.com/" + e.webURI;
+    });
+    stubhubEvents = data[1].events;
+    stubhubInWholeSet = stubhubEvents.length > 0;
     // seatgeek events
     let seatgeekEvents = [];
-    if (showSeatgeek === "true") {
-      data[2].events.forEach(e => {
-        e.source = 'seatgeek';
-        e.sourceUrl = 'https://seatgeek.com';
-        e.status = null;
-        e.datetime_utc = normalizeUTCDate(e.datetime_utc);
-        e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
-        e.date = e.date_tbd ? null : formatLocalDate(e.datetime_local);
-        e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
-        e.venueName = e.venue.name;
-        e.venueCity = e.venue.display_location;
-        e.name = e.title;
-        e.priceBeforeFees = e.stats.lowest_sg_base_price;
-        e.priceAfterFees = e.stats.lowest_price;
-        // console.log(e.priceAfterFees, 'seatgeek price after fees');
-        e.isPriceEstimated = false;
-      });
-      seatgeekEvents = data[2].events;
-    }
-    
+    let seatgeekInWholeSet;
+    data[2].events.forEach(e => {
+      e.source = 'seatgeek';
+      e.sourceUrl = 'https://seatgeek.com';
+      e.status = null;
+      e.datetime_utc = normalizeUTCDate(e.datetime_utc);
+      e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
+      e.date = e.date_tbd ? null : formatLocalDate(e.datetime_local);
+      e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
+      e.venueName = e.venue.name;
+      e.venueCity = e.venue.display_location;
+      e.name = e.title;
+      e.priceBeforeFees = e.stats.lowest_sg_base_price || null;
+      e.priceAfterFees = e.stats.lowest_price || null;
+      e.isPriceEstimated = false;
+    });
+    seatgeekEvents = data[2].events;
+    seatgeekInWholeSet = seatgeekEvents.length > 0;
+
     let combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
     if (combinedData.length === 0) {
       res.send({data: []});
       return;
     }
-
-    if (showCancelled === 'false') {
-      combinedData = combinedData.filter(e => e.status !== 'cancelled');
-    }
-
-    if (showNoListings === 'false') {
-      combinedData = combinedData.filter(e => e.priceAfterFees);
-    }
-    // !) Get the highs and lows, earliest and latest for WHOLE data set 
+    // DATA RANGE VARIABLE CALCULATIONS
+    // a) Get the highest and lowest prices before any filtration happens
     const minMaxPriceOfWholeSet = combinedData.reduce((accumulator, currentValue) => {
       const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
       const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
@@ -346,62 +330,110 @@ export const getCachedEvents = (req, res) => {
         Math.ceil(maxPrice)
       ]
     }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
-    console.log(minMaxPriceOfWholeSet, 'minMax');
-    // earliest and latest dates in the entire data set
+    // b) Get the earliest and latest dates, before any filtration happens
+    // normalize the results to UTC
     const dates = combinedData.map(e => moment.utc(e.datetime_utc));
-    // these dates are in utc
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
+
+    if (!showTicketmaster) { ticketmasterEvents = [] }
+    if (!showStubhub) { stubhubEvents = [] }
+    if (!showSeatgeek) { seatgeekEvents = [] }
+
+    combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
+
+    if (!showCancelled) {
+      combinedData = combinedData.filter(e => e.status !== 'cancelled');
+    }
+    if (!showNoListings) {
+      console.log('reaching show no listings filter');
+      combinedData = combinedData.filter(e => e.priceAfterFees);
+    }
+    // FILTRATION INITIATION
+    let filteredData = JSON.parse(JSON.stringify(combinedData));
+    // let filteredPriceRange;
+    let filteredEarliestDate;
+    let filteredLatestDate;
     // 2) Do your filtrations 
-    // a) Price Filtration 
-    // if the call is from the calendar, filter against the highest and lowest
-    console.log(minPrice, maxPrice, 'min and max sent by front end');
-    if (minPrice > minMaxPriceOfWholeSet[0] || maxPrice < minMaxPriceOfWholeSet[1]) {
-      combinedData = combinedData.filter(e => e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice);
-      if (combinedData.length === 0) {
-        res.send({data: []});
-        return;
+    let minPrice = req.query.minPrice;
+    let maxPrice = req.query.maxPrice;
+    let earliestDate = moment.utc(req.query.earliestDate);
+    let latestDate = moment.utc(req.query.latestDate);
+    // if the call comes from the checkboxes, search against both the filters
+    if (isCheckboxCall) {
+      if (minPrice >= minMaxPriceOfWholeSet[0] || maxPrice <= minMaxPriceOfWholeSet[1]) {
+        filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
+        if (filteredData.length === 0) {
+          res.send({data: []});
+          return;
+        }
       }
-    }
-    
-    const filteredPriceRange = combinedData.reduce((accumulator, currentValue) => {
-      const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
-      const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
-      return [
-        Math.floor(minPrice),
-        Math.ceil(maxPrice)
-      ]
-    }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
 
-    // b) Date filtration 
-    // convert the high and low ends of date range from query to UTC, so they can be properly operated on in the block below
-    const earliestCutoffDate = isSliderCall ? earliestOfWholeSet : moment.utc(earliestDate);
-    const latestCutoffDate = isSliderCall ? latestOfWholeSet : moment.utc(latestDate);
-    // if we detect that the date filter has changed, do the work
-    if (earliestCutoffDate.isAfter(earliestOfWholeSet) || latestCutoffDate.isBefore(latestOfWholeSet)) {
-      combinedData = combinedData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestCutoffDate, latestCutoffDate, undefined, '[]'));
-      if (combinedData.length === 0) {
-        res.send({data: []});
-        return;
+      if (earliestDate.isAfter(earliestOfWholeSet) || latestDate.isBefore(latestOfWholeSet)) {
+        filteredData = filteredData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestDate, latestDate, undefined, '[]'));
+        if (filteredData.length === 0) {
+          res.send({data: []});
+          return;
+        }
       }
     }
+    // if the call comes from the calendar, filter the set down to events only within those dates
+     else if (isCalendarCall) {
+      minPrice = minMaxPriceOfWholeSet[0];
+      maxPrice = minMaxPriceOfWholeSet[1];
+      // filter the set down via the provided dates 
+      if (earliestDate.isAfter(earliestOfWholeSet) || latestDate.isBefore(latestOfWholeSet)) {
+        filteredData = filteredData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestDate, latestDate, undefined, '[]'));
+        if (filteredData.length === 0) {
+          res.send({data: []});
+          return;
+        }
+      }
+    }
+    // if the call comes from the slider, filter the entire set based on the price 
+    else if (isSliderCall) {
+      earliestDate = earliestOfWholeSet;
+      latestDate = latestOfWholeSet;
+      // filter the set down via the provided price range
+      if (minPrice >= minMaxPriceOfWholeSet[0] || maxPrice <= minMaxPriceOfWholeSet[1]) {
+        filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
+        if (filteredData.length === 0) {
+          res.send({data: []});
+          return;
+        }
+      }
+    }
+    // get the highest and lowest price from the filtered set
+    // filteredPriceRange = filteredData.reduce((accumulator, currentValue) => {
+    //   const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
+    //   const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
+    //   return [
+    //     Math.floor(minPrice),
+    //     Math.ceil(maxPrice)
+    //   ]
+    // }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
     // now that the data set is filtered, get the earliest and latest local dates, to be sent to the front end
-    const filteredDates = combinedData.map(e => moment(e.datetime_local));
-    const filteredEarliestDate = moment.min(filteredDates);
-    const filteredLatestDate = moment.max(filteredDates);
-    console.log(filteredEarliestDate, filteredLatestDate, 'ideally, this is changing as the dates change');
+    const filteredDates = filteredData.map(e => moment(e.datetime_local));
+    filteredEarliestDate = moment.min(filteredDates);
+    filteredLatestDate = moment.max(filteredDates);
 
-    const hasCancelledEvents = combinedData.reduce((result, event) => 
+    const hasCancelledEvents = filteredData.reduce((result, event) => 
       event.status === 'cancelled' ? true : result
     , false);
 
-    const hasNoListingEvents = combinedData.reduce((result, event) => 
+    const hasNoListingEvents = filteredData.reduce((result, event) => 
       !event.priceAfterFees ? true : result
     , false);
 
-    const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
-    const groupedData = groupByDay(sortChronologically);
+    const hasTicketmasterData = filteredData.reduce((result, e) => e.source === 'ticketmaster' ? true : result, false);
+    const hasStubhubData = filteredData.reduce((result, e) => e.source === 'stubhub' ? true : result, false);
+    const hasSeatgeekData = filteredData.reduce((result, e) => e.source === 'seatgeek' ? true : result, false);
+    console.log('hasTicketmasterData', hasTicketmasterData);
+    console.log('hasStubhubData', hasStubhubData);
+    console.log('hasSeatgeekData', hasSeatgeekData);
 
+    const sortChronologically = filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const groupedData = groupByDay(sortChronologically);
     if (groupedData[0].date === 'null') {
       const datesTBD = groupedData.shift();
       groupedData.push(datesTBD);
@@ -422,14 +454,42 @@ export const getCachedEvents = (req, res) => {
     // 3) Get your highs and lows, earliests and latest on FILTERED data set
     const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0);
 
-    const hasTicketmasterData = data[0].events.length > 0;
-    const hasStubhubData = data[1].events.length > 0;
-    const hasSeatgeekData = data[2].events.length > 0;
+    // On = Exists in whole and filterd set, Off = Does not exist in whole set, Greyed = Exists in set but not fitlered set  
+    const vendorShadingState = (existsInWholeSet, existsInFilteredSet) => {
+      let shadingState = '';
+      if (existsInWholeSet && existsInFilteredSet) {
+        shadingState = 'ON';
+      } else if (existsInWholeSet && !existsInFilteredSet) {
+        shadingState = 'GREYED';
+      } else if (!existsInWholeSet) {
+        shadingState = 'OFF'
+      }
+      return shadingState;
+    }
     // HIGH and LOW of whole set need to be sent with every cache call 
     // EARLIEST and LATEST of whole set need to be sent with every cache call 
     // these variables will go into the components in their range props 
+    // filtration state indicators 
     const response = {
       data: groupedData,
+      source: {
+        ticketmaster: hasTicketmasterData,
+        stubhub: hasStubhubData,
+        seatgeek: hasSeatgeekData,
+        ticketmasterDataState: vendorShadingState(ticketmasterInWholeSet, hasTicketmasterData),
+        stubhubDataState: vendorShadingState(stubhubInWholeSet, hasStubhubData),
+        seatgeekDataState: vendorShadingState(seatgeekInWholeSet, hasSeatgeekData),
+      },
+      priceRange: minMaxPriceOfWholeSet,
+      dateRange: [earliestOfWholeSet, latestOfWholeSet],
+      filteredDateRange: [filteredEarliestDate, filteredLatestDate],
+      filteredPriceRange: frontEndPriceFilterRange,
+      providerResultLengths,
+      totalResultsLength,
+      hasCancelledEvents,
+      hasNoListingEvents,
+    }
+    console.log('response object', {
       source: {
         ticketmaster: hasTicketmasterData,
         stubhub: hasStubhubData,
@@ -438,12 +498,12 @@ export const getCachedEvents = (req, res) => {
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
       filteredDateRange: [filteredEarliestDate, filteredLatestDate],
-      filteredPriceRange,
+      filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       totalResultsLength,
       hasCancelledEvents,
       hasNoListingEvents,
-    }
+    });
     res.send(response);
   }) 
   .catch(err => {

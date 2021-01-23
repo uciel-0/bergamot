@@ -1,9 +1,12 @@
 import * as React from 'react';
 import axios from 'axios';
 import { 
-  setShowSeatgeekAction, 
-  setShowStubhubAction, 
-  setShowTicketmasterAction, 
+  // setShowSeatgeekAction, 
+  // setShowStubhubAction, 
+  // setShowTicketmasterAction, 
+  setTicketmasterStateAction,
+  setStubhubStateAction,
+  setSeatgeekStateAction,
   setIsStableAction, 
   setSearchResults,
   setNoResultsState, 
@@ -22,39 +25,29 @@ import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import moment, { Moment } from 'moment';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
-import { createObjectBindingPattern } from 'typescript';
-
-enum CheckboxShadingState {
-  OFF = 'OFF',
-  ON = 'ON', 
-  GREYED = 'GREYED'
-}
-interface CheckboxShading {
-  ticketmaster: CheckboxShadingState,
-  stubhub: CheckboxShadingState,
-  seatgeek: CheckboxShadingState,
-}
+import {CheckboxShading} from '../store/searchResults/Reducer';
+// import { Checkbox } from '@material-ui/core';
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
   const {spinnerDispatch} = React.useContext(SpinnerContext);
-  const [ticketmasterFilter, setTicketmasterFilter] = React.useState<boolean>(false);
-  const [stubhubFilter, setStubhubFilter] = React.useState<boolean>(false);
-  const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
+  // const [ticketmasterFilter, setTicketmasterFilter] = React.useState<boolean>(false);
+  // const [stubhubFilter, setStubhubFilter] = React.useState<boolean>(false);
+  // const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
   const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
   const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
-  // maxMinPriceRange should never change - it should be the max/min for the whole set 
-  // maxMinPriceRange needs to be a state so it can be updated when a call is returned from the backend
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
   const [dateRangeState, setDateRangeState] = React.useState<(Moment | string)[]>([]);
   const [priceRangeState, setPriceRangeState] = React.useState<number[]>([]);
-  const [checkboxShadingState, setCheckboxShadingState] = React.useState<CheckboxShading>({
-    ticketmaster : CheckboxShadingState.OFF, stubhub: CheckboxShadingState.OFF, seatgeek: CheckboxShadingState.OFF
-  });
-
-  const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
-  const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
-  const globalShowSeatgeekState: boolean = searchResultsState.searchFilters.showSeatgeek;
+  const [ticketmasterState, setTicketmasterState] = React.useState<CheckboxShading>(CheckboxShading.OFF);
+  const [stubhubState, setStubhubState] = React.useState<CheckboxShading>(CheckboxShading.OFF);
+  const [seatgeekState, setSeatgeekState] = React.useState<CheckboxShading>(CheckboxShading.OFF);
+  // const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
+  // const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
+  // const globalShowSeatgeekState: boolean = searchResultsState.searchFilters.showSeatgeek;
+  const globalTicketmasterShadingState: CheckboxShading = searchResultsState.searchFilters.ticketmasterState;
+  const globalStubhubShadingState: CheckboxShading = searchResultsState.searchFilters.stubhubState;
+  const globalSeatgeekShadingState: CheckboxShading = searchResultsState.searchFilters.seatgeekState;
   const globalShowCancelledState: boolean = searchResultsState.searchFilters.showCancelled;
   const globalShowNoListingsState: boolean = searchResultsState.searchFilters.showNoListings;
   const globalPriceRangeState: number[] = searchResultsState.searchFilters.priceRange;
@@ -67,26 +60,32 @@ export const Filter = () => {
   // first fire is when state is initialized; second is when call is made
   React.useEffect(() => {
     if (!isStable) {
-      setTicketmasterFilter(globalShowTicketmasterState);
-      setStubhubFilter(globalShowStubhubState);
-      setSeatgeekFilter(globalShowSeatgeekState);
+      // setTicketmasterFilter(globalShowTicketmasterState);
+      // setStubhubFilter(globalShowStubhubState);
+      // setSeatgeekFilter(globalShowSeatgeekState);
+      setTicketmasterState(globalTicketmasterShadingState);
+      setStubhubState(globalStubhubShadingState);
+      setSeatgeekState(globalSeatgeekShadingState);
       setCancelledFilter(globalShowCancelledState);
       setNoListingsFilter(globalShowNoListingsState);
-    } else if (!globalShowTicketmasterState && !globalShowStubhubState && !globalShowSeatgeekState) {
+    } else if (
+      globalTicketmasterShadingState === CheckboxShading.OFF && globalStubhubShadingState === CheckboxShading.OFF && globalSeatgeekShadingState === CheckboxShading.OFF) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
       console.log('filter cache call firing');
       callCacheForFiltering(false, false, true);
     }
+  // globalShowTicketmasterState, globalShowStubhubState, globalShowSeatgeekState,
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [globalShowTicketmasterState, globalShowStubhubState, globalShowSeatgeekState, globalShowCancelledState, globalShowNoListingsState]);
+  }, [globalTicketmasterShadingState, globalStubhubShadingState, globalSeatgeekShadingState, globalShowCancelledState, globalShowNoListingsState]);
 
   React.useEffect(() => {
-    if (ticketmasterFilter || stubhubFilter || seatgeekFilter) {
+    if (ticketmasterState === CheckboxShading.ON || stubhubState === CheckboxShading.ON || seatgeekState === CheckboxShading.ON) {
       searchResultsDispatch(setIsStableAction(true));
     }
+  // ticketmasterFilter, stubhubFilter, seatgeekFilter
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ticketmasterFilter, stubhubFilter, seatgeekFilter]);
+  }, [ticketmasterState, stubhubState, seatgeekState]);
 
   React.useEffect(() => {
     setMaxMinPriceRange(globalPriceRangeState);
@@ -108,21 +107,27 @@ export const Filter = () => {
   }, [globalUserDateRangeSelectedState, dateRangeState]);
 
   React.useEffect(() => {
-    console.log(checkboxShadingState.ticketmaster === CheckboxShadingState.GREYED, checkboxShadingState.ticketmaster, 'ticketmaster');
-    console.log(checkboxShadingState.seatgeek === CheckboxShadingState.GREYED, checkboxShadingState.seatgeek, 'seatgeek');
-    console.log(checkboxShadingState.stubhub === CheckboxShadingState.GREYED, checkboxShadingState.stubhub, 'stubhub');
-  }, [checkboxShadingState]);
+    console.log(ticketmasterState === CheckboxShading.GREYED, ticketmasterState, 'ticketmasterState');
+    console.log(stubhubState === CheckboxShading.GREYED, stubhubState, 'stubhubState');
+    console.log(seatgeekState === CheckboxShading.GREYED, seatgeekState, 'seatgeekState');
+  }, [ticketmasterState, stubhubState, seatgeekState]);
 
   const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isCheckboxCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     console.log('callCacheForFiltering firing');
+    console.log('globalTicketmasterShadingState',globalTicketmasterShadingState);
+    console.log('globalSeatgeekShadingState', globalSeatgeekShadingState);
+    console.log('globalStubhubShadingState', globalStubhubShadingState);
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
-        showTicketmaster: globalShowTicketmasterState,
-        showStubhub: globalShowStubhubState,
-        showSeatgeek: globalShowSeatgeekState,
+        // showTicketmaster: globalShowTicketmasterState,
+        // showStubhub: globalShowStubhubState,
+        // showSeatgeek: globalShowSeatgeekState,
+        ticketmasterState: globalTicketmasterShadingState,
+        stubhubState: globalStubhubShadingState,
+        seatgeekState: globalSeatgeekShadingState,
         showCancelled: globalShowCancelledState,
         showNoListings: globalShowNoListingsState,
         minPrice: priceRangeState[0],
@@ -149,9 +154,9 @@ export const Filter = () => {
         spinnerDispatch(setSpinnerState(false));
         searchResultsDispatch(
           setBulkFilterAction(
-            res.data.source.ticketmaster, 
-            res.data.source.stubhub,
-            res.data.source.seatgeek,
+            res.data.vendorState.ticketmaster,
+            res.data.vendorState.stubhub,
+            res.data.vendorState.seatgeek,
             res.data.hasCancelledEvents,
             res.data.hasNoListingEvents, 
             res.data.priceRange, 
@@ -160,11 +165,6 @@ export const Filter = () => {
             res.data.filteredDateRange
           )
         );
-        setCheckboxShadingState({
-          ticketmaster: res.data.source.ticketmasterDataState,
-          stubhub: res.data.source.stubhubDataState,
-          seatgeek: res.data.source.seatgeekDataState,
-        });
       }
     }).catch(err => {
       console.log('filter function api call error', err);
@@ -173,17 +173,25 @@ export const Filter = () => {
     })
   }
 
+  const handleVendorFilterToggle = (event: any) => {
+    const target = event.target;
+    const name = target.name;
+    const newCheckState = target.checked ? CheckboxShading.ON : CheckboxShading.FILTERED;
+    console.log('vendorFilterToggle working', newCheckState);
+    if (name === "showTicketmaster") {
+      searchResultsDispatch(setTicketmasterStateAction(newCheckState));
+    } else if (name === "showStubhub") {
+      searchResultsDispatch(setStubhubStateAction(newCheckState));
+    } else if (name === "showSeatgeek") {
+      searchResultsDispatch(setSeatgeekStateAction(newCheckState));
+    } 
+  }
+
   const handleFilterToggle = (event: any) => {
     const target = event.target;
     const name = target.name;
     const newCheckState = target.checked;
-    if (name === "showTicketmaster") {
-      searchResultsDispatch(setShowTicketmasterAction(newCheckState));
-    } else if (name === "showStubhub") {
-      searchResultsDispatch(setShowStubhubAction(newCheckState));
-    } else if (name === "showSeatgeek") {
-      searchResultsDispatch(setShowSeatgeekAction(newCheckState));
-    } else if (name === "showCancelled") {
+    if (name === "showCancelled") {
       searchResultsDispatch(setShowCancelledAction(newCheckState));
     } else if (name === "showNoListings") {
       searchResultsDispatch(setShowNoListingsAction(newCheckState));
@@ -214,29 +222,24 @@ export const Filter = () => {
     setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()])
   }
 
-  // const ticketmasterDataState = checkboxShadingState.ticketmaster === CheckboxShadingState.GREYED;
-  // const stubhubDataState = checkboxShadingState.stubhub === CheckboxShadingState.GREYED;
-  // const seatgeekDataState = checkboxShadingState.seatgeek === CheckboxShadingState.GREYED;
-  // className={ticketmasterDataState ? 'Filter_label--disabled' : ''}
-  // className={ticketmasterDataState ? 'Filter_checkbox--disabled' : ''}
-  // className={stubhubDataState ? 'Filter_label--disabled' : ''}
-  // className={stubhubDataState ? 'Filter_checkbox--disabled': ''}
-  // className={seatgeekDataState ? 'Filter_label--disabled' : ''}
-  // className={seatgeekDataState ? 'Filter_checkbox--disabled' : ''}
-
+  const ticketmasterDataState = globalTicketmasterShadingState === CheckboxShading.GREYED;
+  const stubhubDataState = globalStubhubShadingState === CheckboxShading.GREYED;
+  const seatgeekDataState = globalSeatgeekShadingState === CheckboxShading.GREYED;
+ 
   return (
     <div className="Filter">
       <form className="Filter_section">
       <b>Vendors</b>
       <br></br>
         {
-          ticketmasterFilter && isStable && (
-            <label htmlFor="showTicketmaster">
+          (ticketmasterState !== CheckboxShading.OFF) && isStable && (
+            <label htmlFor="showTicketmaster" className={ticketmasterDataState ? 'Filter_label--disabled' : ''}>
               <input 
                 type="checkbox" 
                 name="showTicketmaster" 
-                checked={globalShowTicketmasterState}
-                onChange={handleFilterToggle}
+                checked={globalTicketmasterShadingState === CheckboxShading.ON}
+                onChange={handleVendorFilterToggle}
+                className={ticketmasterDataState ? 'Filter_checkbox--disabled' : ''}
               />
               Ticketmaster
               <br></br>
@@ -244,13 +247,14 @@ export const Filter = () => {
           )
         }
         {
-          stubhubFilter && isStable && (
-            <label htmlFor="showStubhub">
+          (stubhubState !== CheckboxShading.OFF) && isStable && (
+            <label htmlFor="showStubhub" className={stubhubDataState ? 'Filter_label--disabled' : ''}>
               <input
                 type="checkbox" 
                 name="showStubhub" 
-                checked={globalShowStubhubState}
-                onChange={handleFilterToggle}
+                checked={globalStubhubShadingState === CheckboxShading.ON}
+                onChange={handleVendorFilterToggle}
+                className={stubhubDataState ? 'Filter_checkbox--disabled': ''}
               />   
               Stubhub
               <br></br>
@@ -258,13 +262,14 @@ export const Filter = () => {
           )
         }
         {
-          seatgeekFilter && isStable && (
-            <label htmlFor="showSeatgeek">
+          (seatgeekState !== CheckboxShading.OFF) && isStable && (
+            <label htmlFor="showSeatgeek" className={seatgeekDataState ? 'Filter_label--disabled' : ''}>
               <input 
                 type="checkbox" 
                 name="showSeatgeek"  
-                checked={globalShowSeatgeekState}
-                onChange={handleFilterToggle}
+                checked={globalSeatgeekShadingState === CheckboxShading.ON}
+                onChange={handleVendorFilterToggle}
+                className={seatgeekDataState ? 'Filter_checkbox--disabled' : ''}
               />
               SeatGeek
               <br></br>

@@ -73,6 +73,9 @@ export const Filter = () => {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
       console.log('filter cache call firing');
+      console.log('globalTicketmasterShadingState', globalTicketmasterShadingState);
+      console.log('globalStubhubShadingState', globalStubhubShadingState);
+      console.log('globalSeatgeekShadingState', globalSeatgeekShadingState);
       callCacheForFiltering(false, false, true, false);
     }
   // globalShowTicketmasterState, globalShowStubhubState, globalShowSeatgeekState,
@@ -127,8 +130,8 @@ export const Filter = () => {
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     console.log('callCacheForFiltering firing');
     console.log('globalTicketmasterShadingState',globalTicketmasterShadingState);
-    console.log('globalSeatgeekShadingState', globalSeatgeekShadingState);
     console.log('globalStubhubShadingState', globalStubhubShadingState);
+    console.log('globalSeatgeekShadingState', globalSeatgeekShadingState);
     axios.get('http://localhost:8080/api/cache/events', {
       params: {
         keyword: searchResultsState.lastQuery,
@@ -189,7 +192,7 @@ export const Filter = () => {
     const target = event.target;
     const name = target.name;
     const newCheckState = target.checked ? CheckboxShading.ON : CheckboxShading.FILTERED;
-    console.log('vendorFilterToggle working', newCheckState);
+    console.log('vendorFilterToggle working', name, newCheckState);
     searchResultsDispatch(setIsStableAction(true));
     if (name === "showTicketmaster") {
       searchResultsDispatch(setTicketmasterStateAction(newCheckState));

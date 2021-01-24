@@ -8,7 +8,7 @@ export enum SearchResultActionTypes {
   // SET_SHOW_SEATGEEK = 'SET_SHOW_SEATGEEK',
   SET_TICKETMASTER_STATE = 'SET_TICKETMASTER_STATE',
   SET_STUBHUB_STATE = 'SET_STUBHUB_STATE',
-  SET_SEATGEEK_STATE = 'SET_STUBHUB_STATE',
+  SET_SEATGEEK_STATE = 'SET_SEATGEEK_STATE',
   SET_BULK_FILTER = 'SET_BULK_FILTER',
   SET_SHOW_CANCELLED = 'SET_SHOW_CANCELLED',
   SET_SHOW_NO_LISTINGS = 'SET_SHOW_NO_LISTINGS',
@@ -80,6 +80,7 @@ export const setStubhubStateAction = (payload: CheckboxShading): SetStubhubState
   payload,
 });
 
+
 interface SetSeatgeekState {
   type: SearchResultActionTypes.SET_SEATGEEK_STATE,
   payload: CheckboxShading;
@@ -89,6 +90,7 @@ export const setSeatgeekStateAction = (payload: CheckboxShading): SetSeatgeekSta
   type: SearchResultActionTypes.SET_SEATGEEK_STATE,
   payload,
 });
+
 interface SetShowCancelled {
   type: SearchResultActionTypes.SET_SHOW_CANCELLED;
   payload: CheckboxShading;

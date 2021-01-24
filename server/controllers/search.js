@@ -353,9 +353,9 @@ export const getCachedEvents = (req, res) => {
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
 
-    if (ticketmasterState === 'OFF' || ticketmasterState === 'FILTERED') { ticketmasterEvents = [] }
-    if (stubhubState === 'OFF' || stubhubState === 'FILTERED') { stubhubEvents = [] }
-    if (seatgeekState === 'OFF' || seatgeekState === 'FILTERED') { seatgeekEvents = [] }
+    if (ticketmasterState === 'OFF' || ticketmasterState === 'FILTERED' || ticketmasterState === 'GREYED') { ticketmasterEvents = [] }
+    if (stubhubState === 'OFF' || stubhubState === 'FILTERED' || stubhubState === 'GREYED') { stubhubEvents = [] }
+    if (seatgeekState === 'OFF' || seatgeekState === 'FILTERED' || seatgeekState === 'GREYED') { seatgeekEvents = [] }
 
     combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
 
@@ -451,9 +451,9 @@ export const getCachedEvents = (req, res) => {
     console.log('hasTicketmasterData', hasTicketmasterData);
     console.log('hasStubhubData', hasStubhubData);
     console.log('hasSeatgeekData', hasSeatgeekData);
-    const ticketMasterShadingState = vendorShadingState('ticketmaster', ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState, isStatusFilterCall);
-    const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState, isStatusFilterCall);
-    const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState, isStatusFilterCall);
+    const ticketMasterShadingState = vendorShadingState('ticketmaster', ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState, isStatusFilterCall, isSliderCall, isCalendarCall);
+    const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState, isStatusFilterCall, isSliderCall, isCalendarCall);
+    const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState, isStatusFilterCall, isSliderCall, isCalendarCall);
 
     const sortChronologically = filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);

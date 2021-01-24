@@ -34,8 +34,8 @@ export const Filter = () => {
   // const [ticketmasterFilter, setTicketmasterFilter] = React.useState<boolean>(false);
   // const [stubhubFilter, setStubhubFilter] = React.useState<boolean>(false);
   // const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
-  const [cancelledFilter, setCancelledFilter] = React.useState<boolean>(false);
-  const [noListingsFilter, setNoListingsFilter] = React.useState<boolean>(false);
+  const [cancelledFilter, setCancelledFilter] = React.useState<CheckboxShading>(CheckboxShading.OFF);
+  const [noListingsFilter, setNoListingsFilter] = React.useState<CheckboxShading>(CheckboxShading.OFF);
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
   const [dateRangeState, setDateRangeState] = React.useState<(Moment | string)[]>([]);
   const [priceRangeState, setPriceRangeState] = React.useState<number[]>([]);
@@ -48,8 +48,8 @@ export const Filter = () => {
   const globalTicketmasterShadingState: CheckboxShading = searchResultsState.searchFilters.ticketmasterState;
   const globalStubhubShadingState: CheckboxShading = searchResultsState.searchFilters.stubhubState;
   const globalSeatgeekShadingState: CheckboxShading = searchResultsState.searchFilters.seatgeekState;
-  const globalShowCancelledState: boolean = searchResultsState.searchFilters.showCancelled;
-  const globalShowNoListingsState: boolean = searchResultsState.searchFilters.showNoListings;
+  const globalShowCancelledState: CheckboxShading = searchResultsState.searchFilters.showCancelled;
+  const globalShowNoListingsState: CheckboxShading = searchResultsState.searchFilters.showNoListings;
   const globalPriceRangeState: number[] = searchResultsState.searchFilters.priceRange;
   const globalDateRangeState: Moment[] = searchResultsState.searchFilters.dateRange;
   const globalFilteredPriceRangeState: number[] = searchResultsState.searchFilters.filteredPriceRange;
@@ -66,18 +66,28 @@ export const Filter = () => {
       setTicketmasterState(globalTicketmasterShadingState);
       setStubhubState(globalStubhubShadingState);
       setSeatgeekState(globalSeatgeekShadingState);
-      setCancelledFilter(globalShowCancelledState);
-      setNoListingsFilter(globalShowNoListingsState);
+      // setCancelledFilter(globalShowCancelledState);
+      // setNoListingsFilter(globalShowNoListingsState);
     } else if (
       globalTicketmasterShadingState === CheckboxShading.OFF && globalStubhubShadingState === CheckboxShading.OFF && globalSeatgeekShadingState === CheckboxShading.OFF) {
       searchResultsDispatch(setNoResultsState(true));
     } else if (isStable) {
       console.log('filter cache call firing');
-      callCacheForFiltering(false, false, true);
+      callCacheForFiltering(false, false, true, false);
     }
   // globalShowTicketmasterState, globalShowStubhubState, globalShowSeatgeekState,
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [globalTicketmasterShadingState, globalStubhubShadingState, globalSeatgeekShadingState, globalShowCancelledState, globalShowNoListingsState]);
+  }, [globalTicketmasterShadingState, globalStubhubShadingState, globalSeatgeekShadingState]);
+
+  React.useEffect(() => {
+    if (!isStable) {
+      setCancelledFilter(globalShowCancelledState);
+      setNoListingsFilter(globalShowNoListingsState);
+    } else {
+      callCacheForFiltering(false, false, false, true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [globalShowCancelledState, globalShowNoListingsState]);
 
   React.useEffect(() => {
     if (ticketmasterState === CheckboxShading.ON || stubhubState === CheckboxShading.ON || seatgeekState === CheckboxShading.ON) {
@@ -101,7 +111,7 @@ export const Filter = () => {
 
   React.useEffect(() => {
     if (globalUserDateRangeSelectedState) {
-      callCacheForFiltering(false, true, false);
+      callCacheForFiltering(false, true, false, false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalUserDateRangeSelectedState, dateRangeState]);
@@ -112,7 +122,7 @@ export const Filter = () => {
     console.log(seatgeekState === CheckboxShading.GREYED, seatgeekState, 'seatgeekState');
   }, [ticketmasterState, stubhubState, seatgeekState]);
 
-  const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isCheckboxCall: boolean) => {
+  const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isVendorFilterCall: boolean, isStatusFilterCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     console.log('callCacheForFiltering firing');
@@ -136,9 +146,11 @@ export const Filter = () => {
         latestDate: dateRangeState[1],
         isSliderCall,
         isCalendarCall,
-        isCheckboxCall,
+        isVendorFilterCall,
+        isStatusFilterCall,
       }
     }).then(res => {
+      searchResultsDispatch(setIsStableAction(false))
       if (res.data.data.length === 0) {
         searchResultsDispatch(setNoResultsState(true));
         spinnerDispatch(setSpinnerState(false));
@@ -178,6 +190,7 @@ export const Filter = () => {
     const name = target.name;
     const newCheckState = target.checked ? CheckboxShading.ON : CheckboxShading.FILTERED;
     console.log('vendorFilterToggle working', newCheckState);
+    searchResultsDispatch(setIsStableAction(true));
     if (name === "showTicketmaster") {
       searchResultsDispatch(setTicketmasterStateAction(newCheckState));
     } else if (name === "showStubhub") {
@@ -187,10 +200,12 @@ export const Filter = () => {
     } 
   }
 
-  const handleFilterToggle = (event: any) => {
+  const handleStatusFilterToggle = (event: any) => {
     const target = event.target;
     const name = target.name;
-    const newCheckState = target.checked;
+    const newCheckState = target.checked ? CheckboxShading.ON : CheckboxShading.FILTERED;
+    console.log('statusFilterToggle working', newCheckState);
+    searchResultsDispatch(setIsStableAction(true));
     if (name === "showCancelled") {
       searchResultsDispatch(setShowCancelledAction(newCheckState));
     } else if (name === "showNoListings") {
@@ -232,7 +247,7 @@ export const Filter = () => {
       <b>Vendors</b>
       <br></br>
         {
-          (ticketmasterState !== CheckboxShading.OFF) && isStable && (
+          (ticketmasterState !== CheckboxShading.OFF) && (
             <label htmlFor="showTicketmaster" className={ticketmasterDataState ? 'Filter_label--disabled' : ''}>
               <input 
                 type="checkbox" 
@@ -247,7 +262,7 @@ export const Filter = () => {
           )
         }
         {
-          (stubhubState !== CheckboxShading.OFF) && isStable && (
+          (stubhubState !== CheckboxShading.OFF) && (
             <label htmlFor="showStubhub" className={stubhubDataState ? 'Filter_label--disabled' : ''}>
               <input
                 type="checkbox" 
@@ -262,7 +277,7 @@ export const Filter = () => {
           )
         }
         {
-          (seatgeekState !== CheckboxShading.OFF) && isStable && (
+          (seatgeekState !== CheckboxShading.OFF) && (
             <label htmlFor="showSeatgeek" className={seatgeekDataState ? 'Filter_label--disabled' : ''}>
               <input 
                 type="checkbox" 
@@ -277,7 +292,7 @@ export const Filter = () => {
           )
         }
         {
-         (cancelledFilter || noListingsFilter) && (
+         (cancelledFilter !== CheckboxShading.OFF || noListingsFilter !== CheckboxShading.OFF) && (
           <div>
             <b>Status Filters</b>
             <br></br>
@@ -285,13 +300,13 @@ export const Filter = () => {
          )
         }
         {
-          cancelledFilter && isStable && (
+          (cancelledFilter !== CheckboxShading.OFF) && (
           <label htmlFor="showCancelled">
             <input 
               type="checkbox" 
               name="showCancelled"  
-              checked={globalShowCancelledState}
-              onChange={handleFilterToggle}
+              checked={globalShowCancelledState === CheckboxShading.ON}
+              onChange={handleStatusFilterToggle}
             />
             Cancelled Events
             <br></br>
@@ -299,13 +314,13 @@ export const Filter = () => {
           )
         }
         {
-          noListingsFilter && isStable && (
+          (noListingsFilter !== CheckboxShading.OFF) && (
             <label htmlFor="showNoListings">
               <input 
                 type="checkbox" 
                 name="showNoListings"  
-                checked={globalShowNoListingsState}
-                onChange={handleFilterToggle}
+                checked={globalShowNoListingsState === CheckboxShading.ON}
+                onChange={handleStatusFilterToggle}
               />
               Events Without Listings
               <br></br>
@@ -322,7 +337,7 @@ export const Filter = () => {
             min={maxMinPriceRange[0]}
             max={maxMinPriceRange[1]}
             onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
-            onChangeCommitted={() => callCacheForFiltering(true, false, false)}
+            onChangeCommitted={() => callCacheForFiltering(true, false, false, false)}
             valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"
           />

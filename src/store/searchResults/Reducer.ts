@@ -32,8 +32,8 @@ export interface SearchFilterState {
   ticketmasterState: CheckboxShading,
   stubhubState: CheckboxShading,
   seatgeekState: CheckboxShading,
-  showCancelled: boolean;
-  showNoListings: boolean;
+  showCancelled: CheckboxShading;
+  showNoListings: CheckboxShading;
   priceRange: number[];
   dateRange: Moment[];
   filteredPriceRange: number[];
@@ -103,8 +103,8 @@ export const initialSearchResultsState: SearchResultsState = {
     ticketmasterState: CheckboxShading.OFF,
     stubhubState: CheckboxShading.OFF,
     seatgeekState: CheckboxShading.OFF,
-    showCancelled: false,
-    showNoListings: false,
+    showCancelled: CheckboxShading.OFF,
+    showNoListings: CheckboxShading.OFF,
     priceRange: [0,0],
     dateRange: [],
     filteredPriceRange: [],

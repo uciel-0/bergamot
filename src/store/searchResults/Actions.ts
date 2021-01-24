@@ -91,20 +91,20 @@ export const setSeatgeekStateAction = (payload: CheckboxShading): SetSeatgeekSta
 });
 interface SetShowCancelled {
   type: SearchResultActionTypes.SET_SHOW_CANCELLED;
-  payload: boolean;
+  payload: CheckboxShading;
 }
 
-export const setShowCancelledAction = (payload: boolean): SetShowCancelled => ({
+export const setShowCancelledAction = (payload: CheckboxShading): SetShowCancelled => ({
   type: SearchResultActionTypes.SET_SHOW_CANCELLED,
   payload
 });
 
 interface SetShowNoListings {
   type: SearchResultActionTypes.SET_SHOW_NO_LISTINGS;
-  payload: boolean;
+  payload: CheckboxShading;
 }
 
-export const setShowNoListingsAction = (payload: boolean): SetShowNoListings => ({
+export const setShowNoListingsAction = (payload: CheckboxShading): SetShowNoListings => ({
   type: SearchResultActionTypes.SET_SHOW_NO_LISTINGS,
   payload
 });
@@ -114,8 +114,8 @@ interface SetBulkFilter {
   ticketmasterState: CheckboxShading;
   stubhubState: CheckboxShading;
   seatgeekState: CheckboxShading;
-  cancelled: boolean;
-  noListings: boolean;
+  cancelled: CheckboxShading;
+  noListings: CheckboxShading;
   priceRange: number[];
   dateRange: Moment[];
   filteredPriceRange: number[];
@@ -126,8 +126,8 @@ export const setBulkFilterAction = (
   ticketmasterState: CheckboxShading, 
   stubhubState: CheckboxShading, 
   seatgeekState: CheckboxShading, 
-  cancelled: boolean, 
-  noListings: boolean, 
+  cancelled: CheckboxShading, 
+  noListings: CheckboxShading, 
   priceRange: number[],
   dateRange: Moment[], 
   filteredPriceRange: number[], 

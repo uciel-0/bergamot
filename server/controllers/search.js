@@ -2,7 +2,7 @@ import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
 import {groupByDay, formatDate, formatLocalDate ,formatTime, normalizeUTCDate, normalizeLocalDate} from '../utils/dateUtils';
-import {vendorShadingState} from '../utils/sortUtils';
+import {vendorShadingState, statusShadingState} from '../utils/sortUtils';
 import moment from 'moment';
 import Cache from '../cache';
 // final modifications to the array we recieve on the front-end are made here 
@@ -76,6 +76,7 @@ const ttl = 60 * 60 * 1;
 const cache = new Cache(ttl);
 // this is the api call we're using
 export const getEvents = (req, res) => {
+  console.log('getEventsCall firing');
   const ticketmaster = getTicketMasterSearchResults(req, res);
   const stubhub = getStubhubEvents(req, res);
   const seatgeek = getSeatGeekEvents(req, res);
@@ -221,8 +222,8 @@ export const getEvents = (req, res) => {
       },
       priceRange: minMax,
       dateRange: [earliestOfWholeSet.format(), latestOfWholeSet.format()],
-      hasCancelledEvents,
-      hasNoListingEvents,
+      hasCancelledEvents: hasCancelledEvents ? 'ON' : 'OFF',
+      hasNoListingEvents: hasNoListingEvents ? 'ON' : 'OFF',
       providerResultLengths,
       totalResultsLength,
     }
@@ -252,15 +253,16 @@ export const getCachedEvents = (req, res) => {
   const ticketmasterState = req.query.ticketmasterState;
   const stubhubState = req.query.stubhubState;
   const seatgeekState = req.query.seatgeekState;
-  console.log(ticketmasterState, 'ticketmasterState');
-  console.log(stubhubState, 'stubhubState');
-  console.log(seatgeekState, 'seatgeekState');
-  const showCancelled = Boolean(req.query.showCancelled === "true")
-  const showNoListings = Boolean(req.query.showNoListings === "true");
+  console.log(ticketmasterState, 'ticketmasterState in cache call');
+  console.log(stubhubState, 'stubhubState in cache call');
+  console.log(seatgeekState, 'seatgeekState in cache call');
+  const showCancelled = req.query.showCancelled;
+  const showNoListings = req.query.showNoListings;
   const isSliderCall = Boolean(req.query.isSliderCall === "true");
   const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
-  const frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)]
-  const isCheckboxCall = Boolean(req.query.isCheckboxCall === 'true');
+  const frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)];
+  const isVendorFilterCall = Boolean(req.query.isVendorFilterCall === 'true');
+  const isStatusFilterCall = Boolean(req.query.isStatusFilterCall === 'true');
   // call the cache for this data 
   cache.get(key).then(data => {
     // let ticketmasterResults
@@ -357,10 +359,10 @@ export const getCachedEvents = (req, res) => {
 
     combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
 
-    if (!showCancelled) {
+    if (showCancelled === 'FILTERED') {
       combinedData = combinedData.filter(e => e.status !== 'cancelled');
     }
-    if (!showNoListings) {
+    if (showNoListings === 'FILTERED') {
       console.log('reaching show no listings filter');
       combinedData = combinedData.filter(e => e.priceAfterFees);
     }
@@ -375,7 +377,7 @@ export const getCachedEvents = (req, res) => {
     let earliestDate = moment.utc(req.query.earliestDate);
     let latestDate = moment.utc(req.query.latestDate);
     // if the call comes from the checkboxes, search against both the filters
-    if (isCheckboxCall) {
+    if (isVendorFilterCall || isStatusFilterCall) {
       if (minPrice >= minMaxPriceOfWholeSet[0] || maxPrice <= minMaxPriceOfWholeSet[1]) {
         filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
         if (filteredData.length === 0) {
@@ -440,12 +442,18 @@ export const getCachedEvents = (req, res) => {
       !event.priceAfterFees ? true : result
     , false);
 
+    const cancelledEventsShadingState = statusShadingState('hasCancelledEvents', hasCancelledEvents, showCancelled);
+    const noListingsShadingState = statusShadingState('hasNoListingsEvents', hasNoListingEvents, showNoListings);
+
     const hasTicketmasterData = filteredData.reduce((result, e) => e.source === 'ticketmaster' ? true : result, false);
     const hasStubhubData = filteredData.reduce((result, e) => e.source === 'stubhub' ? true : result, false);
     const hasSeatgeekData = filteredData.reduce((result, e) => e.source === 'seatgeek' ? true : result, false);
     console.log('hasTicketmasterData', hasTicketmasterData);
     console.log('hasStubhubData', hasStubhubData);
     console.log('hasSeatgeekData', hasSeatgeekData);
+    const ticketMasterShadingState = vendorShadingState('ticketmaster', ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState, isStatusFilterCall);
+    const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState, isStatusFilterCall);
+    const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState, isStatusFilterCall);
 
     const sortChronologically = filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);
@@ -477,9 +485,9 @@ export const getCachedEvents = (req, res) => {
         seatgeek: hasSeatgeekData,
       },
       vendorState: {
-        ticketmaster: vendorShadingState(ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState),
-        stubhub: vendorShadingState(stubhubInWholeSet, hasStubhubData, stubhubState),
-        seatgeek: vendorShadingState(seatgeekInWholeSet, hasSeatgeekData, seatgeekState),
+        ticketmaster: ticketMasterShadingState,
+        stubhub: stubhubShadingState,
+        seatgeek: seatgeekShadingState,
       },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
@@ -487,8 +495,8 @@ export const getCachedEvents = (req, res) => {
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       totalResultsLength,
-      hasCancelledEvents,
-      hasNoListingEvents,
+      hasCancelledEvents: cancelledEventsShadingState,
+      hasNoListingEvents: noListingsShadingState,
     }
     console.log('response object', {
       source: {
@@ -497,9 +505,9 @@ export const getCachedEvents = (req, res) => {
         seatgeek: hasSeatgeekData,
       },
       vendorShadingState: {
-        ticketmaster: vendorShadingState(ticketmasterInWholeSet, hasTicketmasterData),
-        stubhub: vendorShadingState(stubhubInWholeSet, hasStubhubData),
-        seatgeek: vendorShadingState(seatgeekInWholeSet, hasSeatgeekData),
+        ticketmaster: ticketMasterShadingState,
+        stubhub: stubhubShadingState,
+        seatgeek:seatgeekShadingState,
       },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
@@ -507,8 +515,8 @@ export const getCachedEvents = (req, res) => {
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       totalResultsLength,
-      hasCancelledEvents,
-      hasNoListingEvents,
+      hasCancelledEvents: cancelledEventsShadingState,
+      hasNoListingEvents: noListingsShadingState,
     });
     res.send(response);
   }) 

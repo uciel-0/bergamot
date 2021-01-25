@@ -1,13 +1,12 @@
 // On = Exists in whole and filterd set, Off = Does not exist in whole set, Greyed = Exists in set but not fitlered set  
-export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet, vendorFilterState, isStatusFilterCall, isSliderCall, isCalendarCall) => {
+export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet, vendorFilterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall) => {
   let shadingState = '';
-  if ((existsInWholeSet && existsInFilteredSet) || (existsInWholeSet && !existsInFilteredSet && isStatusFilterCall && vendorFilterState === 'GREYED')) {
-    shadingState = 'ON';
-  } else if ((existsInWholeSet && !existsInFilteredSet && isStatusFilterCall) || (existsInWholeSet && !existsInFilteredSet && isSliderCall) || (existsInWholeSet && !existsInFilteredSet && isCalendarCall) || vendorFilterState === 'GREYED') {
-    shadingState = 'GREYED';
-  } else if ((existsInWholeSet && !existsInFilteredSet) || vendorFilterState === 'FILTERED') {
-    shadingState = 'FILTERED'
-  } else if (!existsInWholeSet) {
+  // RETURNS CHECKED, UNCHECKED, GREYED, OFF
+  if (existsInWholeSet && existsInFilteredSet) {
+    shadingState = 'CHECKED';
+  } else if (existsInWholeSet && !existsInFilteredSet) {
+    shadingState = 'UNCHECKED';
+  } else if (!existsInFilteredSet) {
     shadingState = 'OFF';
   }
   console.log('vendorShadingState for', vendor, 'existsInWholeSet:', existsInWholeSet , 'shadingState:', shadingState, 'isStatusFilterCall:', isStatusFilterCall);
@@ -16,12 +15,12 @@ export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet
 
 export const statusShadingState = (stateName, existsInSet, statusFilterFromFrontEnd) => {
   let shadingState = '';
-  if ((existsInSet && statusFilterFromFrontEnd === 'FILTERED') || statusFilterFromFrontEnd === 'FILTERED') {
-    shadingState = 'FILTERED';
-  } else if (!existsInSet && statusFilterFromFrontEnd === 'OFF' ) {
-    shadingState = 'OFF';
-  } else if (existsInSet) {
-    shadingState = 'ON'
+  if (existsInSet) {
+    shadingState = 'CHECKED';
+  } else if (statusFilterFromFrontEnd === 'UNCHECKED') {
+    shadingState = 'UNCHECKED';
+  } else {
+    shadingState = 'OFF'
   }
   console.log('status shading state for', stateName, existsInSet, statusFilterFromFrontEnd)
   return shadingState;

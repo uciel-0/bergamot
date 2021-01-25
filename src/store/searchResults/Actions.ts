@@ -30,36 +30,6 @@ export const setSearchResults = (payload: any): SetSearchResults => ({
   payload
 });
 
-// interface SetShowTicketMaster {
-//   type: SearchResultActionTypes.SET_SHOW_TICKETMASTER;
-//   payload: boolean;
-// }
-
-// export const setShowTicketmasterAction = (payload: boolean): SetShowTicketMaster => ({
-//   type: SearchResultActionTypes.SET_SHOW_TICKETMASTER,
-//   payload
-// });
-
-// interface SetShowStubhub {
-//   type: SearchResultActionTypes.SET_SHOW_STUBHUB;
-//   payload: boolean;
-// }
-
-// export const setShowStubhubAction = (payload: boolean): SetShowStubhub => ({
-//   type: SearchResultActionTypes.SET_SHOW_STUBHUB,
-//   payload
-// });
-
-// interface SetShowSeatgeek {
-//   type: SearchResultActionTypes.SET_SHOW_SEATGEEK;
-//   payload: boolean;
-// }
-
-// export const setShowSeatgeekAction = (payload: boolean): SetShowSeatgeek => ({
-//   type: SearchResultActionTypes.SET_SHOW_SEATGEEK,
-//   payload
-// });
-
 interface SetTicketmasterState {
   type: SearchResultActionTypes.SET_TICKETMASTER_STATE,
   payload: CheckboxShading;
@@ -79,7 +49,6 @@ export const setStubhubStateAction = (payload: CheckboxShading): SetStubhubState
   type: SearchResultActionTypes.SET_STUBHUB_STATE,
   payload,
 });
-
 
 interface SetSeatgeekState {
   type: SearchResultActionTypes.SET_SEATGEEK_STATE,

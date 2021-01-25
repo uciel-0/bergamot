@@ -93,7 +93,7 @@ export const Filter = () => {
   }, [globalShowCancelledState, globalShowNoListingsState]);
 
   React.useEffect(() => {
-    if (ticketmasterState === CheckboxShading.ON || stubhubState === CheckboxShading.ON || seatgeekState === CheckboxShading.ON) {
+    if (ticketmasterState === CheckboxShading.CHECKED || stubhubState === CheckboxShading.CHECKED || seatgeekState === CheckboxShading.CHECKED) {
       searchResultsDispatch(setIsStableAction(true));
     }
   // ticketmasterFilter, stubhubFilter, seatgeekFilter
@@ -191,7 +191,7 @@ export const Filter = () => {
   const handleVendorFilterToggle = (event: any) => {
     const target = event.target;
     const name = target.name;
-    const newCheckState = target.checked ? CheckboxShading.ON : CheckboxShading.FILTERED;
+    const newCheckState = target.checked ? CheckboxShading.CHECKED : CheckboxShading.UNCHECKED;
     console.log('vendorFilterToggle working', name, newCheckState);
     searchResultsDispatch(setIsStableAction(true));
     if (name === "showTicketmaster") {
@@ -206,7 +206,7 @@ export const Filter = () => {
   const handleStatusFilterToggle = (event: any) => {
     const target = event.target;
     const name = target.name;
-    const newCheckState = target.checked ? CheckboxShading.ON : CheckboxShading.FILTERED;
+    const newCheckState = target.checked ? CheckboxShading.CHECKED : CheckboxShading.UNCHECKED;
     console.log('statusFilterToggle working', newCheckState);
     searchResultsDispatch(setIsStableAction(true));
     if (name === "showCancelled") {
@@ -255,7 +255,7 @@ export const Filter = () => {
               <input 
                 type="checkbox" 
                 name="showTicketmaster" 
-                checked={globalTicketmasterShadingState === CheckboxShading.ON}
+                checked={globalTicketmasterShadingState === CheckboxShading.CHECKED}
                 onChange={handleVendorFilterToggle}
                 className={ticketmasterDataState ? 'Filter_checkbox--disabled' : ''}
               />
@@ -270,7 +270,7 @@ export const Filter = () => {
               <input
                 type="checkbox" 
                 name="showStubhub" 
-                checked={globalStubhubShadingState === CheckboxShading.ON}
+                checked={globalStubhubShadingState === CheckboxShading.CHECKED}
                 onChange={handleVendorFilterToggle}
                 className={stubhubDataState ? 'Filter_checkbox--disabled': ''}
               />   
@@ -285,7 +285,7 @@ export const Filter = () => {
               <input 
                 type="checkbox" 
                 name="showSeatgeek"  
-                checked={globalSeatgeekShadingState === CheckboxShading.ON}
+                checked={globalSeatgeekShadingState === CheckboxShading.CHECKED}
                 onChange={handleVendorFilterToggle}
                 className={seatgeekDataState ? 'Filter_checkbox--disabled' : ''}
               />
@@ -308,7 +308,7 @@ export const Filter = () => {
             <input 
               type="checkbox" 
               name="showCancelled"  
-              checked={globalShowCancelledState === CheckboxShading.ON}
+              checked={globalShowCancelledState === CheckboxShading.CHECKED}
               onChange={handleStatusFilterToggle}
             />
             Cancelled Events
@@ -322,7 +322,7 @@ export const Filter = () => {
               <input 
                 type="checkbox" 
                 name="showNoListings"  
-                checked={globalShowNoListingsState === CheckboxShading.ON}
+                checked={globalShowNoListingsState === CheckboxShading.CHECKED}
                 onChange={handleStatusFilterToggle}
               />
               Events Without Listings

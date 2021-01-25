@@ -18,10 +18,10 @@ export interface SearchResult {
 }
 
 export enum CheckboxShading {
-  OFF = 'OFF',
-  ON = 'ON', 
+  CHECKED = 'CHECKED',
+  UNCHECKED = 'UNCHECKED',
   GREYED = 'GREYED',
-  FILTERED = 'FILTERED'
+  OFF = 'OFF'
 }
 export interface VendorShadingState {
   ticketmaster: CheckboxShading,
@@ -53,10 +53,8 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
     case SearchResultActionTypes.SET_TICKETMASTER_STATE:
       return {...state, searchFilters: {...state.searchFilters, ticketmasterState: action.payload}};
     case SearchResultActionTypes.SET_STUBHUB_STATE:
-      console.log('set stubhub case of reducer being hit')
       return {...state, searchFilters: {...state.searchFilters, stubhubState: action.payload}};
     case SearchResultActionTypes.SET_SEATGEEK_STATE:
-      console.log('set seatgeek case of reducer being hit')
       return {...state, searchFilters: {...state.searchFilters, seatgeekState: action.payload}};
     case SearchResultActionTypes.SET_SHOW_CANCELLED: 
       return {...state, searchFilters: {...state.searchFilters, showCancelled: action.payload}};

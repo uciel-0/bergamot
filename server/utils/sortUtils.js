@@ -1,7 +1,7 @@
 // On = Exists in whole and filterd set, Off = Does not exist in whole set, Greyed = Exists in set but not fitlered set  
 export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet, vendorFilterState, isStatusFilterCall, isSliderCall, isCalendarCall) => {
   let shadingState = '';
-  if ((existsInWholeSet && existsInFilteredSet) || (existsInWholeSet && isStatusFilterCall && vendorFilterState === 'GREYED')) {
+  if ((existsInWholeSet && existsInFilteredSet) || (existsInWholeSet && !existsInFilteredSet && isStatusFilterCall && vendorFilterState === 'GREYED')) {
     shadingState = 'ON';
   } else if ((existsInWholeSet && !existsInFilteredSet && isStatusFilterCall) || (existsInWholeSet && !existsInFilteredSet && isSliderCall) || (existsInWholeSet && !existsInFilteredSet && isCalendarCall) || vendorFilterState === 'GREYED') {
     shadingState = 'GREYED';
@@ -10,7 +10,7 @@ export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet
   } else if (!existsInWholeSet) {
     shadingState = 'OFF';
   }
-  console.log('vendorShadingState for', vendor, shadingState, 'isStatusFilterCall', isStatusFilterCall);
+  console.log('vendorShadingState for', vendor, 'existsInWholeSet:', existsInWholeSet , 'shadingState:', shadingState, 'isStatusFilterCall:', isStatusFilterCall);
   return shadingState;
 }
 

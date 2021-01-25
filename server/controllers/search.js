@@ -518,6 +518,9 @@ export const getCachedEvents = (req, res) => {
       hasCancelledEvents: cancelledEventsShadingState,
       hasNoListingEvents: noListingsShadingState,
     });
+    console.log('');
+    console.log('');
+    console.log('');
     res.send(response);
   }) 
   .catch(err => {

@@ -5,7 +5,7 @@ import {groupByDay, formatDate, formatLocalDate ,formatTime, normalizeUTCDate, n
 import {vendorShadingState, statusShadingState} from '../utils/sortUtils';
 import moment from 'moment';
 import Cache from '../cache';
-// final modifications to the array we recieve on the front-end are made here 
+
 export const wideSearchResults = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
   const stubhub = getStubhubSearchResults(req, res);
@@ -216,14 +216,14 @@ export const getEvents = (req, res) => {
         seatgeek: hasSeatgeekData,
       },
       vendorState: {
-        ticketmaster: hasTicketmasterData ? 'CHECKED' : 'OFF',
-        stubhub: hasStubhubData ? 'CHECKED' : 'OFF',
-        seatgeek: hasSeatgeekData ? 'CHECKED' : 'OFF',
+        ticketmaster: hasTicketmasterData ? 'CHECKED' : 'GREYED',
+        stubhub: hasStubhubData ? 'CHECKED' : 'GREYED',
+        seatgeek: hasSeatgeekData ? 'CHECKED' : 'GREYED',
       },
       priceRange: minMax,
       dateRange: [earliestOfWholeSet.format(), latestOfWholeSet.format()],
-      hasCancelledEvents: hasCancelledEvents ? 'CHECKED' : 'OFF',
-      hasNoListingEvents: hasNoListingEvents ? 'CHECKED' : 'OFF',
+      hasCancelledEvents: hasCancelledEvents ? 'CHECKED' : 'GREYED',
+      hasNoListingEvents: hasNoListingEvents ? 'CHECKED' : 'GREYED',
       providerResultLengths,
       totalResultsLength,
     }
@@ -241,18 +241,18 @@ export const flushCache = (req, res) => {
   res.sendStatus(200);
 }
 // NEXT THING TO DO 
+// STATES SHOULD BE CHECKED, UNCHECKED AND GREYED 
+// If a status filter turns off a vendor, that vendor should be greyed out 
+// when the status filter is deactivated
 // replace showTicketmaster booleans with ON, OFF or GREYED 
 // make it so if the state is ON or GREYED, the vendor is included in the filters 
 // fix this in the front end as well 
 export const getCachedEvents = (req, res) => {
   console.log('cache call starting');
   const key = `getEvents_${req.query.keyword}`;
-  // const showTicketmaster = Boolean(req.query.showTicketmaster === "true");
-  // const showStubhub = Boolean(req.query.showStubhub === "true");
-  // const showSeatgeek = Boolean(req.query.showSeatgeek === "true");
-  const ticketmasterState = req.query.ticketmasterState; // CHECKED, UNCHECKED, GREYED, OFF
-  const stubhubState = req.query.stubhubState; // CHECKED, UNCHECKED, GREYED, OFF
-  const seatgeekState = req.query.seatgeekState; // CHECKED, UNCHECKED, GREYED, OFF
+  const ticketmasterState = req.query.ticketmasterState; // CHECKED, UNCHECKED, GREYED
+  const stubhubState = req.query.stubhubState; // CHECKED, UNCHECKED, GREYED
+  const seatgeekState = req.query.seatgeekState; // CHECKED, UNCHECKED, GREYED
   console.log(ticketmasterState, 'ticketmasterState in cache call');
   console.log(stubhubState, 'stubhubState in cache call');
   console.log(seatgeekState, 'seatgeekState in cache call');
@@ -265,7 +265,7 @@ export const getCachedEvents = (req, res) => {
   const isStatusFilterCall = Boolean(req.query.isStatusFilterCall === 'true');
   // call the cache for this data 
   cache.get(key).then(data => {
-    // let ticketmasterResults
+    // ticketmaster event processing
     let ticketmasterEvents = [];
     let ticketmasterInWholeSet;
     data[0].events.forEach(e => {
@@ -291,7 +291,7 @@ export const getCachedEvents = (req, res) => {
     });
     ticketmasterEvents = data[0].events;
     ticketmasterInWholeSet = ticketmasterEvents.length > 0;
-    // stubhub events
+    // stubhub event processing
     let stubhubEvents = [];
     let stubhubInWholeSet;
     data[1].events.forEach(e => {
@@ -311,7 +311,7 @@ export const getCachedEvents = (req, res) => {
     });
     stubhubEvents = data[1].events;
     stubhubInWholeSet = stubhubEvents.length > 0;
-    // seatgeek events
+    // seatgeek event processing
     let seatgeekEvents = [];
     let seatgeekInWholeSet;
     data[2].events.forEach(e => {
@@ -353,9 +353,9 @@ export const getCachedEvents = (req, res) => {
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
 
-    if (ticketmasterState === 'OFF' || ticketmasterState === 'UNCHECKED' || ticketmasterState === 'GREYED') { ticketmasterEvents = [] }
-    if (stubhubState === 'OFF' || stubhubState === 'UNCHECKED' || stubhubState === 'GREYED') { stubhubEvents = [] }
-    if (seatgeekState === 'OFF' || seatgeekState === 'UNCHECKED' || seatgeekState === 'GREYED') { seatgeekEvents = [] }
+    if (ticketmasterState === 'UNCHECKED' || ticketmasterState === 'GREYED') { ticketmasterEvents = [] }
+    if (stubhubState === 'UNCHECKED' || stubhubState === 'GREYED') { stubhubEvents = [] }
+    if (seatgeekState === 'UNCHECKED' || seatgeekState === 'GREYED') { seatgeekEvents = [] }
 
     combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
 

@@ -1,13 +1,13 @@
 // On = Exists in whole and filterd set, Off = Does not exist in whole set, Greyed = Exists in set but not fitlered set  
 export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet, vendorFilterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall) => {
   let shadingState = '';
-  // RETURNS CHECKED, UNCHECKED, GREYED, OFF
+  // RETURNS CHECKED, UNCHECKED, GREYED
   if (existsInWholeSet && existsInFilteredSet) {
     shadingState = 'CHECKED';
   } else if (existsInWholeSet && !existsInFilteredSet) {
     shadingState = 'UNCHECKED';
-  } else if (!existsInFilteredSet) {
-    shadingState = 'OFF';
+  } else if (!existsInWholeSet) {
+    shadingState = 'GREYED';
   }
   console.log('vendorShadingState for', vendor, 'existsInWholeSet:', existsInWholeSet , 'shadingState:', shadingState, 'isStatusFilterCall:', isStatusFilterCall);
   return shadingState;
@@ -20,7 +20,7 @@ export const statusShadingState = (stateName, existsInSet, statusFilterFromFront
   } else if (statusFilterFromFrontEnd === 'UNCHECKED') {
     shadingState = 'UNCHECKED';
   } else {
-    shadingState = 'OFF'
+    shadingState = 'GREYED'
   }
   console.log('status shading state for', stateName, existsInSet, statusFilterFromFrontEnd)
   return shadingState;

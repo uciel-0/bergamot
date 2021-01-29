@@ -20,8 +20,7 @@ export interface SearchResult {
 export enum CheckboxShading {
   CHECKED = 'CHECKED',
   UNCHECKED = 'UNCHECKED',
-  GREYED = 'GREYED',
-  OFF = 'OFF'
+  GREYED = 'GREYED'
 }
 export interface VendorShadingState {
   ticketmaster: CheckboxShading,
@@ -44,12 +43,6 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
   switch(action.type) {
     case SearchResultActionTypes.SET_SEARCH_RESULTS:
       return {...state, searchResults: action.payload};
-    // case SearchResultActionTypes.SET_SHOW_TICKETMASTER:
-    //   return {...state, searchFilters: {...state.searchFilters, showTicketmaster: action.payload}}
-    // case SearchResultActionTypes.SET_SHOW_STUBHUB:
-    //   return {...state, searchFilters: {...state.searchFilters, showStubhub: action.payload}}; 
-    // case SearchResultActionTypes.SET_SHOW_SEATGEEK:
-    //   return {...state, searchFilters: {...state.searchFilters, showSeatgeek: action.payload}};
     case SearchResultActionTypes.SET_TICKETMASTER_STATE:
       return {...state, searchFilters: {...state.searchFilters, ticketmasterState: action.payload}};
     case SearchResultActionTypes.SET_STUBHUB_STATE:
@@ -67,9 +60,6 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
           ticketmasterState: action.ticketmasterState,
           stubhubState: action.stubhubState,
           seatgeekState: action.seatgeekState,
-          // showTicketmaster: action.ticketmaster, 
-          // showStubhub: action.stubhub, 
-          // showSeatgeek: action.seatgeek, 
           showCancelled: action.cancelled, 
           showNoListings: action.noListings, 
           priceRange: action.priceRange, 
@@ -100,11 +90,11 @@ const timezone = moment.tz.guess();
 export const initialSearchResultsState: SearchResultsState = {
   searchResults: [],
   searchFilters: {
-    ticketmasterState: CheckboxShading.OFF,
-    stubhubState: CheckboxShading.OFF,
-    seatgeekState: CheckboxShading.OFF,
-    showCancelled: CheckboxShading.OFF,
-    showNoListings: CheckboxShading.OFF,
+    ticketmasterState: CheckboxShading.GREYED,
+    stubhubState: CheckboxShading.GREYED,
+    seatgeekState: CheckboxShading.GREYED,
+    showCancelled: CheckboxShading.GREYED,
+    showNoListings: CheckboxShading.GREYED,
     priceRange: [0,0],
     dateRange: [],
     filteredPriceRange: [],

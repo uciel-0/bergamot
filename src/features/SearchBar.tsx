@@ -32,7 +32,7 @@ export const SearchBar = () => {
     // reset the isStable flag so the distributor filters can reset as expected
     searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
-    searchResultsDispatch(setBulkFilterAction(CheckboxShading.OFF, CheckboxShading.OFF, CheckboxShading.OFF, CheckboxShading.OFF, CheckboxShading.OFF, [], [], [], []));
+    searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));
     searchResultsDispatch(setPriceRangeAction([0,0]));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     axios.get('http://localhost:8080/api/search/events', {

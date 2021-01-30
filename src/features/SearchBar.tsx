@@ -14,6 +14,7 @@ import {
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../components/BopIcon';
 import {useHistory} from 'react-router-dom';
+import { CheckboxShading } from '../store/searchResults/Reducer';
 
 export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
@@ -31,7 +32,7 @@ export const SearchBar = () => {
     // reset the isStable flag so the distributor filters can reset as expected
     searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
-    searchResultsDispatch(setBulkFilterAction(false, false, false, false, false, [], [], [], []));
+    searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));
     searchResultsDispatch(setPriceRangeAction([0,0]));
     searchResultsDispatch(setUserDateRangeSelectedAction(false));
     axios.get('http://localhost:8080/api/search/events', {
@@ -52,7 +53,7 @@ export const SearchBar = () => {
       // set these booleans in the filter state so we can use them to render the checkboxes appropriately
       const maxMinPriceRange = res.data.priceRange;
       const maxMinDateRange = [res.data.dateRange[0], res.data.dateRange[1]];
-      searchResultsDispatch(setBulkFilterAction(res.data.source.ticketmaster, res.data.source.stubhub, res.data.source.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, maxMinPriceRange, maxMinDateRange, maxMinPriceRange, maxMinDateRange));
+      searchResultsDispatch(setBulkFilterAction(res.data.vendorState.ticketmaster, res.data.vendorState.stubhub, res.data.vendorState.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, maxMinPriceRange, maxMinDateRange, maxMinPriceRange, maxMinDateRange));
       spinnerDispatch(setSpinnerState(false));
       searchResultsDispatch(setNoResultsState(false));
     })

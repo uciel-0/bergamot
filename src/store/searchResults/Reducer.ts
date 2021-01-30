@@ -17,12 +17,22 @@ export interface SearchResult {
   events: any;
 }
 
+export enum CheckboxShading {
+  CHECKED = 'CHECKED',
+  UNCHECKED = 'UNCHECKED',
+  GREYED = 'GREYED'
+}
+export interface VendorShadingState {
+  ticketmaster: CheckboxShading,
+  stubhub: CheckboxShading,
+  seatgeek: CheckboxShading,
+}
 export interface SearchFilterState {
-  showTicketmaster: boolean;
-  showStubhub: boolean;
-  showSeatgeek: boolean;
-  showCancelled: boolean;
-  showNoListings: boolean;
+  ticketmasterState: CheckboxShading,
+  stubhubState: CheckboxShading,
+  seatgeekState: CheckboxShading,
+  showCancelled: CheckboxShading;
+  showNoListings: CheckboxShading;
   priceRange: number[];
   dateRange: Moment[];
   filteredPriceRange: number[];
@@ -33,18 +43,31 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
   switch(action.type) {
     case SearchResultActionTypes.SET_SEARCH_RESULTS:
       return {...state, searchResults: action.payload};
-    case SearchResultActionTypes.SET_SHOW_TICKETMASTER:
-      return {...state, searchFilters: {...state.searchFilters, showTicketmaster: action.payload}}
-    case SearchResultActionTypes.SET_SHOW_STUBHUB:
-      return {...state, searchFilters: {...state.searchFilters, showStubhub: action.payload}}; 
-    case SearchResultActionTypes.SET_SHOW_SEATGEEK:
-      return {...state, searchFilters: {...state.searchFilters, showSeatgeek: action.payload}};
+    case SearchResultActionTypes.SET_TICKETMASTER_STATE:
+      return {...state, searchFilters: {...state.searchFilters, ticketmasterState: action.payload}};
+    case SearchResultActionTypes.SET_STUBHUB_STATE:
+      return {...state, searchFilters: {...state.searchFilters, stubhubState: action.payload}};
+    case SearchResultActionTypes.SET_SEATGEEK_STATE:
+      return {...state, searchFilters: {...state.searchFilters, seatgeekState: action.payload}};
     case SearchResultActionTypes.SET_SHOW_CANCELLED: 
       return {...state, searchFilters: {...state.searchFilters, showCancelled: action.payload}};
     case SearchResultActionTypes.SET_SHOW_NO_LISTINGS:
       return {...state, searchFilters: {...state.searchFilters, showNoListings: action.payload}};
     case SearchResultActionTypes.SET_BULK_FILTER: 
-      return {...state, searchFilters: {...state.searchFilters, showTicketmaster: action.ticketmaster, showStubhub: action.stubhub, showSeatgeek: action.seatgeek, showCancelled: action.cancelled, showNoListings: action.noListings, priceRange: action.priceRange, dateRange: action.dateRange, filteredPriceRange: action.filteredPriceRange, filteredDateRange: action.filteredDateRange}};
+      return {...state, 
+        searchFilters: {
+          ...state.searchFilters, 
+          ticketmasterState: action.ticketmasterState,
+          stubhubState: action.stubhubState,
+          seatgeekState: action.seatgeekState,
+          showCancelled: action.cancelled, 
+          showNoListings: action.noListings, 
+          priceRange: action.priceRange, 
+          dateRange: action.dateRange, 
+          filteredPriceRange: action.filteredPriceRange, 
+          filteredDateRange: action.filteredDateRange
+        }
+      };
     case SearchResultActionTypes.SET_IS_STABLE: 
       return {...state, isStable: action.payload};
     case SearchResultActionTypes.SET_NO_RESULTS:
@@ -67,11 +90,11 @@ const timezone = moment.tz.guess();
 export const initialSearchResultsState: SearchResultsState = {
   searchResults: [],
   searchFilters: {
-    showTicketmaster: false,
-    showStubhub: false,
-    showSeatgeek: false,
-    showCancelled: false,
-    showNoListings: false,
+    ticketmasterState: CheckboxShading.GREYED,
+    stubhubState: CheckboxShading.GREYED,
+    seatgeekState: CheckboxShading.GREYED,
+    showCancelled: CheckboxShading.GREYED,
+    showNoListings: CheckboxShading.GREYED,
     priceRange: [0,0],
     dateRange: [],
     filteredPriceRange: [],

@@ -2,9 +2,10 @@ import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
 import {groupByDay, formatDate, formatLocalDate ,formatTime, normalizeUTCDate, normalizeLocalDate} from '../utils/dateUtils';
+import {vendorShadingState, statusShadingState} from '../utils/sortUtils';
 import moment from 'moment';
 import Cache from '../cache';
-// final modifications to the array we recieve on the front-end are made here 
+
 export const wideSearchResults = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
   const stubhub = getStubhubSearchResults(req, res);
@@ -75,6 +76,7 @@ const ttl = 60 * 60 * 1;
 const cache = new Cache(ttl);
 // this is the api call we're using
 export const getEvents = (req, res) => {
+  console.log('getEventsCall firing');
   const ticketmaster = getTicketMasterSearchResults(req, res);
   const stubhub = getStubhubEvents(req, res);
   const seatgeek = getSeatGeekEvents(req, res);
@@ -213,10 +215,15 @@ export const getEvents = (req, res) => {
         stubhub: hasStubhubData,
         seatgeek: hasSeatgeekData,
       },
+      vendorState: {
+        ticketmaster: hasTicketmasterData ? 'CHECKED' : 'GREYED',
+        stubhub: hasStubhubData ? 'CHECKED' : 'GREYED',
+        seatgeek: hasSeatgeekData ? 'CHECKED' : 'GREYED',
+      },
       priceRange: minMax,
       dateRange: [earliestOfWholeSet.format(), latestOfWholeSet.format()],
-      hasCancelledEvents,
-      hasNoListingEvents,
+      hasCancelledEvents: hasCancelledEvents ? 'CHECKED' : 'GREYED',
+      hasNoListingEvents: hasNoListingEvents ? 'CHECKED' : 'GREYED',
       providerResultLengths,
       totalResultsLength,
     }
@@ -234,21 +241,31 @@ export const flushCache = (req, res) => {
   res.sendStatus(200);
 }
 // NEXT THING TO DO 
+// STATES SHOULD BE CHECKED, UNCHECKED AND GREYED 
+// If a status filter turns off a vendor, that vendor should be greyed out 
+// when the status filter is deactivated
+// replace showTicketmaster booleans with ON, OFF or GREYED 
+// make it so if the state is ON or GREYED, the vendor is included in the filters 
+// fix this in the front end as well 
 export const getCachedEvents = (req, res) => {
   console.log('cache call starting');
   const key = `getEvents_${req.query.keyword}`;
-  const showTicketmaster = Boolean(req.query.showTicketmaster === "true");
-  const showStubhub = Boolean(req.query.showStubhub === "true");
-  const showSeatgeek = Boolean(req.query.showSeatgeek === "true");
-  const showCancelled = Boolean(req.query.showCancelled === "true")
-  const showNoListings = Boolean(req.query.showNoListings === "true");
+  const ticketmasterState = req.query.ticketmasterState; // CHECKED, UNCHECKED, GREYED
+  const stubhubState = req.query.stubhubState; // CHECKED, UNCHECKED, GREYED
+  const seatgeekState = req.query.seatgeekState; // CHECKED, UNCHECKED, GREYED
+  console.log(ticketmasterState, 'ticketmasterState in cache call');
+  console.log(stubhubState, 'stubhubState in cache call');
+  console.log(seatgeekState, 'seatgeekState in cache call');
+  const showCancelled = req.query.showCancelled;
+  const showNoListings = req.query.showNoListings;
   const isSliderCall = Boolean(req.query.isSliderCall === "true");
   const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
-  const frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)]
-  const isCheckboxCall = Boolean(req.query.isCheckboxCall === 'true');
+  const frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)];
+  const isVendorFilterCall = Boolean(req.query.isVendorFilterCall === 'true');
+  const isStatusFilterCall = Boolean(req.query.isStatusFilterCall === 'true');
   // call the cache for this data 
   cache.get(key).then(data => {
-    // let ticketmasterResults
+    // ticketmaster event processing
     let ticketmasterEvents = [];
     let ticketmasterInWholeSet;
     data[0].events.forEach(e => {
@@ -274,7 +291,7 @@ export const getCachedEvents = (req, res) => {
     });
     ticketmasterEvents = data[0].events;
     ticketmasterInWholeSet = ticketmasterEvents.length > 0;
-    // stubhub events
+    // stubhub event processing
     let stubhubEvents = [];
     let stubhubInWholeSet;
     data[1].events.forEach(e => {
@@ -294,7 +311,7 @@ export const getCachedEvents = (req, res) => {
     });
     stubhubEvents = data[1].events;
     stubhubInWholeSet = stubhubEvents.length > 0;
-    // seatgeek events
+    // seatgeek event processing
     let seatgeekEvents = [];
     let seatgeekInWholeSet;
     data[2].events.forEach(e => {
@@ -336,31 +353,27 @@ export const getCachedEvents = (req, res) => {
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
 
-    if (!showTicketmaster) { ticketmasterEvents = [] }
-    if (!showStubhub) { stubhubEvents = [] }
-    if (!showSeatgeek) { seatgeekEvents = [] }
+    if (ticketmasterState === 'UNCHECKED') { ticketmasterEvents = [] }
+    if (stubhubState === 'UNCHECKED') { stubhubEvents = [] }
+    if (seatgeekState === 'UNCHECKED') { seatgeekEvents = [] }
 
     combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
 
-    if (!showCancelled) {
+    if (showCancelled === 'UNCHECKED') {
       combinedData = combinedData.filter(e => e.status !== 'cancelled');
     }
-    if (!showNoListings) {
-      console.log('reaching show no listings filter');
+    if (showNoListings === 'UNCHECKED') {
       combinedData = combinedData.filter(e => e.priceAfterFees);
     }
     // FILTRATION INITIATION
     let filteredData = JSON.parse(JSON.stringify(combinedData));
-    // let filteredPriceRange;
-    let filteredEarliestDate;
-    let filteredLatestDate;
     // 2) Do your filtrations 
     let minPrice = req.query.minPrice;
     let maxPrice = req.query.maxPrice;
     let earliestDate = moment.utc(req.query.earliestDate);
     let latestDate = moment.utc(req.query.latestDate);
     // if the call comes from the checkboxes, search against both the filters
-    if (isCheckboxCall) {
+    if (isVendorFilterCall || isStatusFilterCall) {
       if (minPrice >= minMaxPriceOfWholeSet[0] || maxPrice <= minMaxPriceOfWholeSet[1]) {
         filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
         if (filteredData.length === 0) {
@@ -404,6 +417,7 @@ export const getCachedEvents = (req, res) => {
       }
     }
     // get the highest and lowest price from the filtered set
+    // let filteredPriceRange;
     // filteredPriceRange = filteredData.reduce((accumulator, currentValue) => {
     //   const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
     //   const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
@@ -413,9 +427,9 @@ export const getCachedEvents = (req, res) => {
     //   ]
     // }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
     // now that the data set is filtered, get the earliest and latest local dates, to be sent to the front end
-    const filteredDates = filteredData.map(e => moment(e.datetime_local));
-    filteredEarliestDate = moment.min(filteredDates);
-    filteredLatestDate = moment.max(filteredDates);
+    // const filteredDates = filteredData.map(e => moment(e.datetime_local));
+    // filteredEarliestDate = moment.min(filteredDates);
+    // filteredLatestDate = moment.max(filteredDates);
 
     const hasCancelledEvents = filteredData.reduce((result, event) => 
       event.status === 'cancelled' ? true : result
@@ -425,12 +439,16 @@ export const getCachedEvents = (req, res) => {
       !event.priceAfterFees ? true : result
     , false);
 
+    const cancelledEventsShadingState = statusShadingState('hasCancelledEvents', hasCancelledEvents, showCancelled);
+    const noListingsShadingState = statusShadingState('hasNoListingsEvents', hasNoListingEvents, showNoListings);
+
     const hasTicketmasterData = filteredData.reduce((result, e) => e.source === 'ticketmaster' ? true : result, false);
     const hasStubhubData = filteredData.reduce((result, e) => e.source === 'stubhub' ? true : result, false);
     const hasSeatgeekData = filteredData.reduce((result, e) => e.source === 'seatgeek' ? true : result, false);
-    console.log('hasTicketmasterData', hasTicketmasterData);
-    console.log('hasStubhubData', hasStubhubData);
-    console.log('hasSeatgeekData', hasSeatgeekData);
+
+    const ticketMasterShadingState = vendorShadingState('ticketmaster', ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
+    const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
+    const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
 
     const sortChronologically = filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
     const groupedData = groupByDay(sortChronologically);
@@ -454,40 +472,26 @@ export const getCachedEvents = (req, res) => {
     // 3) Get your highs and lows, earliests and latest on FILTERED data set
     const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0);
 
-    // On = Exists in whole and filterd set, Off = Does not exist in whole set, Greyed = Exists in set but not fitlered set  
-    const vendorShadingState = (existsInWholeSet, existsInFilteredSet) => {
-      let shadingState = '';
-      if (existsInWholeSet && existsInFilteredSet) {
-        shadingState = 'ON';
-      } else if (existsInWholeSet && !existsInFilteredSet) {
-        shadingState = 'GREYED';
-      } else if (!existsInWholeSet) {
-        shadingState = 'OFF'
-      }
-      return shadingState;
-    }
-    // HIGH and LOW of whole set need to be sent with every cache call 
-    // EARLIEST and LATEST of whole set need to be sent with every cache call 
-    // these variables will go into the components in their range props 
-    // filtration state indicators 
     const response = {
       data: groupedData,
       source: {
         ticketmaster: hasTicketmasterData,
         stubhub: hasStubhubData,
         seatgeek: hasSeatgeekData,
-        ticketmasterDataState: vendorShadingState(ticketmasterInWholeSet, hasTicketmasterData),
-        stubhubDataState: vendorShadingState(stubhubInWholeSet, hasStubhubData),
-        seatgeekDataState: vendorShadingState(seatgeekInWholeSet, hasSeatgeekData),
+      },
+      vendorState: {
+        ticketmaster: ticketMasterShadingState,
+        stubhub: stubhubShadingState,
+        seatgeek: seatgeekShadingState,
       },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
-      filteredDateRange: [filteredEarliestDate, filteredLatestDate],
+      filteredDateRange: [earliestDate, latestDate],
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       totalResultsLength,
-      hasCancelledEvents,
-      hasNoListingEvents,
+      hasCancelledEvents: cancelledEventsShadingState,
+      hasNoListingEvents: noListingsShadingState,
     }
     console.log('response object', {
       source: {
@@ -495,15 +499,23 @@ export const getCachedEvents = (req, res) => {
         stubhub: hasStubhubData,
         seatgeek: hasSeatgeekData,
       },
+      vendorShadingState: {
+        ticketmaster: ticketMasterShadingState,
+        stubhub: stubhubShadingState,
+        seatgeek:seatgeekShadingState,
+      },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
-      filteredDateRange: [filteredEarliestDate, filteredLatestDate],
+      filteredDateRange: [earliestDate, latestDate],
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       totalResultsLength,
-      hasCancelledEvents,
-      hasNoListingEvents,
+      hasCancelledEvents: cancelledEventsShadingState,
+      hasNoListingEvents: noListingsShadingState,
     });
+    console.log('');
+    console.log('');
+    console.log('');
     res.send(response);
   }) 
   .catch(err => {

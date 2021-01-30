@@ -331,7 +331,7 @@ export const Filter = () => {
                 autoOk
               />
               <DatePicker
-                minDate={globalDateRangeState[0]}
+                minDate={globalFilteredDateRangeState[0]}
                 maxDate={globalDateRangeState[1]}
                 value={globalFilteredDateRangeState[1]}
                 onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}

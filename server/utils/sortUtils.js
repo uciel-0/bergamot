@@ -2,14 +2,20 @@
 export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet, vendorFilterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall) => {
   let shadingState = '';
   // RETURNS CHECKED, UNCHECKED, GREYED
-  if (existsInWholeSet && existsInFilteredSet) {
+  if (existsInFilteredSet) {
     shadingState = 'CHECKED';
-  } else if (existsInWholeSet && !existsInFilteredSet) {
+  } else if (isVendorFilterCall && !existsInFilteredSet) {
     shadingState = 'UNCHECKED';
+  } else if (isStatusFilterCall && !existsInFilteredSet) {
+    shadingState = 'GREYED';
+  } else if (isSliderCall && !existsInFilteredSet) {
+    shadingState = 'GREYED';
+  } else if (isCalendarCall && !existsInFilteredSet) {
+    shadingState = 'GREYED';
   } else if (!existsInWholeSet) {
     shadingState = 'GREYED';
-  }
-  console.log('vendorShadingState for', vendor, 'existsInWholeSet:', existsInWholeSet , 'shadingState:', shadingState, 'isStatusFilterCall:', isStatusFilterCall);
+  } 
+  console.log('vendorShadingState for', vendor, 'existsInWholeSet:', existsInWholeSet , 'existsInFilteredSet:', existsInFilteredSet ,'shadingState:', shadingState);
   return shadingState;
 }
 

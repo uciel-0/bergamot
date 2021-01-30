@@ -353,9 +353,9 @@ export const getCachedEvents = (req, res) => {
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
 
-    if (ticketmasterState === 'UNCHECKED' || ticketmasterState === 'GREYED') { ticketmasterEvents = [] }
-    if (stubhubState === 'UNCHECKED' || stubhubState === 'GREYED') { stubhubEvents = [] }
-    if (seatgeekState === 'UNCHECKED' || seatgeekState === 'GREYED') { seatgeekEvents = [] }
+    if (ticketmasterState === 'UNCHECKED') { ticketmasterEvents = [] }
+    if (stubhubState === 'UNCHECKED') { stubhubEvents = [] }
+    if (seatgeekState === 'UNCHECKED') { seatgeekEvents = [] }
 
     combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
 
@@ -367,9 +367,6 @@ export const getCachedEvents = (req, res) => {
     }
     // FILTRATION INITIATION
     let filteredData = JSON.parse(JSON.stringify(combinedData));
-    // let filteredPriceRange;
-    let filteredEarliestDate;
-    let filteredLatestDate;
     // 2) Do your filtrations 
     let minPrice = req.query.minPrice;
     let maxPrice = req.query.maxPrice;
@@ -420,6 +417,7 @@ export const getCachedEvents = (req, res) => {
       }
     }
     // get the highest and lowest price from the filtered set
+    // let filteredPriceRange;
     // filteredPriceRange = filteredData.reduce((accumulator, currentValue) => {
     //   const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
     //   const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
@@ -429,9 +427,9 @@ export const getCachedEvents = (req, res) => {
     //   ]
     // }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
     // now that the data set is filtered, get the earliest and latest local dates, to be sent to the front end
-    const filteredDates = filteredData.map(e => moment(e.datetime_local));
-    filteredEarliestDate = moment.min(filteredDates);
-    filteredLatestDate = moment.max(filteredDates);
+    // const filteredDates = filteredData.map(e => moment(e.datetime_local));
+    // filteredEarliestDate = moment.min(filteredDates);
+    // filteredLatestDate = moment.max(filteredDates);
 
     const hasCancelledEvents = filteredData.reduce((result, event) => 
       event.status === 'cancelled' ? true : result
@@ -488,7 +486,7 @@ export const getCachedEvents = (req, res) => {
       },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
-      filteredDateRange: [filteredEarliestDate, filteredLatestDate],
+      filteredDateRange: [earliestDate, latestDate],
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       totalResultsLength,
@@ -508,7 +506,7 @@ export const getCachedEvents = (req, res) => {
       },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
-      filteredDateRange: [filteredEarliestDate, filteredLatestDate],
+      filteredDateRange: [earliestDate, latestDate],
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       totalResultsLength,

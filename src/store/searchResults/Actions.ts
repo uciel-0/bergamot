@@ -1,10 +1,11 @@
 import { Moment } from "moment";
+import { CheckboxShading } from "./Reducer";
 
 export enum SearchResultActionTypes {
   SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS',
-  SET_SHOW_TICKETMASTER = 'SET_SHOW_TICKETMASTER',
-  SET_SHOW_STUBHUB = 'SET_SHOW_STUBHUB',
-  SET_SHOW_SEATGEEK = 'SET_SHOW_SEATGEEK',
+  SET_TICKETMASTER_STATE = 'SET_TICKETMASTER_STATE',
+  SET_STUBHUB_STATE = 'SET_STUBHUB_STATE',
+  SET_SEATGEEK_STATE = 'SET_SEATGEEK_STATE',
   SET_BULK_FILTER = 'SET_BULK_FILTER',
   SET_SHOW_CANCELLED = 'SET_SHOW_CANCELLED',
   SET_SHOW_NO_LISTINGS = 'SET_SHOW_NO_LISTINGS',
@@ -26,72 +27,90 @@ export const setSearchResults = (payload: any): SetSearchResults => ({
   payload
 });
 
-interface SetShowTicketMaster {
-  type: SearchResultActionTypes.SET_SHOW_TICKETMASTER;
-  payload: boolean;
+interface SetTicketmasterState {
+  type: SearchResultActionTypes.SET_TICKETMASTER_STATE,
+  payload: CheckboxShading;
 }
 
-export const setShowTicketmasterAction = (payload: boolean): SetShowTicketMaster => ({
-  type: SearchResultActionTypes.SET_SHOW_TICKETMASTER,
-  payload
+export const setTicketmasterStateAction = (payload: CheckboxShading): SetTicketmasterState => ({
+  type: SearchResultActionTypes.SET_TICKETMASTER_STATE,
+  payload,
 });
 
-interface SetShowStubhub {
-  type: SearchResultActionTypes.SET_SHOW_STUBHUB;
-  payload: boolean;
+interface SetStubhubState {
+  type: SearchResultActionTypes.SET_STUBHUB_STATE,
+  payload: CheckboxShading;
 }
 
-export const setShowStubhubAction = (payload: boolean): SetShowStubhub => ({
-  type: SearchResultActionTypes.SET_SHOW_STUBHUB,
-  payload
+export const setStubhubStateAction = (payload: CheckboxShading): SetStubhubState => ({
+  type: SearchResultActionTypes.SET_STUBHUB_STATE,
+  payload,
 });
 
-interface SetShowSeatgeek {
-  type: SearchResultActionTypes.SET_SHOW_SEATGEEK;
-  payload: boolean;
+interface SetSeatgeekState {
+  type: SearchResultActionTypes.SET_SEATGEEK_STATE,
+  payload: CheckboxShading;
 }
 
-export const setShowSeatgeekAction = (payload: boolean): SetShowSeatgeek => ({
-  type: SearchResultActionTypes.SET_SHOW_SEATGEEK,
-  payload
+export const setSeatgeekStateAction = (payload: CheckboxShading): SetSeatgeekState => ({
+  type: SearchResultActionTypes.SET_SEATGEEK_STATE,
+  payload,
 });
 
 interface SetShowCancelled {
   type: SearchResultActionTypes.SET_SHOW_CANCELLED;
-  payload: boolean;
+  payload: CheckboxShading;
 }
 
-export const setShowCancelledAction = (payload: boolean): SetShowCancelled => ({
+export const setShowCancelledAction = (payload: CheckboxShading): SetShowCancelled => ({
   type: SearchResultActionTypes.SET_SHOW_CANCELLED,
   payload
 });
 
 interface SetShowNoListings {
   type: SearchResultActionTypes.SET_SHOW_NO_LISTINGS;
-  payload: boolean;
+  payload: CheckboxShading;
 }
 
-export const setShowNoListingsAction = (payload: boolean): SetShowNoListings => ({
+export const setShowNoListingsAction = (payload: CheckboxShading): SetShowNoListings => ({
   type: SearchResultActionTypes.SET_SHOW_NO_LISTINGS,
   payload
 });
 
 interface SetBulkFilter {
   type: SearchResultActionTypes.SET_BULK_FILTER;
-  ticketmaster: boolean;
-  stubhub: boolean;
-  seatgeek: boolean;
-  cancelled: boolean;
-  noListings: boolean;
+  ticketmasterState: CheckboxShading;
+  stubhubState: CheckboxShading;
+  seatgeekState: CheckboxShading;
+  cancelled: CheckboxShading;
+  noListings: CheckboxShading;
+  priceRange: number[];
+  dateRange: Moment[];
+  filteredPriceRange: number[];
+  filteredDateRange: Moment[];
 }
 
-export const setBulkFilterAction = (ticketmaster: boolean, stubhub: boolean, seatgeek: boolean, cancelled: boolean, noListings: boolean): SetBulkFilter => ({
+export const setBulkFilterAction = (
+  ticketmasterState: CheckboxShading, 
+  stubhubState: CheckboxShading, 
+  seatgeekState: CheckboxShading, 
+  cancelled: CheckboxShading, 
+  noListings: CheckboxShading, 
+  priceRange: number[],
+  dateRange: Moment[], 
+  filteredPriceRange: number[], 
+  filteredDateRange: Moment[],
+): SetBulkFilter => ({
   type: SearchResultActionTypes.SET_BULK_FILTER,
-  ticketmaster,
-  stubhub,
-  seatgeek,
+  ticketmasterState,
+  stubhubState,
+  seatgeekState,
   cancelled,
   noListings,
+  priceRange,
+  dateRange,
+  filteredPriceRange,
+  filteredDateRange,
 });
 
 interface SetIsStable {
@@ -154,5 +173,5 @@ export const setLastQuery = (payload: string): SetLastQuery => ({
   payload
 });
 
-export type SearchResultsActions = SetSearchResults | SetShowTicketMaster | SetShowStubhub | SetShowSeatgeek | SetBulkFilter | SetIsStable | 
+export type SearchResultsActions = SetSearchResults | SetTicketmasterState | SetStubhubState | SetSeatgeekState | SetBulkFilter | SetIsStable | 
 SetNoResults | SetPriceRange | SetLastQuery | SetShowCancelled | SetShowNoListings | SetDateRange | SetUserDateRangeSelected;

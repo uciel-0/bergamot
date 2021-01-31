@@ -15,7 +15,7 @@ export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet
   } else if (!existsInWholeSet) {
     shadingState = 'GREYED';
   } 
-  console.log('vendorShadingState for', vendor, 'existsInWholeSet:', existsInWholeSet , 'existsInFilteredSet:', existsInFilteredSet ,'shadingState:', shadingState);
+  // console.log('vendorShadingState for', vendor, 'existsInWholeSet:', existsInWholeSet , 'existsInFilteredSet:', existsInFilteredSet ,'shadingState:', shadingState);
   return shadingState;
 }
 
@@ -28,6 +28,10 @@ export const statusShadingState = (stateName, existsInSet, statusFilterFromFront
   } else {
     shadingState = 'GREYED'
   }
-  console.log('status shading state for', stateName, existsInSet, statusFilterFromFrontEnd)
+  // console.log('status shading state for', stateName, existsInSet, statusFilterFromFrontEnd)
   return shadingState;
 }
+
+export const sortDatesChronologically = set => set.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+export const determineIfVendorExistsInSet = (set, vendor) => set.reduce((result, e) => e.source === vendor ? true : result, false);

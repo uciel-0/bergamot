@@ -2,7 +2,14 @@ import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
 import {groupByDay, formatDate, formatLocalDate ,formatTime, normalizeUTCDate, normalizeLocalDate} from '../utils/dateUtils';
-import {vendorShadingState, statusShadingState} from '../utils/sortUtils';
+import {vendorShadingState, statusShadingState, sortDatesChronologically, determineIfVendorExistsInSet} from '../utils/sortUtils';
+import {
+  calculateMinMaxOfSet, 
+  calculateEarliestLatestOfSetLocal, 
+  calculateEarliestLatestOfSetUTC,
+  determineIfSetHasCancelledEvents,
+  determineIfSetHasEventsWithoutListings
+} from '../utils/filterUtils';
 import moment from 'moment';
 import Cache from '../cache';
 
@@ -140,8 +147,8 @@ export const getEvents = (req, res) => {
         e.source = 'seatgeek';
         e.sourceUrl = 'https://seatgeek.com';
         e.status = null;
-        e.datetime_utc = normalizeUTCDate(e.datetime_utc);
-        e.datetime_local = normalizeLocalDate(e.datetime_local, e.venue.timezone);
+        e.datetime_utc = e.date_tbd ? null : normalizeUTCDate(e.datetime_utc);
+        e.datetime_local = e.datetime_tbd ? null : normalizeLocalDate(e.datetime_local, e.venue.timezone);
         e.date = e.date_tbd ? null : formatLocalDate(e.datetime_local);
         e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
         e.venueName = e.venue.name;
@@ -157,29 +164,17 @@ export const getEvents = (req, res) => {
     // Step 2) Combinine the data into one set
     const combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
     // Step 2a) Check to see if there any cancelled events in here
-    const hasCancelledEvents = combinedData.reduce((result, event) => 
-      event.status === 'cancelled' ? true : result
-    , false);
+    const hasCancelledEvents = determineIfSetHasCancelledEvents(combinedData);
     // Step 2c) Check to see if there are any events with no listings 
-    const hasNoListingEvents = combinedData.reduce((result, event) => 
-        !event.priceAfterFees ? true : result
-    , false);
+    const hasNoListingEvents = determineIfSetHasEventsWithoutListings(combinedData);
     // Step 3) Find the minimum and maximum values from the whole data set
-    const minMax = combinedData.reduce((accumulator, currentValue) => {
-      const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
-      const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
-      return [
-        Math.floor(minPrice),
-        Math.ceil(maxPrice)
-      ]
-    }
-    , [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]); 
+    const minMax = calculateMinMaxOfSet(combinedData);
     // Step ) Get the latest and earliest dates of the data set 
-    const dates = combinedData.map(e => moment(e.datetime_local));
+    const dates = calculateEarliestLatestOfSetLocal(combinedData);
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
     // Step 4) Sort the data chronologically
-    const sortChronologically = combinedData.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const sortChronologically = sortDatesChronologically(combinedData);
     // Step 5a) Group the chronologically sorted data by date
     const groupedData = groupByDay(sortChronologically);
     // Data with an unknown date ends up sorted into a null bucket by default
@@ -253,14 +248,10 @@ export const getCachedEvents = (req, res) => {
   const ticketmasterState = req.query.ticketmasterState; // CHECKED, UNCHECKED, GREYED
   const stubhubState = req.query.stubhubState; // CHECKED, UNCHECKED, GREYED
   const seatgeekState = req.query.seatgeekState; // CHECKED, UNCHECKED, GREYED
-  console.log(ticketmasterState, 'ticketmasterState in cache call');
-  console.log(stubhubState, 'stubhubState in cache call');
-  console.log(seatgeekState, 'seatgeekState in cache call');
   const showCancelled = req.query.showCancelled;
   const showNoListings = req.query.showNoListings;
   const isSliderCall = Boolean(req.query.isSliderCall === "true");
   const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
-  const frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)];
   const isVendorFilterCall = Boolean(req.query.isVendorFilterCall === 'true');
   const isStatusFilterCall = Boolean(req.query.isStatusFilterCall === 'true');
   // call the cache for this data 
@@ -339,17 +330,10 @@ export const getCachedEvents = (req, res) => {
     }
     // DATA RANGE VARIABLE CALCULATIONS
     // a) Get the highest and lowest prices before any filtration happens
-    const minMaxPriceOfWholeSet = combinedData.reduce((accumulator, currentValue) => {
-      const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
-      const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
-      return [
-        Math.floor(minPrice),
-        Math.ceil(maxPrice)
-      ]
-    }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
+    const minMaxPriceOfWholeSet = calculateMinMaxOfSet(combinedData);
     // b) Get the earliest and latest dates, before any filtration happens
     // normalize the results to UTC
-    const dates = combinedData.map(e => moment.utc(e.datetime_utc));
+    const dates = calculateEarliestLatestOfSetUTC(combinedData);
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
 
@@ -372,6 +356,7 @@ export const getCachedEvents = (req, res) => {
     let maxPrice = req.query.maxPrice;
     let earliestDate = moment.utc(req.query.earliestDate);
     let latestDate = moment.utc(req.query.latestDate);
+    let frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)];
     // if the call comes from the checkboxes, search against both the filters
     if (isVendorFilterCall || isStatusFilterCall) {
       if (minPrice >= minMaxPriceOfWholeSet[0] || maxPrice <= minMaxPriceOfWholeSet[1]) {
@@ -389,6 +374,10 @@ export const getCachedEvents = (req, res) => {
           return;
         }
       }
+      frontEndPriceFilterRange = calculateMinMaxOfSet(filteredData);;
+      const filteredDates = calculateEarliestLatestOfSetLocal(filteredData);
+      earliestDate = moment.min(filteredDates);
+      latestDate = moment.max(filteredDates);
     }
     // if the call comes from the calendar, filter the set down to events only within those dates
      else if (isCalendarCall) {
@@ -402,6 +391,7 @@ export const getCachedEvents = (req, res) => {
           return;
         }
       }
+      frontEndPriceFilterRange = calculateMinMaxOfSet(filteredData);;
     }
     // if the call comes from the slider, filter the entire set based on the price 
     else if (isSliderCall) {
@@ -415,42 +405,26 @@ export const getCachedEvents = (req, res) => {
           return;
         }
       }
+      const filteredDates = calculateEarliestLatestOfSetLocal(filteredData);
+      earliestDate = moment.min(filteredDates);
+      latestDate = moment.max(filteredDates);
     }
-    // get the highest and lowest price from the filtered set
-    // let filteredPriceRange;
-    // filteredPriceRange = filteredData.reduce((accumulator, currentValue) => {
-    //   const minPrice = currentValue.priceAfterFees ? Math.min(currentValue.priceAfterFees, accumulator[0]) : Math.min(Number.POSITIVE_INFINITY, accumulator[0]);
-    //   const maxPrice = currentValue.priceAfterFees ? Math.max(currentValue.priceAfterFees, accumulator[1]) : Math.max(Number.NEGATIVE_INFINITY, accumulator[1]);
-    //   return [
-    //     Math.floor(minPrice),
-    //     Math.ceil(maxPrice)
-    //   ]
-    // }, [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
-    // now that the data set is filtered, get the earliest and latest local dates, to be sent to the front end
-    // const filteredDates = filteredData.map(e => moment(e.datetime_local));
-    // filteredEarliestDate = moment.min(filteredDates);
-    // filteredLatestDate = moment.max(filteredDates);
-
-    const hasCancelledEvents = filteredData.reduce((result, event) => 
-      event.status === 'cancelled' ? true : result
-    , false);
-
-    const hasNoListingEvents = filteredData.reduce((result, event) => 
-      !event.priceAfterFees ? true : result
-    , false);
+    
+    const hasCancelledEvents = determineIfSetHasCancelledEvents(filteredData);
+    const hasNoListingEvents = determineIfSetHasEventsWithoutListings(filteredData);
 
     const cancelledEventsShadingState = statusShadingState('hasCancelledEvents', hasCancelledEvents, showCancelled);
     const noListingsShadingState = statusShadingState('hasNoListingsEvents', hasNoListingEvents, showNoListings);
 
-    const hasTicketmasterData = filteredData.reduce((result, e) => e.source === 'ticketmaster' ? true : result, false);
-    const hasStubhubData = filteredData.reduce((result, e) => e.source === 'stubhub' ? true : result, false);
-    const hasSeatgeekData = filteredData.reduce((result, e) => e.source === 'seatgeek' ? true : result, false);
+    const hasTicketmasterData = determineIfVendorExistsInSet(filteredData, 'ticketmaster');
+    const hasStubhubData = determineIfVendorExistsInSet(filteredData, 'stubhub');
+    const hasSeatgeekData = determineIfVendorExistsInSet(filteredData, 'seatgeek');
 
     const ticketMasterShadingState = vendorShadingState('ticketmaster', ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
     const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
     const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
 
-    const sortChronologically = filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const sortChronologically = sortDatesChronologically(filteredData);
     const groupedData = groupByDay(sortChronologically);
     if (groupedData[0].date === 'null') {
       const datesTBD = groupedData.shift();

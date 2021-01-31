@@ -409,7 +409,7 @@ export const getCachedEvents = (req, res) => {
       earliestDate = moment.min(filteredDates);
       latestDate = moment.max(filteredDates);
     }
-
+    
     const hasCancelledEvents = determineIfSetHasCancelledEvents(filteredData);
     const hasNoListingEvents = determineIfSetHasEventsWithoutListings(filteredData);
 

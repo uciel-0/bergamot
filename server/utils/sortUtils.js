@@ -1,3 +1,4 @@
+// On = Exists in whole and filterd set, Off = Does not exist in whole set, Greyed = Exists in set but not fitlered set  
 export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet, vendorFilterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall) => {
   let shadingState = '';
   // RETURNS CHECKED, UNCHECKED, GREYED

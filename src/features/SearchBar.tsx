@@ -82,7 +82,7 @@ export const SearchBar = () => {
 
   return (
     <header className="header">
-      <div className="logo-box">
+      <div className="logo-box" onClick={() => history.push('/home')}>
         <BopIcon className={"logo"}/>
       </div>
       <form className="search" onSubmit={(e) => onSubmit(e)}>

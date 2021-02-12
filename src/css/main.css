@@ -221,6 +221,9 @@ body {
   height: 3.25rem;
   margin-left: 2rem; }
 
+.logo-box {
+  cursor: pointer; }
+
 .user-nav {
   align-self: stretch;
   display: flex;

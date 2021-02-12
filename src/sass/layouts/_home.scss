@@ -1,13 +1,12 @@
 .Home {
     text-align: center;
-    
 }
 
-.Banner{
+.Banner {
     margin-top: $cheat-padding;
     position: relative;
 
-    &_box{
+    &_box {
         display: inline-block;
     }
 
@@ -24,3 +23,40 @@
     }
 
 }
+
+.container {
+    max-width: 120rem;
+    margin: 8rem auto; 
+    background-color: var(--color-grey-light-2);
+    box-shadow: 0 2rem 6rem var(--shadow-dark);
+    
+    min-height: 50rem;
+    @media only screen and (max-width: $bp-largest) {
+        // take up the whole view, cause there's some space at the top
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    // display: flex;  
+    // flex-direction: column;
+    // padding-left: .2rem;
+    // &-logo {
+    //     height: 40vmin;
+    //     pointer-events: none;
+    // }
+    // &-header {
+    //     background-color: #282c34;
+    //     min-height: 100vh;
+    //     display: flex;
+    //     flex-direction: column;
+    //     align-items: center;
+    //     justify-content: center;
+    //     font-size: calc(10px + 2vmin);
+    //     color: white;
+    // }
+    // &-link {
+    //     color: #61dafb; 
+    // }
+}
+

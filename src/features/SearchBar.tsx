@@ -12,9 +12,12 @@ import {
   setUserDateRangeSelectedAction 
 } from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
-import {BopIcon} from '../components/BopIcon';
+import {BopIcon} from '../svg/BopIcon';
+import {MagnifyingGlass} from '../svg/MagnifyingGlass';
+import {Bookmark} from '../svg/Bookmark';
 import {useHistory} from 'react-router-dom';
 import { CheckboxShading } from '../store/searchResults/Reducer';
+import { Chat } from '../svg/Chat';
 
 export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
@@ -78,17 +81,37 @@ export const SearchBar = () => {
   }
 
   return (
-    <div className="Search">
-      <BopIcon />
-      <form onSubmit={(e) => onSubmit(e)}>
+    <header className="header">
+      <div className="logo-box">
+        <BopIcon className={"logo"}/>
+      </div>
+      <form className="search" onSubmit={(e) => onSubmit(e)}>
         <input 
           data-test="search-bar"
-          className="Search-input"
+          type="text"
+          className="search__input"
           placeholder="search for events, artists, teams or venues" 
           value={formValue} 
           onChange={(e) => setFormValue(e.target.value)}
         />
+        <button className="search__button">
+          <MagnifyingGlass className="search__icon"/>
+        </button>
       </form>
-    </div>
+      <nav className="user-nav">
+        <div className="user-nav__icon-box">
+          <Bookmark className={'user-nav__icon'}/>
+          <span className="user-nav__notification">7</span>
+        </div>
+        <div className="user-nav__icon-box">
+          <Chat className={'user-nav__icon'}/>
+          <span className="user-nav__notification">13</span>
+        </div>
+        <div className="user-nav__user">
+          <img src="\default-profile-pic.png" alt="user headshot" className="user-nav__user-photo"/>
+          {/* <span className="user_nav__user-name">Jonas</span> */}
+        </div>
+      </nav>
+    </header>
   )
 }

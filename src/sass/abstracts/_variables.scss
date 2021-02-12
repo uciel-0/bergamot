@@ -6,6 +6,8 @@ $color-blue-light: #2998ff;
 $color-blue-dark: #5643fa;
 $color-spanish-gray: #a39998;
 
+$shadow--dark: rgba(0,0,0,.3);
+
 $cheat-padding: 8rem;
 
 $space-from-top: 1rem;
@@ -17,3 +19,9 @@ $font-size-medium: 1.5rem;
 $font-size-large: 2rem;
 
 $card-padding: 1rem;
+
+$bp-largest: 75em; // 1200px, the max width of the container
+$bp-large: 68.75em; // 1100px 
+$bp-medium: 56.25em; // 900px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 31.25em; //500px

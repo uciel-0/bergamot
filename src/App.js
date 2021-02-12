@@ -12,7 +12,7 @@ const App = () => {
   const {spinnerState} = React.useContext(SpinnerContext);
   return (
     <Router>
-      <div className="App">
+      <div className="container">
         {spinnerState.isLoading ? <Spinner /> : null}
         <SearchBar />
         <Switch>

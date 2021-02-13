@@ -1,3 +1,27 @@
+// HEADER LAYOUT SCSS (responsible mainly for position of entire header and general position of contents within
+.header {
+    font-size: 1.4rem;
+    height: 7rem;
+    background-color: #fff;
+    border-bottom: var(--line);
+    border-bottom: 1px solid var(--color-grey-light-2);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (max-width: $bp-smallest) {
+        flex-wrap: wrap;
+        align-content: space-around;
+        height: 11rem;
+    }
+}
+// EVERYTHING BELOW HERE ALSO EXISTS IN THE HEADER - keeping it here for ease of access
+.logo {
+    height: 3.25rem;
+    margin-left: 2rem;
+}
+// search bar 
 .search {
     flex: 0 0 40%;
     display: flex;
@@ -58,16 +82,7 @@
         fill : var(--color-grey-dark-3);
     }
 }
-
-.logo {
-    height: 3.25rem;
-    margin-left: 2rem;
-}
-
-.logo-box {
-    cursor: pointer;
-}
-
+// the two icons plus user profile picture on rightmost area of header
 .user-nav {
     align-self: stretch;
     display: flex;

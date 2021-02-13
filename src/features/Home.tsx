@@ -42,9 +42,9 @@ export const Home = () => (
     </nav>
     <main className="hotel-view">
         <div className="gallery">
-            <figure className="gallery-item">
+            {/* <figure className="gallery-item">
                 <img className="gallery__photo" alt="generic_concert_photo" src="\bop-photo-3.png" />
-            </figure>
+            </figure> */}
             <figure className="gallery-item">
               <img className="gallery__photo" alt="inflatable_astronaut_backdrop" src="\bop-photo-1.png"/>
             </figure>

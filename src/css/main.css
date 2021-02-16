@@ -297,18 +297,14 @@ body {
   margin: 8rem auto;
   background-color: var(--color-grey-light-2);
   box-shadow: 0 2rem 6rem var(--shadow-dark);
-  min-height: 50rem; }
-  @media only screen and (max-width: 75em) {
-    .container {
-      margin: 0;
-      max-width: 100%;
-      width: 100%; } }
+  min-height: 50rem;
+  margin: 0;
+  max-width: 100%;
+  width: 100%; }
 
 .home-content {
-  display: flex; }
-  @media only screen and (max-width: 56.25em) {
-    .home-content {
-      flex-direction: column; } }
+  display: flex;
+  flex-direction: column; }
 
 .sidebar {
   background-color: var(--color-grey-dark-1);
@@ -320,21 +316,17 @@ body {
 .side-nav {
   font-size: 1.4rem;
   list-style: none;
-  margin-top: 3.5rem; }
-  @media only screen and (max-width: 56.25em) {
-    .side-nav {
-      display: flex;
-      margin: 0; } }
+  margin-top: 3.5rem;
+  display: flex;
+  margin: 0; }
+  .side-nav :nth-child(2)__item:active::before {
+    background-color: #5E91AE; }
   .side-nav__item {
-    position: relative; }
+    position: relative;
+    flex: 1; }
     .side-nav__item:not(:last-child) {
-      margin-bottom: .5rem; }
-      @media only screen and (max-width: 56.25em) {
-        .side-nav__item:not(:last-child) {
-          margin: 0; } }
-    @media only screen and (max-width: 56.25em) {
-      .side-nav__item {
-        flex: 1; } }
+      margin-bottom: .5rem;
+      margin: 0; }
   .side-nav__item:before {
     content: "";
     position: absolute;
@@ -359,11 +351,9 @@ body {
     position: relative;
     z-index: 10;
     display: flex;
-    align-items: center; }
-    @media only screen and (max-width: 56.25em) {
-      .side-nav__link:link, .side-nav__link:visited {
-        justify-content: center;
-        padding: 2rem; } }
+    align-items: center;
+    justify-content: center;
+    padding: 2rem; }
     @media only screen and (max-width: 37.5em) {
       .side-nav__link:link, .side-nav__link:visited {
         flex-direction: column;
@@ -423,15 +413,15 @@ body {
   font-size: 1.2rem;
   text-align: center;
   padding: 2.5rem;
-  color: var(--color-grey-light-4); }
-  @media only screen and (max-width: 56.25em) {
-    .legal {
-      display: none; } }
+  color: var(--color-grey-light-4);
+  display: none; }
 
 .gallery {
-  display: flex; }
+  display: flex;
+  justify-content: space-around; }
   .gallery__photo {
     width: 100%;
+    height: 100%;
     display: block; }
 
 .overview {

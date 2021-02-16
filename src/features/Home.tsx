@@ -14,25 +14,25 @@ export const Home = () => (
           <li className="side-nav__item side-nav__item--active">
             <a href="/" className="side-nav__link">
               <HomeIcon className={"side-nav__icon"} />
-              <span>Hotel</span>
+              <span>Concerts</span>
             </a>
           </li>
           <li className="side-nav__item">
             <a href="/" className="side-nav__link">
               <Aircraft className={"side-nav__icon"} />
-              <span>Flight</span>
+              <span>Sports</span>
             </a>
           </li>
           <li className="side-nav__item">
             <a href="/" className="side-nav__link">
               <Key className={"side-nav__icon"} />
-              <span>Car Rental</span>
+              <span>Festivals</span>
             </a>
           </li>
           <li className="side-nav__item">
             <a href="/" className="side-nav__link">
               <Map className={"side-nav__icon"} />
-              <span>Tours</span>
+              <span>Theatres</span>
             </a>
           </li>
         </ul>
@@ -42,15 +42,15 @@ export const Home = () => (
     </nav>
     <main className="hotel-view">
         <div className="gallery">
-            {/* <figure className="gallery-item">
-                <img className="gallery__photo" alt="generic_concert_photo" src="\bop-photo-3.png" />
-            </figure> */}
             <figure className="gallery-item">
               <img className="gallery__photo" alt="inflatable_astronaut_backdrop" src="\bop-photo-1.png"/>
             </figure>
             <figure className="gallery-item">
               <img className="gallery__photo" alt="bluish_green_concert_stage" src="\bop-photo-2.png"/>
           </figure>
+          <figure className="gallery-item">
+                <img className="gallery__photo" alt="generic_concert_photo" src="\bop-photo-3.png" />
+            </figure>
         </div>
 
         <div className="overview">

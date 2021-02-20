@@ -78,37 +78,37 @@ export const Home = () => (
                 <div className="description">
                     <p className="paragraph">
                         Trending Events
-                </p>
+                    </p>
                 <div className="grid">
                 <div className="grid__item">
                     <div className="card">
-                        <img className="card__img" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2250&amp;q=80" alt="Snowy Mountains"></img>
+                        <img className="card__img" src="https://www.gannett-cdn.com/presto/2018/10/09/PPHX/f001f059-8fb2-4130-b6fa-e858ad9e9097-Drake.rf.100818.001.JPG?crop=1999,1134,x0,y0&width=660&height=372&format=pjpg&auto=webp"></img>
                         <div className="card__content">
-                            <h1 className="card__header"> Example Text</h1>
-                            <p className="card__text"> Example Text</p>
-                            <button className="card__btn">From etc</button>
+                            <h1 className="card__header"> Drake</h1>
+                            <p className="card__text"> Javits Center</p>
+                            <button className="card__btn">From 110$</button>
                         </div>
                     </div>
                 </div>
 
                 <div className="grid__item">
                     <div className="card">
-                        <img className="card__img" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2250&amp;q=80" alt="Snowy Mountains"></img>
+                        <img className="card__img" src="https://variety.com/wp-content/uploads/2018/06/post-malone.jpg?w=999" alt="Snowy Mountains"></img>
                         <div className="card__content">
-                            <h1 className="card__header"> Example Text</h1>
-                            <p className="card__text"> Example Text</p>
-                            <button className="card__btn">From etc</button>
+                            <h1 className="card__header"> Post Malone</h1>
+                            <p className="card__text"> New Hide Staduim</p>
+                            <button className="card__btn">From 76$</button>
                         </div>
                     </div>
                 </div>
 
                 <div className="grid__item">
                     <div className="card">
-                        <img className="card__img" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2250&amp;q=80" alt="Snowy Mountains"></img>
+                        <img className="card__img" src="https://www.mercurynews.com/wp-content/uploads/2018/07/GettyImages-514592336.jpg"></img>
                         <div className="card__content">
-                            <h1 className="card__header"> Example Text</h1>
-                            <p className="card__text"> Example Text</p>
-                            <button className="card__btn">From etc</button>
+                            <h1 className="card__header"> Justin Beiber</h1>
+                            <p className="card__text"> Madison Square Park</p>
+                            <button className="card__btn">From 67$</button>
                         </div>
                     </div>
                 </div>
@@ -126,9 +126,9 @@ export const Home = () => (
                         <li className="list__item">Perfect for families</li>
                     </ul> */}
                     <div className="recommend">
-                        <p className="recommend__count">
+                        {/* <p className="recommend__count">
                             Lucy and 3 other friends recommend this hotel
-                  </p>
+                        </p> */}
                         <div className="recommend__friends">
                             <img src="\user-3.jpg" alt="Friend 1" className="recommend__photo" />
                             <img src="\user-4.jpg" alt="Friend 2" className="recommend__photo" />

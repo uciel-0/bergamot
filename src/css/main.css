@@ -1,7 +1,7 @@
 :root {
-  --color-primary: #E48EE5;
+  --color-primary: #9728F2 ;
   --color-primary-light: #E9E9E9;
-  --color-primary-dark: #E48EE5;
+  --color-primary-dark: #7100FF;
   --color-grey-light-1: #faf9f9;
   --color-grey-light-2: #f4f2f2;
   --color-grey-light-3: #f0eeee;
@@ -342,14 +342,14 @@ body {
     left: 0;
     height: 100%;
     width: 3px;
-    background-color: var(--color-bob-purple-1);
+    background-color: var(--color-primary-dark);
     transform: scaleY(0);
     transition: transform 0.2s, width 0.4s cubic-bezier(0.7, 0, 0, 1) 0.2s, background-color 0.01s; }
   .side-nav__item:hover::before, .side-nav__item--active::before {
     transform: scaleY(1);
     width: 100%; }
   .side-nav__item:active::before {
-    background-color: var(--color-bob-purple-1); }
+    background-color: var(--color-primary-dark); }
   .side-nav__link:link, .side-nav__link:visited {
     color: var(--color-grey-light-1);
     text-decoration: none;
@@ -673,7 +673,7 @@ body {
     grid-gap: 3rem; } }
 
 .grid__item {
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.782);
   border-radius: 0.4rem;
   overflow: hidden;
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
@@ -686,6 +686,7 @@ body {
 
 .card__img {
   display: block;
+  border-radius: 0.4rem;
   width: 100%;
   height: 18rem;
   object-fit: cover; }
@@ -696,14 +697,14 @@ body {
 .card__header {
   font-size: 3rem;
   font-weight: 500;
-  color: #0d0d0d;
+  color: #e1dede;
   margin-bottom: 1.5rem; }
 
 .card__text {
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
   line-height: 1.7;
-  color: #3d3d3d;
+  color: #e1dede;
   margin-bottom: 2.5rem; }
 
 .card__btn {
@@ -712,8 +713,8 @@ body {
   padding: 1.5rem;
   font-size: 2rem;
   text-align: center;
-  color: #3363ff;
-  background-color: #e6ecff;
+  color: #e1dede;
+  background-color: #2c2d30;
   border: none;
   border-radius: 0.4rem;
   transition: 0.2s;
@@ -724,7 +725,7 @@ body {
   transition: 0.2s; }
 
 .card__btn:hover, .card__btn:active {
-  background-color: #dce4ff; }
+  background-color: #7003ed; }
 
 .card__btn:hover span, .card__btn:active span {
   margin-left: 1.5rem; }

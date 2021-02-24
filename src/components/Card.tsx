@@ -64,14 +64,16 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
   }
   return name ? (
     <div className="Card">
-      <div className="Card_content">
-        {renderCardLogo()}
+      {renderCardLogo()}
+      <div className="Card_section-1">
         {renderCardInfo()}
+      </div>
+      <div className="Card_section-2">
         {renderCardPrices()}
       </div>
-      <div className="Card_button-row">
-        {renderButton()}
-      </div>
+      <div className="Card_button">
+          {renderButton()}
+        </div>
     </div>
   ) : null;
 }

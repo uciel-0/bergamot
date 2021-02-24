@@ -1,35 +1,60 @@
 .Card {
   border: 1px solid black;
-  background-color: $color-gray--main;
-  flex-direction: row;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  min-height: 19rem;
+  display: grid;
+  grid-template-columns: [logo-start] minmax(min-content, 10rem) [logo-end content-start] minmax(max-content, 35rem) [content-end prices-start] 15rem [prices-end];
+  grid-template-rows: 1fr max-content 1fr;
   align-items: center;
+  grid-gap: 10px;
+  // max-width: 70rem;
   margin-top: 1.5rem;
-  width: 98%;
-  position: relative;
-  padding: .2rem;
+  padding: 1rem;
+
+  &_section-1 {
+    display: grid; 
+    grid-template-columns: 35rem;
+    grid-row: 2/3;
+    grid-column: content-start/content-end;
+    p {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    // grid-gap: 20px;
+  }
+
+  &_section-2 {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    align-self: end;
+    // display: grid; 
+    // grid-template-rows: repeat(3, minmax(max-content, 1fr));
+  }
+
   &_logo {
+    grid-row: 2/3;
+    justify-self: center;
     b {
       font-weight: 400;
     }
     font-size: $font-size-medium;
   }
+
   &_info {
-    padding-top: .75rem;
-    p:not(:last-child) {
-      padding-bottom: 1rem;
-    }
+  
   }
-  &_content {
-    vertical-align: center;
-  }
+
   &_prices { 
+    // grid-row: 2/3;
+    // grid-column: 3/4;
     text-align: right;
+    align-self: end;
     &-text {
       &--tiny {
         font-size: .8rem;
       }
       &:not(:last-child) {
-        padding-bottom: 1rem;
       }
     }
     &-bold {
@@ -42,6 +67,9 @@
     }
   }
   &_button {
+    grid-row: 3/4;
+    grid-column: 3/4;
+    justify-self: end;
     &:link, &:visited {
       display: inline-block;
       text-decoration: none;
@@ -52,9 +80,6 @@
     }
     &:hover {
       background-image: linear-gradient(to right, rgba($color-blue-light, .85), rgba($color-blue-dark, .85));
-    }
-    &-row {
-      text-align: right;
     }
   }
 }

@@ -53,46 +53,58 @@ body {
 
 .Card {
   border: 1px solid black;
-  background-color: rgba(196, 196, 196, 0.4);
-  flex-direction: row;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  min-height: 19rem;
+  display: grid;
+  grid-template-columns: [logo-start] minmax(min-content, 10rem) [logo-end content-start] minmax(max-content, 35rem) [content-end prices-start] 15rem [prices-end];
+  grid-template-rows: 1fr max-content 1fr;
   align-items: center;
+  grid-gap: 10px;
   margin-top: 1.5rem;
-  width: 98%;
-  position: relative;
-  padding: .2rem; }
+  padding: 1rem; }
+  .Card_section-1 {
+    display: grid;
+    grid-template-columns: 35rem;
+    grid-row: 2/3;
+    grid-column: content-start/content-end; }
+    .Card_section-1 p {
+      display: flex;
+      flex-wrap: wrap; }
+  .Card_section-2 {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    align-self: end; }
   .Card_logo {
+    grid-row: 2/3;
+    justify-self: center;
     font-size: 1.5rem; }
     .Card_logo b {
       font-weight: 400; }
-  .Card_info {
-    padding-top: .75rem; }
-    .Card_info p:not(:last-child) {
-      padding-bottom: 1rem; }
-  .Card_content {
-    vertical-align: center; }
   .Card_prices {
-    text-align: right; }
+    text-align: right;
+    align-self: end; }
     .Card_prices-text--tiny {
       font-size: .8rem; }
-    .Card_prices-text:not(:last-child) {
-      padding-bottom: 1rem; }
     .Card_prices-bold {
       font-size: 2rem;
       width: 50%; }
     .Card_prices-cancelled {
       font-weight: 500;
       color: red; }
-  .Card_button:link, .Card_button:visited {
-    display: inline-block;
-    text-decoration: none;
-    border-radius: 4px;
-    padding: .5rem .5rem;
-    background-image: linear-gradient(to right, #2998ff, #5643fa);
-    color: #fff; }
-  .Card_button:hover {
-    background-image: linear-gradient(to right, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85)); }
-  .Card_button-row {
-    text-align: right; }
+  .Card_button {
+    grid-row: 3/4;
+    grid-column: 3/4;
+    justify-self: end; }
+    .Card_button:link, .Card_button:visited {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 4px;
+      padding: .5rem .5rem;
+      background-image: linear-gradient(to right, #2998ff, #5643fa);
+      color: #fff; }
+    .Card_button:hover {
+      background-image: linear-gradient(to right, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85)); }
 
 .Spinner {
   font-size: 90px;
@@ -166,15 +178,9 @@ body {
     transform: rotate(360deg); } }
 
 .Results {
-  flex-direction: column;
-  display: inline-block;
-  padding-top: 8rem;
-  padding-left: 1rem;
-  width: 75%; }
-  .Results_date {
-    font-size: 1rem; }
-  .Results_group {
-    padding-bottom: 1rem; }
+  display: grid;
+  grid-template-columns: [filter-start] minmax(max-content, 30%) [filter-end results-start] max-content [results-end whitespace-start] auto [whitespace-end];
+  grid-gap: 50px; }
 
 .Error {
   padding-top: 8rem;
@@ -274,13 +280,12 @@ body {
     margin-right: 1rem; }
 
 .Filter {
-  width: 25%;
-  height: 100vh;
+  width: 25rem;
+  height: 30rem;
   border: 1px solid black;
-  margin-top: 8rem;
-  margin-bottom: 10px;
+  margin-top: 4rem;
+  justify-self: center;
   background-color: rgba(196, 196, 196, 0.4);
-  margin-left: 1rem;
   padding-left: 3px; }
   .Filter input {
     margin-right: 4px; }
@@ -745,6 +750,41 @@ body {
       align-content: space-around;
       height: 11rem; } }
 
+.Banner {
+  display: flex;
+  background-color: royalblue;
+  color: white;
+  font-size: 2.5rem;
+  padding-left: 3.4rem;
+  font-weight: 400;
+  align-items: center;
+  grid-row: banner-start/banner-end;
+  grid-column: left-whitespace-start/right-whitespace-end; }
+
+.Cards {
+  overflow-y: auto;
+  max-height: 1200px;
+  padding-right: 1rem;
+  padding-top: 4rem; }
+  .Cards_date {
+    font-size: 1rem; }
+  .Cards_group {
+    padding-bottom: 1rem; }
+
+.Footer {
+  background-color: royalblue;
+  grid-column: left-whitespace-start/right-whitespace-end; }
+
+.Bop {
+  display: grid;
+  grid-template-columns: [left-whitespace-start] 1fr [left-whitespace-end bop-start] max-content [bop-end right-whitespace-start] 1fr [right-whitespace-end];
+  grid-template-rows: [banner-start] 10rem [banner-end bop-start] auto [bop-end footer-start] 10rem [footer-end];
+  justify-content: center;
+  max-width: 100vw; }
+
 .SearchResults {
-  display: inline-flex;
-  flex-direction: row; }
+  margin: 0rem auto; }
+  @supports (display: grid) {
+    .SearchResults {
+      grid-row: bop-start/bop-end;
+      grid-column: bop-start/bop-end; } }

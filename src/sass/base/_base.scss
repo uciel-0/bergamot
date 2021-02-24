@@ -17,11 +17,15 @@
     --line: 1px solid var(--color-grey-light-2);
 }
 
+// $bp-largest: 46.875em;// 750px
+// $bp-large: 43.75em; // 700px
+// $bp-medium: 35.625em; // 570px
+// $bp-small: 25.625em; //410px
+
 * {
   margin: 0;
   padding: 0;
 }
-
 
 *, 
 *::after,

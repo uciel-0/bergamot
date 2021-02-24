@@ -1,0 +1,8 @@
+.Bop {
+    display: grid;
+    grid-template-columns:[left-whitespace-start] 1fr [left-whitespace-end bop-start] max-content [bop-end right-whitespace-start] 1fr [right-whitespace-end];
+    grid-template-rows: [banner-start] 10rem [banner-end bop-start] auto [bop-end footer-start] 10rem [footer-end];
+    justify-content: center;
+    max-width: 100vw;
+    // max-height: 100vh;
+}

@@ -1,11 +1,10 @@
 .Filter {
-  width: 25%;
-  height:100vh;
+  width: 25rem;
+  height: 30rem;
   border: 1px solid black;
-  margin-top: $cheat-padding;
-  margin-bottom:10px;
+  margin-top: 4rem;
+  justify-self: center;
   background-color: $color-gray--main;
-  margin-left: 1rem;
   padding-left: 3px;
   input {
     margin-right: 4px;

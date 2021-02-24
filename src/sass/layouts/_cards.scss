@@ -1,0 +1,13 @@
+.Cards {
+    overflow-y: auto;
+    // overflow-x: hidden;
+    max-height: 1200px;
+    padding-right: 1rem;
+    padding-top: 4rem;
+    &_date {
+        font-size: 1rem;
+      }
+      &_group {
+        padding-bottom: 1rem;
+      }
+}

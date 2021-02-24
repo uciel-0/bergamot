@@ -11,25 +11,34 @@ export interface SearchResult {
 
 export const Results = () => {
   const {searchResultsState} = React.useContext(SearchResultsContext);
-  
   return (
-    <div className="SearchResults">
-      <Filter />
-      <div className="Results">
-        { !searchResultsState.noResults ?
-          searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
-            <ResultsGroup date={e.date} events={e.events} key={index}/>
-          ) : null : <ErrorScreen/>
-        }
+    <div className="Bop">
+      <div className="Banner">
+        {searchResultsState.lastQuery || ""}
       </div>
+      <div className="SearchResults">
+        <div className="Results">
+          <Filter />
+          <div className="Cards">
+            { !searchResultsState.noResults ?
+              searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
+                <CardsGroup date={e.date} events={e.events} key={index}/>
+              ) : null : <ErrorScreen/>
+            }
+          </div>
+        </div>
+      </div>     
+      <div className="Footer">
+          Footer
+        </div> 
     </div>
   )
 }
 
-export const ResultsGroup = (searchResult: SearchResult) => {
+export const CardsGroup = (searchResult: SearchResult) => {
   return (
-    <div className="Results_group">
-      <h1 className="Results_date">{searchResult.date !== 'null' ? searchResult.date : 'Date TBD'}</h1>
+    <div className="Cards_group">
+      <h1 className="Cards_date">{searchResult.date !== 'null' ? searchResult.date : 'Date TBD'}</h1>
       {
         searchResult.events.map((e: any, index: number) => 
           <Card 

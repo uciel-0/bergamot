@@ -1,14 +1,9 @@
 .Results {
-  flex-direction: column;
-  display: inline-block;
-  padding-top: $cheat-padding;
-  padding-left: $space-from-left;
-  width: 75%;
-  &_date {
-    font-size: 1rem;
-  }
-  &_group {
-    padding-bottom: 1rem;
-  }
+  // margin-top: 4rem;
+  // padding-top: 4rem;
+  display: grid;
+  grid-template-columns: [filter-start] minmax(max-content, 30%) [filter-end results-start] max-content [results-end whitespace-start] auto [whitespace-end];
+  grid-gap: 50px;
+  // grid-row: bop-start/bop-end;
 }
   

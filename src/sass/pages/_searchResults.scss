@@ -1,4 +1,7 @@
 .SearchResults {
-    display: inline-flex;
-    flex-direction: row;
+    margin: 0rem auto;
+    @supports(display: grid) {
+        grid-row: bop-start/bop-end;
+        grid-column: bop-start/bop-end;
+    }
 }

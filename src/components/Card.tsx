@@ -18,9 +18,9 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
       const dateText = date.slice(5);
       const timeText = time || "TBD";
       const dateTimeText = dayText + " - " + timeText;
-      return <><p>{dateText}</p><p>{dateTimeText}</p></>
+      return <div className="Card_date"><p>{dateText}</p><p>{dateTimeText}</p></div>
     } else {
-      return <><p>Date: TBD</p></>
+      return <div className="Card_date Card_date--tbd"><p>Date: TBD</p></div>
     }
   }
   const renderCardLogo = () => (
@@ -31,13 +31,13 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
   // need some logic here for when status = cancelled 
   const renderCardInfo = () => (
     <div className="Card_info">
-      <p>{name}</p>
-      <p>{venueText}</p>
+      <p className="Card_title">{name}</p>
+      <p className="Card_location">{venueText}</p>
       {displayDateText(date)}
     </div>
   );
   const renderCardPrices = () => {
-    const cardPrices = ( 
+    const cardPrices = (
       <div className="Card_prices">
         {priceBeforeFeesHTML}
         {priceAfterFeesHTML}

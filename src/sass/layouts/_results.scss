@@ -1,9 +1,16 @@
 .Results {
-  // margin-top: 4rem;
-  // padding-top: 4rem;
   display: grid;
-  grid-template-columns: [filter-start] minmax(max-content, 30%) [filter-end results-start] max-content [results-end whitespace-start] auto [whitespace-end];
+  grid-template-columns: [filter-start] minmax(max-content, 30%) [filter-end results-start] minmax(min-content, 1fr) [results-end whitespace-start] auto [whitespace-end];
   grid-gap: 50px;
-  // grid-row: bop-start/bop-end;
+
+  @media only screen and (max-width: $bp-bop-medium) {
+    grid-template-columns:[bop-start] minmax(min-content, .8fr) [bop-end];
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns:[bop-start] minmax(min-content, .7fr) [bop-end];
+    justify-content: center;
+  }
 }
   

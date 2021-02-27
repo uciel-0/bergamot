@@ -4,32 +4,52 @@
   margin-bottom: 30px;
   min-height: 19rem;
   display: grid;
-  grid-template-columns: [logo-start] minmax(min-content, 10rem) [logo-end content-start] minmax(max-content, 35rem) [content-end prices-start] 15rem [prices-end];
+  grid-template-columns: [logo-start] minmax(min-content, 10rem) [logo-end content-start] minmax(35rem, .75fr) [content-end prices-start] 15rem [prices-end];
   grid-template-rows: 1fr max-content 1fr;
   align-items: center;
+  justify-content: center;
   grid-gap: 10px;
-  // max-width: 70rem;
   margin-top: 1.5rem;
   padding: 1rem;
 
+  @media only screen and (max-width: $bp-bop-medium) {
+    grid-template-columns: [logo-start] 8rem [logo-end content-start] minmax(35rem, .75fr) [content-end button-start] max-content [button-end];
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: [logo-start] 8rem [logo-end content-start] minmax(25rem, .75fr) [content-end button-start] max-content [button-end];
+    grid-gap: 0px;
+    padding: 0.5rem;
+  }
+
   &_section-1 {
     display: grid; 
-    grid-template-columns: 35rem;
+    // grid-template-columns: minmax(20%, 35rem);
     grid-row: 2/3;
     grid-column: content-start/content-end;
+    // @media only screen and (max-width: $bp-small) {
+    //   grid-template-columns: 50%;
+    // }
     p {
       display: flex;
       flex-wrap: wrap;
     }
-    // grid-gap: 20px;
   }
 
   &_section-2 {
     grid-column: 3/4;
     grid-row: 2/3;
-    align-self: end;
-    // display: grid; 
-    // grid-template-rows: repeat(3, minmax(max-content, 1fr));
+    @media only screen and (max-width: $bp-small) {
+      grid-column: 2/3;
+      grid-row: 3/4;
+    }
+  }
+
+  &_title {
+    font-size: 1.5rem;
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.2rem;
+    }
   }
 
   &_logo {
@@ -45,16 +65,26 @@
   
   }
 
-  &_prices { 
-    // grid-row: 2/3;
-    // grid-column: 3/4;
+  &_location, &_date {
+    font-size: 1.3rem;
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.1rem;
+    }
+  }
+ 
+  &_prices {
     text-align: right;
     align-self: end;
     &-text {
+      font-size: 1.2rem;
+      @media only screen and (max-width: $bp-small) {
+        font-size: 1rem;
+      }
       &--tiny {
         font-size: .8rem;
-      }
-      &:not(:last-child) {
+        @media only screen and (max-width: $bp-small) {
+          font-size: .6rem;
+        }
       }
     }
     &-bold {
@@ -70,6 +100,10 @@
     grid-row: 3/4;
     grid-column: 3/4;
     justify-self: end;
+    @media only screen and (max-width: $bp-small) {
+      grid-column: button-start/button-end;
+      align-self: end;
+    }
     &:link, &:visited {
       display: inline-block;
       text-decoration: none;

@@ -1,11 +1,11 @@
 .Cards {
-    overflow-y: auto;
-    max-height: 1200px;
     padding-right: 1rem;
     padding-top: 4rem;
     margin: 0 auto;
     &_date {
-      font-size: 1.4rem;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: black;
     }
     &_group {
       padding-bottom: 1rem;

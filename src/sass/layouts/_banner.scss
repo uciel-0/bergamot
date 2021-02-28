@@ -6,8 +6,9 @@
     padding-left: 3.4rem;
     font-weight: 400;
     align-items:center;
-    grid-row: banner-start/banner-end;
-    grid-column: left-whitespace-start/right-whitespace-end;
+    display:none;
+    // grid-row: banner-start/banner-end;
+    // grid-column: left-whitespace-start/right-whitespace-end;
     @media only screen and (max-width: $bp-bop-medium) {
         grid-column: bop-start/bop-end;
     }

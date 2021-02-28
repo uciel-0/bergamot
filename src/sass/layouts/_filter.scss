@@ -1,26 +1,54 @@
 .Filter {
-  width: 25rem;
-  height: 30rem;
-  border: 1px solid black;
-  margin-top: 4rem;
+  padding-top: 4rem;
   justify-self: center;
-  background-color: $color-gray--main;
-  padding-left: 3px;
+  background-color: white;
+  color: black;
+
   @media only screen and (max-width: $bp-bop-medium) {
     margin-top: 0rem;
+  }
+  &_form {
+    margin-left: 5%;
+  }
+
+  &_row-title {
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+
+  &_label {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+
+  &_vendors, &_status, &_price {
+    position: relative;
+    &:before {
+      content : "";
+      position: absolute;
+      left    : 0;
+      bottom  : 0;
+      height  : 1px;
+      width   : 95%;  /* or 100px */
+      border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+      margin: 0 auto;
+    }
   }
   input {
     margin-right: 4px;
   }
+
   .MuiSlider-root	{
     color: black;
-    width: 84%;
+    width: 70%;
   }
+
   &_priceSlider {
     margin-top: 40px;
     margin-left: 20px;
     font-size: 1px;
   }
+
   .PrivateValueLabel-label-5 {
     font-size: 0.65rem;
   }

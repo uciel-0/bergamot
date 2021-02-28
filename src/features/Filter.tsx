@@ -232,75 +232,77 @@ export const Filter = () => {
     setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()])
   }
 
-  const labelState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_label--disabled' : '';
-  const checkboxState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_checkbox--disabled' : '';
+  const labelState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_label Filter_label--disabled' : 'Filter_label';
+  const checkboxState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_checkbox Filter_checkbox--disabled' : 'Filter_checkbox';
  
   return (
     <div className="Filter">
-      <form className="Filter_section">
-      <b>Vendors</b>
-      <br></br>
-      <label htmlFor="showTicketmaster" className={labelState(globalTicketmasterShadingState)}>
-        <input 
-          type="checkbox" 
-          name="showTicketmaster" 
-          checked={globalTicketmasterShadingState === CheckboxShading.CHECKED}
-          onChange={handleVendorFilterToggle}
-          className={checkboxState(globalTicketmasterShadingState)}
-        />
-        Ticketmaster
-        <br></br>
-      </label>
-      <label htmlFor="showStubhub" className={labelState(globalStubhubShadingState)}>
-        <input
-          type="checkbox" 
-          name="showStubhub" 
-          checked={globalStubhubShadingState === CheckboxShading.CHECKED}
-          onChange={handleVendorFilterToggle}
-          className={checkboxState(globalStubhubShadingState)}
-        />   
-        Stubhub
-        <br></br>
-      </label>
-      <label htmlFor="showSeatgeek" className={labelState(globalSeatgeekShadingState)}>
-        <input 
-          type="checkbox" 
-          name="showSeatgeek"  
-          checked={globalSeatgeekShadingState === CheckboxShading.CHECKED}
-          onChange={handleVendorFilterToggle}
-          className={checkboxState(globalSeatgeekShadingState)}
-        />
-        SeatGeek
-        <br></br>
-      </label>
-      <div>
-        <b>Status Filters</b>
-        <br></br>
-      </div>
-      <label htmlFor="showCancelled" className={labelState(globalShowCancelledState)}>
-        <input 
-          type="checkbox" 
-          name="showCancelled"  
-          checked={globalShowCancelledState === CheckboxShading.CHECKED}
-          onChange={handleStatusFilterToggle}
-          className={checkboxState(globalShowCancelledState)}
-        />
-        Cancelled Events
-        <br></br>
-      </label>
-      <label htmlFor="showNoListings" className={labelState(globalShowNoListingsState)}>
-        <input 
-          type="checkbox" 
-          name="showNoListings"  
-          checked={globalShowNoListingsState === CheckboxShading.CHECKED}
-          onChange={handleStatusFilterToggle}
-          className={checkboxState(globalShowNoListingsState)}
-        />
-        Events Without Listings
-        <br></br>
-      </label>
-        <div>
-          <b>Price</b>
+      <form className="Filter_form">
+        <div className="Filter_vendors">
+          <b className="Filter_row-title">Vendors</b>
+          <br></br>
+          <label htmlFor="showTicketmaster" className={labelState(globalTicketmasterShadingState)}>
+            <input 
+              type="checkbox" 
+              name="showTicketmaster" 
+              checked={globalTicketmasterShadingState === CheckboxShading.CHECKED}
+              onChange={handleVendorFilterToggle}
+              className={checkboxState(globalTicketmasterShadingState)}
+            />
+            Ticketmaster
+            <br></br>
+          </label>
+          <label htmlFor="showStubhub" className={labelState(globalStubhubShadingState)}>
+            <input
+              type="checkbox" 
+              name="showStubhub" 
+              checked={globalStubhubShadingState === CheckboxShading.CHECKED}
+              onChange={handleVendorFilterToggle}
+              className={checkboxState(globalStubhubShadingState)}
+            />   
+            Stubhub
+            <br></br>
+          </label>
+          <label htmlFor="showSeatgeek" className={labelState(globalSeatgeekShadingState)}>
+            <input 
+              type="checkbox" 
+              name="showSeatgeek"  
+              checked={globalSeatgeekShadingState === CheckboxShading.CHECKED}
+              onChange={handleVendorFilterToggle}
+              className={checkboxState(globalSeatgeekShadingState)}
+            />
+            SeatGeek
+            <br></br>
+          </label>
+        </div>
+        <div className="Filter_status">
+          <b className="Filter_row-title">Status Filters</b>
+          <br></br>
+          <label htmlFor="showCancelled" className={labelState(globalShowCancelledState)}>
+            <input 
+              type="checkbox" 
+              name="showCancelled"  
+              checked={globalShowCancelledState === CheckboxShading.CHECKED}
+              onChange={handleStatusFilterToggle}
+              className={checkboxState(globalShowCancelledState)}
+            />
+            Cancelled Events
+            <br></br>
+          </label>
+          <label htmlFor="showNoListings" className={labelState(globalShowNoListingsState)}>
+            <input 
+              type="checkbox" 
+              name="showNoListings"  
+              checked={globalShowNoListingsState === CheckboxShading.CHECKED}
+              onChange={handleStatusFilterToggle}
+              className={checkboxState(globalShowNoListingsState)}
+            />
+            Events Without Listings
+            <br></br>
+          </label>
+        </div>
+        <div className="Filter_price">
+          <b className="Filter_row-title">Price</b>
           <br></br>
           <Slider 
             aria-labelledby="range-slider"
@@ -314,8 +316,8 @@ export const Filter = () => {
             className="Filter_priceSlider"
           />
         </div>
-        <div>
-          <b>Dates</b>
+        <div className="Filter_dates">
+          <b className="Filter_row-title">Dates</b>
           <br></br>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">

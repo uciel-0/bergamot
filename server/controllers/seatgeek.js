@@ -9,6 +9,7 @@ export const getSeatGeekEvents = (req) => {
     return data.data;
   })
   .catch((err) => {
+    console.err('seatgeek events api rejection', err);
     return err;
   })
 }

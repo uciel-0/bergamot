@@ -1,7 +1,7 @@
 .Results {
   display: grid;
-  grid-template-columns: [filter-start] minmax(max-content, 30%) [filter-end results-start] minmax(min-content, 1fr) [results-end whitespace-start] auto [whitespace-end];
-  grid-gap: 50px;
+  grid-template-columns: [filter-start] 17rem [filter-end results-start] min-content [results-end];
+  grid-gap: 5px;
 
   @media only screen and (max-width: $bp-bop-medium) {
     grid-template-columns:[bop-start] minmax(min-content, .8fr) [bop-end];

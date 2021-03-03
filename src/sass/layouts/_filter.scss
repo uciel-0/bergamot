@@ -7,6 +7,7 @@
   @media only screen and (max-width: $bp-bop-medium) {
     margin-top: 0rem;
   }
+
   &_form {
     margin-left: 5%;
   }
@@ -23,6 +24,8 @@
 
   &_vendors, &_status, &_price {
     position: relative;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
     &:before {
       content : "";
       position: absolute;
@@ -34,6 +37,7 @@
       margin: 0 auto;
     }
   }
+
   input {
     margin-right: 4px;
   }
@@ -41,16 +45,34 @@
   .MuiSlider-root	{
     color: black;
     width: 70%;
+    padding: 0;
+    // padding-bottom: 13px;
   }
-
+  // slider styles
   &_priceSlider {
     margin-top: 40px;
     margin-left: 20px;
     font-size: 1px;
   }
 
+  .MuiSlider-thumb {
+    background-color: rgba(0, 26, 255, 0.5);
+  }
+
+  .MuiSlider-thumb .Mui-focusVisible, .MuiSlider-thumb:hover {
+    background-color: rgba(0, 26, 255, 0.5);
+    box-shadow:  0px 0px 0px 8px rgba(0, 26, 255, 0.5);
+  }
+
+  .PrivateValueLabel-circle-4 {
+    background-color: transparent;
+    margin-top: 10px;
+    // align-content: flex-end;
+  }
+
   .PrivateValueLabel-label-5 {
-    font-size: 0.65rem;
+    font-size: 1.3rem;
+    color: black;
   }
 
   &_label {

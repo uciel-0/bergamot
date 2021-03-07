@@ -1,10 +1,15 @@
 import axios from 'axios';
+import moment from 'moment';
 // this has got to take in some input from the front end 
 export const getStubhubEvents = (req) => {
   const keyword = req.query.keyword;
+  const startDate = req.query.startDate ? moment(req.query.startDate).utc().format(`yyyy-MM-DD`) : undefined;
+  const endDate = req.query.endDate ? moment(req.query.endDate).utc().format('yyyy-MM-DD') : undefined;
+  const dateRangeString = startDate && endDate ? `${startDate} TO ${endDate}` : '';
   return axios.get('https://api.stubhub.com/sellers/search/events/v3', {
     params: {
       name: keyword,
+      date: dateRangeString
     },
     headers: {
       'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1',
@@ -12,11 +17,12 @@ export const getStubhubEvents = (req) => {
     }
   })
   .then((data) => {
+    console.log('stubhub dateRangeString', dateRangeString);
     return data.data
   })
   .catch((err) => {
-    console.err('stubhub events api rejection', err)
-    return err
+    console.log('stubhub events api rejection', err)
+    return err;
   });
 }
 

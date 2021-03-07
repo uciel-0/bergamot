@@ -2,10 +2,15 @@ import axios from 'axios';
 // working
 export const getSeatGeekEvents = (req) => {
   const keyword = req.query.keyword.trim().replace(/\s/g, '-');
-  const client_id = 'MTg4ODAyNjN8MTU4OTU3NDI4NS44NQ'
-  const endpoint = `https://api.seatgeek.com/2/events?client_id=${client_id}&performers.slug=${keyword}`
+  const client_id = 'MTg4ODAyNjN8MTU4OTU3NDI4NS44NQ';
+  const startDate = req.query.startDate;
+  const endDate = req.query.endDate;
+  const dateRangeString = startDate && endDate ? `&datetime_utc.gte=${startDate}&datetime_utc.lte=${endDate}` : '';
+  const endpoint = `https://api.seatgeek.com/2/events?client_id=${client_id}&performers.slug=${keyword}${dateRangeString}`
   return axios.get(endpoint)
   .then((data) => {
+    console.log('seatgeek endpoint string', endpoint);
+    console.log('seatgeek startDate', startDate, ' and endDate', endDate);
     return data.data;
   })
   .catch((err) => {

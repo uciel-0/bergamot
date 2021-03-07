@@ -58,21 +58,22 @@
             outline: none;
         }
 
-        // &:hover{
-
-        // }
-
         &:active {
             transform: translateY(2px);
         }
 
-        
+        &--disabled {
+            opacity: 0.65;
+            &:active {
+                pointer-events: none;
+            }
+        }
     }
 
     &__icon {
         height: 2rem;
         width: 2rem;
-        fill : var(--color-grey-dark-3);
+        fill: var(--color-grey-dark-3);
     }
 }
 
@@ -137,5 +138,14 @@
 
     &__user-name {
 
+    }
+}
+
+.DatePicker_container {
+    height: 100%;
+    padding-top: 20px;
+    .MuiFormControl-root {
+        padding-right: 20px;
+        padding-bottom: 10px;
     }
 }

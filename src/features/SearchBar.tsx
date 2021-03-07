@@ -18,19 +18,53 @@ import {Bookmark} from '../svg/Bookmark';
 import {useHistory} from 'react-router-dom';
 import { CheckboxShading } from '../store/searchResults/Reducer';
 import { Chat } from '../svg/Chat';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+import moment, { Moment } from 'moment';
 
 export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
+  const [dateRangeState, setDateRangeState] = React.useState<(Moment | string | null)[]>([null, null]);
   const {searchResultsDispatch} = React.useContext(SearchResultsContext);
   const {spinnerDispatch} = React.useContext(SpinnerContext);
-  // const {} = React.useContext();
+  const today = moment().startOf('day').format();
+  const [endDateValue, setEndDateValue] = React.useState<string>();
+  const [endDateMinValue, setEndDateMinValue] = React.useState<string>('');
+  const [searchEnabled, setSearchEnabled] = React.useState<boolean>(true);
+
   let history = useHistory();
+
+  React.useEffect(() => {
+    console.log(dateRangeState);
+    if ((!dateRangeState[0] && !dateRangeState[1]) || (dateRangeState[0] && dateRangeState[1])) {
+      setSearchEnabled(true);
+    } else if ((!dateRangeState[0] && dateRangeState[1]) || (dateRangeState[0] && !dateRangeState[1])) {
+      setSearchEnabled(false);
+    }
+  }, [dateRangeState]);
+
+
+
+  const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
+    // searchResultsDispatch(setUserDateRangeSelectedAction(true));
+    const formattedStartDate = moment(newStartDate).startOf('day').format();
+    setDateRangeState([formattedStartDate, dateRangeState[1]]);
+    setEndDateMinValue(formattedStartDate);
+  }
+
+  const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
+    // searchResultsDispatch(setUserDateRangeSelectedAction(true));
+    setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()]);
+  }
 
   const onSubmit = (e: any) => {
     e.preventDefault();
     if (formValue === "") {
       return;
     }
+    console.log('dateState - startDate:', dateRangeState[0], 'endDate:', dateRangeState[1])
     spinnerDispatch(setSpinnerState(true));
     // reset the isStable flag so the distributor filters can reset as expected
     searchResultsDispatch(setLastQuery(formValue));
@@ -41,6 +75,8 @@ export const SearchBar = () => {
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,
+        startDate: dateRangeState[0],
+        endDate: dateRangeState[1],
       }
     })
     .then((res) => {
@@ -67,19 +103,20 @@ export const SearchBar = () => {
       console.log('master search api rejection', err);
     });
     // for testing puposes
-    axios.get('http://localhost:8080/api/search/wide', {
-      params: {
-        keyword: formValue,
-      }
-    })
-    .then((res) => {
-      console.log('individual api responses', res.data);
-    })
-    .catch((err) => {
-      console.log('individual api responses', err)
-    });
+    // axios.get('http://localhost:8080/api/search/wide', {
+    //   params: {
+    //     keyword: formValue,
+    //   }
+    // })
+    // .then((res) => {
+    //   console.log('individual api responses', res.data);
+    // })
+    // .catch((err) => {
+    //   console.log('individual api responses', err)
+    // });
   }
 
+  const searchStyle = searchEnabled ? 'search__button' : 'search__button search__button--disabled';
   return (
     <header className="header">
       <div className="logo-box" onClick={() => history.push('/home')}>
@@ -94,10 +131,38 @@ export const SearchBar = () => {
           value={formValue} 
           onChange={(e) => setFormValue(e.target.value)}
         />
-        <button className="search__button">
+        <button className={searchStyle}>
           <MagnifyingGlass className="search__icon"/>
         </button>
       </form>
+      <div className="DatePicker_container">
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <DatePicker
+              minDate={today}
+              value={dateRangeState[0]}
+              onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
+              variant="inline"
+              format="MMM, d, yyyy"
+              disableToolbar
+              disablePast
+              autoOk
+              emptyLabel={"From"}
+            />
+            <DatePicker
+              minDate={endDateMinValue}
+              value={dateRangeState[1]}
+              onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
+              variant="inline"
+              format="MMM, d, yyyy"
+              disableToolbar
+              disablePast
+              autoOk
+              emptyLabel={"To"}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
+      </div>
       <nav className="user-nav">
         <div className="user-nav__icon-box">
           <Bookmark className={'user-nav__icon'}/>

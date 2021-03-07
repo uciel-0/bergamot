@@ -16,19 +16,11 @@ import {
   setBulkFilterAction
 } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
-// import { DateRangePicker } from 'rsuite';
 import { SpinnerContext } from '../store/spinner/Context';
 import { setSpinnerState } from '../store/spinner/Actions';
 import Slider from '@material-ui/core/Slider';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import moment, { Moment } from 'moment';
-import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+import { Moment } from 'moment';
 import {CheckboxShading} from '../store/searchResults/Reducer';
-import { CheckJsDirective } from 'typescript';
-import { Checkbox } from '@material-ui/core';
-// import { Checkbox } from '@material-ui/core';
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
@@ -222,16 +214,6 @@ export const Filter = () => {
     else setPriceRangeState(values)
   }
 
-  const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
-    searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState([moment(newStartDate).startOf('day').format(), dateRangeState[1]]);
-  }
-
-  const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
-    searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()])
-  }
-
   const labelState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_label Filter_label--disabled' : 'Filter_label';
   const checkboxState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_checkbox Filter_checkbox--disabled' : 'Filter_checkbox';
  
@@ -315,36 +297,6 @@ export const Filter = () => {
             valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"
           />
-        </div>
-        <div className="Filter_dates">
-          <b className="Filter_row-title">Dates</b>
-          <br></br>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justify="space-around">
-              <DatePicker
-                minDate={globalDateRangeState[0]}
-                maxDate={globalDateRangeState[1]}
-                value={globalFilteredDateRangeState[0]}
-                onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
-                variant="inline"
-                format="MMM, d, yyyy"
-                disableToolbar
-                disablePast
-                autoOk
-              />
-              <DatePicker
-                minDate={globalFilteredDateRangeState[0]}
-                maxDate={globalDateRangeState[1]}
-                value={globalFilteredDateRangeState[1]}
-                onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
-                variant="inline"
-                format="MMM, d, yyyy"
-                disableToolbar
-                disablePast
-                autoOk
-              />
-            </Grid>
-          </MuiPickersUtilsProvider>
         </div>
       </form>
     </div>

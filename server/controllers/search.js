@@ -89,9 +89,13 @@ export const getEvents = (req, res) => {
   const seatgeek = getSeatGeekEvents(req, res);
     // create the key under which this data will be stored 
   const key = `getEvents_${req.query.keyword}`;
+  const startDate = req.query.startDate;
+  const endDate = req.query.endDate;
+  console.log('start and end date from the front end', startDate, endDate);
   // when the response is complete, store it in the cache 
   cache.set(key, () => Promise.all([ticketmaster, stubhub, seatgeek]))
   .then(data => {
+    console.log('data from the backend call',data)
     // Step 1) Set some custom fields for easy front end access
     // ticketmaster events
     let ticketmasterEvents = [];
@@ -105,10 +109,11 @@ export const getEvents = (req, res) => {
         // if the datetime field exists, its already in UTC, use that one. Otherwise, get the UTC time from our computed datetime_local
         e.datetime_utc = e.dates.start.dateTime ? normalizeUTCDate(e.dates.start.dateTime) : normalizeUTCDate(e.datetime_local);
         e.date = formatLocalDate(e.datetime_local);
-        e.time = e.dates.start.noSpecificTime ? 'No Specific Time': formatTime(e.datetime_local);
+        e.time = e.dates.start.noSpecificTime ? 'No Specific Time' : formatTime(e.datetime_local);
         e.venueName = e._embedded.venues[0].name;
         e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
         e.isPriceEstimated = false;
+        
         if (e.priceRanges) {
           e.priceBeforeFees = e.priceRanges[0].min;
           e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
@@ -122,7 +127,7 @@ export const getEvents = (req, res) => {
     }
     // stubhub events
     let stubhubEvents = [];
-    if (data[1].events) {
+    if (data[1]) {
       data[1].events.forEach(e => {
         e.source = 'stubhub';
         e.sourceUrl = 'https://stubhub.com';
@@ -142,7 +147,7 @@ export const getEvents = (req, res) => {
     }
     // seatgeek events
     let seatgeekEvents = [];
-    if (data[2].events) {
+    if (data[2]) {
       data[2].events.forEach(e => {
         e.source = 'seatgeek';
         e.sourceUrl = 'https://seatgeek.com';

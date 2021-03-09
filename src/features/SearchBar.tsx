@@ -30,8 +30,9 @@ export const SearchBar = () => {
   const {searchResultsDispatch} = React.useContext(SearchResultsContext);
   const {spinnerDispatch} = React.useContext(SpinnerContext);
   const today = moment().startOf('day').format();
-  const [endDateValue, setEndDateValue] = React.useState<string>();
   const [endDateMinValue, setEndDateMinValue] = React.useState<string>('');
+  const [startDateMaxValue, setStartDateMaxValue] = React.useState<string>('');
+
   const [searchEnabled, setSearchEnabled] = React.useState<boolean>(true);
 
   let history = useHistory();
@@ -45,8 +46,6 @@ export const SearchBar = () => {
     }
   }, [dateRangeState]);
 
-
-
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     // searchResultsDispatch(setUserDateRangeSelectedAction(true));
     const formattedStartDate = moment(newStartDate).startOf('day').format();
@@ -56,7 +55,9 @@ export const SearchBar = () => {
 
   const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
     // searchResultsDispatch(setUserDateRangeSelectedAction(true));
-    setDateRangeState([dateRangeState[0], moment(newEndDate).endOf('day').format()]);
+    const formattedEndDate = moment(newEndDate).endOf('day').format();
+    setDateRangeState([dateRangeState[0], formattedEndDate]);
+    setStartDateMaxValue(formattedEndDate);
   }
 
   const onSubmit = (e: any) => {
@@ -140,6 +141,7 @@ export const SearchBar = () => {
           <Grid container justify="space-around">
             <DatePicker
               minDate={today}
+              maxDate={startDateMaxValue}
               value={dateRangeState[0]}
               onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
               variant="inline"

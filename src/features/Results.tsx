@@ -14,9 +14,9 @@ export const Results = () => {
   const {searchResultsState} = React.useContext(SearchResultsContext);
   return (
     <div className="Bop">
-      {/* <div className="Banner">
+      <div className="Banner">
         {searchResultsState.lastQuery || ""}
-      </div> */}
+      </div>
       <div className="SearchResults">
         <div className="Results">
           <Filter />

@@ -11,17 +11,7 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, source, name,
   const priceAfterFeesHTML = priceAfterFees ? <p className="Card_prices-text">Price<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
   const venueText = venueName ? venueName + ' - ' + venueCity : 'Venue TBD';
   const urlContent = url || sourceUrl;
-  const displayDateText = (date: string) => {
-    if (date) {
-      const dayText = date.slice(0,3);
-      const dateText = date.slice(5);
-      const timeText = time || "TBD";
-      const dateTimeText = dayText + " - " + timeText;
-      return <div className="Card_date"><p>{dateText}</p><p>{dateTimeText}</p></div>
-    } else {
-      return <div className="Card_date Card_date--tbd"><p>Date: TBD</p></div>
-    }
-  }
+
   const displayTimeText = (dateTimeString: string) => {
     if (dateTimeString) {
       const timeText = time || 'TBD';

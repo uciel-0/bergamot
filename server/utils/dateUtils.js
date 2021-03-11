@@ -49,9 +49,9 @@ export const reformatDate = (date) => {
   return month + '-' + day + '-' + year;
 }
 // 
-export const formatDate = (date) =>  date ? moment.utc(date).format('MM/D/YYYY dddd') : null;
+export const formatDate = (date) =>  date ? moment.utc(date).format('ddd, MMM D, YYYY') : null;
 // for dates that are already local 
-export const formatLocalDate = (date) => date ? moment(date).format('MM/D/YYYY dddd') : null;
+export const formatLocalDate = (date) => date ? moment(date).format('ddd, MMM D, YYYY') : null;
 
 export const normalizeUTCDate = (utcDate) => utcDate ? moment.utc(utcDate).format() : null;
 

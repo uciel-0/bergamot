@@ -15,6 +15,8 @@ export enum SearchResultActionTypes {
   SET_DATE_RANGE = 'SET_DATE_RANGE',
   SET_LAST_QUERY = 'SET_LAST_QUERY',
   SET_USER_DATE_RANGE_SELECTED = 'SET_USER_DATE_RANGE_SELECTED',
+  SET_NUMBER_OF_RESULTS = 'SET_NUMBER_OF_RESULTS',
+  SET_SHOW_PRICES_WITH_FEES = 'SET_SHOW_PRICES_WITH_FEES'
 }
 
 interface SetSearchResults {
@@ -99,7 +101,7 @@ export const setBulkFilterAction = (
   priceRange: number[],
   dateRange: Moment[], 
   filteredPriceRange: number[], 
-  filteredDateRange: Moment[],
+  filteredDateRange: Moment[]
 ): SetBulkFilter => ({
   type: SearchResultActionTypes.SET_BULK_FILTER,
   ticketmasterState,
@@ -110,7 +112,7 @@ export const setBulkFilterAction = (
   priceRange,
   dateRange,
   filteredPriceRange,
-  filteredDateRange,
+  filteredDateRange
 });
 
 interface SetIsStable {
@@ -173,5 +175,26 @@ export const setLastQuery = (payload: string): SetLastQuery => ({
   payload
 });
 
+interface SetNumberOfResults {
+  type: SearchResultActionTypes.SET_NUMBER_OF_RESULTS;
+  payload: number;
+}
+
+export const setNumberOfResults = (payload: number): SetNumberOfResults => ({
+  type: SearchResultActionTypes.SET_NUMBER_OF_RESULTS,
+  payload
+});
+
+interface SetShowPricesWithFees {
+  type: SearchResultActionTypes.SET_SHOW_PRICES_WITH_FEES,
+  payload: boolean
+}
+
+export const setShowPricesWithFees = (payload: boolean): SetShowPricesWithFees => ({
+  type: SearchResultActionTypes.SET_SHOW_PRICES_WITH_FEES,
+  payload
+});
+
 export type SearchResultsActions = SetSearchResults | SetTicketmasterState | SetStubhubState | SetSeatgeekState | SetBulkFilter | SetIsStable | 
-SetNoResults | SetPriceRange | SetLastQuery | SetShowCancelled | SetShowNoListings | SetDateRange | SetUserDateRangeSelected;
+SetNoResults | SetPriceRange | SetLastQuery | SetShowCancelled | SetShowNoListings | SetDateRange | SetUserDateRangeSelected | SetNumberOfResults |
+SetShowPricesWithFees;

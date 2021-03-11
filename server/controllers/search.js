@@ -206,7 +206,7 @@ export const getEvents = (req, res) => {
       });
     });
 
-    const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0);
+    const numberOfResults = groupedData.reduce((total, current) => total += current.events.length, 0);
     // Step 7) Arrange the data together
     const response = {
       data: groupedData,
@@ -225,7 +225,7 @@ export const getEvents = (req, res) => {
       hasCancelledEvents: hasCancelledEvents ? 'CHECKED' : 'GREYED',
       hasNoListingEvents: hasNoListingEvents ? 'CHECKED' : 'GREYED',
       providerResultLengths,
-      totalResultsLength,
+      numberOfResults,
     }
     // Step 8) Send the data
    res.send(response);
@@ -449,7 +449,7 @@ export const getCachedEvents = (req, res) => {
       });
     });
     // 3) Get your highs and lows, earliests and latest on FILTERED data set
-    const totalResultsLength = groupedData.reduce((total, current) => total += current.events.length, 0);
+    const numberOfResults = groupedData.reduce((total, current) => total += current.events.length, 0);
 
     const response = {
       data: groupedData,
@@ -468,7 +468,7 @@ export const getCachedEvents = (req, res) => {
       filteredDateRange: [earliestDate, latestDate],
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
-      totalResultsLength,
+      numberOfResults,
       hasCancelledEvents: cancelledEventsShadingState,
       hasNoListingEvents: noListingsShadingState,
     }
@@ -488,7 +488,7 @@ export const getCachedEvents = (req, res) => {
       filteredDateRange: [earliestDate, latestDate],
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
-      totalResultsLength,
+      numberOfResults,
       hasCancelledEvents: cancelledEventsShadingState,
       hasNoListingEvents: noListingsShadingState,
     });

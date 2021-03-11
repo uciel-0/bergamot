@@ -7,6 +7,7 @@ import { ErrorScreen } from './ErrorScreen';
 export interface SearchResult {
   date: string;
   events: any[];
+  showPricesWithFees: boolean;
 }
 
 export const Results = () => {
@@ -22,7 +23,7 @@ export const Results = () => {
           <div className="Cards">
             { !searchResultsState.noResults ?
               searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
-                <CardsGroup date={e.date} events={e.events} key={index}/>
+                <CardsGroup date={e.date} events={e.events} key={index} showPricesWithFees={searchResultsState.showPricesWithFees}/>
               ) : null : <ErrorScreen/>
             }
           </div>
@@ -55,6 +56,7 @@ export const CardsGroup = (searchResult: SearchResult) => {
             url={e.url}
             sourceUrl={e.sourceUrl}
             key={index}
+            showPricesWithFees={searchResult.showPricesWithFees}
           />
         )
       }

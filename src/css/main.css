@@ -41,9 +41,6 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh; }
 
-html, body, .container {
-  height: 100%; }
-
 .margin-tiny {
   margin: .2rem .2rem; }
 
@@ -55,6 +52,12 @@ html, body, .container {
     left: 1rem; }
 
 .Card {
+  display: grid;
+  grid-template-columns: [logo-start] 15rem [logo-end content-start] minmax(35rem, 0.75fr) [content-end prices-start] minmax(20rem, 0.25fr) [prices-end];
+  grid-template-rows: 1fr max-content 1fr;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
   background-color: white;
   color: black;
   box-shadow: 0 0 2px 0 rgba(19, 26, 31, 0.12), 0 2px 4px 0 rgba(19, 26, 31, 0.22);
@@ -62,12 +65,6 @@ html, body, .container {
   border-radius: 25px;
   margin-bottom: 30px;
   min-height: 19rem;
-  display: grid;
-  grid-template-columns: [logo-start] minmax(min-content, 10rem) [logo-end content-start] minmax(35rem, 0.75fr) [content-end prices-start] 20rem [prices-end];
-  grid-template-rows: 1fr max-content 1fr;
-  align-items: center;
-  justify-content: center;
-  grid-gap: 10px;
   margin-top: 1.5rem;
   padding: 1rem; }
   @media only screen and (max-width: 51.875em) {
@@ -81,19 +78,21 @@ html, body, .container {
   .Card_section-1 {
     display: grid;
     grid-row: 2/3;
-    grid-column: content-start/content-end; }
+    grid-column: content-start/content-end;
+    margin-left: 20px; }
     .Card_section-1 p {
       display: flex;
       flex-wrap: wrap; }
   .Card_section-2 {
     grid-column: 3/4;
-    grid-row: 2/3; }
+    grid-row: 2/3;
+    align-self: end; }
     @media only screen and (max-width: 37.5em) {
       .Card_section-2 {
         grid-column: 2/3;
         grid-row: 3/4; } }
   .Card_title {
-    font-size: 1.5rem;
+    font-size: 2.4rem;
     margin-bottom: .3rem; }
     @media only screen and (max-width: 37.5em) {
       .Card_title {
@@ -101,37 +100,47 @@ html, body, .container {
   .Card_logo {
     grid-row: 2/3;
     justify-self: center;
-    font-size: 1.5rem; }
-    .Card_logo b {
-      font-weight: 400; }
-  .Card_location, .Card_date {
-    font-size: 1.3rem; }
+    margin-left: 20px; }
+  .Card_info {
+    font-weight: 300; }
+  .Card_location {
+    font-size: 1.8rem; }
+  .Card_date {
+    font-size: 2.4rem; }
     @media only screen and (max-width: 37.5em) {
-      .Card_location, .Card_date {
+      .Card_date {
         font-size: 1.1rem; } }
+  .Card_time {
+    font-size: 2.4rem; }
   .Card_prices {
     text-align: right;
     align-self: end; }
     .Card_prices-text {
-      font-size: 1.2rem; }
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 2.4rem;
+      font-weight: 300; }
       @media only screen and (max-width: 37.5em) {
         .Card_prices-text {
           font-size: 1rem; } }
       .Card_prices-text--tiny {
-        font-size: .8rem; }
+        font-size: 1.2rem; }
         @media only screen and (max-width: 37.5em) {
           .Card_prices-text--tiny {
             font-size: .6rem; } }
     .Card_prices-bold {
-      font-size: 2rem;
-      width: 50%; }
+      font-size: 36px;
+      margin-left: 5px;
+      font-weight: 300; }
     .Card_prices-cancelled {
       font-weight: 500;
       color: red; }
   .Card_button {
     grid-row: 3/4;
     grid-column: 3/4;
-    justify-self: end; }
+    justify-self: end;
+    font-size: 1.5rem; }
     @media only screen and (max-width: 37.5em) {
       .Card_button {
         grid-column: button-start/button-end;
@@ -145,6 +154,16 @@ html, body, .container {
       color: #fff; }
     .Card_button:hover {
       background-image: linear-gradient(to right, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85)); }
+  .Card .ticketmaster-logo {
+    fill: #026CDF;
+    width: 100%;
+    height: 100%; }
+  .Card .stubhub-logo {
+    width: 100%;
+    height: 100%; }
+  .Card .seatgeek-logo {
+    width: 100%;
+    height: 100%; }
 
 .Spinner {
   font-size: 90px;
@@ -219,7 +238,7 @@ html, body, .container {
 
 .Results {
   display: grid;
-  grid-template-columns: [filter-start] 17rem [filter-end results-start] min-content [results-end];
+  grid-template-columns: [filter-start] minmax(20rem, 22rem) [filter-end results-start] minmax(min-content, 1fr) [results-end];
   grid-gap: 5px; }
   @media only screen and (max-width: 51.875em) {
     .Results {
@@ -331,17 +350,12 @@ html, body, .container {
     border-radius: 50%;
     margin-right: 1rem; }
 
-.DatePicker_container .MuiFormControl-root {
-  padding-right: 20px; }
-
-.DatePicker_container .MuiInputBase-input:before {
-  display: inline-block;
-  content: ' ';
-  background-image: url("/svg/calendar.svg");
-  background-size: 28px 28px;
-  height: 28px;
-  width: 28px;
-  color: black; }
+.DatePicker_container {
+  padding-right: 4rem; }
+  .DatePicker_container .MuiFormControl-root {
+    padding-right: 20px; }
+  .DatePicker_container .MuiInputBase-root {
+    font-size: 1.4rem; }
 
 .Filter {
   padding-top: 4rem;
@@ -351,19 +365,24 @@ html, body, .container {
   @media only screen and (max-width: 51.875em) {
     .Filter {
       margin-top: 0rem; } }
+  .Filter_total-results {
+    font-size: 2rem; }
+  .Filter_price-toggle p {
+    font-weight: 300;
+    font-size: 1rem; }
   .Filter_form {
     margin-left: 5%; }
   .Filter_row-title {
     font-weight: 400;
-    font-size: 1.5rem; }
+    font-size: 2rem; }
   .Filter_label {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: 300; }
-  .Filter_vendors, .Filter_status, .Filter_price {
+  .Filter_price-toggle, .Filter_vendors, .Filter_status, .Filter_price {
     position: relative;
     padding-bottom: 1rem;
     padding-top: 1rem; }
-    .Filter_vendors:before, .Filter_status:before, .Filter_price:before {
+    .Filter_price-toggle:before, .Filter_vendors:before, .Filter_status:before, .Filter_price:before {
       content: "";
       position: absolute;
       left: 0;
@@ -381,19 +400,21 @@ html, body, .container {
     padding: 0; }
   .Filter_priceSlider {
     margin-top: 40px;
-    margin-left: 20px;
-    font-size: 1px; }
+    margin-left: 20px; }
   .Filter .MuiSlider-thumb {
-    background-color: rgba(0, 26, 255, 0.5); }
+    background-color: rgba(0, 26, 255, 0.5) !important; }
   .Filter .MuiSlider-thumb .Mui-focusVisible, .Filter .MuiSlider-thumb:hover {
-    background-color: rgba(0, 26, 255, 0.5);
-    box-shadow: 0px 0px 0px 8px rgba(0, 26, 255, 0.5); }
-  .Filter .PrivateValueLabel-circle-4 {
-    background-color: transparent;
+    background-color: rgba(0, 26, 255, 0.5) !important;
+    box-shadow: 0px 0px 0px 8px rgba(0, 26, 255, 0.5) !important; }
+  .Filter .PrivateValueLabel-circle-8 {
+    background-color: transparent !important;
     margin-top: 10px; }
-  .Filter .PrivateValueLabel-label-5 {
-    font-size: 1.3rem;
+  .Filter .PrivateValueLabel-label-9 {
+    font-size: 1.8rem;
     color: black; }
+  .Filter .MuiTypography-body1 {
+    font-size: 1.8rem;
+    font-weight: 300; }
   .Filter_label--disabled {
     cursor: not-allowed;
     user-select: none;
@@ -404,7 +425,7 @@ html, body, .container {
 .container {
   max-width: 120rem;
   margin: 8rem auto;
-  background-color: var(--color-grey-light-2);
+  background-color: white;
   box-shadow: 0 2rem 6rem var(--shadow-dark);
   min-height: 50rem;
   margin: 0;
@@ -861,8 +882,7 @@ html, body, .container {
 
 .Cards {
   padding-right: 1rem;
-  padding-top: 4rem;
-  margin: 0 auto; }
+  padding-top: 4rem; }
   .Cards_date {
     font-size: 2.5rem;
     font-weight: 400;
@@ -881,6 +901,7 @@ html, body, .container {
       grid-column: bop-start/bop-end; } }
 
 .Bop {
-  max-width: 100em;
-  margin: 0 auto;
+  max-width: 125em;
+  margin: 0;
+  margin-left: 2rem;
   background-color: white; }

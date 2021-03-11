@@ -10,6 +10,8 @@ export interface SearchResultsState {
   lastQuery: string;
   userDateRangeSelected: boolean;
   timezone: string;
+  numberOfResults: number;
+  showPricesWithFees: boolean;
 }
 
 export interface SearchResult {
@@ -27,6 +29,7 @@ export interface VendorShadingState {
   stubhub: CheckboxShading,
   seatgeek: CheckboxShading,
 }
+
 export interface SearchFilterState {
   ticketmasterState: CheckboxShading,
   stubhubState: CheckboxShading,
@@ -80,6 +83,10 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, userDateRangeSelected: action.payload};
     case SearchResultActionTypes.SET_LAST_QUERY:
       return {...state, lastQuery: action.payload};
+    case SearchResultActionTypes.SET_NUMBER_OF_RESULTS:
+      return {...state, numberOfResults: action.payload};
+    case SearchResultActionTypes.SET_SHOW_PRICES_WITH_FEES:
+      return {...state, showPricesWithFees: action.payload};
     default:
       return state;
   }
@@ -104,5 +111,7 @@ export const initialSearchResultsState: SearchResultsState = {
   noResults: false,
   lastQuery: '',
   userDateRangeSelected: false,
-  timezone
+  timezone,
+  numberOfResults: 0,
+  showPricesWithFees: true,
 }

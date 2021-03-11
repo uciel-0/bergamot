@@ -9,7 +9,8 @@ import {
   setPriceRangeAction,
   setNoResultsState, 
   setLastQuery, 
-  setUserDateRangeSelectedAction 
+  setUserDateRangeSelectedAction,
+  setNumberOfResults
 } from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../svg/BopIcon';
@@ -85,6 +86,7 @@ export const SearchBar = () => {
       history.push('/search');
       // set our search result data to the response from the api call
       searchResultsDispatch(setSearchResults(res.data.data));
+      searchResultsDispatch(setNumberOfResults(res.data.numberOfResults));
       console.log('total length of events:', res.data.totalResultsLength);
       console.log('ticketmaster events:', res.data.providerResultLengths[0]);
       console.log('seatgeek events:', res.data.providerResultLengths[1]);
@@ -165,7 +167,7 @@ export const SearchBar = () => {
           </Grid>
         </MuiPickersUtilsProvider>
       </div>
-      <nav className="user-nav">
+      {/* <nav className="user-nav">
         <div className="user-nav__icon-box">
           <Bookmark className={'user-nav__icon'}/>
           <span className="user-nav__notification">7</span>
@@ -176,9 +178,9 @@ export const SearchBar = () => {
         </div>
         <div className="user-nav__user">
           <img src="\default-profile-pic.png" alt="user headshot" className="user-nav__user-photo"/>
-          {/* <span className="user_nav__user-name">Jonas</span> */}
+          <span className="user_nav__user-name">Jonas</span>
         </div>
-      </nav>
+      </nav> */}
     </header>
   )
 }

@@ -1,15 +1,14 @@
 import * as React from 'react'
+import TicketmasterLogo from '../svg/TicketmasterLogo';
+import StubhubLogo from '../svg/StubhubLogo';
+import SeatgeekLogo from '../svg/SeatgeekLogo';
 // stubhub has a field called ticketInfo -> if ticketInfo.totalListings = 0, show some sort of message indicating that fact
-export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstimated, source, name, venueName, venueCity, url, sourceUrl, status}: any) => {
-  const asterisk = isPriceEstimated ? '*' : '';
-  const priceBeforeFeesText = "Price before fees: ";
-  const priceAfterFeesText = "Price after fees: ";
-  const priceDisclaimerText = "*Estimated fees based on the average amount from source website. Prices may vary.";
+export const Card = ({date, time, priceBeforeFees, priceAfterFees, source, name, venueName, venueCity, url, sourceUrl, status, showPricesWithFees}: any) => {
+  // const asterisk = isPriceEstimated ? '*' : '';
   const priceBeforeFeesFormatted = priceBeforeFees ? '$'+ priceBeforeFees.toLocaleString(undefined, {minimumFractionDigits: 2}) : '';
-  const priceAfterFeesFormatted = priceAfterFees ? '$' + priceAfterFees.toLocaleString(undefined, {minimumFractionDigits: 2}) + asterisk : 'This vendor is not currently listing prices for this event. Please visit link for additional details.';
-  const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">{priceBeforeFeesText}<b className="Card_prices-soft">{priceBeforeFeesFormatted}</b></p> : null;
-  const priceAfterFeesHTML = priceAfterFees ? <p className="Card_prices-text">{priceAfterFeesText}<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
-  const priceDisclaimer = isPriceEstimated ? <p className="Card_prices-text Card_prices-text--tiny">{priceDisclaimerText}</p> : null;
+  const priceAfterFeesFormatted = priceAfterFees ? '$' + priceAfterFees.toLocaleString(undefined, {minimumFractionDigits: 2}) : 'This vendor is not currently listing prices for this event. Please visit link for additional details.';
+  const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">Price<b className="Card_prices-bold">{priceBeforeFeesFormatted}</b></p> : null;
+  const priceAfterFeesHTML = priceAfterFees ? <p className="Card_prices-text">Price<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
   const venueText = venueName ? venueName + ' - ' + venueCity : 'Venue TBD';
   const urlContent = url || sourceUrl;
   const displayDateText = (date: string) => {
@@ -23,6 +22,12 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
       return <div className="Card_date Card_date--tbd"><p>Date: TBD</p></div>
     }
   }
+  const displayTimeText = (dateTimeString: string) => {
+    if (dateTimeString) {
+      const timeText = time || 'TBD';
+      return <div className="Card_time"><p>{timeText}</p></div>
+    }
+  }
   const renderCardLogo = () => (
     <span className="Card_logo">
       <SourceLogo source={source}/>
@@ -33,15 +38,13 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
     <div className="Card_info">
       <p className="Card_title">{name}</p>
       <p className="Card_location">{venueText}</p>
-      {displayDateText(date)}
+      {displayTimeText(date)}
     </div>
   );
   const renderCardPrices = () => {
     const cardPrices = (
       <div className="Card_prices">
-        {priceBeforeFeesHTML}
-        {priceAfterFeesHTML}
-        {priceDisclaimer}
+        {showPricesWithFees ? priceAfterFeesHTML : priceBeforeFeesHTML}
       </div> 
     );
     const eventCancelledMessage = (
@@ -72,29 +75,24 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, isPriceEstima
         {renderCardPrices()}
       </div>
       <div className="Card_button">
-          {renderButton()}
-        </div>
+        {renderButton()}
+      </div>
     </div>
   ) : null;
 }
 
-const StubhubLogo = () => <b>StubHub</b>
-
-const TicketmasterLogo = () => <b>TicketMaster</b>
-
-const SeatGeekLogo = () => <b>SeatGeek</b>
 // title, price, date 
 const SourceLogo = ({source}: any) => {
   let logo; 
   switch(source) {
     case 'ticketmaster': 
-      logo = <TicketmasterLogo/>;
+      logo = <TicketmasterLogo className="ticketmaster-logo"/>;
       break;
     case 'stubhub':
-      logo = <StubhubLogo/>;
+      logo = <StubhubLogo className="stubhub-logo"/>;
       break;
     case 'seatgeek':
-      logo = <SeatGeekLogo/>
+      logo = <SeatgeekLogo/>
       break;
     default: 
       logo = null;

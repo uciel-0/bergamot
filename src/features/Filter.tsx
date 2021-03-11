@@ -13,12 +13,17 @@ import {
   setShowCancelledAction,
   setShowNoListingsAction, 
   setUserDateRangeSelectedAction,
-  setBulkFilterAction
+  setBulkFilterAction,
+  setNumberOfResults,
+  setShowPricesWithFees,
 } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
 import { SpinnerContext } from '../store/spinner/Context';
 import { setSpinnerState } from '../store/spinner/Actions';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Slider from '@material-ui/core/Slider';
+import Switch from '@material-ui/core/Switch';
 import { Moment } from 'moment';
 import {CheckboxShading} from '../store/searchResults/Reducer';
 
@@ -30,6 +35,7 @@ export const Filter = () => {
   // const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
   const [cancelledFilter, setCancelledFilter] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
   const [noListingsFilter, setNoListingsFilter] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
+  const [feesToggle, setFeesToggle] = React.useState<boolean>(true);
   const [maxMinPriceRange, setMaxMinPriceRange] = React.useState<number[]>([0,0]);
   const [dateRangeState, setDateRangeState] = React.useState<(Moment | string)[]>([]);
   const [priceRangeState, setPriceRangeState] = React.useState<number[]>([]);
@@ -47,8 +53,9 @@ export const Filter = () => {
   const globalPriceRangeState: number[] = searchResultsState.searchFilters.priceRange;
   const globalDateRangeState: Moment[] = searchResultsState.searchFilters.dateRange;
   const globalFilteredPriceRangeState: number[] = searchResultsState.searchFilters.filteredPriceRange;
-  const globalFilteredDateRangeState: Moment[] = searchResultsState.searchFilters.filteredDateRange;
+  // const globalFilteredDateRangeState: Moment[] = searchResultsState.searchFilters.filteredDateRange;
   const globalUserDateRangeSelectedState: boolean = searchResultsState.userDateRangeSelected;
+  const globalShowPricesWithFeesState: boolean = searchResultsState.showPricesWithFees;
   const isStable: boolean = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
   // first fire is when state is initialized; second is when call is made
@@ -107,10 +114,14 @@ export const Filter = () => {
   }, [globalUserDateRangeSelectedState, dateRangeState]);
 
   React.useEffect(() => {
-    console.log(ticketmasterState === CheckboxShading.GREYED, ticketmasterState, 'ticketmasterState');
-    console.log(stubhubState === CheckboxShading.GREYED, stubhubState, 'stubhubState');
-    console.log(seatgeekState === CheckboxShading.GREYED, seatgeekState, 'seatgeekState');
-  }, [ticketmasterState, stubhubState, seatgeekState]);
+    setFeesToggle(globalShowPricesWithFeesState);
+  }, [globalShowPricesWithFeesState]);
+
+  // React.useEffect(() => {
+  //   console.log(ticketmasterState === CheckboxShading.GREYED, ticketmasterState, 'ticketmasterState');
+  //   console.log(stubhubState === CheckboxShading.GREYED, stubhubState, 'stubhubState');
+  //   console.log(seatgeekState === CheckboxShading.GREYED, seatgeekState, 'seatgeekState');
+  // }, [ticketmasterState, stubhubState, seatgeekState]);
 
   const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isVendorFilterCall: boolean, isStatusFilterCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
@@ -151,6 +162,7 @@ export const Filter = () => {
         searchResultsDispatch(setSearchResults(res.data.data));
         // update the filter results as the cache results come back 
         spinnerDispatch(setSpinnerState(false));
+        searchResultsDispatch(setNumberOfResults(res.data.numberOfResults));
         searchResultsDispatch(
           setBulkFilterAction(
             res.data.vendorState.ticketmaster,
@@ -191,7 +203,6 @@ export const Filter = () => {
     const target = event.target;
     const name = target.name;
     const newCheckState = target.checked ? CheckboxShading.CHECKED : CheckboxShading.UNCHECKED;
-    console.log('statusFilterToggle working', newCheckState);
     searchResultsDispatch(setIsStableAction(true));
     if (name === "showCancelled") {
       searchResultsDispatch(setShowCancelledAction(newCheckState));
@@ -214,14 +225,28 @@ export const Filter = () => {
     else setPriceRangeState(values)
   }
 
+  const handleFeesToggle = (event: any) => searchResultsDispatch(setShowPricesWithFees(event.target.checked));
+
   const labelState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_label Filter_label--disabled' : 'Filter_label';
   const checkboxState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_checkbox Filter_checkbox--disabled' : 'Filter_checkbox';
  
   return (
     <div className="Filter">
       <form className="Filter_form">
+        <div className="Filter_total-results">
+          {`${searchResultsState.numberOfResults} Search Result${(searchResultsState.numberOfResults > 1 || searchResultsState.numberOfResults === 0 ? 's' : '')}` }
+        </div>
+        <div className="Filter_price-toggle">
+          <FormGroup row>
+            <FormControlLabel
+              control={<Switch checked={globalShowPricesWithFeesState} onChange={handleFeesToggle} name="fees-toggle" color="primary"/>}
+              label="Show prices with fees*"
+            />
+          </FormGroup>
+          <p>*Fees may be an estimated amount due to provider’s varying fees.</p>
+        </div>
         <div className="Filter_vendors">
-          <b className="Filter_row-title">Vendors</b>
+          <b className="Filter_row-title">Distributor</b>
           <br></br>
           <label htmlFor="showTicketmaster" className={labelState(globalTicketmasterShadingState)}>
             <input 
@@ -258,7 +283,7 @@ export const Filter = () => {
           </label>
         </div>
         <div className="Filter_status">
-          <b className="Filter_row-title">Status Filters</b>
+          <b className="Filter_row-title">Status</b>
           <br></br>
           <label htmlFor="showCancelled" className={labelState(globalShowCancelledState)}>
             <input 

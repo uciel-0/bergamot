@@ -8,21 +8,32 @@
     margin-top: 0rem;
   }
 
+  &_total-results {
+    font-size: 2rem;
+  }
+
+  &_price-toggle {
+    p {
+      font-weight: 300;
+      font-size: 1rem;
+    }
+  }
+
   &_form {
     margin-left: 5%;
   }
 
   &_row-title {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   &_label {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: 300;
   }
 
-  &_vendors, &_status, &_price {
+  &_price-toggle, &_vendors, &_status, &_price {
     position: relative;
     padding-bottom: 1rem;
     padding-top: 1rem;
@@ -52,28 +63,34 @@
   &_priceSlider {
     margin-top: 40px;
     margin-left: 20px;
-    font-size: 1px;
   }
 
   .MuiSlider-thumb {
-    background-color: rgba(0, 26, 255, 0.5);
+    background-color: rgba(0, 26, 255, 0.5) !important;
   }
 
   .MuiSlider-thumb .Mui-focusVisible, .MuiSlider-thumb:hover {
-    background-color: rgba(0, 26, 255, 0.5);
-    box-shadow:  0px 0px 0px 8px rgba(0, 26, 255, 0.5);
+    background-color: rgba(0, 26, 255, 0.5) !important;
+    box-shadow:  0px 0px 0px 8px rgba(0, 26, 255, 0.5) !important;
   }
 
-  .PrivateValueLabel-circle-4 {
-    background-color: transparent;
+  .PrivateValueLabel-circle-8 {
+    background-color: transparent !important;
     margin-top: 10px;
     // align-content: flex-end;
   }
 
-  .PrivateValueLabel-label-5 {
-    font-size: 1.3rem;
+  .PrivateValueLabel-label-9 {
+    font-size: 1.8rem;
     color: black;
   }
+
+  // Price Fees Switch text size
+  .MuiTypography-body1 {
+    font-size: 1.8rem;
+    font-weight: 300;
+  }
+
 
   &_label {
     &--disabled {

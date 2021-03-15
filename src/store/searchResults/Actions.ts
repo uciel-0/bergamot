@@ -15,6 +15,7 @@ export enum SearchResultActionTypes {
   SET_DATE_RANGE = 'SET_DATE_RANGE',
   SET_LAST_QUERY = 'SET_LAST_QUERY',
   SET_USER_DATE_RANGE_SELECTED = 'SET_USER_DATE_RANGE_SELECTED',
+  SET_USER_PRICE_RANGE_SELECTED = 'SET_USER_PRICE_RANGE_SELECTED',
   SET_NUMBER_OF_RESULTS = 'SET_NUMBER_OF_RESULTS',
   SET_SHOW_PRICES_WITH_FEES = 'SET_SHOW_PRICES_WITH_FEES'
 }
@@ -165,6 +166,16 @@ export const setUserDateRangeSelectedAction = (payload: boolean): SetUserDateRan
   payload,
 });
 
+interface SetUserPriceRangeSelected {
+  type: SearchResultActionTypes.SET_USER_PRICE_RANGE_SELECTED,
+  payload: boolean
+}
+
+export const setUserPriceRangeSelected = (payload: boolean): SetUserPriceRangeSelected => ({
+  type: SearchResultActionTypes.SET_USER_PRICE_RANGE_SELECTED,
+  payload,
+});
+
 interface SetLastQuery {
   type: SearchResultActionTypes.SET_LAST_QUERY;
   payload: string;
@@ -196,5 +207,5 @@ export const setShowPricesWithFees = (payload: boolean): SetShowPricesWithFees =
 });
 
 export type SearchResultsActions = SetSearchResults | SetTicketmasterState | SetStubhubState | SetSeatgeekState | SetBulkFilter | SetIsStable | 
-SetNoResults | SetPriceRange | SetLastQuery | SetShowCancelled | SetShowNoListings | SetDateRange | SetUserDateRangeSelected | SetNumberOfResults |
-SetShowPricesWithFees;
+SetNoResults | SetPriceRange | SetLastQuery | SetShowCancelled | SetShowNoListings | SetDateRange | SetUserDateRangeSelected | SetUserPriceRangeSelected | 
+SetNumberOfResults | SetShowPricesWithFees;

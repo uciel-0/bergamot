@@ -1,12 +1,14 @@
 .Banner {
     display:flex;
-    background-color: royalblue;
+    // background-color: royalblue;
+    background-image: linear-gradient(to right bottom, #d6adf7, #bf72ff);
     color: white;
     font-size: 2.5rem;
     padding-left: 1.4rem;
     font-weight: 400;
+    height: 17.5rem;
     align-items:center;
-    display:none;
+    // display:none;
     // grid-row: banner-start/banner-end;
     // grid-column: left-whitespace-start/right-whitespace-end;
     @media only screen and (max-width: $bp-bop-medium) {

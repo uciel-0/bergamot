@@ -9,7 +9,7 @@ import {
   setPriceRangeAction,
   setNoResultsState, 
   setLastQuery, 
-  setUserDateRangeSelectedAction,
+  setUserPriceRangeSelected,
   setNumberOfResults
 } from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
@@ -48,14 +48,12 @@ export const SearchBar = () => {
   }, [dateRangeState]);
 
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
-    // searchResultsDispatch(setUserDateRangeSelectedAction(true));
     const formattedStartDate = moment(newStartDate).startOf('day').format();
     setDateRangeState([formattedStartDate, dateRangeState[1]]);
     setEndDateMinValue(formattedStartDate);
   }
 
   const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
-    // searchResultsDispatch(setUserDateRangeSelectedAction(true));
     const formattedEndDate = moment(newEndDate).endOf('day').format();
     setDateRangeState([dateRangeState[0], formattedEndDate]);
     setStartDateMaxValue(formattedEndDate);
@@ -73,7 +71,7 @@ export const SearchBar = () => {
     searchResultsDispatch(setIsStableAction(false));
     searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));
     searchResultsDispatch(setPriceRangeAction([0,0]));
-    searchResultsDispatch(setUserDateRangeSelectedAction(false));
+    searchResultsDispatch(setUserPriceRangeSelected(false));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,

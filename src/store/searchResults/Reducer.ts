@@ -9,6 +9,7 @@ export interface SearchResultsState {
   noResults: boolean;
   lastQuery: string;
   userDateRangeSelected: boolean;
+  userPriceRangeSelected: boolean;
   timezone: string;
   numberOfResults: number;
   showPricesWithFees: boolean;
@@ -81,6 +82,8 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, searchFilters: {...state.searchFilters, dateRange: action.payload}};
     case SearchResultActionTypes.SET_USER_DATE_RANGE_SELECTED:
       return {...state, userDateRangeSelected: action.payload};
+    case SearchResultActionTypes.SET_USER_PRICE_RANGE_SELECTED:
+      return {...state, userPriceRangeSelected: action.payload};
     case SearchResultActionTypes.SET_LAST_QUERY:
       return {...state, lastQuery: action.payload};
     case SearchResultActionTypes.SET_NUMBER_OF_RESULTS:
@@ -111,6 +114,7 @@ export const initialSearchResultsState: SearchResultsState = {
   noResults: false,
   lastQuery: '',
   userDateRangeSelected: false,
+  userPriceRangeSelected: false,
   timezone,
   numberOfResults: 0,
   showPricesWithFees: true,

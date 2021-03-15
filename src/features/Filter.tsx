@@ -12,7 +12,8 @@ import {
   setNoResultsState, 
   setShowCancelledAction,
   setShowNoListingsAction, 
-  setUserDateRangeSelectedAction,
+  // setUserDateRangeSelectedAction,
+  setUserPriceRangeSelected,
   setBulkFilterAction,
   setNumberOfResults,
   setShowPricesWithFees,
@@ -30,9 +31,6 @@ import {CheckboxShading} from '../store/searchResults/Reducer';
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
   const {spinnerDispatch} = React.useContext(SpinnerContext);
-  // const [ticketmasterFilter, setTicketmasterFilter] = React.useState<boolean>(false);
-  // const [stubhubFilter, setStubhubFilter] = React.useState<boolean>(false);
-  // const [seatgeekFilter, setSeatgeekFilter] = React.useState<boolean>(false);
   const [cancelledFilter, setCancelledFilter] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
   const [noListingsFilter, setNoListingsFilter] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
   const [feesToggle, setFeesToggle] = React.useState<boolean>(true);
@@ -42,9 +40,7 @@ export const Filter = () => {
   const [ticketmasterState, setTicketmasterState] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
   const [stubhubState, setStubhubState] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
   const [seatgeekState, setSeatgeekState] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
-  // const globalShowTicketmasterState: boolean = searchResultsState.searchFilters.showTicketmaster;
-  // const globalShowStubhubState: boolean = searchResultsState.searchFilters.showStubhub;
-  // const globalShowSeatgeekState: boolean = searchResultsState.searchFilters.showSeatgeek;
+
   const globalTicketmasterShadingState: CheckboxShading = searchResultsState.searchFilters.ticketmasterState;
   const globalStubhubShadingState: CheckboxShading = searchResultsState.searchFilters.stubhubState;
   const globalSeatgeekShadingState: CheckboxShading = searchResultsState.searchFilters.seatgeekState;
@@ -53,8 +49,8 @@ export const Filter = () => {
   const globalPriceRangeState: number[] = searchResultsState.searchFilters.priceRange;
   const globalDateRangeState: Moment[] = searchResultsState.searchFilters.dateRange;
   const globalFilteredPriceRangeState: number[] = searchResultsState.searchFilters.filteredPriceRange;
-  // const globalFilteredDateRangeState: Moment[] = searchResultsState.searchFilters.filteredDateRange;
   const globalUserDateRangeSelectedState: boolean = searchResultsState.userDateRangeSelected;
+  const globalUserPriceRangeSelectedState: boolean = searchResultsState.userPriceRangeSelected;
   const globalShowPricesWithFeesState: boolean = searchResultsState.showPricesWithFees;
   const isStable: boolean = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
@@ -117,15 +113,8 @@ export const Filter = () => {
     setFeesToggle(globalShowPricesWithFeesState);
   }, [globalShowPricesWithFeesState]);
 
-  // React.useEffect(() => {
-  //   console.log(ticketmasterState === CheckboxShading.GREYED, ticketmasterState, 'ticketmasterState');
-  //   console.log(stubhubState === CheckboxShading.GREYED, stubhubState, 'stubhubState');
-  //   console.log(seatgeekState === CheckboxShading.GREYED, seatgeekState, 'seatgeekState');
-  // }, [ticketmasterState, stubhubState, seatgeekState]);
-
   const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isVendorFilterCall: boolean, isStatusFilterCall: boolean) => {
     spinnerDispatch(setSpinnerState(true));
-    searchResultsDispatch(setUserDateRangeSelectedAction(false));
     console.log('callCacheForFiltering firing');
     console.log('globalTicketmasterShadingState',globalTicketmasterShadingState);
     console.log('globalStubhubShadingState', globalStubhubShadingState);
@@ -146,6 +135,7 @@ export const Filter = () => {
         isCalendarCall,
         isVendorFilterCall,
         isStatusFilterCall,
+        hasUserDefinedPriceRange: globalUserPriceRangeSelectedState
       }
     }).then(res => {
       searchResultsDispatch(setIsStableAction(false))
@@ -212,7 +202,8 @@ export const Filter = () => {
   }
 
   const handleSliderChange = (event: any, values: number[]) => {
-    searchResultsDispatch(setUserDateRangeSelectedAction(false));
+    searchResultsDispatch(setUserPriceRangeSelected(true));
+    // needs to be reset whenever someone triggers a new search
     // if the lowest value equals the highest value
     if (values[0] === globalPriceRangeState[1]) {
       // force the low value to be one lower than the highest value

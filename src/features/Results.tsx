@@ -13,10 +13,11 @@ export interface SearchResult {
 export const Results = () => {
   const {searchResultsState} = React.useContext(SearchResultsContext);
   return (
-    <div className="Bop">
+    <div className="LowerHalf_container">
       <div className="Banner">
         {searchResultsState.lastQuery || ""}
       </div>
+      <div className="Bop">
       <div className="SearchResults">
         <div className="Results">
           <Filter />
@@ -32,7 +33,9 @@ export const Results = () => {
       {/* <div className="Footer">
           Footer
       </div>  */}
+      </div>
     </div>
+  
   )
 }
 

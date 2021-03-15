@@ -1,5 +1,7 @@
 :root {
   --color-primary: #9728F2 ;
+  --color-purple-light: #bf72ff;
+  --color-purple-dark: #cf95ff;
   --color-primary-light: #E9E9E9;
   --color-primary-dark: #7100FF;
   --color-grey-light-1: #faf9f9;
@@ -146,14 +148,30 @@ body {
         grid-column: button-start/button-end;
         align-self: end; } }
     .Card_button:link, .Card_button:visited {
+      position: relative;
+      z-index: 1;
       display: inline-block;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 10px;
       padding: .5rem .5rem;
-      background-image: linear-gradient(to right, #2998ff, #5643fa);
-      color: #fff; }
-    .Card_button:hover {
-      background-image: linear-gradient(to right, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85)); }
+      color: #fff;
+      background-image: linear-gradient(to bottom left, #bf72ff, var(--color-primary-dark));
+      background-repeat: 1; }
+      .Card_button:link::before, .Card_button:visited::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to top right, #bf72ff, var(--color-primary-dark));
+        z-index: -1;
+        transition: opacity 0.1s linear;
+        opacity: 0; }
+      .Card_button:link:hover::before, .Card_button:visited:hover::before {
+        opacity: 1; }
+    .Card_button:link::before, .Card_button:visited::before {
+      border-radius: 10px; }
   .Card .ticketmaster-logo {
     fill: #026CDF;
     width: 100%;
@@ -248,6 +266,9 @@ body {
     .Results {
       grid-template-columns: [bop-start] minmax(min-content, 0.7fr) [bop-end];
       justify-content: center; } }
+
+.LowerHalf_container {
+  width: 100%; }
 
 .Error {
   padding-top: 8rem;
@@ -360,7 +381,7 @@ body {
 .Filter {
   padding-top: 4rem;
   justify-self: center;
-  background-color: white;
+  background-color: #f2f2f2;
   color: black; }
   @media only screen and (max-width: 51.875em) {
     .Filter {
@@ -425,7 +446,7 @@ body {
 .container {
   max-width: 120rem;
   margin: 8rem auto;
-  background-color: white;
+  background-color: #f2f2f2;
   box-shadow: 0 2rem 6rem var(--shadow-dark);
   min-height: 50rem;
   margin: 0;
@@ -869,13 +890,13 @@ body {
 
 .Banner {
   display: flex;
-  background-color: royalblue;
+  background-image: linear-gradient(to right bottom, #d6adf7, #bf72ff);
   color: white;
   font-size: 2.5rem;
   padding-left: 1.4rem;
   font-weight: 400;
-  align-items: center;
-  display: none; }
+  height: 17.5rem;
+  align-items: center; }
   @media only screen and (max-width: 51.875em) {
     .Banner {
       grid-column: bop-start/bop-end; } }
@@ -904,4 +925,4 @@ body {
   max-width: 125em;
   margin: 0;
   margin-left: 2rem;
-  background-color: white; }
+  background-color: #f2f2f2; }

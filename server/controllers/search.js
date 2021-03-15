@@ -165,6 +165,9 @@ export const getEvents = (req, res) => {
       });
       seatgeekEvents = data[2].events;
     }
+    console.log('ticketmasterEvents.length', ticketmasterEvents.length);
+    console.log('stubhubEvents.length', stubhubEvents.length);
+    console.log('seatgeekEvents.length', seatgeekEvents.length);
     // determine whether or not to send this data set based on the filters and if this is a filter call
     // Step 2) Combinine the data into one set
     const combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
@@ -253,8 +256,12 @@ export const getCachedEvents = (req, res) => {
   const ticketmasterState = req.query.ticketmasterState; // CHECKED, UNCHECKED, GREYED
   const stubhubState = req.query.stubhubState; // CHECKED, UNCHECKED, GREYED
   const seatgeekState = req.query.seatgeekState; // CHECKED, UNCHECKED, GREYED
+  console.log('ticketmasterState', ticketmasterState);
+  console.log('stubhubState', stubhubState);
+  console.log('seatgeekState', seatgeekState);
   const showCancelled = req.query.showCancelled;
   const showNoListings = req.query.showNoListings;
+  const hasUserDefinedPriceRange = Boolean(req.query.hasUserDefinedPriceRange === "true");
   const isSliderCall = Boolean(req.query.isSliderCall === "true");
   const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
   const isVendorFilterCall = Boolean(req.query.isVendorFilterCall === 'true');
@@ -346,6 +353,12 @@ export const getCachedEvents = (req, res) => {
     if (stubhubState === 'UNCHECKED') { stubhubEvents = [] }
     if (seatgeekState === 'UNCHECKED') { seatgeekEvents = [] }
 
+    console.log('ticketmasterEvents.length', ticketmasterEvents.length);
+    console.log('stubhubEvents.length', stubhubEvents.length);
+    console.log('seatgeekEvents.length', seatgeekEvents.length);
+    // basically - we want the filters to reflect what is currently on the screen 
+    // if you click a vendor filter, the price filter should change to reflect the reality on the screen
+    // when the vendor filter changes, we should not apply the price filter 
     combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
 
     if (showCancelled === 'UNCHECKED') {
@@ -356,63 +369,17 @@ export const getCachedEvents = (req, res) => {
     }
     // FILTRATION INITIATION
     let filteredData = JSON.parse(JSON.stringify(combinedData));
-    // 2) Do your filtrations 
+    // 2) Do your filtrations
     let minPrice = req.query.minPrice;
     let maxPrice = req.query.maxPrice;
-    let earliestDate = moment.utc(req.query.earliestDate);
-    let latestDate = moment.utc(req.query.latestDate);
     let frontEndPriceFilterRange = [Number(req.query.minPrice), Number(req.query.maxPrice)];
-    // if the call comes from the checkboxes, search against both the filters
-    if (isVendorFilterCall || isStatusFilterCall) {
-      if (minPrice >= minMaxPriceOfWholeSet[0] || maxPrice <= minMaxPriceOfWholeSet[1]) {
-        filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
-        if (filteredData.length === 0) {
-          res.send({data: []});
-          return;
-        }
-      }
-
-      if (earliestDate.isAfter(earliestOfWholeSet) || latestDate.isBefore(latestOfWholeSet)) {
-        filteredData = filteredData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestDate, latestDate, undefined, '[]'));
-        if (filteredData.length === 0) {
-          res.send({data: []});
-          return;
-        }
-      }
-      frontEndPriceFilterRange = calculateMinMaxOfSet(filteredData);;
-      const filteredDates = calculateEarliestLatestOfSetLocal(filteredData);
-      earliestDate = moment.min(filteredDates);
-      latestDate = moment.max(filteredDates);
-    }
-    // if the call comes from the calendar, filter the set down to events only within those dates
-     else if (isCalendarCall) {
-      minPrice = minMaxPriceOfWholeSet[0];
-      maxPrice = minMaxPriceOfWholeSet[1];
-      // filter the set down via the provided dates 
-      if (earliestDate.isAfter(earliestOfWholeSet) || latestDate.isBefore(latestOfWholeSet)) {
-        filteredData = filteredData.filter(e => moment.utc(e.datetime_utc).isBetween(earliestDate, latestDate, undefined, '[]'));
-        if (filteredData.length === 0) {
-          res.send({data: []});
-          return;
-        }
-      }
-      frontEndPriceFilterRange = calculateMinMaxOfSet(filteredData);;
-    }
-    // if the call comes from the slider, filter the entire set based on the price 
-    else if (isSliderCall) {
-      earliestDate = earliestOfWholeSet;
-      latestDate = latestOfWholeSet;
-      // filter the set down via the provided price range
-      if (minPrice >= minMaxPriceOfWholeSet[0] || maxPrice <= minMaxPriceOfWholeSet[1]) {
-        filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
-        if (filteredData.length === 0) {
-          res.send({data: []});
-          return;
-        }
-      }
-      const filteredDates = calculateEarliestLatestOfSetLocal(filteredData);
-      earliestDate = moment.min(filteredDates);
-      latestDate = moment.max(filteredDates);
+    // if we receive a range which is different from the whole range, initiate price filtration
+    if (frontEndPriceFilterRange[0] > minMaxPriceOfWholeSet[0] || frontEndPriceFilterRange[1] < minMaxPriceOfWholeSet[1]) {
+      filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
+      if (filteredData.length === 0) {
+        res.send({data: []});
+        return;
+      }   
     }
     
     const hasCancelledEvents = determineIfSetHasCancelledEvents(filteredData);
@@ -424,6 +391,10 @@ export const getCachedEvents = (req, res) => {
     const hasTicketmasterData = determineIfVendorExistsInSet(filteredData, 'ticketmaster');
     const hasStubhubData = determineIfVendorExistsInSet(filteredData, 'stubhub');
     const hasSeatgeekData = determineIfVendorExistsInSet(filteredData, 'seatgeek');
+
+    console.log('hasTicketmasterData', hasTicketmasterData);
+    console.log('hasStubhubData', hasStubhubData);
+    console.log('hasSeatgeekData', hasSeatgeekData);
 
     const ticketMasterShadingState = vendorShadingState('ticketmaster', ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
     const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
@@ -465,7 +436,6 @@ export const getCachedEvents = (req, res) => {
       },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
-      filteredDateRange: [earliestDate, latestDate],
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       numberOfResults,
@@ -485,7 +455,7 @@ export const getCachedEvents = (req, res) => {
       },
       priceRange: minMaxPriceOfWholeSet,
       dateRange: [earliestOfWholeSet, latestOfWholeSet],
-      filteredDateRange: [earliestDate, latestDate],
+      // filteredDateRange: [earliestDate, latestDate],
       filteredPriceRange: frontEndPriceFilterRange,
       providerResultLengths,
       numberOfResults,

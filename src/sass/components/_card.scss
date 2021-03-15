@@ -122,16 +122,40 @@
       align-self: end;
     }
     &:link, &:visited {
+      // transition: all 1s;
+      position: relative;
+      z-index: 1;
       display: inline-block;
       text-decoration: none;
-      border-radius: 4px;
-      padding: .5rem .5rem;
-      background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
+      border-radius: 10px;
+      padding: .5rem .5rem;      // background-image: linear-gradient(to right, $color-purple--light, var(--color-primary-dark));
       color: $color-white;
+      background-image: linear-gradient(to bottom left,  $color-purple--light, var(--color-primary-dark));
+      background-repeat: 1;
+      &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0; 
+        bottom: 0; 
+        left: 0;
+        background-image: linear-gradient(to top right, $color-purple--light,  var(--color-primary-dark));
+        z-index: -1;
+        transition: opacity 0.1s linear;
+        opacity: 0;
+      }
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
+      }
     }
-    &:hover {
-      background-image: linear-gradient(to right, rgba($color-blue-light, .85), rgba($color-blue-dark, .85));
-    }
+
+    &:link, &:visited {
+      &::before {
+        border-radius: 10px;
+      }
+    } 
   }
 
   // logo styles 

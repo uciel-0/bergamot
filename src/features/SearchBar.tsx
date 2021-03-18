@@ -15,10 +15,8 @@ import {
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../svg/BopIcon';
 import {MagnifyingGlass} from '../svg/MagnifyingGlass';
-import {Bookmark} from '../svg/Bookmark';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 import { CheckboxShading } from '../store/searchResults/Reducer';
-import { Chat } from '../svg/Chat';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -37,6 +35,7 @@ export const SearchBar = () => {
   const [searchEnabled, setSearchEnabled] = React.useState<boolean>(true);
 
   let history = useHistory();
+  let location = useLocation();
 
   React.useEffect(() => {
     console.log(dateRangeState);
@@ -46,6 +45,10 @@ export const SearchBar = () => {
       setSearchEnabled(false);
     }
   }, [dateRangeState]);
+
+  React.useEffect(() => {
+    console.log('location', location.pathname);
+  }, [location]) 
 
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     const formattedStartDate = moment(newStartDate).startOf('day').format();
@@ -117,7 +120,9 @@ export const SearchBar = () => {
     // });
   }
 
-  const searchStyle = searchEnabled ? 'search__button' : 'search__button search__button--disabled';
+  const searchIconStyle = searchEnabled ? 'search__button' : 'search__button search__button--disabled';
+  const datePickerContainerStyle = location.pathname === '/search' ? 'DatePicker_container' : 'DatePicker_container-invisible';
+  const searchBarStyle = location.pathname === '/home' ? 'search__input' : 'search__input search__input--search';
   return (
     <header className="header">
       <div className="logo-box" onClick={() => history.push('/home')}>
@@ -127,44 +132,46 @@ export const SearchBar = () => {
         <input 
           data-test="search-bar"
           type="text"
-          className="search__input"
+          className={searchBarStyle}
           placeholder="search for events, artists, teams or venues" 
           value={formValue} 
           onChange={(e) => setFormValue(e.target.value)}
         />
-        <button className={searchStyle}>
+        <div className={datePickerContainerStyle}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justify="space-around">
+              <DatePicker
+                minDate={today}
+                maxDate={startDateMaxValue}
+                value={dateRangeState[0]}
+                onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
+                variant="inline"
+                format="MMM, d, yyyy"
+                disableToolbar
+                disablePast
+                autoOk
+                emptyLabel={"From"}
+              />
+              <DatePicker
+                minDate={endDateMinValue}
+                value={dateRangeState[1]}
+                onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
+                variant="inline"
+                format="MMM, d, yyyy"
+                disableToolbar
+                disablePast
+                autoOk
+                emptyLabel={"To"}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
+        </div>
+        <div className="DatePicker_space"/>
+        <button className={searchIconStyle}>
           <MagnifyingGlass className="search__icon"/>
         </button>
       </form>
-      <div className="DatePicker_container">
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container justify="space-around">
-            <DatePicker
-              minDate={today}
-              maxDate={startDateMaxValue}
-              value={dateRangeState[0]}
-              onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
-              variant="inline"
-              format="MMM, d, yyyy"
-              disableToolbar
-              disablePast
-              autoOk
-              emptyLabel={"From"}
-            />
-            <DatePicker
-              minDate={endDateMinValue}
-              value={dateRangeState[1]}
-              onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
-              variant="inline"
-              format="MMM, d, yyyy"
-              disableToolbar
-              disablePast
-              autoOk
-              emptyLabel={"To"}
-            />
-          </Grid>
-        </MuiPickersUtilsProvider>
-      </div>
+      <div className="fake-element"></div>
       {/* <nav className="user-nav">
         <div className="user-nav__icon-box">
           <Bookmark className={'user-nav__icon'}/>

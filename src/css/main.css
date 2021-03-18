@@ -298,14 +298,18 @@ body {
     color: inherit;
     background-color: var(--color-grey-light-2);
     border: none;
-    padding: .7rem 2rem;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+    padding-left: 2rem;
     border-radius: 100px;
-    width: 90%;
+    width: 80%;
     transition: all .2s;
-    margin-right: -3.25rem; }
+    margin-right: -5.25rem; }
+    .search__input--search {
+      margin-right: -30.25rem;
+      width: 100%; }
     .search__input:focus {
       outline: none;
-      width: 100%;
       background-color: var(--color-grey-light-3); }
     .search__input::-webkit-input-placeholder {
       font-weight: 100;
@@ -327,6 +331,10 @@ body {
     height: 2rem;
     width: 2rem;
     fill: var(--color-grey-dark-3); }
+  .search .MuiGrid-container {
+    flex-wrap: nowrap;
+    background-color: transparent;
+    height: 31px; }
 
 .logo {
   height: 3.25rem;
@@ -372,11 +380,22 @@ body {
     margin-right: 1rem; }
 
 .DatePicker_container {
-  padding-right: 4rem; }
+  max-width: 25.2rem;
+  border-left: 3px solid white;
+  padding-left: 10px; }
   .DatePicker_container .MuiFormControl-root {
-    padding-right: 20px; }
+    padding-right: 10px; }
   .DatePicker_container .MuiInputBase-root {
     font-size: 1.4rem; }
+  .DatePicker_container-invisible {
+    display: none; }
+
+.DatePicker_space {
+  height: 3.1rem;
+  width: 5rem;
+  margin-right: -2.8rem;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px; }
 
 .Filter {
   padding-top: 4rem;

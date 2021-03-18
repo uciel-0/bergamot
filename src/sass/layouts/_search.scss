@@ -29,15 +29,21 @@
         color: inherit;
         background-color: var(--color-grey-light-2);
         border: none;
-        padding: .7rem 2rem;
+        padding-top: .7rem;
+        padding-bottom: .7rem;
+        padding-left: 2rem;
         border-radius: 100px;
-        width: 90%;
+        width: 80%;
         transition: all .2s;
-        margin-right: -3.25rem;
+        margin-right: -5.25rem;
+        &--search {
+            margin-right: -30.25rem;
+            width: 100%;
+        }
 
         &:focus {
             outline: none;
-            width: 100%;
+            // width: 100%;
             background-color: var(--color-grey-light-3);
         }
         &::-webkit-input-placeholder {
@@ -74,6 +80,12 @@
         height: 2rem;
         width: 2rem;
         fill: var(--color-grey-dark-3);
+    }
+
+    .MuiGrid-container {
+        flex-wrap: nowrap;
+        background-color: transparent;
+        height: 31px;
     }
 }
 
@@ -133,7 +145,6 @@
         height: 3.75rem;
         border-radius: 50%;
         margin-right: 1rem;
-        
     }
 
     &__user-name {
@@ -141,21 +152,27 @@
     }
 }
 
-.DatePicker_container {
-    padding-right: 4rem;
-    .MuiFormControl-root {
-        padding-right: 20px;
+.DatePicker {
+    &_container {
+        max-width: 25.2rem;
+        border-left: 3px solid white;
+        padding-left: 10px;
+        .MuiFormControl-root {
+            padding-right: 10px;
+        }
+        .MuiInputBase-root {
+            font-size: 1.4rem;
+        }
+        &-invisible {
+            display: none;
+        }
     }
-    .MuiInputBase-root {
-        font-size: 1.4rem;
+    &_space {
+        // background-color: transparent;
+        height: 3.1rem;
+        width: 5rem;
+        margin-right: -2.8rem;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
     }
-    // .MuiInputBase-input:before {
-    //     display: inline-block;
-    //     content: ' ';
-    //     background-image: url('/svg/calendar.svg');
-    //     background-size: 28px 28px;
-    //     height: 28px;
-    //     width: 28px;
-    //     color: black;
-    // }
 }

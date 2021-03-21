@@ -302,9 +302,13 @@ export const Filter = () => {
         <div className="Filter_price">
           <b className="Filter_row-title">Price</b>
           <br></br>
+          <div className="Filter_price-range">
+            ${priceRangeState[0]}
+            -
+            ${priceRangeState[1]}
+          </div>
           <Slider 
             aria-labelledby="range-slider"
-            valueLabelDisplay="on"
             value={priceRangeState}
             min={maxMinPriceRange[0]}
             max={maxMinPriceRange[1]}

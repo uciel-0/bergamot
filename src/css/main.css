@@ -439,19 +439,16 @@ body {
     width: 70%;
     padding: 0; }
   .Filter_priceSlider {
-    margin-top: 40px;
-    margin-left: 20px; }
+    margin-top: 1.5rem;
+    margin-left: 2rem; }
+  .Filter_price-range {
+    font-size: 1.8rem;
+    font-weight: 300; }
   .Filter .MuiSlider-thumb {
     background-color: rgba(0, 26, 255, 0.5) !important; }
   .Filter .MuiSlider-thumb .Mui-focusVisible, .Filter .MuiSlider-thumb:hover {
     background-color: rgba(0, 26, 255, 0.5) !important;
     box-shadow: 0px 0px 0px 8px rgba(0, 26, 255, 0.5) !important; }
-  .Filter .PrivateValueLabel-circle-8 {
-    background-color: transparent !important;
-    margin-top: 10px; }
-  .Filter .PrivateValueLabel-label-9 {
-    font-size: 1.8rem;
-    color: black; }
   .Filter .MuiTypography-body1 {
     font-size: 1.8rem;
     font-weight: 300; }

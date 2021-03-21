@@ -303,9 +303,15 @@ export const Filter = () => {
           <b className="Filter_row-title">Price</b>
           <br></br>
           <div className="Filter_price-range">
-            ${priceRangeState[0]}
+            <div className="Filter_price-range--low">
+              ${priceRangeState[0]}
+            </div>
+            <div className="Filter_price-range--dash">
             -
-            ${priceRangeState[1]}
+            </div>
+            <div className="Filter_price-range--high">
+              ${priceRangeState[1]}
+            </div>
           </div>
           <Slider 
             aria-labelledby="range-slider"

@@ -443,7 +443,11 @@ body {
     margin-left: 2rem; }
   .Filter_price-range {
     font-size: 1.8rem;
-    font-weight: 300; }
+    font-weight: 300;
+    display: flex; }
+    .Filter_price-range--dash {
+      margin-right: 3px;
+      margin-left: 3px; }
   .Filter .MuiSlider-thumb {
     background-color: rgba(0, 26, 255, 0.5) !important; }
   .Filter .MuiSlider-thumb .Mui-focusVisible, .Filter .MuiSlider-thumb:hover {

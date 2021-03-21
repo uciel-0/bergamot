@@ -68,6 +68,11 @@
   &_price-range {
     font-size: 1.8rem;
     font-weight: 300;
+    display:flex;
+    &--dash {
+      margin-right: 3px;
+      margin-left: 3px;
+    }
   }
   // little blue handles for the price slider
   .MuiSlider-thumb {

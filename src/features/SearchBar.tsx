@@ -64,9 +64,11 @@ export const SearchBar = () => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    if (formValue === "") {
+    if (formValue.trim() === "") {
+      setFormValue('');
       return;
     }
+    setFormValue(formValue.trim());
     console.log('dateState - startDate:', dateRangeState[0], 'endDate:', dateRangeState[1])
     spinnerDispatch(setSpinnerState(true));
     // reset the isStable flag so the distributor filters can reset as expected

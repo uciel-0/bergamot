@@ -1,12 +1,13 @@
 .Banner {
     display:flex;
-    // background-color: royalblue;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
     text-transform: capitalize;
     letter-spacing: 1px;
-    background-image: linear-gradient(to right bottom, #d6adf7, #bf72ff);
     color: white;
     font-size: 5rem;
-    padding-left: 1.4rem;
+    padding-left: 2.5rem;
     font-weight: 300;
     height: 17.5rem;
     align-items:center;
@@ -15,5 +16,17 @@
     // grid-column: left-whitespace-start/right-whitespace-end;
     @media only screen and (max-width: $bp-bop-medium) {
         grid-column: bop-start/bop-end;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 }

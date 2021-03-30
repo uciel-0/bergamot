@@ -142,7 +142,7 @@ export const getEvents = (req, res) => {
         e.datetime_local = e.eventDateLocal;
         e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
         e.date = formatLocalDate(e.eventDateLocal);
-        e.time = formatTime(e.eventDateUTC);
+        e.time = !e.hideEventTime ? formatTime(e.eventDateUTC) : 'TBD';
         e.venueName = e.venue.name;
         e.venueCity = e.venue.city + ', ' + e.venue.state;
         e.priceBeforeFees = e.ticketInfo.minListPrice;
@@ -312,7 +312,7 @@ export const getCachedEvents = (req, res) => {
       e.datetime_local = e.eventDateLocal;
       e.datetime_utc = normalizeUTCDate(e.eventDateUTC);
       e.date = formatLocalDate(e.eventDateLocal);
-      e.time = formatTime(e.eventDateUTC);
+      e.time = !e.hideEventTime ? formatTime(e.eventDateUTC) : 'TBD';
       e.venueName = e.venue.name;
       e.venueCity = e.venue.city + ', ' + e.venue.state;
       e.priceBeforeFees = e.ticketInfo.minListPrice || null;

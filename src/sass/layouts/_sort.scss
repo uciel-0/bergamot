@@ -1,0 +1,17 @@
+.Sort {
+    &_container {
+        grid-column: results-start/results-end;
+        color: red;
+        .MuiSelect-icon {
+            top: calc(50% - 7px);
+        }
+    }
+    &_menu-container {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 1rem;
+    }
+    &_menu {
+        width: 11rem;
+    }
+}

@@ -3,6 +3,7 @@
   justify-self: center;
   background-color: #f2f2f2;
   color: black;
+  grid-row: results-start/results-end;
 
   @media only screen and (max-width: $bp-bop-medium) {
     margin-top: 0rem;

@@ -1,5 +1,5 @@
 import { Moment } from "moment";
-import { CheckboxShading } from "./Reducer";
+import { CheckboxShading, SortType } from "./Reducer";
 
 export enum SearchResultActionTypes {
   SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS',
@@ -17,7 +17,8 @@ export enum SearchResultActionTypes {
   SET_USER_DATE_RANGE_SELECTED = 'SET_USER_DATE_RANGE_SELECTED',
   SET_USER_PRICE_RANGE_SELECTED = 'SET_USER_PRICE_RANGE_SELECTED',
   SET_NUMBER_OF_RESULTS = 'SET_NUMBER_OF_RESULTS',
-  SET_SHOW_PRICES_WITH_FEES = 'SET_SHOW_PRICES_WITH_FEES'
+  SET_SHOW_PRICES_WITH_FEES = 'SET_SHOW_PRICES_WITH_FEES',
+  SET_SORT_TYPE = 'SET_SORT_TYPE',
 }
 
 interface SetSearchResults {
@@ -206,6 +207,16 @@ export const setShowPricesWithFees = (payload: boolean): SetShowPricesWithFees =
   payload
 });
 
+interface SetSortType {
+  type: SearchResultActionTypes.SET_SORT_TYPE,
+  payload: SortType,
+}
+
+export const setSortType = (payload: SortType): SetSortType => ({
+  type: SearchResultActionTypes.SET_SORT_TYPE,
+  payload
+});
+
 export type SearchResultsActions = SetSearchResults | SetTicketmasterState | SetStubhubState | SetSeatgeekState | SetBulkFilter | SetIsStable | 
 SetNoResults | SetPriceRange | SetLastQuery | SetShowCancelled | SetShowNoListings | SetDateRange | SetUserDateRangeSelected | SetUserPriceRangeSelected | 
-SetNumberOfResults | SetShowPricesWithFees;
+SetNumberOfResults | SetShowPricesWithFees | SetSortType;

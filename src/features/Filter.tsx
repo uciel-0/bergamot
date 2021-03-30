@@ -1,9 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
 import { 
-  // setShowSeatgeekAction, 
-  // setShowStubhubAction, 
-  // setShowTicketmasterAction, 
   setTicketmasterStateAction,
   setStubhubStateAction,
   setSeatgeekStateAction,
@@ -12,7 +9,6 @@ import {
   setNoResultsState, 
   setShowCancelledAction,
   setShowNoListingsAction, 
-  // setUserDateRangeSelectedAction,
   setUserPriceRangeSelected,
   setBulkFilterAction,
   setNumberOfResults,
@@ -50,7 +46,7 @@ export const Filter = () => {
   const globalDateRangeState: Moment[] = searchResultsState.searchFilters.dateRange;
   const globalFilteredPriceRangeState: number[] = searchResultsState.searchFilters.filteredPriceRange;
   const globalUserDateRangeSelectedState: boolean = searchResultsState.userDateRangeSelected;
-  const globalUserPriceRangeSelectedState: boolean = searchResultsState.userPriceRangeSelected;
+  // const globalUserPriceRangeSelectedState: boolean = searchResultsState.userPriceRangeSelected;
   const globalShowPricesWithFeesState: boolean = searchResultsState.showPricesWithFees;
   const isStable: boolean = searchResultsState.isStable;
   // fires when the filter states from global context are updated 
@@ -135,7 +131,7 @@ export const Filter = () => {
         isCalendarCall,
         isVendorFilterCall,
         isStatusFilterCall,
-        hasUserDefinedPriceRange: globalUserPriceRangeSelectedState
+        sortType: searchResultsState.sortType
       }
     }).then(res => {
       searchResultsDispatch(setIsStableAction(false))

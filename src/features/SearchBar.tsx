@@ -10,13 +10,14 @@ import {
   setNoResultsState, 
   setLastQuery, 
   setUserPriceRangeSelected,
-  setNumberOfResults
+  setNumberOfResults,
+  setSortType
 } from '../store/searchResults/Actions';
 import {setSpinnerState} from '../store/spinner/Actions';
 import {BopIcon} from '../svg/BopIcon';
 import {MagnifyingGlass} from '../svg/MagnifyingGlass';
 import {useHistory, useLocation} from 'react-router-dom';
-import { CheckboxShading } from '../store/searchResults/Reducer';
+import { CheckboxShading, SortType } from '../store/searchResults/Reducer';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -46,10 +47,6 @@ export const SearchBar = () => {
     }
   }, [dateRangeState]);
 
-  React.useEffect(() => {
-    console.log('location', location.pathname);
-  }, [location]) 
-
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     const formattedStartDate = moment(newStartDate).startOf('day').format();
     setDateRangeState([formattedStartDate, dateRangeState[1]]);
@@ -77,6 +74,7 @@ export const SearchBar = () => {
     searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));
     searchResultsDispatch(setPriceRangeAction([0,0]));
     searchResultsDispatch(setUserPriceRangeSelected(false));
+    searchResultsDispatch(setSortType(SortType.DEFAULT));
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,

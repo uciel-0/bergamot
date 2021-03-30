@@ -2,7 +2,13 @@ import {getTicketMasterSearchResults} from './ticketmaster';
 import {getSeatGeekSearchResults, getSeatGeekEvents} from './seatgeek';
 import {getStubhubSearchResults, getStubhubEvents} from './stubhub'
 import {groupByDay, formatDate, formatLocalDate ,formatTime, normalizeUTCDate, normalizeLocalDate} from '../utils/dateUtils';
-import {vendorShadingState, statusShadingState, sortDatesChronologically, determineIfVendorExistsInSet} from '../utils/sortUtils';
+import {
+  vendorShadingState,
+  statusShadingState, 
+  sortDatesChronologically, 
+  determineIfVendorExistsInSet,
+  sortByPriceAndGroupByDay
+} from '../utils/sortUtils';
 import {
   calculateMinMaxOfSet, 
   calculateEarliestLatestOfSetLocal, 
@@ -95,7 +101,7 @@ export const getEvents = (req, res) => {
   // when the response is complete, store it in the cache 
   cache.set(key, () => Promise.all([ticketmaster, stubhub, seatgeek]))
   .then(data => {
-    console.log('data from the backend call',data)
+    console.log('data from the backend call', data);
     // Step 1) Set some custom fields for easy front end access
     // ticketmaster events
     let ticketmasterEvents = [];
@@ -113,7 +119,8 @@ export const getEvents = (req, res) => {
         e.venueName = e._embedded.venues[0].name;
         e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
         e.isPriceEstimated = false;
-        
+        e.name = e.name.trim();
+
         if (e.priceRanges) {
           e.priceBeforeFees = e.priceRanges[0].min;
           e.priceAfterFees = Math.round(e.priceRanges[0].min * 1.3);
@@ -142,6 +149,7 @@ export const getEvents = (req, res) => {
         e.priceAfterFees = e.ticketInfo.minPrice;
         e.isPriceEstimated = false;
         e.url = "https://www.stubhub.com/" + e.webURI;
+        e.name = e.name.trim();
       });
       stubhubEvents = data[1].events;
     }
@@ -158,7 +166,7 @@ export const getEvents = (req, res) => {
         e.time = e.datetime_tbd ? null : formatTime(e.datetime_local);
         e.venueName = e.venue.name;
         e.venueCity = e.venue.display_location;
-        e.name = e.title;
+        e.name = e.title.trim();
         e.priceBeforeFees = e.stats.lowest_sg_base_price;
         e.priceAfterFees = e.stats.lowest_price;
         e.isPriceEstimated = false;
@@ -261,11 +269,11 @@ export const getCachedEvents = (req, res) => {
   console.log('seatgeekState', seatgeekState);
   const showCancelled = req.query.showCancelled;
   const showNoListings = req.query.showNoListings;
-  const hasUserDefinedPriceRange = Boolean(req.query.hasUserDefinedPriceRange === "true");
   const isSliderCall = Boolean(req.query.isSliderCall === "true");
   const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
   const isVendorFilterCall = Boolean(req.query.isVendorFilterCall === 'true');
   const isStatusFilterCall = Boolean(req.query.isStatusFilterCall === 'true');
+  const sortType = req.query.sortType || "";
   // call the cache for this data 
   cache.get(key).then(data => {
     // ticketmaster event processing
@@ -400,8 +408,15 @@ export const getCachedEvents = (req, res) => {
     const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
     const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
 
-    const sortChronologically = sortDatesChronologically(filteredData);
-    const groupedData = groupByDay(sortChronologically);
+    let groupedData = [];
+
+    if (sortType === '' || sortType === 'DATE' || sortType === 'POPULAR') {
+      const sortChronologically = sortDatesChronologically(filteredData);
+      groupedData = groupByDay(sortChronologically);
+    } else if (sortType === 'PRICE_ASCENDING' || sortType === 'PRICE_DESCENDING') {
+      groupedData = sortByPriceAndGroupByDay(filteredData, sortType);
+    }
+
     if (groupedData[0].date === 'null') {
       const datesTBD = groupedData.shift();
       groupedData.push(datesTBD);

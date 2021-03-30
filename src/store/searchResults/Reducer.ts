@@ -5,6 +5,7 @@ import {SearchResultActionTypes, SearchResultsActions} from './Actions';
 export interface SearchResultsState {
   searchResults: SearchResult[];
   searchFilters: SearchFilterState;
+  sortType: SortType;
   isStable: boolean;
   noResults: boolean;
   lastQuery: string;
@@ -18,6 +19,14 @@ export interface SearchResultsState {
 export interface SearchResult {
   date: string;
   events: any;
+}
+
+export enum SortType {
+  DEFAULT = '',
+  DATE = 'DATE',
+  PRICE_ASCENDING = 'PRICE_ASCENDING',
+  PRICE_DESCENDING = 'PRICE_DESCENDING',
+  POPULAR = 'POPULAR',
 }
 
 export enum CheckboxShading {
@@ -90,6 +99,8 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
       return {...state, numberOfResults: action.payload};
     case SearchResultActionTypes.SET_SHOW_PRICES_WITH_FEES:
       return {...state, showPricesWithFees: action.payload};
+    case SearchResultActionTypes.SET_SORT_TYPE: 
+      return {...state, sortType: action.payload};
     default:
       return state;
   }
@@ -110,6 +121,7 @@ export const initialSearchResultsState: SearchResultsState = {
     filteredPriceRange: [],
     filteredDateRange: [],
   },
+  sortType: SortType.DEFAULT,
   isStable: false,
   noResults: false,
   lastQuery: '',

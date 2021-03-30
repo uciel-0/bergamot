@@ -2,6 +2,7 @@ import * as React from 'react';
 import {SearchResultsContext} from '../store/searchResults/Context';
 import {Card} from '../components/Card';
 import {Filter} from './Filter';
+import {Sort} from './Sort';
 import { ErrorScreen } from './ErrorScreen';
 
 export interface SearchResult {
@@ -21,6 +22,7 @@ export const Results = () => {
       <div className="SearchResults">
         <div className="Results">
           <Filter />
+          <Sort/>
           <div className="Cards">
             { !searchResultsState.noResults ?
               searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
@@ -29,7 +31,7 @@ export const Results = () => {
             }
           </div>
         </div>
-      </div>     
+      </div>
       {/* <div className="Footer">
           Footer
       </div>  */}

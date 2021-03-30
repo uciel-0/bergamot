@@ -258,6 +258,7 @@ body {
 .Results {
   display: grid;
   grid-template-columns: [filter-start] minmax(20rem, 22rem) [filter-end results-start] minmax(min-content, 1fr) [results-end];
+  grid-template-rows: [sort-start] max-content [sort-end results-start] max-content [results-end];
   grid-gap: 5px; }
   @media only screen and (max-width: 51.875em) {
     .Results {
@@ -402,7 +403,8 @@ body {
   padding-top: 4rem;
   justify-self: center;
   background-color: #f2f2f2;
-  color: black; }
+  color: black;
+  grid-row: results-start/results-end; }
   @media only screen and (max-width: 51.875em) {
     .Filter {
       margin-top: 0rem; } }
@@ -464,10 +466,24 @@ body {
   .Filter_checkbox--disabled {
     pointer-events: none; }
 
+.Sort_container {
+  grid-column: results-start/results-end;
+  color: red; }
+  .Sort_container .MuiSelect-icon {
+    top: calc(50% - 7px); }
+
+.Sort_menu-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1rem; }
+
+.Sort_menu {
+  width: 11rem; }
+
 .container {
   max-width: 120rem;
   margin: 8rem auto;
-  background-color: #f2f2f2;
+  background-color: var(--color-grey-light-2);
   box-shadow: 0 2rem 6rem var(--shadow-dark);
   min-height: 50rem;
   margin: 0;
@@ -1224,6 +1240,7 @@ body {
     background-position: 0% 50%; } }
 
 .Cards {
+  grid-row: results-start/results-end;
   padding-right: 1rem;
   padding-top: 4rem; }
   .Cards_date {

@@ -6,7 +6,7 @@ import SeatgeekLogo from '../svg/SeatgeekLogo';
 export const Card = ({date, time, priceBeforeFees, priceAfterFees, source, name, venueName, venueCity, url, sourceUrl, status, showPricesWithFees}: any) => {
   // const asterisk = isPriceEstimated ? '*' : '';
   const priceBeforeFeesFormatted = priceBeforeFees ? '$'+ priceBeforeFees.toLocaleString(undefined, {minimumFractionDigits: 2}) : '';
-  const priceAfterFeesFormatted = priceAfterFees ? '$' + priceAfterFees.toLocaleString(undefined, {minimumFractionDigits: 2}) : 'This vendor is not currently listing prices for this event. Please visit link for additional details.';
+  const priceAfterFeesFormatted = priceAfterFees ? '$' + priceAfterFees.toLocaleString(undefined, {minimumFractionDigits: 2}) : 'No prices available';
   const priceBeforeFeesHTML = priceBeforeFees ? <p className="Card_prices-text">Price<b className="Card_prices-bold">{priceBeforeFeesFormatted}</b></p> : null;
   const priceAfterFeesHTML = priceAfterFees ? <p className="Card_prices-text">Price<b className="Card_prices-bold">{priceAfterFeesFormatted}</b></p> : <p className="Card_prices-text Card_prices-text--tiny">{priceAfterFeesFormatted}</p>;
   const venueText = venueName ? venueName + ' - ' + venueCity : 'Venue TBD';

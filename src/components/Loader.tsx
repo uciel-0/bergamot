@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {SpinnerContext} from '../store/spinner/Context';
+import {LoaderContext} from '../store/loader/Context';
 
 export const Loader = () => {
-    const {spinnerState} = React.useContext(SpinnerContext);
+    const {LoaderState} = React.useContext(LoaderContext);
     return ( 
         <div className="Loader_container">
-            <div className={spinnerState.isLoading ? 'Loader Loader--active' : 'Loader'}/>
+            <div className={LoaderState.isLoading ? 'Loader Loader--active' : 'Loader'}/>
         </div>
     ) 
 }

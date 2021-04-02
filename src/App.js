@@ -4,7 +4,6 @@ import {SearchBar} from './features/SearchBar';
 import {Results} from './features/Results';
 import {Home} from './features/Home';
 import {ErrorScreen} from './features/ErrorScreen';
-import {SpinnerContext} from './store/spinner/Context';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 const App = () => {

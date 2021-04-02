@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import {SearchResultsContext} from '../store/searchResults/Context';
-import {SpinnerContext} from '../store/spinner/Context';
+import {LoaderContext} from '../store/loader/Context';
 import {
   setSearchResults, 
   setBulkFilterAction,
@@ -13,7 +13,7 @@ import {
   setNumberOfResults,
   setSortType
 } from '../store/searchResults/Actions';
-import {setSpinnerState} from '../store/spinner/Actions';
+import {setLoaderState} from '../store/loader/Actions';
 import {BopIcon} from '../svg/BopIcon';
 import {MagnifyingGlass} from '../svg/MagnifyingGlass';
 import {useHistory, useLocation} from 'react-router-dom';
@@ -29,7 +29,7 @@ export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
   const [dateRangeState, setDateRangeState] = React.useState<(Moment | string | null)[]>([null, null]);
   const {searchResultsDispatch} = React.useContext(SearchResultsContext);
-  const {spinnerDispatch} = React.useContext(SpinnerContext);
+  const {LoaderDispatch} = React.useContext(LoaderContext);
   const today = moment().startOf('day').format();
   const [endDateMinValue, setEndDateMinValue] = React.useState<string>('');
   const [startDateMaxValue, setStartDateMaxValue] = React.useState<string>('');
@@ -68,7 +68,7 @@ export const SearchBar = () => {
     }
     setFormValue(formValue.trim());
     console.log('dateState - startDate:', dateRangeState[0], 'endDate:', dateRangeState[1])
-    spinnerDispatch(setSpinnerState(true));
+    LoaderDispatch(setLoaderState(true));
     // reset the isStable flag so the distributor filters can reset as expected
     searchResultsDispatch(setIsStableAction(false));
     searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));
@@ -98,13 +98,13 @@ export const SearchBar = () => {
       const maxMinPriceRange = res.data.priceRange;
       const maxMinDateRange = [res.data.dateRange[0], res.data.dateRange[1]];
       searchResultsDispatch(setBulkFilterAction(res.data.vendorState.ticketmaster, res.data.vendorState.stubhub, res.data.vendorState.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, maxMinPriceRange, maxMinDateRange, maxMinPriceRange, maxMinDateRange));
-      spinnerDispatch(setSpinnerState(false));
+      LoaderDispatch(setLoaderState(false));
       searchResultsDispatch(setNoResultsState(false));
     })
     .catch((err) => {
       history.push('/search');
       searchResultsDispatch(setLastQuery(formValue));
-      spinnerDispatch(setSpinnerState(false));
+      LoaderDispatch(setLoaderState(false));
       searchResultsDispatch(setNoResultsState(true));
       console.log('master search api rejection', err);
     });

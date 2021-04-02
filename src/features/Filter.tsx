@@ -15,8 +15,8 @@ import {
   setShowPricesWithFees,
 } from '../store/searchResults/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
-import { SpinnerContext } from '../store/spinner/Context';
-import { setSpinnerState } from '../store/spinner/Actions';
+import { LoaderContext } from '../store/loader/Context';
+import { setLoaderState } from '../store/loader/Actions';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Slider from '@material-ui/core/Slider';
@@ -26,7 +26,7 @@ import {CheckboxShading} from '../store/searchResults/Reducer';
 
 export const Filter = () => {
   const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
-  const {spinnerDispatch} = React.useContext(SpinnerContext);
+  const {LoaderDispatch} = React.useContext(LoaderContext);
   const [cancelledFilter, setCancelledFilter] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
   const [noListingsFilter, setNoListingsFilter] = React.useState<CheckboxShading>(CheckboxShading.GREYED);
   const [feesToggle, setFeesToggle] = React.useState<boolean>(true);
@@ -110,7 +110,7 @@ export const Filter = () => {
   }, [globalShowPricesWithFeesState]);
 
   const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isVendorFilterCall: boolean, isStatusFilterCall: boolean) => {
-    spinnerDispatch(setSpinnerState(true));
+    LoaderDispatch(setLoaderState(true));
     console.log('callCacheForFiltering firing');
     console.log('globalTicketmasterShadingState',globalTicketmasterShadingState);
     console.log('globalStubhubShadingState', globalStubhubShadingState);
@@ -137,7 +137,7 @@ export const Filter = () => {
       searchResultsDispatch(setIsStableAction(false))
       if (res.data.data.length === 0) {
         searchResultsDispatch(setNoResultsState(true));
-        spinnerDispatch(setSpinnerState(false));
+        LoaderDispatch(setLoaderState(false));
       } else {
         console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data);
         console.log('total length of events:', res.data.totalResultsLength);
@@ -147,7 +147,7 @@ export const Filter = () => {
         searchResultsDispatch(setNoResultsState(false));
         searchResultsDispatch(setSearchResults(res.data.data));
         // update the filter results as the cache results come back 
-        spinnerDispatch(setSpinnerState(false));
+        LoaderDispatch(setLoaderState(false));
         searchResultsDispatch(setNumberOfResults(res.data.numberOfResults));
         searchResultsDispatch(
           setBulkFilterAction(
@@ -166,7 +166,7 @@ export const Filter = () => {
     }).catch(err => {
       console.log('filter function api call error', err);
       searchResultsDispatch(setNoResultsState(true));
-      spinnerDispatch(setSpinnerState(false));
+      LoaderDispatch(setLoaderState(false));
     })
   }
 

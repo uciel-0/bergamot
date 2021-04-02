@@ -29,7 +29,7 @@ export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
   const [dateRangeState, setDateRangeState] = React.useState<(Moment | string | null)[]>([null, null]);
   const {searchResultsDispatch} = React.useContext(SearchResultsContext);
-  const {LoaderDispatch} = React.useContext(LoaderContext);
+  const {loaderDispatch} = React.useContext(LoaderContext);
   const today = moment().startOf('day').format();
   const [endDateMinValue, setEndDateMinValue] = React.useState<string>('');
   const [startDateMaxValue, setStartDateMaxValue] = React.useState<string>('');
@@ -68,7 +68,7 @@ export const SearchBar = () => {
     }
     setFormValue(formValue.trim());
     console.log('dateState - startDate:', dateRangeState[0], 'endDate:', dateRangeState[1])
-    LoaderDispatch(setLoaderState(true));
+    loaderDispatch(setLoaderState(true));
     // reset the isStable flag so the distributor filters can reset as expected
     searchResultsDispatch(setIsStableAction(false));
     searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));
@@ -98,13 +98,13 @@ export const SearchBar = () => {
       const maxMinPriceRange = res.data.priceRange;
       const maxMinDateRange = [res.data.dateRange[0], res.data.dateRange[1]];
       searchResultsDispatch(setBulkFilterAction(res.data.vendorState.ticketmaster, res.data.vendorState.stubhub, res.data.vendorState.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, maxMinPriceRange, maxMinDateRange, maxMinPriceRange, maxMinDateRange));
-      LoaderDispatch(setLoaderState(false));
+      loaderDispatch(setLoaderState(false));
       searchResultsDispatch(setNoResultsState(false));
     })
     .catch((err) => {
       history.push('/search');
       searchResultsDispatch(setLastQuery(formValue));
-      LoaderDispatch(setLoaderState(false));
+      loaderDispatch(setLoaderState(false));
       searchResultsDispatch(setNoResultsState(true));
       console.log('master search api rejection', err);
     });

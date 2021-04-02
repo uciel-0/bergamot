@@ -3,11 +3,11 @@ import {LoaderState, initialLoaderState} from './Reducers';
 import {LoaderActions} from './Actions';
 
 export interface LoaderContextType {
-  LoaderState: LoaderState;
-  LoaderDispatch: React.Dispatch<LoaderActions>
+  loaderState: LoaderState;
+  loaderDispatch: React.Dispatch<LoaderActions>
 }
 
 export const LoaderContext = React.createContext<LoaderContextType>({
-  LoaderState: initialLoaderState,
-  LoaderDispatch: () => null
+  loaderState: initialLoaderState,
+  loaderDispatch: () => null
 });

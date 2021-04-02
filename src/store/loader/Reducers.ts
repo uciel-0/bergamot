@@ -4,7 +4,7 @@ export interface LoaderState {
   isLoading: boolean;
 }
   
-export const LoaderReducer = (state: LoaderState, action: LoaderActions) => {
+export const loaderReducer = (state: LoaderState, action: LoaderActions) => {
   switch(action.type) {
     case LoaderActionTypes.SET_LOADING:
       return {...state, isLoading: action.payload};

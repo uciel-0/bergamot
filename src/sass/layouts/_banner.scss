@@ -11,9 +11,7 @@
     font-weight: 300;
     height: 17.5rem;
     align-items:center;
-    // display:none;
-    // grid-row: banner-start/banner-end;
-    // grid-column: left-whitespace-start/right-whitespace-end;
+    overflow: hidden;
     @media only screen and (max-width: $bp-bop-medium) {
         grid-column: bop-start/bop-end;
     }

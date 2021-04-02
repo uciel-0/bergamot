@@ -4,7 +4,6 @@ import {Card} from '../components/Card';
 import {Filter} from './Filter';
 import {Sort} from './Sort';
 import { ErrorScreen } from './ErrorScreen';
-
 export interface SearchResult {
   date: string;
   events: any[];

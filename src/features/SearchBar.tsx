@@ -23,6 +23,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import moment, { Moment } from 'moment';
+import { Loader } from '../components/Loader';
 
 export const SearchBar = () => {
   const [formValue, setFormValue] = React.useState<string>('');
@@ -69,7 +70,6 @@ export const SearchBar = () => {
     console.log('dateState - startDate:', dateRangeState[0], 'endDate:', dateRangeState[1])
     spinnerDispatch(setSpinnerState(true));
     // reset the isStable flag so the distributor filters can reset as expected
-    searchResultsDispatch(setLastQuery(formValue));
     searchResultsDispatch(setIsStableAction(false));
     searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));
     searchResultsDispatch(setPriceRangeAction([0,0]));
@@ -86,6 +86,7 @@ export const SearchBar = () => {
       console.log('master search api response for artist:', formValue, res.data);
       history.push('/search');
       // set our search result data to the response from the api call
+      searchResultsDispatch(setLastQuery(formValue));
       searchResultsDispatch(setSearchResults(res.data.data));
       searchResultsDispatch(setNumberOfResults(res.data.numberOfResults));
       console.log('total length of events:', res.data.totalResultsLength);
@@ -102,6 +103,7 @@ export const SearchBar = () => {
     })
     .catch((err) => {
       history.push('/search');
+      searchResultsDispatch(setLastQuery(formValue));
       spinnerDispatch(setSpinnerState(false));
       searchResultsDispatch(setNoResultsState(true));
       console.log('master search api rejection', err);
@@ -124,68 +126,71 @@ export const SearchBar = () => {
   const datePickerContainerStyle = location.pathname === '/search' ? 'DatePicker_container' : 'DatePicker_container-invisible';
   const searchBarStyle = location.pathname === '/home' ? 'search__input' : 'search__input search__input--search';
   return (
-    <header className="header">
-      <div className="logo-box" onClick={() => history.push('/home')}>
-        <BopIcon className={"logo"}/>
-      </div>
-      <form className="search" onSubmit={(e) => onSubmit(e)}>
-        <input 
-          data-test="search-bar"
-          type="text"
-          className={searchBarStyle}
-          placeholder="search for events, artists, teams or venues" 
-          value={formValue} 
-          onChange={(e) => setFormValue(e.target.value)}
-        />
-        <div className={datePickerContainerStyle}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justify="space-around">
-              <DatePicker
-                minDate={today}
-                maxDate={startDateMaxValue}
-                value={dateRangeState[0]}
-                onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
-                variant="inline"
-                format="MMM, d, yyyy"
-                disableToolbar
-                disablePast
-                autoOk
-                emptyLabel={"From"}
-              />
-              <DatePicker
-                minDate={endDateMinValue}
-                value={dateRangeState[1]}
-                onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
-                variant="inline"
-                format="MMM, d, yyyy"
-                disableToolbar
-                disablePast
-                autoOk
-                emptyLabel={"To"}
-              />
-            </Grid>
-          </MuiPickersUtilsProvider>
+    <div className="header-container">
+      <header className="header">
+        <div className="logo-box" onClick={() => history.push('/home')}>
+          <BopIcon className={"logo"}/>
         </div>
-        <div className="DatePicker_space"/>
-        <button className={searchIconStyle}>
-          <MagnifyingGlass className="search__icon"/>
-        </button>
-      </form>
-      <div className="fake-element"></div>
-      {/* <nav className="user-nav">
-        <div className="user-nav__icon-box">
-          <Bookmark className={'user-nav__icon'}/>
-          <span className="user-nav__notification">7</span>
-        </div>
-        <div className="user-nav__icon-box">
-          <Chat className={'user-nav__icon'}/>
-          <span className="user-nav__notification">13</span>
-        </div>
-        <div className="user-nav__user">
-          <img src="\default-profile-pic.png" alt="user headshot" className="user-nav__user-photo"/>
-          <span className="user_nav__user-name">Jonas</span>
-        </div>
-      </nav> */}
-    </header>
+        <form className="search" onSubmit={(e) => onSubmit(e)}>
+          <input 
+            data-test="search-bar"
+            type="text"
+            className={searchBarStyle}
+            placeholder="search for events, artists, teams or venues" 
+            value={formValue} 
+            onChange={(e) => setFormValue(e.target.value)}
+          />
+          <div className={datePickerContainerStyle}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justify="space-around">
+                <DatePicker
+                  minDate={today}
+                  maxDate={startDateMaxValue}
+                  value={dateRangeState[0]}
+                  onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
+                  variant="inline"
+                  format="MMM, d, yyyy"
+                  disableToolbar
+                  disablePast
+                  autoOk
+                  emptyLabel={"From"}
+                />
+                <DatePicker
+                  minDate={endDateMinValue}
+                  value={dateRangeState[1]}
+                  onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
+                  variant="inline"
+                  format="MMM, d, yyyy"
+                  disableToolbar
+                  disablePast
+                  autoOk
+                  emptyLabel={"To"}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
+          </div>
+          <div className="DatePicker_space"/>
+          <button className={searchIconStyle}>
+            <MagnifyingGlass className="search__icon"/>
+          </button>
+        </form>
+        <div className="fake-element"></div>
+        {/* <nav className="user-nav">
+          <div className="user-nav__icon-box">
+            <Bookmark className={'user-nav__icon'}/>
+            <span className="user-nav__notification">7</span>
+          </div>
+          <div className="user-nav__icon-box">
+            <Chat className={'user-nav__icon'}/>
+            <span className="user-nav__notification">13</span>
+          </div>
+          <div className="user-nav__user">
+            <img src="\default-profile-pic.png" alt="user headshot" className="user-nav__user-photo"/>
+            <span className="user_nav__user-name">Jonas</span>
+          </div>
+        </nav> */}
+      </header>
+      <Loader/>
+    </div>
   )
 }

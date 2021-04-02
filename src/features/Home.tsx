@@ -4,7 +4,6 @@ import Musicicon from '../svg/Musicicon';
 import Map from '../svg/Map';
 import Star from '../svg/Star';
 
-
 export const Home = () => (
     <div className="home-content">
         <nav className="sidebar">

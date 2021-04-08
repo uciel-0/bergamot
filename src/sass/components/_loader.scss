@@ -9,7 +9,7 @@
     position: relative;
     &--active {
         background: linear-gradient(#ee7752, #e73c7e);
-        animation: load .5s infinite;
+        animation: load 1s infinite;
         @keyframes load {
             0% {width: 0; left: 0%;}
             100% {left: 100%;}

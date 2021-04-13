@@ -59,6 +59,9 @@ body {
     background-repeat: no-repeat;
 
     min-height: 100vh;
+    .MuiMenuItem-root {
+      font-size: 1.3rem;
+  }
 }
 
 // html, body, .container {

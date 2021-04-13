@@ -43,6 +43,8 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh; }
+  body .MuiMenuItem-root {
+    font-size: 1.3rem; }
 
 .margin-tiny {
   margin: .2rem .2rem; }
@@ -480,6 +482,9 @@ body {
     color: grey; }
   .Filter_checkbox--disabled {
     pointer-events: none; }
+
+.Sort_container .MuiInputBase-root {
+  font-size: 1.3rem; }
 
 .Sort_container .MuiSelect-icon {
   top: calc(50% - 7px); }

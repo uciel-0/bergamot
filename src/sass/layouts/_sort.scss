@@ -1,5 +1,8 @@
 .Sort {
     &_container {
+        .MuiInputBase-root {
+            font-size: 1.3rem;
+        }
         .MuiSelect-icon {
             top: calc(50% - 7px);
         }

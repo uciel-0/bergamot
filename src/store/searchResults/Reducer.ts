@@ -22,11 +22,11 @@ export interface SearchResult {
 }
 
 export enum SortType {
-  DEFAULT = '',
-  DATE = 'DATE',
-  PRICE_ASCENDING = 'PRICE_ASCENDING',
-  PRICE_DESCENDING = 'PRICE_DESCENDING',
-  POPULAR = 'POPULAR',
+  DEFAULT = 'Date',
+  DATE = 'Date',
+  PRICE_ASCENDING = 'Price: Low to High',
+  PRICE_DESCENDING = 'Price: High to Low',
+  POPULAR = 'Popular',
 }
 
 export enum CheckboxShading {

@@ -1,0 +1,19 @@
+.Toolbar {
+    box-sizing: unset;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 0 10px #ddd;
+    padding-top: 5px;
+    margin-bottom: 10px;
+    // background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+
+    font-size: 2rem;
+    color:black;
+    
+    &_results-count {
+        margin-left: 2.5rem;
+        flex-basis: 1125px;
+    }
+}

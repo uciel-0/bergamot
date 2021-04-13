@@ -419,21 +419,17 @@ body {
   border-bottom-right-radius: 50px; }
 
 .Filter {
-  padding-top: 4rem;
-  justify-self: center;
   background-color: #f2f2f2;
   color: black;
   grid-row: results-start/results-end; }
   @media only screen and (max-width: 51.875em) {
     .Filter {
       margin-top: 0rem; } }
-  .Filter_total-results {
-    font-size: 2rem; }
   .Filter_price-toggle p {
     font-weight: 300;
     font-size: 1rem; }
   .Filter_form {
-    margin-left: 5%; }
+    margin-left: 1rem; }
   .Filter_row-title {
     font-weight: 400;
     font-size: 2rem; }
@@ -485,19 +481,31 @@ body {
   .Filter_checkbox--disabled {
     pointer-events: none; }
 
-.Sort_container {
-  grid-column: results-start/results-end;
-  color: red; }
-  .Sort_container .MuiSelect-icon {
-    top: calc(50% - 7px); }
+.Sort_container .MuiSelect-icon {
+  top: calc(50% - 7px); }
 
-.Sort_menu-container {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 1rem; }
+.Sort_container .MuiInput-underline::before {
+  content: none;
+  border-bottom: none; }
+
+.Sort_container .MuiInput-underline::after {
+  border-bottom: none; }
+
+.Sort_container .MuiFormControl-root {
+  padding-left: 7px;
+  padding-right: 2px;
+  background-color: #E3E6E6; }
+
+.Sort_container .MuiListItem-root.Mui-selected {
+  background-color: #E3E6E6; }
+
+.Sort_container .MuiSelect-select:focus {
+  background-color: #E3E6E6;
+  border-radius: 7px; }
 
 .Sort_menu {
-  width: 11rem; }
+  border-radius: 7px;
+  font-size: 20rem; }
 
 .container {
   max-width: 120rem;
@@ -1260,8 +1268,7 @@ body {
 
 .Cards {
   grid-row: results-start/results-end;
-  padding-right: 1rem;
-  padding-top: 4rem; }
+  padding-right: 1rem; }
   .Cards_date {
     font-size: 2.5rem;
     font-weight: 400;
@@ -1284,3 +1291,18 @@ body {
   margin: 0;
   margin-left: 2rem;
   background-color: #f2f2f2; }
+
+.Toolbar {
+  box-sizing: unset;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 0 10px #ddd;
+  padding-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  font-size: 2rem;
+  color: black; }
+  .Toolbar_results-count {
+    margin-left: 2.5rem;
+    flex-basis: 1125px; }

@@ -17,23 +17,25 @@ export const Results = () => {
       <div className="Banner">
         {searchResultsState.lastQuery || ""}
       </div>
+      <div className="Toolbar">
+        <div className="Toolbar_results-count">
+          {`${searchResultsState.numberOfResults} Search Result${(searchResultsState.numberOfResults > 1 || searchResultsState.numberOfResults === 0 ? 's' : '')}` }
+        </div>
+        <Sort/>
+      </div>
       <div className="Bop">
-      <div className="SearchResults">
-        <div className="Results">
-          <Filter />
-          <Sort/>
-          <div className="Cards">
-            { !searchResultsState.noResults ?
-              searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
-                <CardsGroup date={e.date} events={e.events} key={index} showPricesWithFees={searchResultsState.showPricesWithFees}/>
-              ) : null : <ErrorScreen/>
-            }
+        <div className="SearchResults">
+          <div className="Results">
+            <Filter />
+            <div className="Cards">
+              { !searchResultsState.noResults ?
+                searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
+                  <CardsGroup date={e.date} events={e.events} key={index} showPricesWithFees={searchResultsState.showPricesWithFees}/>
+                ) : null : <ErrorScreen/>
+              }
+            </div>
           </div>
         </div>
-      </div>
-      {/* <div className="Footer">
-          Footer
-      </div>  */}
       </div>
     </div>
   

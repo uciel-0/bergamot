@@ -410,10 +410,10 @@ export const getCachedEvents = (req, res) => {
 
     let groupedData = [];
 
-    if (sortType === '' || sortType === 'DATE' || sortType === 'POPULAR') {
+    if (sortType === '' || sortType === 'Date' || sortType === 'Popular') {
       const sortChronologically = sortDatesChronologically(filteredData);
       groupedData = groupByDay(sortChronologically);
-    } else if (sortType === 'PRICE_ASCENDING' || sortType === 'PRICE_DESCENDING') {
+    } else if (sortType === 'Price: High to Low' || sortType === 'Price: Low to High') {
       groupedData = sortByPriceAndGroupByDay(filteredData, sortType);
     }
 

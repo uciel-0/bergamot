@@ -53,21 +53,27 @@ export const Sort = () => {
   }
 
   const handleDropdownSelect = (event: any) => searchResultsDispatch(setSortType(event.target.value));
+
+  const renderSelectValue = (value: any) => `Sort by: ${value}`
   
   return (
     <section className="Sort_container">
       <div className="Sort_menu-container">
         <FormControl className="Sort_menu">
-          <InputLabel id="Sort_label" >Sort by</InputLabel>
+          {/* <InputLabel id="Sort_label" >Sort by</InputLabel> */}
           <Select 
             id="Sort_select"
             value={globalSortTypeState}
             onChange={handleDropdownSelect}
+            autoWidth
+            displayEmpty
+            renderValue={renderSelectValue}
+            
           >
             <MenuItem value={SortType.DATE}>Date</MenuItem>
             <MenuItem value={SortType.PRICE_ASCENDING}>Price: Low to High</MenuItem>
             <MenuItem value={SortType.PRICE_DESCENDING}>Price: High to Low</MenuItem>
-            <MenuItem value={SortType.POPULAR}>Popular</MenuItem>
+            {/* <MenuItem value={SortType.POPULAR}>Popular</MenuItem> */}
           </Select>
         </FormControl>
       </div>

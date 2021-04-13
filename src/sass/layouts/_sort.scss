@@ -1,17 +1,30 @@
 .Sort {
     &_container {
-        grid-column: results-start/results-end;
-        color: red;
         .MuiSelect-icon {
             top: calc(50% - 7px);
         }
-    }
-    &_menu-container {
-        display: flex;
-        justify-content: flex-end;
-        padding-right: 1rem;
+        .MuiInput-underline::before {
+            content: none;
+            border-bottom: none;
+        }
+        .MuiInput-underline::after {
+            border-bottom: none;
+        }
+        .MuiFormControl-root {
+            padding-left: 7px;
+            padding-right: 2px;
+            background-color: #E3E6E6;
+        }
+        .MuiListItem-root.Mui-selected {
+            background-color:#E3E6E6;
+        }
+        .MuiSelect-select:focus {
+            background-color:#E3E6E6;  
+            border-radius: 7px;
+        }
     }
     &_menu {
-        width: 11rem;
+        border-radius: 7px;
+        font-size: 20rem;
     }
 }

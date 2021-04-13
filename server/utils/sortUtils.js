@@ -41,7 +41,7 @@ export const sortByPriceAndGroupByDay = (set, direction) => {
   const output = [];
   let dataSortedByPrice = [];
   
-  if (direction === 'PRICE_ASCENDING') {
+  if (direction === 'Price: High to Low') {
     dataSortedByPrice = set.sort((a,b) => a.priceBeforeFees - b.priceBeforeFees);
   } else dataSortedByPrice = set.sort((a,b) => b.priceBeforeFees - a.priceBeforeFees);
 

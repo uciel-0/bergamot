@@ -1,16 +1,10 @@
 .Filter {
-  padding-top: 4rem;
-  justify-self: center;
   background-color: #f2f2f2;
   color: black;
   grid-row: results-start/results-end;
 
   @media only screen and (max-width: $bp-bop-medium) {
     margin-top: 0rem;
-  }
-
-  &_total-results {
-    font-size: 2rem;
   }
 
   &_price-toggle {
@@ -21,7 +15,7 @@
   }
 
   &_form {
-    margin-left: 5%;
+    margin-left: 1rem;
   }
 
   &_row-title {

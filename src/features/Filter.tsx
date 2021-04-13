@@ -220,9 +220,6 @@ export const Filter = () => {
   return (
     <div className="Filter">
       <form className="Filter_form">
-        <div className="Filter_total-results">
-          {`${searchResultsState.numberOfResults} Search Result${(searchResultsState.numberOfResults > 1 || searchResultsState.numberOfResults === 0 ? 's' : '')}` }
-        </div>
         <div className="Filter_price-toggle">
           <FormGroup row>
             <FormControlLabel

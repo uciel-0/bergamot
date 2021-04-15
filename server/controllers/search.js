@@ -259,6 +259,9 @@ export const flushCache = (req, res) => {
 // make it so if the state is ON or GREYED, the vendor is included in the filters 
 // fix this in the front end as well 
 export const getCachedEvents = (req, res) => {
+  console.log('');
+  console.log('');
+  console.log('');
   console.log('cache call starting');
   const key = `getEvents_${req.query.keyword}`;
   const ticketmasterState = req.query.ticketmasterState; // CHECKED, UNCHECKED, GREYED
@@ -404,9 +407,9 @@ export const getCachedEvents = (req, res) => {
     console.log('hasStubhubData', hasStubhubData);
     console.log('hasSeatgeekData', hasSeatgeekData);
 
-    const ticketMasterShadingState = vendorShadingState('ticketmaster', ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
-    const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
-    const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall);
+    const ticketMasterShadingState = vendorShadingState('ticketmaster', ticketmasterInWholeSet, hasTicketmasterData, ticketmasterState);
+    const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState);
+    const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState);
 
     let groupedData = [];
 

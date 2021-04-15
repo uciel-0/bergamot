@@ -1,21 +1,18 @@
 // On = Exists in whole and filterd set, Off = Does not exist in whole set, Greyed = Exists in set but not fitlered set  
-export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet, vendorFilterState, isVendorFilterCall, isStatusFilterCall, isSliderCall, isCalendarCall) => {
+export const vendorShadingState = (vendor, existsInWholeSet, existsInFilteredSet, vendorFilterState) => {
   let shadingState = '';
   // RETURNS CHECKED, UNCHECKED, GREYED
   if (existsInFilteredSet) {
     shadingState = 'CHECKED';
-  } else if (isVendorFilterCall && !existsInFilteredSet) {
+  } else if (vendorFilterState === 'GREYED') {
+    shadingState = 'GREYED';
+  } else if (existsInWholeSet && !existsInFilteredSet && vendorFilterState === 'CHECKED') {
+    shadingState = 'GREYED';
+  } else if (existsInWholeSet && existsInFilteredSet && vendorFilterState === 'GREYED') {
+    shadingState = 'CHECKED';
+  } else if (existsInWholeSet && vendorFilterState === 'UNCHECKED') {
     shadingState = 'UNCHECKED';
-  } else if (isStatusFilterCall && !existsInFilteredSet) {
-    shadingState = 'GREYED';
-  } else if (isSliderCall && !existsInFilteredSet) {
-    shadingState = 'GREYED';
-  } else if (isCalendarCall && !existsInFilteredSet) {
-    shadingState = 'GREYED';
-  } else if (!existsInWholeSet) {
-    shadingState = 'GREYED';
-  } 
-  // console.log('vendorShadingState for', vendor, 'existsInWholeSet:', existsInWholeSet , 'existsInFilteredSet:', existsInFilteredSet ,'shadingState:', shadingState);
+  }
   return shadingState;
 }
 
@@ -41,7 +38,7 @@ export const sortByPriceAndGroupByDay = (set, direction) => {
   const output = [];
   let dataSortedByPrice = [];
   
-  if (direction === 'Price: High to Low') {
+  if (direction === 'Price: Low to High') {
     dataSortedByPrice = set.sort((a,b) => a.priceBeforeFees - b.priceBeforeFees);
   } else dataSortedByPrice = set.sort((a,b) => b.priceBeforeFees - a.priceBeforeFees);
 

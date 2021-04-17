@@ -48,6 +48,12 @@ export const SearchBar = () => {
     }
   }, [dateRangeState]);
 
+  React.useEffect(() => {
+    if (history.location.pathname === '/home') {
+      setFormValue('');
+    }
+  }, [history.location])
+
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     const formattedStartDate = moment(newStartDate).startOf('day').format();
     setDateRangeState([formattedStartDate, dateRangeState[1]]);

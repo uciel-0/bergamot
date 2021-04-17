@@ -8,7 +8,8 @@
     content: "";
     position: relative;
     &--active {
-        background: linear-gradient(#ee7752, #e73c7e);
+        // background: linear-gradient(#ee7752, #e73c7e);
+        background: #e5e5e5;
         animation: load 1s infinite;
         @keyframes load {
             0% {width: 0; left: 0%;}

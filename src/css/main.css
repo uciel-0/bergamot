@@ -266,7 +266,7 @@ body {
     overflow: hidden;
     background-color: #fff; }
   .Loader--active {
-    background: linear-gradient(#ee7752, #e73c7e);
+    background: #e5e5e5;
     animation: load 1s infinite; }
 
 @keyframes load {

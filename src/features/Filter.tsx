@@ -217,6 +217,8 @@ export const Filter = () => {
   const labelState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_label Filter_label--disabled' : 'Filter_label';
   const checkboxState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_checkbox Filter_checkbox--disabled' : 'Filter_checkbox';
  
+  const formatSliderPrice = (price: number) => `$${price ? price.toLocaleString() : ''}`; 
+
   return (
     <div className="Filter">
       <form className="Filter_form">
@@ -297,13 +299,13 @@ export const Filter = () => {
           <br></br>
           <div className="Filter_price-range">
             <div className="Filter_price-range--low">
-              ${priceRangeState[0]}
+              {formatSliderPrice(priceRangeState[0])}
             </div>
             <div className="Filter_price-range--dash">
             -
             </div>
             <div className="Filter_price-range--high">
-              ${priceRangeState[1]}
+              {formatSliderPrice(priceRangeState[1])}
             </div>
           </div>
           <Slider 
@@ -313,7 +315,7 @@ export const Filter = () => {
             max={maxMinPriceRange[1]}
             onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
             onChangeCommitted={() => callCacheForFiltering(true, false, false, false)}
-            valueLabelFormat={(x) => '$' + x.toLocaleString()}
+            // valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"
           />
         </div>

@@ -14,7 +14,30 @@
         align-content: space-around;
         height: 11rem;
     }
+    &_nav-bar{
+        overflow:hidden;
+        &_item{
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 15px 16px;
+            text-decoration: none;
+            font-size: 17px;
+
+            &:hover{
+                background-color: #ddd;
+                color: black;
+            }
+
+            &:active{
+                background-color: #04AA6D;
+                color: white;
+            }
+        }
+    }
 }
+
+
 // EVERYTHING BELOW HERE ALSO EXISTS IN THE HEADER - keeping it here for ease of access
 .logo {
     height: 3.25rem;
@@ -135,4 +158,5 @@
     &__user-name {
 
     }
+
 }

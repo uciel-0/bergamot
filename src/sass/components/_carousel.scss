@@ -1,0 +1,14 @@
+.carousel-image {
+    position: relative;
+    
+    &_text {
+        color:white;
+        position:absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 100;
+    }
+   
+    
+
+}

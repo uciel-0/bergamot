@@ -7,7 +7,9 @@
 @import "components/bopicon";
 @import "components/card";
 @import "components/spinner";
-@import "components/loader";
+@import "components/carousel";
+@import "components/footer";
+// @import "components/calendar";
 
 @import "layouts/results";
 @import "layouts/error";
@@ -19,7 +21,8 @@
 @import "layouts/banner";
 @import "layouts/cards";
 @import "layouts/footer";
+@import "layouts/homesearch";
 @import "layouts/bop";
-@import "layouts/toolbar";
+@import "layouts/sports";
 
 @import "pages/searchResults";

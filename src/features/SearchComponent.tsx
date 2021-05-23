@@ -1,27 +1,19 @@
 import * as React from 'react';
 import axios from 'axios';
-import { setSpinnerState } from '../store/spinner/Actions';
 import { SearchResultsContext } from '../store/searchResults/Context';
-import { SpinnerContext } from '../store/spinner/Context';
 import { useHistory, useLocation } from 'react-router-dom';
 import {
   setSearchResults,
   setBulkFilterAction,
-  setIsStableAction,
-  setPriceRangeAction,
   setNoResultsState,
-  setLastQuery,
-  setUserPriceRangeSelected,
   setNumberOfResults
 } from '../store/searchResults/Actions';
 import {MagnifyingGlass} from '../svg/MagnifyingGlass';
 
 export const SearchComponent = () => {
   let history = useHistory();
-  let location = useLocation();
   const [formValue, setFormValue] = React.useState<string>('');
   const { searchResultsDispatch } = React.useContext(SearchResultsContext);
-  const { spinnerDispatch } = React.useContext(SpinnerContext);
   const onSubmit = (e: any) => {
     e.preventDefault();
     if (formValue.trim() === "") {
@@ -30,7 +22,6 @@ export const SearchComponent = () => {
     }
     setFormValue(formValue.trim());
     // console.log('dateState - startDate:', dateRangeState[0], 'endDate:', dateRangeState[1])
-    spinnerDispatch(setSpinnerState(true));
     // reset the isStable flag so the distributor filters can reset as expected
     // searchResultsDispatch(setLastQuery(formValue));
     // searchResultsDispatch(setIsStableAction(false));
@@ -59,12 +50,10 @@ export const SearchComponent = () => {
         const maxMinPriceRange = res.data.priceRange;
         const maxMinDateRange = [res.data.dateRange[0], res.data.dateRange[1]];
         searchResultsDispatch(setBulkFilterAction(res.data.vendorState.ticketmaster, res.data.vendorState.stubhub, res.data.vendorState.seatgeek, res.data.hasCancelledEvents, res.data.hasNoListingEvents, maxMinPriceRange, maxMinDateRange, maxMinPriceRange, maxMinDateRange));
-        spinnerDispatch(setSpinnerState(false));
         searchResultsDispatch(setNoResultsState(false));
       })
       .catch((err) => {
         history.push('/search');
-        spinnerDispatch(setSpinnerState(false));
         searchResultsDispatch(setNoResultsState(true));
         console.log('master search api rejection', err);
       });

@@ -105,7 +105,7 @@ export const getEvents = (req, res) => {
     // Step 1) Set some custom fields for easy front end access
     // ticketmaster events
     let ticketmasterEvents = [];
-    if (data[0].events) {
+    if (data[0] && data[0].events) {
       data[0].events.forEach(e => {
         e.source = 'ticketmaster';
         e.sourceUrl = 'https://ticketmaster.com';
@@ -118,6 +118,7 @@ export const getEvents = (req, res) => {
         e.time = e.dates.start.noSpecificTime ? 'No Specific Time' : formatTime(e.datetime_local);
         e.venueName = e._embedded.venues[0].name;
         e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
+
         e.isPriceEstimated = false;
         e.name = e.name.trim();
 
@@ -134,7 +135,7 @@ export const getEvents = (req, res) => {
     }
     // stubhub events
     let stubhubEvents = [];
-    if (data[1]) {
+    if (data[1] && data[1].events) {
       data[1].events.forEach(e => {
         e.source = 'stubhub';
         e.sourceUrl = 'https://stubhub.com';
@@ -155,7 +156,7 @@ export const getEvents = (req, res) => {
     }
     // seatgeek events
     let seatgeekEvents = [];
-    if (data[2]) {
+    if (data[2] && data[2].events) {
       data[2].events.forEach(e => {
         e.source = 'seatgeek';
         e.sourceUrl = 'https://seatgeek.com';
@@ -272,10 +273,10 @@ export const getCachedEvents = (req, res) => {
   console.log('seatgeekState', seatgeekState);
   const showCancelled = req.query.showCancelled;
   const showNoListings = req.query.showNoListings;
-  const isSliderCall = Boolean(req.query.isSliderCall === "true");
-  const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
-  const isVendorFilterCall = Boolean(req.query.isVendorFilterCall === 'true');
-  const isStatusFilterCall = Boolean(req.query.isStatusFilterCall === 'true');
+  // const isSliderCall = Boolean(req.query.isSliderCall === "true");
+  // const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
+  // const isVendorFilterCall = Boolean(req.query.isVendorFilterCall === 'true');
+  // const isStatusFilterCall = Boolean(req.query.isStatusFilterCall === 'true');
   const sortType = req.query.sortType || "";
   // call the cache for this data 
   cache.get(key).then(data => {

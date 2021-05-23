@@ -1,6 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 // this has got to take in some input from the front end 
+const access_token = 'c5GTDuiwhS1dZcdHATuagGm7nWLF';
 export const getStubhubEvents = (req) => {
   const keyword = req.query.keyword;
   const startDate = req.query.startDate ? moment(req.query.startDate).utc().format(`yyyy-MM-DD`) : undefined;
@@ -12,7 +13,7 @@ export const getStubhubEvents = (req) => {
       date: dateRangeString
     },
     headers: {
-      'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1',
+      'Authorization': `Bearer ${access_token}`,
       'Accept': 'application/json'
     }
   })
@@ -33,7 +34,7 @@ const getStubhubPerformers = (req) => {
       name: keyword
     },
     headers: {
-      'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1'
+      'Authorization': `Bearer ${access_token}`,
     }
   }).then((data) => {
     return data.data
@@ -51,7 +52,7 @@ const getStubhubVenues = (req) => {
       name: keyword,
     },
     headers: {
-      'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1',
+      'Authorization': `Bearer ${access_token}`,
       'Accept': 'application/json'
     }
   })
@@ -71,7 +72,7 @@ const getStubhubLocations = (req) => {
       name: keyword,
     },
     headers: {
-      'Authorization': 'Bearer uAooAIJblDT83nKP0mzWdL3hhNg1',
+      'Authorization': `Bearer ${access_token}`,
       'Accept': 'application/json'
     }
   })

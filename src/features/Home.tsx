@@ -21,24 +21,30 @@ const artistImages = [
 ]
 
 export const Home = () => (
-    <div className="home-content">
-        <div>
-        <SearchComponent />
-        </div>
-        <section className="wrapper">
-            <div className="headline">
+    <div className="home_container">
+        <div className="home_grid">
+            <section className="home_banner">
+                <img className="" alt="main banner" src="\bop.jpg" />
+                <div className="home_search-container">
+                  <SearchComponent />
+                </div>
+            </section>
+            <section className="home_main">
+              <div className="headline">
                 <h1> Concerts </h1>
-                <CarouselRow
+                  <CarouselRow
                     imageInfo={eventsImages}
-                />
-            </div>
-            <div className="headline">
+                  />
+              </div>
+              <div className="headline">
                 <h1> Artists </h1>
-                <CarouselRow
+                  <CarouselRow
                     imageInfo={artistImages}
-                />
-            </div>
-        </section>
+                  />
+              </div>
+            </section>
+        </div>
+        <div>
+        </div>
     </div>
-
 )

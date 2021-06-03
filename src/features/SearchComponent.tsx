@@ -72,40 +72,21 @@ export const SearchComponent = () => {
   }
   // const searchBarStyle = location.pathname === '/home' ? 'search__input'
   return (
-    <div className="home-container">
-      <video className="home-container_video"
-        loop
-        muted
-        autoPlay
-        preload="auto">
-        <source src="concert.mp4" type="video/mp4"></source>
-           Not supported
-      </video>
-      <div className="home-container_sb-container">
-        <form className="home-container_sb-container_form" onSubmit={(e) => onSubmit(e)}>
+      <React.Fragment>
+        <form className="search_form" onSubmit={(e) => onSubmit(e)}>
           <input
             data-test="search-bar"
             type="text"
-            className={"home-container_sb-container_searchbar"}
-            style={{
-              borderRadius: ".5em", 
-              justifyContent: "center",
-              margin: "50%",
-              width: "55em", 
-              height: "4.5em"
-            }}
+            className="search_input"
             placeholder="search for events, artists, teams or venues"
             value={formValue}
             onChange={(e) => setFormValue(e.target.value)}
           />
         </form>
-        <button className="home-container_sb-container_btn">
+        <button className="search_button">
           <MagnifyingGlass className="search__icon"/>
         </button>
-      </div>
-
-    </div>
-
+      </React.Fragment>
   )
 }
 

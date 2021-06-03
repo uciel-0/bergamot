@@ -1,5 +1,10 @@
 .carousel-image {
-    position: relative;
+    width: 100%;
+    height: 27.5rem;
+    border-radius: 1rem;
+    &_container {
+        position: relative;
+    }
     
     &_text {
         color:white;

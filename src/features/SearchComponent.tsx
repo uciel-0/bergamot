@@ -74,6 +74,9 @@ export const SearchComponent = () => {
   return (
       <React.Fragment>
         <form className="search_form" onSubmit={(e) => onSubmit(e)}>
+          <button className="search_button">
+            <MagnifyingGlass className="search_icon"/>
+          </button>
           <input
             data-test="search-bar"
             type="text"
@@ -83,9 +86,6 @@ export const SearchComponent = () => {
             onChange={(e) => setFormValue(e.target.value)}
           />
         </form>
-        <button className="search_button">
-          <MagnifyingGlass className="search__icon"/>
-        </button>
       </React.Fragment>
   )
 }

@@ -26,6 +26,12 @@ export const Home = () => (
             <section className="home_banner">
                 <img className="" alt="main banner" src="\bop.jpg" />
                 <div className="home_search-container">
+                  <p className="home_white-text">
+                    Dance with <br/>
+                    my dogs <br/>
+                    in the <br/>
+                    nighttime
+                  </p>
                   <SearchComponent />
                 </div>
             </section>

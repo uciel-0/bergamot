@@ -544,6 +544,9 @@ body {
   border-radius: 7px;
   font-size: 20rem; }
 
+.home_container {
+  position: absolute; }
+
 .home_grid {
   display: grid;
   grid-template-rows: [video-start] 67rem [video-end main-start] 100em [main-end];
@@ -570,6 +573,18 @@ body {
 
 .home_main {
   grid-row: main-start/main-end; }
+
+.home_white-text {
+  position: absolute;
+  color: white;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 42px;
+  top: 135px;
+  left: 20%; }
+  @media (max-width: 1100px) {
+    .home_white-text {
+      top: 70px; } }
 
 .header {
   font-size: 1.4rem;

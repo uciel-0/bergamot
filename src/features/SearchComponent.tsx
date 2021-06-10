@@ -72,21 +72,21 @@ export const SearchComponent = () => {
   }
   // const searchBarStyle = location.pathname === '/home' ? 'search__input'
   return (
-      <React.Fragment>
-        <form className="search_form" onSubmit={(e) => onSubmit(e)}>
-          <button className="search_button">
-            <MagnifyingGlass className="search_icon"/>
-          </button>
-          <input
-            data-test="search-bar"
-            type="text"
-            className="search_input"
-            placeholder="search for events, artists, teams or venues"
-            value={formValue}
-            onChange={(e) => setFormValue(e.target.value)}
-          />
-        </form>
-      </React.Fragment>
+    <React.Fragment>
+      <form className="search_form" onSubmit={(e) => onSubmit(e)}>
+        <button className="search_button">
+          <MagnifyingGlass className="search_icon"/>
+        </button>
+        <input
+          data-test="search-bar"
+          type="text"
+          className="search_input"
+          placeholder="search for events, artists, teams or venues"
+          value={formValue}
+          onChange={(e) => setFormValue(e.target.value)}
+        />
+      </form>
+    </React.Fragment>
   )
 }
 

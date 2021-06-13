@@ -13,6 +13,7 @@ interface ImageInfo {
 const CarouselRow = ({imageInfo}: CarouselRowProps) => {
   return (
   <Carousel
+    className="carousel"
     plugins={
       [
         'arrows', 
@@ -31,7 +32,7 @@ const CarouselRow = ({imageInfo}: CarouselRowProps) => {
         },
       ]
     }
-    itemWidth={500}
+    itemWidth={400}
     offset={10}
   >
     {

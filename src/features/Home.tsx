@@ -27,10 +27,10 @@ export const Home = () => (
                 <img className="" alt="main banner" src="\bop.jpg" />
                 <div className="home_search-container">
                   <p className="home_white-text">
-                    Dance with <br/>
-                    my dogs <br/>
-                    in the <br/>
-                    nighttime
+                    Compare ticket  <br/>
+                    prices across your <br/>
+                    favorite vendors! 
+                    
                   </p>
                   <SearchComponent />
                 </div>

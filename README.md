@@ -7,7 +7,7 @@ In the project directory, you can run:
 ### `yarn start-server`
 Runs the backend
 
-### 'yarn start-client'
+### `yarn start-client`
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 

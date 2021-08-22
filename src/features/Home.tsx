@@ -27,10 +27,9 @@ export const Home = () => (
                 <img className="" alt="main banner" src="\bop.jpg" />
                 <div className="home_search-container">
                   <p className="home_white-text">
-                    Compare ticket  <br/>
+                    Compare ticket <br/>
                     prices across your <br/>
-                    favorite vendors! 
-                    
+                    favorite vendors!
                   </p>
                   <SearchComponent />
                 </div>

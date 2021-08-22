@@ -1,6 +1,5 @@
 import React from 'react';
 import './css/main.css';
-import { SearchBar } from './features/SearchBar';
 import { Results } from './features/Results';
 import { Home } from './features/Home';
 import { Footer } from './features/Footer';
@@ -10,6 +9,7 @@ import { Sports } from './features/Sports';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import "react-multi-carousel/lib/styles.css";
+import { Loader } from './components/Loader';
 
 const App = () => {
   // start with a server side call to IP get
@@ -24,18 +24,17 @@ const App = () => {
   return (
     <Router>
       <div className="container">
+        <Header />
+        <Loader/>
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route path="/home">
-            <Header />
             <Home />
           </Route>
           <Route path="/sports">
-            <Header />
             <Sports />
           </Route>
           <Route path="/search">
-            <SearchBar />
             <Results />
           </Route>
           <Route path="/error">

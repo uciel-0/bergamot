@@ -1,12 +1,9 @@
 .header {
     font-size: 1.4rem;
-    height: 7rem;
     background-color: #fff;
     padding-top: 1rem;
-    // display: flex;
-    // justify-content: space-between;
+    display: flex;
     align-items: center;
-    float:left;
     margin-right: -9px;
 
     @media only screen and (max-width: $bp-smallest) {
@@ -14,17 +11,17 @@
         align-content: space-around;
         height: 11rem;
     }
-}
 
-.nav {
-        display: contents;
-        justify-content: space-around;
+    &_nav-bar {
+        // display: flex;
+        // flex-direction: column;
+        width: 62%;
     }
 
     .nav-links{
-    display: flex;
-    align-items: center;
-    min-height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .nav-links li {
@@ -37,14 +34,9 @@
 
     .nav-links a {
         color: rgb(0, 0, 0);
-        font-size: 30px;
+        font-size: 25px;
         font-family: "Roboto";
-        // font-weight: bold;
-        align-items: center;
-        padding: 0;
         text-decoration: none;
-        margin-right: -63px;
-        margin-left: 150px;
         letter-spacing: 3px;
         transition: 00.8s;
         &:hover {
@@ -52,3 +44,16 @@
         }
     }
 
+    .bop-logo_container {
+        padding-left: 3rem;
+        flex-basis: 24rem;
+        .bop-logo_treble {
+            width: 9%;
+        }
+        .bop-logo_icon {
+            cursor: pointer;
+            height: 3.25rem;   
+        }
+    }
+    
+}

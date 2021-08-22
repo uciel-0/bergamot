@@ -1,35 +1,47 @@
 import * as React from 'react';
 import { BopIcon } from '../svg/BopIcon';
 import BopTreble from '../svg/BopTreble';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation, Link } from 'react-router-dom';
+import {SearchComponent} from './SearchComponent';
+
+const renderSearchComponent = (location: any) =>  location.pathname.includes('search') ? <SearchComponent/> : null
+
+const renderNavLinks = () => {    
+    return (
+        <nav className="nav">
+            <ul className="nav-links">
+                <li>
+                    <Link to="/concerts">Concerts</Link>
+                </li>
+                <li>
+                    <Link to="/sports">Sports</Link>
+                </li>
+                <li>
+                    <Link to="/festivals">Festivals</Link>
+                </li>
+                <li>
+                    <Link to="/theatres">Theatres</Link>
+                </li>
+            </ul>
+        </nav>
+    )
+}
 
 export const Header = () => {
     let history = useHistory();
+    let location = useLocation();
     return (
         <div>
-           
             <header className="header">
-                <div className="logo-box" onClick={() => history.push('/home')}>
-                    <BopTreble/>
-                    <BopIcon className={"logo"} />
+                <div className="bop-logo_container" onClick={() => history.push('/home')}>
+                    <BopTreble className={"bop-logo_treble"}/>
+                    <BopIcon className={"bop-logo_icon"} />
                 </div>
+                <nav className="header_nav-bar">
+                {renderSearchComponent(location)}
+                {renderNavLinks()}
+                </nav>
             </header>
-            <nav className="nav">
-                <ul className="nav-links">
-                    <li>
-                        <a href="#"> Concerts</a>
-                    </li>
-                    <li>
-                        <a href="#"> Sports </a>
-                    </li>
-                    <li>
-                        <a href="#"> Festivals </a>
-                    </li>
-                    <li>
-                        <a href="#"> Theatres </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     )
 }

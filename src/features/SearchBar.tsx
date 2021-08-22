@@ -33,7 +33,6 @@ export const SearchBar = () => {
   const today = moment().startOf('day').format();
   const [endDateMinValue, setEndDateMinValue] = React.useState<string>('');
   const [startDateMaxValue, setStartDateMaxValue] = React.useState<string>('');
-
   const [searchEnabled, setSearchEnabled] = React.useState<boolean>(true);
 
   let history = useHistory();
@@ -137,7 +136,7 @@ export const SearchBar = () => {
         <div className="logo-box" onClick={() => history.push('/home')}>
           <BopIcon className={"logo"}/>
         </div>
-        <form className="search" onSubmit={(e) => onSubmit(e)}>
+        <form className="search_container" onSubmit={(e) => onSubmit(e)}>
           <input 
             data-test="search-bar"
             type="text"

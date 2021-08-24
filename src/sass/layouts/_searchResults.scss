@@ -1,4 +1,5 @@
 .SearchResults {
+    max-width:125em;
     @supports(display: grid) {
         // grid-row: bop-start/bop-end;
         // grid-column: bop-start/bop-end;

@@ -4,8 +4,8 @@ import {LoaderContext} from '../store/loader/Context';
 export const Loader = () => {
     const {loaderState} = React.useContext(LoaderContext);
     return ( 
-        <div className="Loader_container">
-            <div className={loaderState.isLoading ? 'Loader Loader--active' : 'Loader'}/>
+        <div className="loader_container">
+            <div className={loaderState.isLoading ? 'loader loader--active' : 'loader'}/>
         </div>
     ) 
 }

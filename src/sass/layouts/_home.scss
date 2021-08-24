@@ -1,6 +1,7 @@
 .home {
     &_container {
-        position: absolute;
+        display: flex;
+        justify-content: center;
     }
 
     &_grid {
@@ -34,9 +35,6 @@
 
     &_main {
         grid-row: main-start/main-end;
-        // background-color: black;
-        // grid-column: grid-start/grid-end;
-        // max-width: 190rem;
     }
 
     &_white-text {

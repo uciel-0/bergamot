@@ -31,17 +31,15 @@ export const Header = () => {
     let history = useHistory();
     let location = useLocation();
     return (
-        <div>
-            <header className="header">
-                <div className="bop-logo_container" onClick={() => history.push('/home')}>
-                    <BopTreble className={"bop-logo_treble"}/>
-                    <BopIcon className={"bop-logo_icon"} />
-                </div>
-                <nav className="header_nav-bar">
+        <header className="header">
+            <div className="bop-logo_container" onClick={() => history.push('/home')}>
+                <BopTreble className={"bop-logo_treble"}/>
+                <BopIcon className={"bop-logo_icon"} />
+            </div>
+            <nav className="header_nav-bar">
                 {renderSearchComponent(location)}
                 {renderNavLinks()}
-                </nav>
-            </header>
-        </div>
+            </nav>
+        </header>
     )
 }

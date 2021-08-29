@@ -32,6 +32,7 @@ export const Header = () => {
     let location = useLocation();
     return (
         <header className="header">
+            <div className="header_content">
             <div className="bop-logo_container" onClick={() => history.push('/home')}>
                 <BopTreble className={"bop-logo_treble"}/>
                 <BopIcon className={"bop-logo_icon"} />
@@ -40,6 +41,7 @@ export const Header = () => {
                 {renderSearchComponent(location)}
                 {renderNavLinks()}
             </nav>
+            </div>
         </header>
     )
 }

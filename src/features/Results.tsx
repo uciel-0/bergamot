@@ -15,7 +15,8 @@ export const Results = () => {
   return (
     <div className="LowerHalf_container">
       <div className="Banner">
-        {searchResultsState.lastQuery || ""}
+        <p className="Banner_name">{searchResultsState.lastQuery || ""}</p>
+
       </div>
       <div className="Toolbar">
         <div className="Toolbar_results-count">

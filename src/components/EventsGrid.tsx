@@ -4,7 +4,6 @@ export interface EventObject {
     name: string;
     url: string;
 }
-
 interface EventGridItemProps {
     event: EventObject;
 }

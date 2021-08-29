@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 // working
 export const getSeatGeekEvents = (req) => {
   const keyword = req.query.keyword.trim().replace(/\s/g, '-');

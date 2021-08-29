@@ -9,6 +9,9 @@ router.get('/api/search/events', controller.search.getEvents);
 router.get('/api/cache/flush', controller.search.flushCache);
 router.get('/api/cache/events', controller.search.getCachedEvents);
 router.get('/api/info', controller.info.getInfo);
+router.get('/api/images/topEightOne', controller.images.getTopEightImagesOne);
+router.get('/api/images/topEightTwo', controller.images.getTopEightImagesTwo);
+router.get('/api/images/singleEvent', controller.images.getSingleEventImage);
 // individual api calls
 // router.get('/api/ticketmaster/events', controller.ticketmaster.getTicketMasterSearchResults);
 // router.get('/api/stubhub/events', controller.seatgeek.getSeatGeekEvents);

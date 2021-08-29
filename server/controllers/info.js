@@ -9,7 +9,6 @@ const getIp = () => axios.get('https://jsonip.com/')
     console.error('jsonip call failure', err);
 })
 
-
 const getApproximateLocationInfo = (ip) => axios.get('http://www.geoplugin.net/json.gp', { params: { ip } })
 .then(data => {
     console.log('geoplugin data', data.data);
@@ -31,4 +30,3 @@ export const getInfo = (req, res) => getIp()
     console.error('error in get info call', err);
     res.sendStatus(500);   
 });
-

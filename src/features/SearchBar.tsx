@@ -87,7 +87,8 @@ export const SearchBar = () => {
         endDate: dateRangeState[1],
       }
     })
-    .then((res) => {
+    // this should really be some sort of standardized interface for search results call 
+    .then((res: any) => {
       console.log('master search api response for artist:', formValue, res.data);
       history.push('/search');
       // set our search result data to the response from the api call
@@ -114,17 +115,17 @@ export const SearchBar = () => {
       console.log('master search api rejection', err);
     });
     // for testing puposes
-    // axios.get('http://localhost:8080/api/search/wide', {
-    //   params: {
-    //     keyword: formValue,
-    //   }
-    // })
-    // .then((res) => {
-    //   console.log('individual api responses', res.data);
-    // })
-    // .catch((err) => {
-    //   console.log('individual api responses', err)
-    // });
+    axios.get('http://localhost:8080/api/search/wide', {
+      params: {
+        keyword: formValue,
+      }
+    })
+    .then((res) => {
+      console.log('individual api responses', res.data);
+    })
+    .catch((err) => {
+      console.log('individual api responses', err);
+    });
   }
 
   const searchIconStyle = searchEnabled ? 'search__button' : 'search__button search__button--disabled';

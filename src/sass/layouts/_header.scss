@@ -2,12 +2,19 @@
     background-color: #fff;
     padding-top: 1rem;
     display: flex;
-    align-items: center;
-
+    justify-content: center;
     @media only screen and (max-width: $bp-smallest) {
         flex-wrap: wrap;
         align-content: space-around;
         height: 11rem;
+    }
+
+    &_content {
+        display: flex;
+        align-items: center;
+        flex-basis: 126rem;
+        
+        // justify-content: center;
     }
 
     &_nav-bar {

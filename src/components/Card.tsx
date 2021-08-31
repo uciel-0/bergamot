@@ -2,6 +2,7 @@ import * as React from 'react'
 import TicketmasterLogo from '../svg/TicketmasterLogo';
 import StubhubLogo from '../svg/StubhubLogo';
 import SeatgeekLogo from '../svg/SeatgeekLogo';
+
 // stubhub has a field called ticketInfo -> if ticketInfo.totalListings = 0, show some sort of message indicating that fact
 export const Card = ({date, time, priceBeforeFees, priceAfterFees, source, name, venueName, venueCity, url, sourceUrl, status, showPricesWithFees}: any) => {
   // const asterisk = isPriceEstimated ? '*' : '';

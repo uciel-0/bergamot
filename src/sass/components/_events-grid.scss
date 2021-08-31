@@ -7,10 +7,12 @@
         font-family: 'Roboto';
         font-weight: 300;
         padding-left: 1rem;
+        padding-top: 1rem;
         color: black;
         font-size: 3.5rem;
     }
     &_item {
+        cursor: pointer;
         position: relative;
         margin: 1rem;
         z-index: 0;

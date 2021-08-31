@@ -14,8 +14,8 @@ import {
   setUserPriceRangeSelected,
   setSortType
 } from '../store/searchResults/Actions';
-import {setLoaderState} from '../store/loader/Actions';
-import {MagnifyingGlass} from '../svg/MagnifyingGlass';
+import { setLoaderState } from '../store/loader/Actions';
+import { MagnifyingGlass } from '../svg/MagnifyingGlass';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { CheckboxShading, SortType } from '../store/searchResults/Reducer';

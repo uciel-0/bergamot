@@ -23,18 +23,20 @@ interface EventGridItemProps {
 const EventGridItem = ({event}: EventGridItemProps) => {
     const { loaderDispatch } = React.useContext(LoaderContext);
     const { searchResultsDispatch } = React.useContext(SearchResultsContext);
-  
     let history = useHistory();
   
     const onSubmit = (e: any, keyword: string) => {
       e.preventDefault();
       loaderDispatch(setLoaderState(true));
+      searchResultsDispatch(setLastQuery(keyword));
+      searchResultsDispatch(setSearchResults([]));
       // reset the isStable flag so the distributor filters can reset as expected
       axios.get('http://localhost:8080/api/search/events', {
         params: { keyword }
       })
       .then((res) => {
         history.push('/search');
+        window.scrollTo(0, 0);
         // set our search result data to the response from the api call
         loaderDispatch(setLoaderState(false));
         searchResultsDispatch(setLastQuery(keyword));
@@ -53,6 +55,7 @@ const EventGridItem = ({event}: EventGridItemProps) => {
       })
       .catch((err) => {
         history.push('/search');
+        searchResultsDispatch(setLastQuery(keyword));
         loaderDispatch(setLoaderState(false));
         searchResultsDispatch(setNoResultsState(true));
         console.log('master search api rejection', err);

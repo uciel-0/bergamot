@@ -7,9 +7,14 @@ import {
   setBulkFilterAction,
   setNoResultsState,
   setNumberOfResults,
+  setIsStableAction,
+  setPriceRangeAction,
+  setUserPriceRangeSelected,
+  setSortType
 } from '../store/searchResults/Actions';
 import { LoaderContext } from '../store/loader/Context';
 import { SearchResultsContext } from '../store/searchResults/Context';
+import { CheckboxShading, SortType } from '../store/searchResults/Reducer';
 import axios from 'axios';
 
 export interface EventObject {
@@ -27,9 +32,12 @@ const EventGridItem = ({event}: EventGridItemProps) => {
   
     const onSubmit = (e: any, keyword: string) => {
       e.preventDefault();
-      loaderDispatch(setLoaderState(true));
       searchResultsDispatch(setLastQuery(keyword));
-      searchResultsDispatch(setSearchResults([]));
+      searchResultsDispatch(setIsStableAction(false));
+      searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));
+      searchResultsDispatch(setPriceRangeAction([0,0]));
+      searchResultsDispatch(setUserPriceRangeSelected(false));
+      searchResultsDispatch(setSortType(SortType.DEFAULT));
       // reset the isStable flag so the distributor filters can reset as expected
       axios.get('http://localhost:8080/api/search/events', {
         params: { keyword }

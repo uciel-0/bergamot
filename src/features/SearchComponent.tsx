@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { SearchResultsContext } from '../store/searchResults/Context';
-import {LoaderContext} from '../store/loader/Context';
+import { LoaderContext } from '../store/loader/Context';
 import { useHistory, useLocation } from 'react-router-dom';
 import {
   setSearchResults,

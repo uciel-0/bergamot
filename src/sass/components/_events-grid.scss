@@ -1,13 +1,15 @@
 .events-grid {
     &_container {
         display: grid;
-        grid-template-columns: [grid-start] 1fr 1fr 1fr 1fr [grid-end]
+        grid-template-columns: [grid-start] 1fr 1fr 1fr 1fr [grid-end];
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
     }
     &_title {
         font-family: 'Roboto';
         font-weight: 300;
         padding-left: 1rem;
-        padding-top: 1rem;
+        padding-top: 5rem;
         color: black;
         font-size: 3.5rem;
     }
@@ -21,6 +23,7 @@
         height: auto;
         box-shadow: 0 0 2px 0 rgba(19,26,31,0.12), 0 2px 4px 0 rgba(19,26,31,0.22);
         background-position: center top;
+        // width: 90%;
         img {
             border-radius: 7px;
             width: 100%;

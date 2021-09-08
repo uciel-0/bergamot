@@ -179,21 +179,25 @@ export const getEvents = (req, res) => {
     console.log('seatgeekEvents.length', seatgeekEvents.length);
     // determine whether or not to send this data set based on the filters and if this is a filter call
     // Step 2) Combinine the data into one set
-    const combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
-    // Step 2a) Check to see if there any cancelled events in here
+    let combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
+    // Step 2a) Filter out cancelled events and events without listings
+    // Step 2b) Check to see if there any cancelled events in here
     const hasCancelledEvents = determineIfSetHasCancelledEvents(combinedData);
     // Step 2c) Check to see if there are any events with no listings 
     const hasNoListingEvents = determineIfSetHasEventsWithoutListings(combinedData);
     // Step 3) Find the minimum and maximum values from the whole data set
     const minMax = calculateMinMaxOfSet(combinedData);
-    // Step ) Get the latest and earliest dates of the data set 
+    // Step 4) Get the latest and earliest dates of the data set 
     const dates = calculateEarliestLatestOfSetLocal(combinedData);
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
-    // Step 4) Sort the data chronologically
+    // Step 5) Remove events without listings and cancelled events
+    combinedData = combinedData.filter(e => e.status !== 'cancelled');
+    combinedData = combinedData.filter(e => e.priceAfterFees);
+    // Step 5) Sort the data chronologically
     const sortChronologically = sortDatesChronologically(combinedData);
     // Step 5a) Group the chronologically sorted data by date
-    const groupedData = groupByDay(sortChronologically);
+    let groupedData = groupByDay(sortChronologically);
     // Data with an unknown date ends up sorted into a null bucket by default
     // Step 5b) This chunk makes it so that null bucket is the last item, so it will show up last in the front end
     if (groupedData[0].date === 'null') {
@@ -234,8 +238,8 @@ export const getEvents = (req, res) => {
       },
       priceRange: minMax,
       dateRange: [earliestOfWholeSet.format(), latestOfWholeSet.format()],
-      hasCancelledEvents: hasCancelledEvents ? 'CHECKED' : 'GREYED',
-      hasNoListingEvents: hasNoListingEvents ? 'CHECKED' : 'GREYED',
+      hasCancelledEvents: hasCancelledEvents ? 'UNCHECKED' : 'GREYED',
+      hasNoListingEvents: hasNoListingEvents ? 'UNCHECKED' : 'GREYED',
       providerResultLengths,
       numberOfResults,
     }
@@ -391,7 +395,7 @@ export const getCachedEvents = (req, res) => {
       if (filteredData.length === 0) {
         res.send({data: []});
         return;
-      }   
+      }
     }
     
     const hasCancelledEvents = determineIfSetHasCancelledEvents(filteredData);

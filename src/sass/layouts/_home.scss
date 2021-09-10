@@ -6,7 +6,7 @@
 
     &_grid {
         display: grid;
-        grid-template-rows: [video-start] 67rem [video-end main-start] 100em [main-end];
+        grid-template-rows: [video-start] 67rem [video-end main-start] min-content [main-end];
         grid-template-columns: [grid-start] minmax(20rem, 190rem) [grid-end];
     }
 

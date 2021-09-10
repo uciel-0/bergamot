@@ -105,7 +105,7 @@ export const getEvents = (req, res) => {
     // Step 1) Set some custom fields for easy front end access
     // ticketmaster events
     let ticketmasterEvents = [];
-    if (data[0] && data[0].events) {
+    if (data[0] && data[0].events) { 
       data[0].events.forEach(e => {
         e.source = 'ticketmaster';
         e.sourceUrl = 'https://ticketmaster.com';
@@ -118,7 +118,6 @@ export const getEvents = (req, res) => {
         e.time = e.dates.start.noSpecificTime ? 'No Specific Time' : formatTime(e.datetime_local);
         e.venueName = e._embedded.venues[0].name;
         e.venueCity = e._embedded.venues[0].city.name + ', ' + e._embedded.venues[0].state.stateCode;
-
         e.isPriceEstimated = false;
         e.name = e.name.trim();
 

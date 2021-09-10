@@ -25,10 +25,10 @@ const App = () => {
     <Router>
       <div className="container">
         <Header />
-        <Loader/>
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route path="/home">
+            <Loader/>
             <Home />
           </Route>
           <Route path="/sports">

@@ -12,7 +12,7 @@
         grid-column: bop-start/bop-end;
     }
     .bop-logo_footer {
-        width: 4%;
+        width: 8%;
         padding-right: 1rem;
     } 
 
@@ -42,7 +42,7 @@
         }
         
         .column img {
-            width: 24rem;
+            width: 74%;
         }
         
         .column:not(:first-child) a:hover{
@@ -58,12 +58,12 @@
         display:inline-block;
         margin:10px;
         font-size:1.3em;
-        background:#fff;
+        // background:#fff;
         width:28px;
         height:28px;
-        text-align:Center;
-        border-radius:50%;
-        padding:5px;
+        // text-align:Center;
+        // border-radius:50%;
+        padding:20px;
         }
         
         .column:nth-child(1) .fa-facebook{
@@ -80,8 +80,8 @@
         
         .sub-footer{
         background:rgba(248, 233, 233, 0.926);
-        width:100%;
-        padding:7px 0;
+        width:85%;
+        padding:2px 0;
         text-align:center;
         color:rgb(128, 126, 126);
         font-size:2.1rem;

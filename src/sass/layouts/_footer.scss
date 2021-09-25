@@ -1,9 +1,10 @@
 .Footer {
     background-color: rgba(248, 233, 233, 0.926);
     color: black;
+    display: flex;
+    justify-content: center;
     align-items: center;
     padding-top: 14rem;
-    padding-left: 25%;
     font-size: 2.1rem;
     margin:0;
     overflow-x:hidden;
@@ -12,17 +13,12 @@
         grid-column: bop-start/bop-end;
     }
     .bop-logo_footer {
-<<<<<<< HEAD
-        width: 8%;
-=======
         width: 5rem;
->>>>>>> 91ee25c34d0cad5d055d2d248a1ffcfbc4c7e043
         padding-right: 1rem;
     } 
 
         
         .column{
-        width:17%;
         display:inline-block;
         vertical-align:top;
         padding:10px;
@@ -82,14 +78,7 @@
         color:#3399ff;
         }
         
-        .sub-footer{
-        background:rgba(248, 233, 233, 0.926);
-        width:65%;
-        padding:2px 0;
-        text-align:center;
-        color:rgb(128, 126, 126);
-        font-size:2.1rem;
-        }
+        
         
         @media (max-width:1100px){
         .column:nth-child(1) a:nth-child(3),.column:nth-child(1) a:nth-child(4),.column:nth-child(1) a:nth-child(5){
@@ -119,4 +108,20 @@
         font-size:1.3em;
         }
         }
+        
+
+.sub-footer{
+    background:rgba(248, 233, 233, 0.926);
+    grid-column: footer-start/footer-end;
+    padding:2px 0;
+    text-align:center;
+    color:rgb(128, 126, 126);
+    font-size:2.1rem;
+    }
+
+    .footer-grid{
+        display: grid;
+        grid-template-columns: [footer-start]repeat(4, 1fr)[footer-end];
+        flex-basis: auto;
+    }
 }

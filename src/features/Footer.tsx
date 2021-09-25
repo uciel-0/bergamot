@@ -7,6 +7,7 @@ import { BopIcon } from '../svg/BopIcon';
 export const Footer = () => {
     return (
         <footer className="Footer">
+            <div className="footer-grid">
             <div className="column">
                 <a className="footer_title">SOCIAL</a>
                 <a>Follow us on social media</a>
@@ -55,7 +56,7 @@ export const Footer = () => {
                 © CopyRights 2021 BOP || All rights reserved.
             </div>
 
-
+            </div>
 
         </footer>
     )

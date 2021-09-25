@@ -1,6 +1,6 @@
 .Card {
   display: grid;
-  grid-template-columns: [logo-start] 15rem [logo-end content-start] minmax(35rem, .75fr) [content-end prices-start] minmax(20rem, .25fr) [prices-end];
+  grid-template-columns: [logo-start] 15rem [logo-end content-start] minmax(35rem, 3.75fr) [content-end prices-start] minmax(20rem, .25fr) [prices-end];
   grid-template-rows: 1fr max-content 1fr;
   align-items: center;
   justify-content: center;

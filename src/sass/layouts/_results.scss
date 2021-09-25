@@ -1,6 +1,6 @@
 .Results {
   display: grid;
-  grid-template-columns: [filter-start] minmax(20rem, 22rem) [filter-end results-start] minmax(min-content, 1fr) [results-end];
+  grid-template-columns: [filter-start] minmax(20rem, 22rem) [filter-end results-start] minmax(min-content, 100rem) [results-end];
   grid-template-rows: [sort-start] max-content [sort-end results-start] max-content [results-end];
   grid-gap: 5px;
 

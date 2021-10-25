@@ -20,6 +20,7 @@ import axios from 'axios';
 export interface EventObject {
     name: string;
     url: string;
+    backgroundColor?: string;
 }
 interface EventGridItemProps {
     event: EventObject;
@@ -71,7 +72,7 @@ const EventGridItem = ({event}: EventGridItemProps) => {
     }
     
     return (
-        <div className="events-grid_item" onClick={(e) => onSubmit(e, event.name)}>
+        <div className="events-grid_item" onClick={(e) => onSubmit(e, event.name)} style={{backgroundColor: event.backgroundColor && event.backgroundColor}}>
             <p className="events-grid_item-name">{event.name}</p>
             <img src={event.url} alt={event.name + ' image'}/>
         </div>

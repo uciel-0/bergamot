@@ -1,4 +1,11 @@
 .sports {
     font-size: 3rem;
     color: black;
+    &_main {
+        display: flex;
+        justify-content: center;        
+    }
+    &_content {
+        flex-basis: 126rem;
+     }
 }

@@ -34,7 +34,14 @@
     }
 
     &_main {
+        display: flex;
+        justify-content: center;
+
         grid-row: main-start/main-end;
+    }
+
+    &_content {
+        flex-basis: 126rem;
     }
 
     &_white-text {

@@ -112,6 +112,20 @@ export const getTopEightTheatreTwo = (req, res) => {
     })
 }
 
+export const getArrayOfImages = (req, res) => {
+    const batch = [ 'Arizona Coyotes', 'New York Yankees', 'San Diego Padres', 'Chicago Cubs'];
+    const secondImageSet = batch.map(item => getTicketmasterImages(item));
+    Promise.all(secondImageSet)
+    .then(data => {
+        console.log('images call successful')
+        res.send(data)
+    })
+    .catch(err => {
+        console.log('error in image batch call', err);
+        res.send(500);
+    })  
+}
+
 export const getSingleEventImage = (req, res) => {
     const keyword = req.query.keyword;
     return getTicketmasterImages(keyword)

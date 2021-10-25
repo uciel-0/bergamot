@@ -18,6 +18,7 @@ router.get('/api/images/festivalsOne', controller.images.getTopEightFestivalsOne
 router.get('/api/images/festivalsTwo', controller.images.getTopEightFestivalsTwo);
 router.get('/api/images/theatreOne', controller.images.getTopEightTheatreOne);
 router.get('/api/images/theatreTwo', controller.images.getTopEightTheatreTwo);
+router.get('/api/images/batch', controller.images.getArrayOfImages);
 // individual api calls
 // router.get('/api/ticketmaster/events', controller.ticketmaster.getTicketMasterSearchResults);
 // router.get('/api/stubhub/events', controller.seatgeek.getSeatGeekEvents);

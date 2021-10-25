@@ -5,24 +5,26 @@ import { useHistory, useLocation, Link } from 'react-router-dom';
 import {SearchComponent} from './SearchComponent';
 import { Loader } from '../components/Loader';
 import {SearchResultsContext} from '../store/searchResults/Context';
+import { SearchResultsActions, setLastQuery } from '../store/searchResults/Actions';
 
-const renderSearchComponent = (location: any) =>  location.pathname.includes('search') ? <SearchComponent/> : null
+const renderSearchComponent = (isExpanded: boolean) =>  isExpanded ? <SearchComponent/> : null
 
-const renderNavLinks = () => {    
+const renderNavLinks = (dispatch: React.Dispatch<SearchResultsActions>) => {
+    const onTabClick = (tabName: string) => dispatch(setLastQuery(tabName));
     return (
         <nav className="nav">
             <ul className="nav-links">
                 <li>
-                    <Link to="/concerts">Concerts</Link>
+                    <Link to="/concerts" onClick={() => onTabClick('Concerts')}>Concerts</Link>
                 </li>
                 <li>
-                    <Link to="/sports">Sports</Link>
+                    <Link to="/sports" onClick={() => onTabClick('Sports')}>Sports</Link>
                 </li>
                 <li>
-                    <Link to="/festivals">Festivals</Link>
+                    <Link to="/festivals" onClick={() => onTabClick('Festivals')}>Festivals</Link>
                 </li>
                 <li>
-                    <Link to="/theatres">Theatres</Link>
+                    <Link to="/theatres" onClick={() => onTabClick('Theatre')}>Theatre</Link>
                 </li>
             </ul>
         </nav>
@@ -42,9 +44,9 @@ const renderBanner = (displayText: string, imageUrl: string) => (
 export const Header = () => {
     let history = useHistory();
     let location = useLocation();
-    const isExpanded = location.pathname.includes('search');
+    const isExpanded = location.pathname.includes('search') || location.pathname.includes('concerts') || location.pathname.includes('sports') || location.pathname.includes('festivals') || location.pathname.includes('theatre');
     const headerContainerStyle = isExpanded ? 'wavy white-text' : 'white-background black-text';
-    const {searchResultsState} = React.useContext(SearchResultsContext);
+    const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
     return (
         <div className={headerContainerStyle}>
             <header className="header">
@@ -54,8 +56,8 @@ export const Header = () => {
                     <BopIcon className={"bop-logo_icon"} />
                 </div>
                 <nav className="header_nav-bar">
-                    {renderSearchComponent(location)}
-                    {renderNavLinks()}
+                    {renderSearchComponent(isExpanded)}
+                    {renderNavLinks(searchResultsDispatch)}
                 </nav>
                 </div>
             </header>

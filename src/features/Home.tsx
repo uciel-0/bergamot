@@ -62,10 +62,12 @@ export const Home = () => {
                 </div>
             </section>
             <section className="home_main">
-              <EventsGrid title={'Concerts'} items={concerts}/>
-              <EventsGrid title={'Sports'} items={sports}/>
-              <EventsGrid title={'Festivals'} items={festivals}/>
-              <EventsGrid title={'Theatre'} items={theatre}/>
+              <div className="home_content">
+                <EventsGrid title={'Concerts'} items={concerts}/>
+                <EventsGrid title={'Sports'} items={sports}/>
+                <EventsGrid title={'Festivals'} items={festivals}/>
+                <EventsGrid title={'Theatre'} items={theatre}/>
+              </div>
             </section>
         </div>
         <div>

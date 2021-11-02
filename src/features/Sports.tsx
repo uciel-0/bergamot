@@ -9,8 +9,9 @@ const nfl: EventObject[] = [
     { url: "https://s1.ticketm.net/dam/a/95c/0173c6d8-736f-487e-8146-794d0313095c_1325301_RETINA_PORTRAIT_16_9.jpg", name: 'New England Patriots' },
     { url: "https://s1.ticketm.net/dam/a/bd0/e2cf0fbc-7e18-45ee-b651-60f99f94dbd0_1325431_RETINA_PORTRAIT_16_9.jpg", name: 'Los Angeles Chargers' },
     { url: "https://s1.ticketm.net/dam/a/7e4/6f79c7fd-ac9a-4dba-97a6-1a6be82407e4_1325121_RETINA_PORTRAIT_16_9.jpg", name: 'Dallas Cowboys' },
-    { url:  "https://s1.ticketm.net/dam/a/d08/ad826f06-02db-453d-8465-43e05cc1ad08_1325451_RETINA_PORTRAIT_16_9.jpg", name: "Los Angeles Rams" },
+    { url: "https://s1.ticketm.net/dam/a/d08/ad826f06-02db-453d-8465-43e05cc1ad08_1325451_RETINA_PORTRAIT_16_9.jpg", name: "Los Angeles Rams" },
     { url: "https://s1.ticketm.net/dam/a/b7d/d7460515-712c-4e09-b404-69c1b86e7b7d_1325511_RETINA_PORTRAIT_16_9.jpg", name: 'San Francisco 49ers' },
+    { url: "https://s1.ticketm.net/dam/a/0d8/35dc7659-f6e9-4ebf-af1c-d6c2f663e0d8_1325241_RETINA_PORTRAIT_16_9.jpg", name: 'Kansas City Chiefs'}
 ];
 
 const ncaaFootball: EventObject[] = [
@@ -83,19 +84,19 @@ export const Sports = () => {
     const { searchResultsDispatch } = React.useContext(SearchResultsContext);
 
     React.useEffect(() => {
-        searchResultsDispatch(setLastQuery('Sports'))
-    }, [])
+        searchResultsDispatch(setLastQuery('Sports'));
+    }, []);
     
     return (
         <section className="sports_main">
             <div className="sports_content">
-            <EventsGrid title={'NFL'} items={nfl}/>
-            <EventsGrid title={'NCAA Football'} items={ncaaFootball}/>
-            <EventsGrid title={'NBA'} items={nba}/>
-            <EventsGrid title={'NHL'} items={nhl}/>
-            <EventsGrid title={'NCAA Basketball'} items={ncaaBasketball}/>
-            <EventsGrid title={'MLB'} items={mlb}/>
-            <EventsGrid title={'More'} items={more}/>
+                <EventsGrid title={'NFL'} items={nfl}/>
+                <EventsGrid title={'NCAA Football'} items={ncaaFootball}/>
+                <EventsGrid title={'NBA'} items={nba}/>
+                <EventsGrid title={'NHL'} items={nhl}/>
+                <EventsGrid title={'NCAA Basketball'} items={ncaaBasketball}/>
+                <EventsGrid title={'MLB'} items={mlb}/>
+                <EventsGrid title={'More'} items={more}/>
             </div>
         </section>
     )

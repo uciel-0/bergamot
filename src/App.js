@@ -2,10 +2,13 @@ import React from 'react';
 import './css/main.css';
 import { Results } from './features/Results';
 import { Home } from './features/Home';
+import { Concerts } from './features/categories/Concerts';
+import { Festivals } from './features/categories/Festivals';
 import { Footer } from './features/Footer';
 import { Header } from './features/Header';
 import { ErrorScreen } from './features/ErrorScreen';
-import { Sports } from './features/Sports';
+import { Sports } from './features/categories/Sports';
+import { Theatre } from './features/categories/Theatre';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import "react-multi-carousel/lib/styles.css";
@@ -31,8 +34,17 @@ const App = () => {
             <Loader/>
             <Home />
           </Route>
+          <Route path="/concerts">
+            <Concerts />
+          </Route>
           <Route path="/sports">
             <Sports />
+          </Route>
+          <Route path="/festivals">
+            <Festivals />
+          </Route>
+          <Route path="/theatre">
+            <Theatre />
           </Route>
           <Route path="/search">
             <Results />

@@ -24,7 +24,7 @@ const renderNavLinks = (dispatch: React.Dispatch<SearchResultsActions>) => {
                     <Link to="/festivals" onClick={() => onTabClick('Festivals')}>Festivals</Link>
                 </li>
                 <li>
-                    <Link to="/theatres" onClick={() => onTabClick('Theatre')}>Theatre</Link>
+                    <Link to="/theatre" onClick={() => onTabClick('Theatre')}>Theatre</Link>
                 </li>
             </ul>
         </nav>

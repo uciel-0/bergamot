@@ -1,7 +1,7 @@
 import * as React from 'react';
-import EventsGrid, { EventObject } from '../components/EventsGrid';
-import { SearchResultsContext } from '../store/searchResults/Context';
-import { setLastQuery } from '../store/searchResults/Actions';
+import EventsGrid, { EventObject } from '../../components/EventsGrid';
+import { SearchResultsContext } from '../../store/searchResults/Context';
+import { setLastQuery } from '../../store/searchResults/Actions';
 
 const nfl: EventObject[] = [
     { url: "https://s1.ticketm.net/dam/a/608/ad100b89-b729-4822-8165-5b626c21a608_1325251_RETINA_PORTRAIT_16_9.jpg", name: 'Las Vegas Raiders' },
@@ -88,8 +88,8 @@ export const Sports = () => {
     }, []);
     
     return (
-        <section className="sports_main">
-            <div className="sports_content">
+        <section className="category_container">
+            <div className="category_content">
                 <EventsGrid title={'NFL'} items={nfl}/>
                 <EventsGrid title={'NCAA Football'} items={ncaaFootball}/>
                 <EventsGrid title={'NBA'} items={nba}/>

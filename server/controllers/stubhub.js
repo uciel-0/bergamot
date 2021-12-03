@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 // this has got to take in some input from the front end 
-const access_token = 'c5GTDuiwhS1dZcdHATuagGm7nWLF';
+const access_token = '2mEu7uLJjatKuECuRnMaCeRPJWWw';
 export const getStubhubEvents = (req) => {
   const keyword = req.query.keyword;
   const startDate = req.query.startDate ? moment(req.query.startDate).utc().format(`yyyy-MM-DD`) : undefined;
@@ -103,5 +103,29 @@ export const getStubhubSearchResults = (req, res) => {
   .catch((err) => {
     console.log('all calls did not resolve successfully', err);
     return err
+  })
+}
+
+export const getStubhubEventsNearYou = (q, city, region) => {
+  return axios.get('https://api.stubhub.com/sellers/search/events/v3', {
+    params: {
+      q,
+      parking: false,
+      country: 'US',
+      state: region,
+      city,
+    },
+    headers: {
+      'Authorization': `Bearer ${access_token}`,
+      'Accept': 'application/json'
+    }
+  })
+  .then(data => {
+    // console.log('stubhub events near you call successful', data.data.events);
+    return data.data.events
+  })
+  .catch(err => {
+    console.log('stubhub events near your call failed', err);
+    return [];
   })
 }

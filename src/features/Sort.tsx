@@ -1,12 +1,11 @@
 import * as React from 'react';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
 import { SearchResultsContext } from '../store/searchResults/Context';
 import { 
-  setSearchResults,
+  setAllEventsAndEventsNearYou,
   setNoResultsState,
   setSortType,
 } from '../store/searchResults/Actions';
@@ -45,7 +44,7 @@ export const Sort = () => {
       }
     })
     .then(res => {
-      searchResultsDispatch(setSearchResults(res.data.data));
+      searchResultsDispatch(setAllEventsAndEventsNearYou(res.data.events, res.data.eventsNearYou));
     })
     .catch(err => {
       searchResultsDispatch(setNoResultsState(true));
@@ -68,7 +67,6 @@ export const Sort = () => {
             autoWidth
             displayEmpty
             renderValue={renderSelectValue}
-            
           >
             <MenuItem value={SortType.DATE}>Date</MenuItem>
             <MenuItem value={SortType.PRICE_ASCENDING}>Price: Low to High</MenuItem>

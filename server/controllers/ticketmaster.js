@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+const apikey = 'BBCLAjLv49NKWn8ridowEhErPKvuxJfT';
+const countryCode = 'US';
 
 export const getTicketMasterSearchResults = (req) => {
   const keyword = req.query.keyword;
@@ -7,8 +8,8 @@ export const getTicketMasterSearchResults = (req) => {
   const endDateTime = req.query.endDate || '';
   return axios.get('https://app.ticketmaster.com/discovery/v2/events', {
     params: {
-      apikey: 'BBCLAjLv49NKWn8ridowEhErPKvuxJfT',
-      countryCode: 'US',
+      apikey,
+      countryCode,
       keyword,
       startDateTime,
       endDateTime
@@ -27,8 +28,8 @@ export const getTicketMasterSearchResults = (req) => {
 export const getTicketmasterImages = (eventName) => {
   return axios.get('https://app.ticketmaster.com/discovery/v2/attractions', {
     params: {
-      apikey: 'BBCLAjLv49NKWn8ridowEhErPKvuxJfT',
-      countryCode: 'US',
+      apikey,
+      countryCode,
       keyword: eventName
     }
   })
@@ -45,4 +46,24 @@ export const getTicketmasterImages = (eventName) => {
     console.log('ticketmaster api call rejection', err);
     return err;
   });
+}
+
+export const getTicketmasterEventsNearYou = (keyword, lat, long) => {
+  return axios.get('https://app.ticketmaster.com/discovery/v2/events', {
+    params: {
+      apikey,
+      keyword,
+      countryCode,
+      latlong:  lat + ',' + long,
+      radius: '30',
+      unit: 'miles'
+    }
+  })
+  .then(data => {
+    return data.data._embedded.events;
+  })
+  .catch(err => {
+    console.log('ticketmaster events near your call failed', err);
+    return [];
+  })
 }

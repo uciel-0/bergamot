@@ -84,7 +84,7 @@ const EventsGrid = ({title, items}: any) => {
         <div className="events-grid">
             <h1 className="events-grid_title">{title}</h1>
             <div className="events-grid_container">
-                {items.map((item: EventObject) => <EventGridItem event={item}/>)}
+                {items.map((item: EventObject, index: number) => <EventGridItem event={item} key={index}/>)}
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+const client_id = 'MTg4ODAyNjN8MTU4OTU3NDI4NS44NQ';
 // working
 export const getSeatGeekEvents = (req) => {
   const keyword = req.query.keyword.trim().replace(/\s/g, '-');
@@ -10,8 +10,7 @@ export const getSeatGeekEvents = (req) => {
   const endpoint = `https://api.seatgeek.com/2/events?client_id=${client_id}&performers.slug=${keyword}${dateRangeString}`
   return axios.get(endpoint)
   .then((data) => {
-    console.log('seatgeek endpoint string', endpoint);
-    console.log('seatgeek startDate', startDate, ' and endDate', endDate);
+    // console.log('seatgeek endpoint string', endpoint);
     return data.data;
   })
   .catch((err) => {
@@ -24,7 +23,7 @@ const getSeatGeekPerformers = (req) => {
   const keyword = req.query.keyword.trim().replace(/\s/g, '-');
   return axios.get('https://api.seatgeek.com/2/performers', {
     params: {
-      client_id: 'MTg4ODAyNjN8MTU4OTU3NDI4NS44NQ',
+      client_id,
       slug: keyword,
     }
   })
@@ -41,7 +40,7 @@ const getSeatGeekVenues = (req) => {
   const keyword = req.query.keyword;
   return axios.get('https://api.seatgeek.com/2/venues', {
     params: {
-      client_id: 'MTg4ODAyNjN8MTU4OTU3NDI4NS44NQ',
+      client_id,
       q: keyword,
     }
   })
@@ -69,5 +68,24 @@ export const getSeatGeekSearchResults = (req) => {
   .catch((err) => {
     console.log('error with seatgeek api calls', err);
     return err 
+  })
+}
+
+export const getSeatgeekEventsNearYou = (q, lat, lon) => {
+  return axios.get(`https://api.seatgeek.com/2/events`, {
+    params: {
+      client_id,
+      lat, 
+      lon, 
+      q
+    }
+  })
+  .then(data => {
+    //  console.log('seatgeekdata', data.data.events);
+     return data.data.events;
+  })
+  .catch(err => {
+    console.log('stubhub events near your call failed', err);
+    return [];
   })
 }

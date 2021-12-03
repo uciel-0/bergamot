@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getIp = () => axios.get('https://jsonip.com/')
 .then(data => {
-    console.log('jsonip call success', data.data.ip);
+    // console.log('jsonip call success', data.data.ip);
     return data.data.ip
 })
 .catch(err => {
@@ -11,7 +11,7 @@ const getIp = () => axios.get('https://jsonip.com/')
 
 const getApproximateLocationInfo = (ip) => axios.get('http://www.geoplugin.net/json.gp', { params: { ip } })
 .then(data => {
-    console.log('geoplugin data', data.data);
+    // console.log('geoplugin data', data.data);
     return {
         geoplugin_city: data.data.geoplugin_city,
         geoplugin_region: data.data.geoplugin_region,

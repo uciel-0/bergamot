@@ -18,6 +18,7 @@ import {
 } from '../utils/filterUtils';
 import moment from 'moment';
 import Cache from '../cache';
+import { getEventsNearYou } from './location';
 
 export const wideSearchResults = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
@@ -93,13 +94,14 @@ export const getEvents = (req, res) => {
   const ticketmaster = getTicketMasterSearchResults(req, res);
   const stubhub = getStubhubEvents(req, res);
   const seatgeek = getSeatGeekEvents(req, res);
+  const nearYou = getEventsNearYou(req, res);
     // create the key under which this data will be stored 
   const key = `getEvents_${req.query.keyword}`;
   const startDate = req.query.startDate;
   const endDate = req.query.endDate;
   console.log('start and end date from the front end', startDate, endDate);
   // when the response is complete, store it in the cache 
-  cache.set(key, () => Promise.all([ticketmaster, stubhub, seatgeek]))
+  cache.set(key, () => Promise.all([ticketmaster, stubhub, seatgeek, nearYou]))
   .then(data => {
     console.log('data from the backend call', data);
     // Step 1) Set some custom fields for easy front end access
@@ -173,9 +175,16 @@ export const getEvents = (req, res) => {
       });
       seatgeekEvents = data[2].events;
     }
+    // events near the user
+    let nearbyEvents = [];
+    if (data[3] && data[3].length > 0) {
+      nearbyEvents = data[3];
+    }
+
     console.log('ticketmasterEvents.length', ticketmasterEvents.length);
     console.log('stubhubEvents.length', stubhubEvents.length);
     console.log('seatgeekEvents.length', seatgeekEvents.length);
+    console.log('nearbyEvents.length', nearbyEvents.length);
     // determine whether or not to send this data set based on the filters and if this is a filter call
     // Step 2) Combinine the data into one set
     let combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
@@ -195,8 +204,10 @@ export const getEvents = (req, res) => {
     combinedData = combinedData.filter(e => e.priceAfterFees);
     // Step 5) Sort the data chronologically
     const sortChronologically = sortDatesChronologically(combinedData);
+    const nearbyEventsSortedChronologically = sortDatesChronologically(nearbyEvents);
     // Step 5a) Group the chronologically sorted data by date
     let groupedData = groupByDay(sortChronologically);
+    let nearbyGroupedData = groupByDay(nearbyEventsSortedChronologically);
     // Data with an unknown date ends up sorted into a null bucket by default
     // Step 5b) This chunk makes it so that null bucket is the last item, so it will show up last in the front end
     if (groupedData[0].date === 'null') {
@@ -224,7 +235,8 @@ export const getEvents = (req, res) => {
     const numberOfResults = groupedData.reduce((total, current) => total += current.events.length, 0);
     // Step 7) Arrange the data together
     const response = {
-      data: groupedData,
+      events: groupedData,
+      eventsNearYou: nearbyGroupedData,
       source: {
         ticketmaster: hasTicketmasterData,
         stubhub: hasStubhubData,
@@ -349,8 +361,10 @@ export const getCachedEvents = (req, res) => {
     });
     seatgeekEvents = data[2].events;
     seatgeekInWholeSet = seatgeekEvents.length > 0;
-
-    let combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents];
+    // nearby event processing
+    let nearbyEvents = data[3];
+    
+    let combinedData = [...ticketmasterEvents, ...stubhubEvents, ...seatgeekEvents, ...nearbyEvents];
     if (combinedData.length === 0) {
       res.send({data: []});
       return;
@@ -364,9 +378,19 @@ export const getCachedEvents = (req, res) => {
     const earliestOfWholeSet = moment.min(dates);
     const latestOfWholeSet = moment.max(dates);
 
-    if (ticketmasterState === 'UNCHECKED') { ticketmasterEvents = [] }
-    if (stubhubState === 'UNCHECKED') { stubhubEvents = [] }
-    if (seatgeekState === 'UNCHECKED') { seatgeekEvents = [] }
+    if (ticketmasterState === 'UNCHECKED') { 
+      ticketmasterEvents = [];
+      nearbyEvents = nearbyEvents.filter(e => e.source !== 'ticketmaster');
+    }
+    if (stubhubState === 'UNCHECKED') { 
+      stubhubEvents = [];
+      nearbyEvents = nearbyEvents.filter(e => e.source !== 'stubhub');
+    }
+    
+    if (seatgeekState === 'UNCHECKED') { 
+      seatgeekEvents = []; 
+      nearbyEvents = nearbyEvents.filter(e => e.source !== 'seatgeek');
+    }
 
     console.log('ticketmasterEvents.length', ticketmasterEvents.length);
     console.log('stubhubEvents.length', stubhubEvents.length);
@@ -378,12 +402,15 @@ export const getCachedEvents = (req, res) => {
 
     if (showCancelled === 'UNCHECKED') {
       combinedData = combinedData.filter(e => e.status !== 'cancelled');
+      nearbyEvents = nearbyEvents.filter(e => e.status !== 'cancelled');
     }
     if (showNoListings === 'UNCHECKED') {
       combinedData = combinedData.filter(e => e.priceAfterFees);
+      nearbyEvents = nearbyEvents.filter(e => e.priceAfterFees);
     }
     // FILTRATION INITIATION
     let filteredData = JSON.parse(JSON.stringify(combinedData));
+    let filteredNearbyEvents = JSON.parse(JSON.stringify(nearbyEvents));
     // 2) Do your filtrations
     let minPrice = req.query.minPrice;
     let maxPrice = req.query.maxPrice;
@@ -391,6 +418,7 @@ export const getCachedEvents = (req, res) => {
     // if we receive a range which is different from the whole range, initiate price filtration
     if (frontEndPriceFilterRange[0] > minMaxPriceOfWholeSet[0] || frontEndPriceFilterRange[1] < minMaxPriceOfWholeSet[1]) {
       filteredData = filteredData.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
+      filteredNearbyEvents = filteredNearbyEvents.filter(e => (e.priceAfterFees >= minPrice && e.priceAfterFees <= maxPrice) || !e.priceAfterFees);
       if (filteredData.length === 0) {
         res.send({data: []});
         return;
@@ -416,12 +444,16 @@ export const getCachedEvents = (req, res) => {
     const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState);
 
     let groupedData = [];
+    let groupedEventsNearYou = [];
 
     if (sortType === '' || sortType === 'Date' || sortType === 'Popular') {
       const sortChronologically = sortDatesChronologically(filteredData);
       groupedData = groupByDay(sortChronologically);
+      const sortNearbyChronologically = sortDatesChronologically(filteredNearbyEvents);
+      groupedEventsNearYou = groupByDay(sortNearbyChronologically);
     } else if (sortType === 'Price: High to Low' || sortType === 'Price: Low to High') {
       groupedData = sortByPriceAndGroupByDay(filteredData, sortType);
+      groupedEventsNearYou = sortByPriceAndGroupByDay(filteredNearbyEvents, sortType);
     }
 
     if (groupedData[0].date === 'null') {
@@ -443,9 +475,9 @@ export const getCachedEvents = (req, res) => {
     });
     // 3) Get your highs and lows, earliests and latest on FILTERED data set
     const numberOfResults = groupedData.reduce((total, current) => total += current.events.length, 0);
-
     const response = {
-      data: groupedData,
+      events: groupedData.filter(e => !e.eventNearYou),
+      eventsNearYou: groupedEventsNearYou,
       source: {
         ticketmaster: hasTicketmasterData,
         stubhub: hasStubhubData,

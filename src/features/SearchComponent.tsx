@@ -2,9 +2,10 @@ import * as React from 'react';
 import axios from 'axios';
 import { SearchResultsContext } from '../store/searchResults/Context';
 import { LoaderContext } from '../store/loader/Context';
+import { LocationContext } from '../store/location/Context';
 import { useHistory, useLocation } from 'react-router-dom';
 import {
-  setSearchResults,
+  setAllEventsAndEventsNearYou,
   setBulkFilterAction,
   setNoResultsState,
   setNumberOfResults,
@@ -31,13 +32,13 @@ export const SearchComponent = () => {
   const [searchEnabled, setSearchEnabled] = React.useState<boolean>(true);
   const { searchResultsDispatch } = React.useContext(SearchResultsContext);
   const { loaderDispatch } = React.useContext(LoaderContext);
+  const { locationState } = React.useContext(LocationContext);
 
   const today = moment().startOf('day').format();
   let history = useHistory();
   let location = useLocation();
 
   React.useEffect(() => {
-    console.log(dateRangeState);
     if ((!dateRangeState[0] && !dateRangeState[1]) || (dateRangeState[0] && dateRangeState[1])) {
       setSearchEnabled(true);
     } else if ((!dateRangeState[0] && dateRangeState[1]) || (dateRangeState[0] && !dateRangeState[1])) {
@@ -86,6 +87,10 @@ export const SearchComponent = () => {
         keyword: formValue,
         startDate: dateRangeState[0],
         endDate: dateRangeState[1],
+        lat: locationState.location.lat,
+        long: locationState.location.long,
+        city: locationState.location.city,
+        region: locationState.location.region
       }
     })
     .then((res) => {
@@ -94,7 +99,7 @@ export const SearchComponent = () => {
       // set our search result data to the response from the api call
       loaderDispatch(setLoaderState(false));
       searchResultsDispatch(setLastQuery(formValue));
-      searchResultsDispatch(setSearchResults(res.data.data));
+      searchResultsDispatch(setAllEventsAndEventsNearYou(res.data.events, res.data.eventsNearYou));
       searchResultsDispatch(setNumberOfResults(res.data.numberOfResults));
       console.log('total length of events:', res.data.totalResultsLength);
       console.log('ticketmaster events:', res.data.providerResultLengths[0]);
@@ -178,6 +183,3 @@ export const SearchComponent = () => {
     </React.Fragment>
   )
 }
-
-
-

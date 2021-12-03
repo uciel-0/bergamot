@@ -1,8 +1,10 @@
 import { Moment } from "moment";
 import { CheckboxShading, SortType } from "./Reducer";
+import { SearchResult } from "./Reducer";
 
 export enum SearchResultActionTypes {
   SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS',
+  SET_EVENTS_AND_EVENTS_NEAR_YOU = 'SET_ALL_EVENTS_AND_EVENTS_NEAR_YOU',
   SET_TICKETMASTER_STATE = 'SET_TICKETMASTER_STATE',
   SET_STUBHUB_STATE = 'SET_STUBHUB_STATE',
   SET_SEATGEEK_STATE = 'SET_SEATGEEK_STATE',
@@ -217,6 +219,18 @@ export const setSortType = (payload: SortType): SetSortType => ({
   payload
 });
 
+interface SetSearchResultsAndEventsNearYou {
+  type: SearchResultActionTypes.SET_EVENTS_AND_EVENTS_NEAR_YOU;
+  events: SearchResult[];
+  eventsNearYou: SearchResult[];
+}
+
+export const setAllEventsAndEventsNearYou = (events: SearchResult[], eventsNearYou: SearchResult[]): SetSearchResultsAndEventsNearYou => ({
+  type: SearchResultActionTypes.SET_EVENTS_AND_EVENTS_NEAR_YOU,
+  events,
+  eventsNearYou
+});
+
 export type SearchResultsActions = SetSearchResults | SetTicketmasterState | SetStubhubState | SetSeatgeekState | SetBulkFilter | SetIsStable | 
 SetNoResults | SetPriceRange | SetLastQuery | SetShowCancelled | SetShowNoListings | SetDateRange | SetUserDateRangeSelected | SetUserPriceRangeSelected | 
-SetNumberOfResults | SetShowPricesWithFees | SetSortType;
+SetNumberOfResults | SetShowPricesWithFees | SetSortType | SetSearchResultsAndEventsNearYou;

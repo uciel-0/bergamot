@@ -648,12 +648,27 @@ body {
 .Cards {
   grid-row: results-start/results-end;
   padding-right: 1rem; }
-  .Cards_date {
+  .Cards_header {
     font-size: 2.5rem;
+    font-weight: 400;
+    color: black; }
+  .Cards_date {
+    font-size: 2.2rem;
     font-weight: 400;
     color: black; }
   .Cards_group {
     padding-bottom: 1rem; }
+  .Cards_divider {
+    position: relative;
+    margin-bottom: 3rem; }
+    .Cards_divider::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: "";
+      width: 100%;
+      height: 2px;
+      background-color: #d0d0d0; }
   @media only screen and (max-width: 51.875em) {
     .Cards {
       padding-top: 0rem; } }
@@ -761,15 +776,13 @@ body {
 .Toolbar {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0 0 10px #ddd;
+  justify-content: space-between;
   padding-top: 5px;
+  margin: auto;
   margin-bottom: 10px;
   font-size: 2rem;
-  color: black; }
-  .Toolbar_results-count {
-    flex-basis: 110.5rem; }
+  color: black;
+  max-width: 120.5rem; }
 
 .SearchResults {
   max-width: 125em; }

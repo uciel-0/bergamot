@@ -4,7 +4,6 @@ import {Card} from '../components/Card';
 import {Filter} from './Filter';
 import {Sort} from './Sort';
 import { ErrorScreen } from './ErrorScreen';
-import { Loader } from '../components/Loader';
 export interface SearchResult {
   date: string;
   events: any[];
@@ -13,6 +12,7 @@ export interface SearchResult {
 
 export const Results = () => {
   const {searchResultsState} = React.useContext(SearchResultsContext);
+  console.log(searchResultsState, 'searchResultsState');
   return (
     <div className="LowerHalf_container">
       <div className="Toolbar">
@@ -26,8 +26,26 @@ export const Results = () => {
           <div className="Results">
             <Filter />
             <div className="Cards">
-              { !searchResultsState.noResults ?
-                searchResultsState.searchResults.length > 0 ? searchResultsState.searchResults.map((e: any, index) => 
+              {
+                searchResultsState.searchResults.eventsNearYou.length > 0 && 
+                <p className="Cards_header">Events Near You</p>
+              }
+              {
+                searchResultsState.searchResults.eventsNearYou.length > 0 ? searchResultsState.searchResults.eventsNearYou.map((e: any, index) => 
+                  <CardsGroup date={e.date} events={e.events} key={index} showPricesWithFees={searchResultsState.showPricesWithFees}/>
+                ) : null
+              }
+              {
+                searchResultsState.searchResults.eventsNearYou.length > 0 && 
+                <div className="Cards_divider"/>
+              }
+              {
+                searchResultsState.searchResults.events.length > 0 && 
+                <p className="Cards_header">All Events</p>
+              }
+              { 
+                !searchResultsState.noResults ? 
+                searchResultsState.searchResults.events.length > 0 ? searchResultsState.searchResults.events.map((e: any, index) => 
                   <CardsGroup date={e.date} events={e.events} key={index} showPricesWithFees={searchResultsState.showPricesWithFees}/>
                 ) : null : <ErrorScreen/>
               }
@@ -64,7 +82,5 @@ export const CardsGroup = (searchResult: SearchResult) =>
     }
   </div>
   
-
-
 // we need to start keeping track of the custom fields on the objects which we always expect to have
 // they are the crucial bits of the front end and should be treated as such in the code

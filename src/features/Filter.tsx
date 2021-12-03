@@ -1,6 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { 
+  setAllEventsAndEventsNearYou,
   setTicketmasterStateAction,
   setStubhubStateAction,
   setSeatgeekStateAction,
@@ -110,7 +111,7 @@ export const Filter = () => {
   }, [globalShowPricesWithFeesState]);
 
   const callCacheForFiltering = (isSliderCall: boolean, isCalendarCall: boolean, isVendorFilterCall: boolean, isStatusFilterCall: boolean) => {
-    // LoaderDispatch(setLoaderState(true));
+    // loaderDispatch(setLoaderState(true));
     console.log('callCacheForFiltering firing');
     console.log('globalTicketmasterShadingState',globalTicketmasterShadingState);
     console.log('globalStubhubShadingState', globalStubhubShadingState);
@@ -134,10 +135,10 @@ export const Filter = () => {
         sortType: searchResultsState.sortType
       }
     }).then(res => {
-      searchResultsDispatch(setIsStableAction(false))
-      if (res.data.data.length === 0) {
+      // loaderDispatch(setLoaderState(false));
+      searchResultsDispatch(setIsStableAction(false));
+      if (res.data.events.length === 0) {
         searchResultsDispatch(setNoResultsState(true));
-        loaderDispatch(setLoaderState(false));
       } else {
         console.log('cache response for artist', searchResultsState.lastQuery, ":", res.data);
         console.log('total length of events:', res.data.totalResultsLength);
@@ -145,7 +146,7 @@ export const Filter = () => {
         console.log('stubhub events:', res.data.providerResultLengths[1]);
         console.log('seatgeek events:', res.data.providerResultLengths[2]);
         searchResultsDispatch(setNoResultsState(false));
-        searchResultsDispatch(setSearchResults(res.data.data));
+                searchResultsDispatch(setAllEventsAndEventsNearYou(res.data.events, res.data.eventsNearYou));
         // update the filter results as the cache results come back 
         // LoaderDispatch(setLoaderState(false));
         searchResultsDispatch(setNumberOfResults(res.data.numberOfResults));
@@ -166,7 +167,7 @@ export const Filter = () => {
     }).catch(err => {
       console.log('filter function api call error', err);
       searchResultsDispatch(setNoResultsState(true));
-      // LoaderDispatch(setLoaderState(false));
+      // loaderDispatch(setLoaderState(false));
     })
   }
 
@@ -217,7 +218,7 @@ export const Filter = () => {
   const labelState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_label Filter_label--disabled' : 'Filter_label';
   const checkboxState = (stateName: CheckboxShading): string => stateName === CheckboxShading.GREYED ? 'Filter_checkbox Filter_checkbox--disabled' : 'Filter_checkbox';
  
-  const formatSliderPrice = (price: number) => `$${price ? price.toLocaleString() : ''}`; 
+  const formatSliderPrice = (price: number) => `$${price ? price.toLocaleString() : ''}`;
 
   return (
     <div className="Filter">

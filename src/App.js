@@ -13,16 +13,36 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import axios from 'axios';
 import "react-multi-carousel/lib/styles.css";
 import { Loader } from './components/Loader';
+import { LocationContext } from './store/location/Context';
+import { setLocationStateAction } from './store/location/Actions';
 
 const App = () => {
+  const {locationDispatch, locationState} = React.useContext(LocationContext);
   // start with a server side call to IP get
-  axios.get('http://localhost:8080/api/info')
-  .then(data => {
-    console.log('JSONIP CALL', data);
-  })
-  .catch(err => {
-    console.log('JSONIP error', err);
-  });
+  React.useEffect(() => {
+    if (!locationState.location.loaded) {
+      axios.get('http://localhost:8080/api/info')
+      .then(data => {
+        console.log('JSONIP CALL', data);
+        const {
+          geoplugin_city, 
+          geoplugin_latitude, 
+          geoplugin_longitude, 
+          geoplugin_region
+        } = data.data.geopluginData;
+        locationDispatch(setLocationStateAction({
+          lat: geoplugin_latitude,
+          long: geoplugin_longitude,
+          region: geoplugin_region,
+          city: geoplugin_city,
+          loaded: true
+        }))
+      })
+      .catch(err => {
+        console.log('JSONIP error', err);
+      });
+    }
+  }, [locationState, locationDispatch])
 
   return (
     <Router>

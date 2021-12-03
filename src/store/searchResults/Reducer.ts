@@ -3,7 +3,10 @@ import moment from 'moment-timezone';
 import {SearchResultActionTypes, SearchResultsActions} from './Actions';
 
 export interface SearchResultsState {
-  searchResults: SearchResult[];
+  searchResults: {
+    events: SearchResult[];
+    eventsNearYou: SearchResult[];
+  }
   searchFilters: SearchFilterState;
   sortType: SortType;
   isStable: boolean;
@@ -22,7 +25,7 @@ export interface SearchResult {
 }
 
 export enum SortType {
-  DEFAULT = 'Date',
+  DEFAULT = 'Date ',
   DATE = 'Date',
   PRICE_ASCENDING = 'Price: Low to High',
   PRICE_DESCENDING = 'Price: High to Low',
@@ -56,6 +59,14 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
   switch(action.type) {
     case SearchResultActionTypes.SET_SEARCH_RESULTS:
       return {...state, searchResults: action.payload};
+    case SearchResultActionTypes.SET_EVENTS_AND_EVENTS_NEAR_YOU:
+      return {...state, 
+        searchResults: {
+          ...state.searchResults,
+          events: action.events,
+          eventsNearYou: action.eventsNearYou
+        }
+      }
     case SearchResultActionTypes.SET_TICKETMASTER_STATE:
       return {...state, searchFilters: {...state.searchFilters, ticketmasterState: action.payload}};
     case SearchResultActionTypes.SET_STUBHUB_STATE:
@@ -109,7 +120,10 @@ export const searchResultsReducer = (state: SearchResultsState, action: SearchRe
 const timezone = moment.tz.guess();
 
 export const initialSearchResultsState: SearchResultsState = {
-  searchResults: [],
+  searchResults: {
+    events: [],
+    eventsNearYou: []
+  },
   searchFilters: {
     ticketmasterState: CheckboxShading.GREYED,
     stubhubState: CheckboxShading.GREYED,

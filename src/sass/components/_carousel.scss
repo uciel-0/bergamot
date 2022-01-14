@@ -3,7 +3,7 @@
     
     li.BrainhubCarouselItem {
         background-color: #0a0a0a;
-        height: 200px;
+        height: 20rem;
         border-radius: 1rem;
         overflow:hidden;
     }
@@ -17,8 +17,8 @@
         &_text {
             color:white;
             position:absolute;
-            top: 30px;
-            left: 30px;
+            top: 3rem;
+            left: 3rem;
             z-index: 100;
         }
     }

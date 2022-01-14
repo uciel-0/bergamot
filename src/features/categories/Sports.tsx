@@ -81,10 +81,12 @@ const more: EventObject[] = [
 ];
 
 export const Sports = () => {
-    const { searchResultsDispatch } = React.useContext(SearchResultsContext);
+    const { searchResultsDispatch, searchResultsState } = React.useContext(SearchResultsContext);
 
     React.useEffect(() => {
-        searchResultsDispatch(setLastQuery('Sports'));
+        if (searchResultsState.lastQuery !== 'Sports') {
+            searchResultsDispatch(setLastQuery('Sports'));
+        }
     }, []);
     
     return (

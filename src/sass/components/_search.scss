@@ -1,7 +1,4 @@
 .search {
-    &_container {
-    }
-
     &_form {
         width: 66%;
         position: relative;
@@ -28,12 +25,17 @@
 
     &_button {
         position: absolute;
-        top: 13.5px;
+        top: 1.35rem;
         background-color: white;
         border: none;
         margin-left: 1%;
         @media(max-width: 1100px) {
-            top: 11.5px;
+            top: 1.15rem;
+        }
+        @include respond (phone) {
+            width: 0%;
+            top:-2px;
+            left: 2px;
         }
         &--disabled {
             opacity: 0.65;
@@ -54,26 +56,30 @@
         position: absolute;
         top: 0;
         right: 0;
-        padding-right: 7px;
-        padding-top: 5px;
+        padding-right: .7rem;
+        padding-top: .5rem;
+        @media only screen and (max-width: $bp-small) {
+            top: 20px;
+            left:0;
+        }
         .MuiFormControl-root {
-            padding-right: 10px;
+            padding-right: 1rem;
         }
         .MuiInputBase-root {
             font-size: 1.4rem;
+        }
+        .MuiInputBase-input {
+            @media(max-width: 600px){
+                padding: 3px;
+            }
+            @media(min-width: 1010px) {
+                padding: .6rem 0 .7rem;
+            }
         }
         &-invisible {
             display: none;
         }
     }
-    // &_space {
-    //     // background-color: transparent;
-    //     height: 3.1rem;
-    //     width: 5rem;
-    //     margin-right: -2.8rem;
-    //     border-top-right-radius: 50px;
-    //     border-bottom-right-radius: 50px;
-    // }
 }
 
 .fake-element {
@@ -84,9 +90,18 @@
     background-color: white;
     border-top-right-radius: .5rem;
     border-bottom-right-radius: .5rem;
-    width: 387px;
+    width: 38.7rem;
     height: 88%;
-    margin-top: 2px;  
-    margin-right: 2px;
-    border-left: 1px solid #dedede;
+    margin-top: .2rem;  
+    margin-right: .2rem;
+    border-left: .1rem solid #dedede;
+    @media(max-width: 599px) {
+        top: .2rem;
+        height: 83%;
+    }
+    @media only screen and (max-width: $bp-small) {
+        top: 20px;
+        left: 0;
+        height: 100%;
+    }
 }

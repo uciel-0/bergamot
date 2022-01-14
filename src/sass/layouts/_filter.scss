@@ -2,9 +2,55 @@
   background-color: #f2f2f2;
   color: black;
   grid-row: results-start/results-end;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @include respond(phone) {
+    grid-row: unset;
+    grid-column: unset;
+  }
 
   @media only screen and (max-width: $bp-bop-medium) {
     margin-top: 0rem;
+  }
+
+  &_toggle {
+    display: none;
+  }
+
+  &_mobile-close-button {
+    @media only screen and (max-width: $bp-small) {
+      position: fixed;
+      top: 21px; 
+      right: 27px;
+      opacity: 0;
+      width: 0;
+    }
+  }
+
+  &_button {
+    border: 1px solid black;
+    padding: 2px 10px;
+    align-self: center;
+  }
+
+  &_background {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    @media only screen and (max-width: $bp-small) {
+      opacity: 1;
+      width: 100%;
+      height: 10px; 
+      position: fixed;
+      bottom: 0;
+      left: 50vw;
+      background-image: radial-gradient(white,white);
+      z-index: 3000;
+      // transition: transform .8s;
+      transform: scale(0);
+    }
   }
 
   &_price-toggle {
@@ -16,6 +62,17 @@
 
   &_form {
     margin-left: 1rem;
+    @media only screen and (max-width: $bp-small) {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 3500;
+      width: 0; 
+      opacity: 0;
+      // transition: all .8s cubic-bezier(0.83, 0, 0.17, 1);
+      overflow: hidden;
+    }
   }
 
   &_row-title {
@@ -28,7 +85,7 @@
     font-weight: 300;
   }
 
-  &_price-toggle, &_vendors, &_status, &_price {
+  &_item {
     position: relative;
     padding-bottom: 1rem;
     padding-top: 1rem;
@@ -37,22 +94,27 @@
       position: absolute;
       left    : 0;
       bottom  : 0;
-      height  : 1px;
+      height  : .1rem;
       width   : 95%;  /* or 100px */
-      border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+      border-bottom: .1rem solid rgba(0, 0, 0, 0.22);
       margin: 0 auto;
+    }
+    @media only screen and (max-width: $bp-small) {
+      opacity: 0;
+      z-index: 3500;
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
   input {
-    margin-right: 4px;
+    margin-right: .4rem;
   }
 
   .MuiSlider-root	{
     color: black;
     width: 70%;
     padding: 0;
-    // padding-bottom: 13px;
   }
   // slider styles
   &_priceSlider {
@@ -65,8 +127,8 @@
     font-weight: 300;
     display:flex;
     &--dash {
-      margin-right: 3px;
-      margin-left: 3px;
+      margin-right: .3rem;
+      margin-left: .3rem;
     }
   }
   // little blue handles for the price slider
@@ -76,7 +138,7 @@
 
   .MuiSlider-thumb .Mui-focusVisible, .MuiSlider-thumb:hover {
     background-color: rgba(0, 26, 255, 0.5) !important;
-    box-shadow:  0px 0px 0px 8px rgba(0, 26, 255, 0.5) !important;
+    box-shadow: 0 0 0 .8rem rgba(0, 26, 255, 0.5) !important;
   }
 
   // Price Fees Switch text size
@@ -96,6 +158,60 @@
   &_checkbox {
     &--disabled {
       pointer-events: none;
+    }
+  }
+
+  // mobile drawer functionalioty
+  &_toggle:checked ~ &_background {
+    transform: scale(2, 200);
+  }
+
+  &_toggle:checked ~ &_mobile-close-button {
+    opacity: 1;
+    width: auto;
+    z-index: 4000;
+  }
+
+  // &_toggle:checked ~ &_mobile-close-button > .Filter_mobile-close-icon {
+  //   opacity: 1;
+  // }
+
+  &_toggle:checked ~ &_form {
+    display: block;
+    opacity: 1;
+    width: 100%;
+  }
+
+  &_toggle:checked ~ &_form > .Filter_item {
+    opacity: 1;
+  }
+
+  // x button to exit mobile filters
+  &_mobile-close-icon {
+    @media only screen and (max-width: $bp-small) {
+      // opacity: 0;
+      position: relative;
+      margin-top: 1.5rem;
+      &::before,
+      &::after {
+          content: "";
+          width: 15px;
+          height: 1px;
+          background-color: black;
+          display: inline-block;
+          // transition: all .2s;
+          position: absolute;
+          left: 0;
+          top: 0;
+      }
+
+      &::before {
+        transform: rotate(135deg);
+      }
+
+      &::after {
+        transform: rotate(-135deg);
+      }
     }
   }
 }

@@ -6,7 +6,6 @@ import {
   setStubhubStateAction,
   setSeatgeekStateAction,
   setIsStableAction, 
-  setSearchResults,
   setNoResultsState, 
   setShowCancelledAction,
   setShowNoListingsAction, 
@@ -208,7 +207,7 @@ export const Filter = () => {
     } // if the highest value is equal to the lowest value
     else if (values[1] === globalPriceRangeState[0]) {
       // set the high value to be one higher than the lowest value
-      setPriceRangeState([globalPriceRangeState[0], globalPriceRangeState[0] + 1])
+      setPriceRangeState([globalPriceRangeState[0], globalPriceRangeState[0] + 1]);
     } // otherwise set the values as usual
     else setPriceRangeState(values)
   }
@@ -222,8 +221,17 @@ export const Filter = () => {
 
   return (
     <div className="Filter">
+      <input type="checkbox" className="Filter_toggle" id="filter-toggle" name="filter-checkbox"/>
+      <label htmlFor="filter-toggle" className="Filter_button">
+        <span className="Filter_icon">Filters</span>
+      </label>
+      <label htmlFor="filter-toggle" className="Filter_mobile-close-button">
+        <span className="Filter_mobile-close-icon">&nbsp;</span>
+      </label>
+      <div className="Filter_background">&nbsp;</div>
+
       <form className="Filter_form">
-        <div className="Filter_price-toggle">
+        <div className="Filter_price-toggle Filter_item">
           <FormGroup row>
             <FormControlLabel
               control={<Switch checked={globalShowPricesWithFeesState} onChange={handleFeesToggle} name="fees-toggle" color="primary"/>}
@@ -232,11 +240,11 @@ export const Filter = () => {
           </FormGroup>
           <p>*Fees may be an estimated amount due to provider’s varying fees.</p>
         </div>
-        <div className="Filter_vendors">
+        <div className="Filter_vendors Filter_item">
           <b className="Filter_row-title">Distributor</b>
           <br></br>
           <label htmlFor="showTicketmaster" className={labelState(globalTicketmasterShadingState)}>
-            <input 
+            <input
               type="checkbox" 
               name="showTicketmaster" 
               checked={globalTicketmasterShadingState === CheckboxShading.CHECKED}
@@ -269,7 +277,7 @@ export const Filter = () => {
             <br></br>
           </label>
         </div>
-        <div className="Filter_status">
+        <div className="Filter_status Filter_item">
           <b className="Filter_row-title">Status</b>
           <br></br>
           <label htmlFor="showCancelled" className={labelState(globalShowCancelledState)}>
@@ -295,7 +303,7 @@ export const Filter = () => {
             <br></br>
           </label>
         </div>
-        <div className="Filter_price">
+        <div className="Filter_price Filter_item">
           <b className="Filter_row-title">Price</b>
           <br></br>
           <div className="Filter_price-range">

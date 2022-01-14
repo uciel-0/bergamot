@@ -15,10 +15,12 @@ const festivals: EventObject[] = [
 ];
 
 export const Festivals = () => {
-    const { searchResultsDispatch } = React.useContext(SearchResultsContext);
+    const { searchResultsDispatch, searchResultsState } = React.useContext(SearchResultsContext);
 
     React.useEffect(() => {
-        searchResultsDispatch(setLastQuery('Sports'));
+        if (searchResultsState.lastQuery !== 'Festivals') {
+            searchResultsDispatch(setLastQuery('Festivals'));
+        }
     }, []);
     
     return (

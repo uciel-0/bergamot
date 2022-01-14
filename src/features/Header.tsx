@@ -1,44 +1,55 @@
 import * as React from 'react';
 import { BopIcon } from '../svg/BopIcon';
 import BopTreble from '../svg/BopTreble';
-import { useHistory, useLocation, Link } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import {History} from 'history';
 import {SearchComponent} from './SearchComponent';
 import { Loader } from '../components/Loader';
 import {SearchResultsContext} from '../store/searchResults/Context';
-import { SearchResultsActions, setLastQuery } from '../store/searchResults/Actions';
+import { SearchResultsActions } from '../store/searchResults/Actions';
 
 const renderSearchComponent = (isExpanded: boolean) =>  isExpanded ? <SearchComponent/> : null
 
-const renderNavLinks = (dispatch: React.Dispatch<SearchResultsActions>) => {
-    const onTabClick = (tabName: string) => dispatch(setLastQuery(tabName));
+const renderNavLinks = (dispatch: React.Dispatch<SearchResultsActions>, history: History) => {
+
+    const onNavItemClick = (tabName: string) => history.push('/' + tabName.toLowerCase());
+    
     return (
-        <nav className="nav">
-            <ul className="nav-links">
-                <li>
-                    <Link to="/concerts" onClick={() => onTabClick('Concerts')}>Concerts</Link>
-                </li>
-                <li>
-                    <Link to="/sports" onClick={() => onTabClick('Sports')}>Sports</Link>
-                </li>
-                <li>
-                    <Link to="/festivals" onClick={() => onTabClick('Festivals')}>Festivals</Link>
-                </li>
-                <li>
-                    <Link to="/theatre" onClick={() => onTabClick('Theatre')}>Theatre</Link>
-                </li>
-            </ul>
-        </nav>
+        <div className="navigation">
+            <input type="checkbox" className="navigation_checkbox" id="navi-toggle" name="checkbox"/>
+            <label htmlFor="navi-toggle" className="navigation_button">
+                <span className="navigation_icon">&nbsp;</span>
+            </label>
+            <div className="navigation_background">&nbsp;</div>
+
+            <nav className="navigation_nav">
+                <ul className="nav_links">
+                    <label htmlFor="navi-toggle" id="concerts" onClick={() => onNavItemClick('Concerts')}>
+                        Concerts
+                    </label>
+                    <label htmlFor="navi-toggle" id="sports" onClick={() => onNavItemClick('Sports')}>
+                        Sports
+                    </label>
+                    <label htmlFor="navi-toggle" id="festivals" onClick={() => onNavItemClick('Festivals')}>
+                        Festivals
+                    </label>
+                    <label htmlFor="navi-toggle" id="theatre" onClick={() => onNavItemClick('Theatre')}>
+                        Theatre
+                    </label>
+                </ul>
+            </nav>
+        </div>
     )
 }
 
 const renderBanner = (displayText: string, imageUrl: string) => (
-<>
-  <div className="Banner">
-    <p className="Banner_name">{displayText || ""}</p>
-    {/* <img className="Banner_image" src={imageUrl} alt={displayText} /> */}
-  </div>
-  <Loader/>
-</>
+    <>
+        <div className="Banner">
+            <p className="Banner_name">{displayText || ""}</p>
+            {/* <img className="Banner_image" src={imageUrl} alt={displayText} /> */}
+        </div>
+        <Loader/>
+    </>
 )
 
 export const Header = () => {
@@ -57,7 +68,7 @@ export const Header = () => {
                 </div>
                 <nav className="header_nav-bar">
                     {renderSearchComponent(isExpanded)}
-                    {renderNavLinks(searchResultsDispatch)}
+                    {renderNavLinks(searchResultsDispatch, history)} 
                 </nav>
                 </div>
             </header>

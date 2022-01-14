@@ -1,18 +1,24 @@
 .Results {
   display: grid;
+  // background-color: lavender;
   grid-template-columns: [filter-start] minmax(20rem, 22rem) [filter-end results-start] minmax(min-content, 100rem) [results-end];
   grid-template-rows: [sort-start] max-content [sort-end results-start] max-content [results-end];
-  grid-gap: 5px;
-
-  @media only screen and (max-width: $bp-bop-medium) {
-    grid-template-columns:[bop-start] minmax(min-content, .8fr) [bop-end];
-    justify-content: center;
+  grid-gap: .5rem;
+  
+  @include respond(phone) {
+    grid-template-columns: [filter-start] 100% [results-end];
+    grid-template-rows: [filter-start] max-content [filter-end results-start] max-content [results-end]
   }
 
-  @media only screen and (max-width: $bp-small) {
-    grid-template-columns:[bop-start] minmax(min-content, .7fr) [bop-end];
-    justify-content: center;
-  }
+  // @media only screen and (max-width: $bp-bop-medium) {
+  //   grid-template-columns:[bop-start] minmax(min-content, .8fr) [bop-end];
+  //   justify-content: center;
+  // }
+
+  // @media only screen and (max-width: $bp-small) {
+  //   grid-template-columns:[bop-start] minmax(min-content, .7fr) [bop-end];
+  //   justify-content: center;
+  // }
 }
 
 .LowerHalf_container {

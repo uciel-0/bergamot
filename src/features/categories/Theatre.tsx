@@ -49,10 +49,12 @@ const family: EventObject[] = [
 
 
 export const Theatre = () => {
-    const { searchResultsDispatch } = React.useContext(SearchResultsContext);
+    const { searchResultsDispatch, searchResultsState } = React.useContext(SearchResultsContext);
 
     React.useEffect(() => {
-        searchResultsDispatch(setLastQuery('Sports'));
+        if (searchResultsState.lastQuery !== 'Theatre') {
+            searchResultsDispatch(setLastQuery('Theatre'));
+        }
     }, []);
     
     return (

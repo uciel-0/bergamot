@@ -27,21 +27,25 @@ export const Results = () => {
             <Filter />
             <div className="Cards">
               {
+                !searchResultsState.noResults ? 
                 searchResultsState.searchResults.eventsNearYou.length > 0 && 
-                <p className="Cards_header">Events Near You</p>
+                <p className="Cards_header">Events Near You</p> : null
               }
               {
+                !searchResultsState.noResults ? 
                 searchResultsState.searchResults.eventsNearYou.length > 0 ? searchResultsState.searchResults.eventsNearYou.map((e: any, index) => 
                   <CardsGroup date={e.date} events={e.events} key={index} showPricesWithFees={searchResultsState.showPricesWithFees}/>
-                ) : null
+                ) : null : null
               }
               {
+                !searchResultsState.noResults ? 
                 searchResultsState.searchResults.eventsNearYou.length > 0 && 
-                <div className="Cards_divider"/>
+                <div className="Cards_divider"/> : null
               }
               {
+                !searchResultsState.noResults ? 
                 searchResultsState.searchResults.events.length > 0 && 
-                <p className="Cards_header">All Events</p>
+                <p className="Cards_header">All Events</p> : null
               }
               { 
                 !searchResultsState.noResults ? 

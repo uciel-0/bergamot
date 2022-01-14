@@ -43,13 +43,33 @@ html {
   box-sizing: border-box;
   font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
 
-  @media only screen and (max-width: $bp-large) {
+  // @media only screen and (max-width: $bp-large) {
+  //   font-size: 50%;
+  // }
+
+
+  @include respond(tab-land) {
     font-size: 50%;
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+
+  @include respond(tab-port-small) {
+    font-size: 40%;
+  }
+
+  @include respond(phone) {
+    font-size: 20%;
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%;
   }
 }
 
 body {
-    // box-sizing: border-box;
     color: black;
     font-family: 'Roboto', 'Roboto';    // font-weight: 400;
     line-height: 1.6;
@@ -57,7 +77,6 @@ body {
     background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-light));
     background-size: cover;
     background-repeat: no-repeat;
-
     min-height: 100vh;
     .MuiMenuItem-root {
       font-size: 1.3rem;

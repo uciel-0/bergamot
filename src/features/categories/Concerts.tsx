@@ -70,10 +70,12 @@ const rhythmAndBlues: EventObject[] = [
 // ];
 
 export const Concerts = () => {
-    const { searchResultsDispatch } = React.useContext(SearchResultsContext);
+    const { searchResultsDispatch, searchResultsState } = React.useContext(SearchResultsContext);
 
     React.useEffect(() => {
-        searchResultsDispatch(setLastQuery('Concerts'));
+        if (searchResultsState.lastQuery !== 'Concerts') {
+            searchResultsDispatch(setLastQuery('Concerts'));
+        }
     }, []);
     
     return (

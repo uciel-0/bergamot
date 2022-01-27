@@ -292,7 +292,7 @@ export const getCachedEvents = (req, res) => {
   // const isCalendarCall = Boolean(req.query.isCalendarCall === "true");
   // const isVendorFilterCall = Boolean(req.query.isVendorFilterCall === 'true');
   // const isStatusFilterCall = Boolean(req.query.isStatusFilterCall === 'true');
-  const sortType = req.query.sortType || "";
+  const sortType = req.query.sortType.trim() || "";
   // call the cache for this data 
   cache.get(key).then(data => {
     // ticketmaster event processing
@@ -443,9 +443,13 @@ export const getCachedEvents = (req, res) => {
     const stubhubShadingState = vendorShadingState('stubhub', stubhubInWholeSet, hasStubhubData, stubhubState);
     const seatgeekShadingState = vendorShadingState('seatgeek', seatgeekInWholeSet, hasSeatgeekData, seatgeekState);
 
+    console.log(ticketMasterShadingState);
+    console.log(stubhubShadingState);
+    console.log(seatgeekShadingState);
+
     let groupedData = [];
     let groupedEventsNearYou = [];
-
+    console.log(filteredData);
     if (sortType === '' || sortType === 'Date' || sortType === 'Popular') {
       const sortChronologically = sortDatesChronologically(filteredData);
       groupedData = groupByDay(sortChronologically);
@@ -455,7 +459,7 @@ export const getCachedEvents = (req, res) => {
       groupedData = sortByPriceAndGroupByDay(filteredData, sortType);
       groupedEventsNearYou = sortByPriceAndGroupByDay(filteredNearbyEvents, sortType);
     }
-
+    console.log(groupedData, 'groupedData');
     if (groupedData[0].date === 'null') {
       const datesTBD = groupedData.shift();
       groupedData.push(datesTBD);

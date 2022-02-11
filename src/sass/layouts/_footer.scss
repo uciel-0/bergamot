@@ -1,6 +1,6 @@
 .Footer {
-    background-color: rgba(248, 233, 233, 0.926);
-    color: black;
+    background-color: rgb(7, 7, 7);
+    color: hsl(7,7,7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +31,7 @@
         }
         
         .column .footer_title{
-            color:rgba(21, 19, 19, 0.624);
+            color:rgba(235, 235, 235, 0.816);
             font-size:1em;
             font-weight:700;
             cursor:default;
@@ -117,11 +117,11 @@
         
 
     .sub-footer{
-        background:rgba(248, 233, 233, 0.926);
+        background:rgb(7, 7, 7);
         grid-column: footer-start/footer-end;
         padding: .2rem 0;
         text-align:center;
-        color:rgb(128, 126, 126);
+        color:rgb(248, 248, 248);
         font-size: 2.1rem;
     }
 

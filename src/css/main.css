@@ -931,8 +931,8 @@ body {
       padding-top: 0rem; } }
 
 .Footer {
-  background-color: rgba(248, 233, 233, 0.926);
-  color: black;
+  background-color: #070707;
+  color: #131111;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -955,7 +955,7 @@ body {
     vertical-align: top;
     padding: 1rem; }
   .Footer .column .footer_title {
-    color: rgba(21, 19, 19, 0.624);
+    color: rgba(235, 235, 235, 0.816);
     font-size: 1em;
     font-weight: 700;
     cursor: default; }
@@ -981,11 +981,11 @@ body {
   .Footer .column:nth-child(1) .fa-twitter {
     color: #3399ff; }
   .Footer .sub-footer {
-    background: rgba(248, 233, 233, 0.926);
+    background: #070707;
     grid-column: footer-start/footer-end;
     padding: .2rem 0;
     text-align: center;
-    color: #807e7e;
+    color: #f8f8f8;
     font-size: 2.1rem; }
   .Footer .footer-grid {
     display: grid;

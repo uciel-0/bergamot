@@ -84,6 +84,9 @@ body {
 .white-text a {
   color: white; }
 
+.pointer {
+  cursor: pointer !important; }
+
 .wavy {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -349,7 +352,7 @@ body {
       z-index: 100; }
 
 .search_form {
-  width: 66%;
+  width: 33%;
   position: relative; }
   .search_form:focus {
     outline: none; }
@@ -363,7 +366,7 @@ body {
   width: 100%;
   height: 4.5rem;
   font-size: 1.8rem;
-  padding-left: 4.5%; }
+  padding-left: 10%; }
   @media (max-width: 550px) {
     .search_input {
       font-size: 1.5rem; } }
@@ -373,7 +376,7 @@ body {
   top: 1.35rem;
   background-color: white;
   border: none;
-  margin-left: 1%; }
+  margin-left: 3%; }
   @media (max-width: 1100px) {
     .search_button {
       top: 1.15rem; } }
@@ -525,6 +528,8 @@ body {
   position: relative;
   display: flex;
   flex-direction: column; }
+  .Filter input {
+    cursor: pointer; }
   @media (max-width: 37.5em) {
     .Filter {
       grid-row: unset;
@@ -542,9 +547,13 @@ body {
       opacity: 0;
       width: 0; } }
   .Filter_button {
-    border: 1px solid black;
-    padding: 2px 10px;
-    align-self: center; }
+    display: none; }
+    @media only screen and (max-width: 37.5em) {
+      .Filter_button {
+        display: block;
+        border: 1px solid black;
+        padding: 2px 10px;
+        align-self: center; } }
   .Filter_background {
     width: 0;
     opacity: 0;
@@ -716,7 +725,8 @@ body {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  flex-direction: column; }
 
 .home_main {
   display: flex;
@@ -727,35 +737,31 @@ body {
   flex-basis: 126rem; }
 
 .home_white-text {
-  position: absolute;
   color: white;
   background-color: rgba(0, 0, 0, 0.398);
   padding: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 3.5rem;
   line-height: 4.2rem;
   top: 16.5rem;
-  left: 20%;
   border-radius: .8rem; }
 
 .header {
-  padding-top: 1rem;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  padding-top: 1.5rem; }
   .header_content {
     display: flex;
     align-items: center;
-    flex-basis: 126rem; }
+    flex-basis: 122rem; }
   .header_nav-bar {
     width: 62%; }
   .header .bop-logo_container {
-    padding-left: 3rem;
+    display: flex;
     flex-basis: 24rem; }
-    .header .bop-logo_container .bop-logo_treble {
-      width: 9%; }
     .header .bop-logo_container .bop-logo_icon {
       cursor: pointer;
-      height: 3.25rem; }
+      height: 4.5rem; }
 
 .navigation_checkbox {
   display: none; }
@@ -773,9 +779,11 @@ body {
 .navigation_background {
   width: 0;
   opacity: 0;
+  display: none;
   overflow: hidden; }
   @media only screen and (max-width: 37.5em) {
     .navigation_background {
+      display: block;
       opacity: 1;
       width: 100%;
       height: 10px;
@@ -808,7 +816,9 @@ body {
   font-size: 2.5rem;
   font-family: "Roboto";
   text-decoration: none;
-  letter-spacing: .3rem; }
+  color: black; }
+  .navigation .nav_links label {
+    cursor: pointer; }
   @media only screen and (max-width: 37.5em) {
     .navigation .nav_links {
       opacity: 0;
@@ -820,6 +830,9 @@ body {
       align-items: flex-start;
       font-size: 6.5rem;
       color: white; } }
+
+.navigation .white {
+  color: white; }
 
 .navigation_checkbox:checked ~ .navigation_background {
   transform: scale(200); }
@@ -932,7 +945,6 @@ body {
 
 .Footer {
   background-color: #070707;
-  color: #131111;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -947,6 +959,8 @@ body {
   .Footer_icons {
     display: flex;
     align-items: center; }
+    .Footer_icons svg {
+      fill: white !important; }
   .Footer .bop-logo_footer {
     width: 5rem;
     padding-right: 1rem; }
@@ -974,13 +988,10 @@ body {
   .Footer .column:nth-child(4) a:not(:first-child) {
     margin: .5rem;
     display: inline-block; }
-  .Footer .column:nth-child(1) .fa-facebook {
-    color: #3B5998; }
-  .Footer .column:nth-child(1) .fa-instagram {
-    color: #d62977; }
-  .Footer .column:nth-child(1) .fa-twitter {
-    color: #3399ff; }
   .Footer .sub-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #070707;
     grid-column: footer-start/footer-end;
     padding: .2rem 0;

@@ -31,6 +31,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
     }
 
     &_main {
@@ -45,15 +46,13 @@
     }
 
     &_white-text {
-        position: absolute;
         color: white;
         background-color: rgba(0, 0, 0, 0.398);
         padding: 1rem;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 3.5rem;
         line-height: 4.2rem;
         top: 16.5rem; 
-        left: 20%;
         border-radius: .8rem;
         // @media(max-width: 1100px) {
         //     top: 7rem;

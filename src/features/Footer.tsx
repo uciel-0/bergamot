@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BopIcon } from '../svg/BopIcon';
+import { BopIconWhite } from '../svg/BopIconWhite';
 
 
 
@@ -51,7 +51,7 @@ export const Footer = () => {
             </div>
 
             <div className="sub-footer">
-                <BopIcon className={"bop-logo_footer"} />
+                <BopIconWhite className={"bop-logo_footer"} />
                 © CopyRights 2021 BOP || All rights reserved.
             </div>
 

@@ -1,29 +1,30 @@
 import * as React from 'react';
-import { BopIcon } from '../svg/BopIcon';
-import BopTreble from '../svg/BopTreble';
+import { BopIconBlack } from '../svg/BopIconBlack';
+import { BopIconWhite } from '../svg/BopIconWhite';
 import { useHistory, useLocation } from 'react-router-dom';
-import {History} from 'history';
-import {SearchComponent} from './SearchComponent';
+import { History } from 'history';
+import { SearchComponent } from './SearchComponent';
 import { Loader } from '../components/Loader';
-import {SearchResultsContext} from '../store/searchResults/Context';
+import { SearchResultsContext } from '../store/searchResults/Context';
 import { SearchResultsActions } from '../store/searchResults/Actions';
+import classNames from 'classnames';
 
-const renderSearchComponent = (isExpanded: boolean) =>  isExpanded ? <SearchComponent/> : null
+const renderSearchComponent = (isExpanded: boolean) => isExpanded ? <SearchComponent /> : null
 
 const renderNavLinks = (dispatch: React.Dispatch<SearchResultsActions>, history: History) => {
 
     const onNavItemClick = (tabName: string) => history.push('/' + tabName.toLowerCase());
-    
+    const navLinksStyle = history.location.pathname.includes('home') ? 'nav_links' : 'nav_links white'
     return (
         <div className="navigation">
-            <input type="checkbox" className="navigation_checkbox" id="navi-toggle" name="checkbox"/>
+            <input type="checkbox" className="navigation_checkbox" id="navi-toggle" name="checkbox" />
             <label htmlFor="navi-toggle" className="navigation_button">
                 <span className="navigation_icon">&nbsp;</span>
             </label>
             <div className="navigation_background">&nbsp;</div>
 
             <nav className="navigation_nav">
-                <ul className="nav_links">
+                <ul className={navLinksStyle}>
                     <label htmlFor="navi-toggle" id="concerts" onClick={() => onNavItemClick('Concerts')}>
                         Concerts
                     </label>
@@ -48,7 +49,7 @@ const renderBanner = (displayText: string, imageUrl: string) => (
             <p className="Banner_name">{displayText || ""}</p>
             {/* <img className="Banner_image" src={imageUrl} alt={displayText} /> */}
         </div>
-        <Loader/>
+        <Loader />
     </>
 )
 
@@ -57,19 +58,18 @@ export const Header = () => {
     let location = useLocation();
     const isExpanded = location.pathname.includes('search') || location.pathname.includes('concerts') || location.pathname.includes('sports') || location.pathname.includes('festivals') || location.pathname.includes('theatre');
     const headerContainerStyle = isExpanded ? 'wavy white-text' : 'white-background black-text';
-    const {searchResultsState, searchResultsDispatch} = React.useContext(SearchResultsContext);
+    const { searchResultsState, searchResultsDispatch } = React.useContext(SearchResultsContext);
     return (
         <div className={headerContainerStyle}>
             <header className="header">
                 <div className="header_content">
-                <div className="bop-logo_container" onClick={() => history.push('/home')}>
-                    <BopTreble className={"bop-logo_treble"}/>
-                    <BopIcon className={"bop-logo_icon"} />
-                </div>
-                <nav className="header_nav-bar">
-                    {renderSearchComponent(isExpanded)}
-                    {renderNavLinks(searchResultsDispatch, history)} 
-                </nav>
+                    <div className="bop-logo_container" onClick={() => history.push('/home')}>
+                        {location.pathname.includes('home') ? <BopIconBlack className={"bop-logo_icon"} /> : <BopIconWhite className='bop-logo_icon' />}
+                    </div>
+                    <nav className="header_nav-bar">
+                        {renderSearchComponent(isExpanded)}
+                        {renderNavLinks(searchResultsDispatch, history)}
+                    </nav>
                 </div>
             </header>
             {isExpanded && renderBanner(searchResultsState.lastQuery, '')}

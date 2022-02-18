@@ -184,19 +184,10 @@ interface SetLastQuery {
   payload: string;
 }
 
-export const setLastQuery = (payload: string): SetLastQuery => {
-  console.log(payload, 'action payload') 
-  return {
-    type: SearchResultActionTypes.SET_LAST_QUERY,
-    payload
-  }
-}
-
-// ({
-//   type: SearchResultActionTypes.SET_LAST_QUERY,
-//   payload
-// });
-
+export const setLastQuery = (payload: string): SetLastQuery => ({
+  type: SearchResultActionTypes.SET_LAST_QUERY,
+  payload
+});
 interface SetNumberOfResults {
   type: SearchResultActionTypes.SET_NUMBER_OF_RESULTS;
   payload: number;

@@ -1,31 +1,25 @@
 .header {
-    padding-top: 1rem;
     display: flex;
     justify-content: center;
-    // // fixed header
-    // position: fixed;
-    // width: 100%;
-    // z-index: 1000;
-
+    padding-top: 1.5rem;
     &_content {
         display: flex;
         align-items: center;
-        flex-basis: 126rem;
+        flex-basis: 122rem;
     }
 
     &_nav-bar {
         width: 62%;
+
     }
 
     .bop-logo_container {
-        padding-left: 3rem;
+        display: flex;
+        // padding-left: 3rem;
         flex-basis: 24rem;
-        .bop-logo_treble {
-            width: 9%;
-        }
         .bop-logo_icon {
             cursor: pointer;
-            height: 3.25rem;   
+            height: 4.5rem;   
         }
     }
 }
@@ -43,15 +37,16 @@
         top: 16px;
         right: 16px;
         z-index: 2000;
-
         text-align: center;
     }
 
     &_background {
         width: 0;
         opacity: 0;
+        display:none;
         overflow: hidden;
         @media only screen and (max-width: $bp-small) {
+            display: block;
             opacity: 1;
             width: 100%;
             height: 10px; 
@@ -85,10 +80,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between; 
+        // color: black;
         font-size: 2.5rem;
         font-family: "Roboto";
         text-decoration: none;
-        letter-spacing: .3rem;
+        color: black;
+        label {
+            cursor: pointer;
+        }
         @media only screen and (max-width: $bp-small) {
             opacity: 0;        
             position: absolute; 
@@ -102,7 +101,9 @@
             color: white;
         }
     }
-
+    .white {
+        color: white;
+    }
     // functionality
     &_checkbox:checked ~ &_background {
         transform: scale(200);

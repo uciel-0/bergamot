@@ -3,7 +3,7 @@ import { setLastQuery } from '../store/searchResults/Actions';
 import { useHistory } from 'react-router-dom';
 import {setLoaderState} from '../store/loader/Actions';
 import {
-  setSearchResults,
+  setAllEventsAndEventsNearYou,
   setBulkFilterAction,
   setNoResultsState,
   setNumberOfResults,
@@ -47,9 +47,10 @@ const EventGridItem = ({event}: EventGridItemProps) => {
         history.push('/search');
         window.scrollTo(0, 0);
         // set our search result data to the response from the api call
+        console.log(res.data, 'res data from search');
         loaderDispatch(setLoaderState(false));
         searchResultsDispatch(setLastQuery(keyword));
-        searchResultsDispatch(setSearchResults(res.data.data));
+        searchResultsDispatch(setAllEventsAndEventsNearYou(res.data.events, res.data.eventsNearYou));
         searchResultsDispatch(setNumberOfResults(res.data.numberOfResults));
         console.log('total length of events:', res.data.totalResultsLength);
         console.log('ticketmaster events:', res.data.providerResultLengths[0]);

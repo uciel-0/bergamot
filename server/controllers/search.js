@@ -134,6 +134,7 @@ export const getEvents = (req, res) => {
       });
       ticketmasterEvents = data[0].events;
     }
+    console.log(ticketmasterEvents, 'ticketMaster events')
     // stubhub events
     let stubhubEvents = [];
     if (data[1] && data[1].events) {
@@ -208,6 +209,7 @@ export const getEvents = (req, res) => {
     // Step 5a) Group the chronologically sorted data by date
     let groupedData = groupByDay(sortChronologically);
     let nearbyGroupedData = groupByDay(nearbyEventsSortedChronologically);
+    console.log(nearbyGroupedData, 'nearbyGroupedData');
     // Data with an unknown date ends up sorted into a null bucket by default
     // Step 5b) This chunk makes it so that null bucket is the last item, so it will show up last in the front end
     if (groupedData[0].date === 'null') {

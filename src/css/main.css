@@ -889,6 +889,8 @@ body {
   width: 10%;
   margin-left: 1rem;
   cursor: pointer; }
+  .fa-user-white, .fa-help-white {
+    fill: white; }
 
 .Banner {
   display: flex;

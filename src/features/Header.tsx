@@ -59,6 +59,7 @@ export const Header = () => {
     let location = useLocation();
     const isExpanded = location.pathname.includes('search') || location.pathname.includes('concerts') || location.pathname.includes('sports') || location.pathname.includes('festivals') || location.pathname.includes('theatre');
     const headerContainerStyle = isExpanded ? 'wavy white-text' : 'white-background black-text';
+    const iconStyles = (mainClass: string) => history.location.pathname.includes('home') ? `${mainClass}` : `${mainClass} ${mainClass}-white`
     const { searchResultsState, searchResultsDispatch } = React.useContext(SearchResultsContext);
     return (
         <div className={headerContainerStyle}>
@@ -72,8 +73,8 @@ export const Header = () => {
                         {renderNavLinks(searchResultsDispatch, history)}
                     </nav>
                     <span className="header_icons">
-                        <User className='fa-user'/>
-                        <Help className='fa-help'/>
+                        <User className={iconStyles('fa-user')}/>
+                        <Help className={iconStyles('fa-help')}/>
                     </span>
                 </div>
             </header>

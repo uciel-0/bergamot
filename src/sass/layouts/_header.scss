@@ -13,6 +13,12 @@
 
     }
 
+    &_icons {
+        display: flex;
+        width: 20%;
+        justify-content: flex-end;
+    }
+
     .bop-logo_container {
         display: flex;
         // padding-left: 3rem;
@@ -168,4 +174,10 @@
         }
     
     }
+}
+
+.fa-user, .fa-help {
+    width: 10%;
+    margin-left: 1rem;
+    cursor: pointer;
 }

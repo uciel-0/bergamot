@@ -126,6 +126,9 @@ body {
   min-height: 19rem;
   margin-top: 1.5rem;
   padding: 1rem; }
+  .Card:hover {
+    border: black solid 1px;
+    cursor: pointer; }
   @media (max-width: 37.5em) {
     .Card {
       width: 100%;
@@ -204,13 +207,14 @@ body {
     .Card_prices-bold {
       font-size: 3.6rem;
       margin-left: .5rem;
+      margin-right: 2rem;
       font-weight: 300; }
       @media only screen and (max-width: 37.5em) {
         .Card_prices-bold {
           font-size: 2.7rem; } }
     .Card_prices-cancelled {
-      font-weight: 500;
-      color: red; }
+      color: red;
+      font-size: 1.5rem; }
   .Card_button {
     grid-row: 3/4;
     grid-column: 3/4;
@@ -353,7 +357,8 @@ body {
 
 .search_form {
   width: 33%;
-  position: relative; }
+  position: relative;
+  margin-top: 2rem; }
   .search_form:focus {
     outline: none; }
   .search_form--wide {
@@ -633,7 +638,8 @@ body {
     box-shadow: 0 0 0 0.8rem rgba(0, 26, 255, 0.5) !important; }
   .Filter .MuiTypography-body1 {
     font-size: 1.8rem;
-    font-weight: 300; }
+    font-weight: 300;
+    margin-left: 1rem; }
   .Filter_label--disabled {
     cursor: not-allowed;
     user-select: none;
@@ -744,7 +750,9 @@ body {
   font-size: 3.5rem;
   line-height: 4.2rem;
   top: 16.5rem;
-  border-radius: .8rem; }
+  border-radius: .8rem;
+  text-align: center;
+  font-weight: 500; }
 
 .header {
   display: flex;
@@ -902,7 +910,8 @@ body {
   font-weight: 300;
   height: 17.5rem;
   align-items: center;
-  overflow: hidden; }
+  overflow: hidden;
+  font-size: 8rem; }
   .Banner_name {
     flex-basis: 122rem; }
   @media only screen and (max-width: 51.875em) {
@@ -911,6 +920,8 @@ body {
 
 .Cards {
   grid-row: results-start/results-end;
+  border-left: 1px solid rgba(0, 0, 0, 0.22);
+  padding-left: 3.5rem;
   padding-right: 1rem; }
   @media only screen and (max-width: 37.5em) {
     .Cards {

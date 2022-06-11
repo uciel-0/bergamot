@@ -57,7 +57,7 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, source, name,
     );
   }
   return name ? (
-    <div className="Card">
+    <div className="Card glow-on-hover">
       {renderCardLogo()}
       <div className="Card_section-1">
         {renderCardInfo()}

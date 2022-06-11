@@ -1,5 +1,7 @@
 .Cards {
     grid-row: results-start/results-end;
+    border-left: 1px solid rgba(0, 0, 0, 0.22);
+    padding-left: 3.5rem;
     @media only screen and (max-width: $bp-small) {
       padding-right: 0;
     }

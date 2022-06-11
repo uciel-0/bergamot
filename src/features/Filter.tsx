@@ -235,10 +235,9 @@ export const Filter = () => {
           <FormGroup row>
             <FormControlLabel
               control={<Switch checked={globalShowPricesWithFeesState} onChange={handleFeesToggle} name="fees-toggle" color="primary"/>}
-              label="Show prices with fees*"
+              label="Show prices with estimated fees"
             />
           </FormGroup>
-          <p>*Fees may be an estimated amount due to provider’s varying fees.</p>
         </div>
         <div className="Filter_vendors Filter_item">
           <b className="Filter_row-title">Distributor</b>

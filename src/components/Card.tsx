@@ -45,19 +45,19 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, source, name,
     );
     return status !== 'cancelled' ? cardPrices : eventCancelledMessage;
   }
-  const renderButton = () => {
-    // currently two indicators of a faulty event 
-    // one is if the status is cancelled, the other is if the priceAfterFees = null 
-    // in either of these cases, return the "View Info" text
-    const buttonText = status !== 'cancelled' && priceAfterFees !== null ? 'View Tickets' : 'View Info';
-    return (
-      <a href={urlContent} target="_blank" rel="noopener noreferrer" className="Card_button margin-tiny">
-        <p>{buttonText}</p>
-      </a>
-    );
-  }
+  // const renderButton = () => {
+  //   // currently two indicators of a faulty event 
+  //   // one is if the status is cancelled, the other is if the priceAfterFees = null 
+  //   // in either of these cases, return the "View Info" text
+  //   const buttonText = status !== 'cancelled' && priceAfterFees !== null ? 'View Tickets' : 'View Info';
+  //   return (
+  //     <a href={urlContent} target="_blank" rel="noopener noreferrer" className="Card_button margin-tiny">
+  //       <p>{buttonText}</p>
+  //     </a>
+  //   );
+  // }
   return name ? (
-    <div className="Card glow-on-hover">
+    <a className="Card glow-on-hover" href={urlContent} target="_blank" rel="noopener noreferrer">
       {renderCardLogo()}
       <div className="Card_section-1">
         {renderCardInfo()}
@@ -65,10 +65,7 @@ export const Card = ({date, time, priceBeforeFees, priceAfterFees, source, name,
       <div className="Card_section-2">
         {renderCardPrices()}
       </div>
-      <div className="Card_button">
-        {renderButton()}
-      </div>
-    </div>
+    </a>
   ) : null;
 }
 

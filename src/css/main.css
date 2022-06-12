@@ -125,7 +125,8 @@ body {
   margin-bottom: 3rem;
   min-height: 19rem;
   margin-top: 1.5rem;
-  padding: 1rem; }
+  padding: 1rem;
+  text-decoration: none; }
   .Card:hover {
     border: black solid 1px;
     cursor: pointer; }

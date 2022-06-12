@@ -678,7 +678,7 @@ body {
         transform: rotate(-135deg); } }
 
 .Sort_container .MuiInputBase-root {
-  font-size: 1.3rem; }
+  font-size: 2rem; }
 
 .Sort_container .MuiSelect-icon {
   top: calc(50% - 7px); }
@@ -1047,10 +1047,11 @@ body {
   justify-content: space-between;
   padding-top: .5rem;
   margin: auto;
-  margin-bottom: 1rem;
   font-size: 2rem;
   color: black;
-  max-width: 120.5rem; }
+  max-width: 120.5rem;
+  align-items: center;
+  height: 50px; }
 
 .SearchResults {
   max-width: 125em; }

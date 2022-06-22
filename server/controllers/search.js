@@ -269,13 +269,7 @@ export const flushCache = (req, res) => {
   cache.flush();
   res.sendStatus(200);
 }
-// NEXT THING TO DO 
-// STATES SHOULD BE CHECKED, UNCHECKED AND GREYED 
-// If a status filter turns off a vendor, that vendor should be greyed out 
-// when the status filter is deactivated
-// replace showTicketmaster booleans with ON, OFF or GREYED 
-// make it so if the state is ON or GREYED, the vendor is included in the filters 
-// fix this in the front end as well 
+
 export const getCachedEvents = (req, res) => {
   console.log('');
   console.log('');
@@ -504,26 +498,26 @@ export const getCachedEvents = (req, res) => {
       hasCancelledEvents: cancelledEventsShadingState,
       hasNoListingEvents: noListingsShadingState,
     }
-    console.log('response object', {
-      source: {
-        ticketmaster: hasTicketmasterData,
-        stubhub: hasStubhubData,
-        seatgeek: hasSeatgeekData,
-      },
-      vendorShadingState: {
-        ticketmaster: ticketMasterShadingState,
-        stubhub: stubhubShadingState,
-        seatgeek:seatgeekShadingState,
-      },
-      priceRange: minMaxPriceOfWholeSet,
-      dateRange: [earliestOfWholeSet, latestOfWholeSet],
-      // filteredDateRange: [earliestDate, latestDate],
-      filteredPriceRange: frontEndPriceFilterRange,
-      providerResultLengths,
-      numberOfResults,
-      hasCancelledEvents: cancelledEventsShadingState,
-      hasNoListingEvents: noListingsShadingState,
-    });
+    // console.log('response object', {
+    //   source: {
+    //     ticketmaster: hasTicketmasterData,
+    //     stubhub: hasStubhubData,
+    //     seatgeek: hasSeatgeekData,
+    //   },
+    //   vendorShadingState: {
+    //     ticketmaster: ticketMasterShadingState,
+    //     stubhub: stubhubShadingState,
+    //     seatgeek:seatgeekShadingState,
+    //   },
+    //   priceRange: minMaxPriceOfWholeSet,
+    //   dateRange: [earliestOfWholeSet, latestOfWholeSet],
+    //   // filteredDateRange: [earliestDate, latestDate],
+    //   filteredPriceRange: frontEndPriceFilterRange,
+    //   providerResultLengths,
+    //   numberOfResults,
+    //   hasCancelledEvents: cancelledEventsShadingState,
+    //   hasNoListingEvents: noListingsShadingState,
+    // });
     console.log('');
     console.log('');
     console.log('');

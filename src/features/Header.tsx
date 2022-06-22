@@ -7,8 +7,8 @@ import { SearchComponent } from './SearchComponent';
 import { Loader } from '../components/Loader';
 import { SearchResultsContext } from '../store/searchResults/Context';
 import { SearchResultsActions } from '../store/searchResults/Actions';
-import User from '../svg/User';
-import Help from '../svg/Help';
+//import User from '../svg/User';
+//import Help from '../svg/Help';
 
 const renderSearchComponent = (isExpanded: boolean) => isExpanded ? <SearchComponent /> : null
 
@@ -72,10 +72,10 @@ export const Header = () => {
                         {renderSearchComponent(isExpanded)}
                         {renderNavLinks(searchResultsDispatch, history)}
                     </nav>
-                    <span className="header_icons">
-                        <User className={iconStyles('fa-user')}/>
-                        <Help className={iconStyles('fa-help')}/>
-                    </span>
+                    {/* <span className="header_icons"> */}
+                        {/* <User className={iconStyles('fa-user')}/> */}
+                        {/* <Help className={iconStyles('fa-help')}/> */}
+                    {/* </span> */}
                 </div>
             </header>
             {isExpanded && renderBanner(searchResultsState.lastQuery, '')}

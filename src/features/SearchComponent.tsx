@@ -145,7 +145,7 @@ export const SearchComponent = () => {
           className="search_input"
           data-test="search-bar"
           type="text"
-          placeholder="search for events, artists, teams or venues"
+          placeholder="events, artists, etc. "
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
         />

@@ -1,3 +1,2 @@
-#! /bin/sh
-npm install -g yarn
+#! /bin/bash
 yarn install

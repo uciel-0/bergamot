@@ -55,13 +55,13 @@ hooks:
   AfterInstall:
     - location: /install-packages.sh
       timeout: 15000
-			runas: root
+      runas: root
 # During the ApplicationStart deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   ApplicationStart:
     - location: /application-start.sh
       timeout: 15000
-			runas: root
+      runas: root
 # During the ValidateService deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   # ValidateService:

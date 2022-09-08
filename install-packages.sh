@@ -1,2 +1,2 @@
 #! /bin/sh
-yarn install
+npm i

@@ -1,2 +1,3 @@
 #! /bin/sh
-nohup yarn start-client & yarn start-server
+nohup npm run-script start-client & 
+npm run-script yarn start-server

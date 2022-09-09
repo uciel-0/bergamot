@@ -1,4 +1,4 @@
-source /home/root/.bash_profile
+source /root/.bash_profile
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh

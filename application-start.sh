@@ -1,4 +1,4 @@
-source /home/root/.bash_profile
+source /root/.bash_profile
 
 nohup yarn start-client & 
 yarn start-server

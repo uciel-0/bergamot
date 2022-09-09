@@ -47,12 +47,6 @@ hooks:
     - location: /setup-instance.sh
       timeout: 15000
       runas: root
-# During the AfterInstall deployment lifecycle event, run the commands 
-#   in the script specified in "location".
-  AfterInstall:
-    - location: /install-packages.sh
-      timeout: 15000
-      runas: root
 # During the ApplicationStart deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   ApplicationStart:

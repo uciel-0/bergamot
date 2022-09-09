@@ -9,3 +9,4 @@ node -e "console.log('Running Node.js ' + process.version)"
 
 npm i yarn -g
 export PATH="`yarn global bin`:$$PATH"
+yarn install

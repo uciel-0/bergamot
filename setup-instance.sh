@@ -8,4 +8,4 @@ nvm install --lts
 node -e "console.log('Running Node.js ' + process.version)"
 
 npm i yarn -g
-export PATH="/usr/bin:$PATH"
+export PATH="`yarn global bin`:$$PATH"

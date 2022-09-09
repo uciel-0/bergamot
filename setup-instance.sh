@@ -5,8 +5,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 nvm install --lts
-node -e "console.log('Running Node.js ' + process.version)"
 
-npm i yarn -g
-export PATH="`yarn global bin`:$$PATH"
+curl -o- -L https://yarnpkg.com/install.sh | bash
 yarn install

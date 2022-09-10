@@ -6,8 +6,23 @@ source /root/.bash_profile
 
 set -xe
 
-NODE_VERSION=v9.3.0
+NODE_VERSION=v14.17.5
 YARN_REPO="/etc/yum.repos.d/yarn.repo"
+
+  # If node is not detected, install it.
+  if [ `node --version` == "v$NODE_VERSION" ]; then
+    echo "Skipping installation of node -- node already installed."
+    echo "node --version: `node --version`"
+  else
+    echo "Installing Node $NODE_VERSION"
+
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
+
+    source ~/.nvm/nvm.sh
+
+    nvm install $NODE_VERSION
+    echo "... finished installing node"
+  fi
 
 # If yarn is not detected, install it.
 if which yarn; then
@@ -23,20 +38,6 @@ else
   
     # Confirm that it downloaded
     file /etc/yum.repos.d/yarn.repo
-  fi
-  
-  # If node is not detected, install it.
-  if [ `node --version` == "v$NODE_VERSION" ]; then
-    echo "Skipping installation of node -- node already installed."
-    echo "node --version: `node --version`"
-  else
-    echo "Installing Node $NODE_VERSION"
-
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
-
-    source ~/.nvm/nvm.sh
-
-    nvm install $NODE_VERSION
   fi
 
   # install yarn

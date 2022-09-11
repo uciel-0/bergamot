@@ -1,6 +1,6 @@
 source /root/.bash_profile
 
-ls -a
-pwd
+cd tmp/bergamot
+
 nohup yarn start-client & 
 yarn start-server

@@ -8,7 +8,7 @@
 version: 0.0
 os: linux 
 source: /
-destination: /
+destination: /tmp/bergamot
 
 # If you are not running any commands on the Amazon EC2 instance, then remove 
 #   the "hooks" section altogether. A blank or incomplete "hooks" section

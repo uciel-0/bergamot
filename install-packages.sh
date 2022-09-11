@@ -1,3 +1,3 @@
-source /root/.bashrc
+#! /bin/sh
 
 yarn install

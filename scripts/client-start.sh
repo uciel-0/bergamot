@@ -1,4 +1,5 @@
 #! /bin/bash
 
-cd tmp/bergamot
+pwd
+cd ..
 serve -s build

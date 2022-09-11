@@ -8,4 +8,3 @@ export NVM_DIR="$HOME/.nvm"
 nvm install --lts
 
 curl -o- -L https://yarnpkg.com/install.sh | bash
-yarn install

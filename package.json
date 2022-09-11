@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start-client": "react-scripts start",
-    "start-server": "nodemon --exec babel-node server/index.js",
+    "start-server": "npx nodemon --exec babel-node server/index.js",
     "start-tests": "cypress open",
     "build": "react-scripts build",
     "test": "react-scripts test",

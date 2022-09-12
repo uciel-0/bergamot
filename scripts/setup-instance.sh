@@ -1,5 +1,4 @@
-#! /bin/bash
-
+source /home/root/.bash_profile
 nvm use 14.15.1
 
 # NODE_STATUS=$(node -v)

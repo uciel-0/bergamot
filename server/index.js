@@ -11,10 +11,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/api', router);
 
-app.use(express.static(path.join("build")));
+app.use(express.static(path.join(__dirname, "..", "build")));
 
-app.get('/*', (req, res) => 
-  res.sendFile(path.join("build", "index.html"))
+app.use('/*', (req, res, next) => 
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"))
 );
 
 app.listen(port, () => {

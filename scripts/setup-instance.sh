@@ -1,5 +1,5 @@
 source /root/.bash_profile
-nvm use 14.15.1
+# nvm use 14.15.1
 
 # NODE_STATUS=$(node -v)
 # if [NODE_STATUS == 'command not found']; then 

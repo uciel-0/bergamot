@@ -1,7 +1,7 @@
 #! /bin/bash
 
 NODE_STATUS=$(node -v)
-if [NODE_STATUS == '-bash: node: command not found']; then 
+if [NODE_STATUS == 'command not found']; then 
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
     . ~/.nvm/nvm.sh
     export NVM_DIR="$HOME/.nvm"

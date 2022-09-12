@@ -3,14 +3,14 @@ import * as controller from './controllers';
 const router = express.Router();
 
 // one call, returns across all categories
-router.get('/api/search/wide', controller.search.wideSearchResults);
+router.get('/search/wide', controller.search.wideSearchResults);
 // categories = events, preformers, venues, locations
-router.get('/api/search/events', controller.search.getEvents);
-router.get('/api/cache/flush', controller.search.flushCache);
-router.get('/api/cache/events', controller.search.getCachedEvents);
-router.get('/api/info', controller.info.getInfo);
-router.get('/api/images/batch', controller.images.getArrayOfImages);
-router.get('/api/location/nearby', controller.location.getEventsNearYou);
+router.get('/search/events', controller.search.getEvents);
+router.get('/cache/flush', controller.search.flushCache);
+router.get('/cache/events', controller.search.getCachedEvents);
+router.get('/info', controller.info.getInfo);
+router.get('/images/batch', controller.images.getArrayOfImages);
+router.get('/location/nearby', controller.location.getEventsNearYou);
 // individual api calls
 // router.get('/api/ticketmaster/events', controller.ticketmaster.getTicketMasterSearchResults);
 // router.get('/api/stubhub/events', controller.seatgeek.getSeatGeekEvents);

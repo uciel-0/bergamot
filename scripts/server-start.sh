@@ -1,3 +1,2 @@
-source /home/root/.bash_profile
-
+source /root/.bash_profile
 yarn start-server

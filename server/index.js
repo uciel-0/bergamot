@@ -17,6 +17,8 @@ app.use('/*', (req, res, next) =>
   res.sendFile(path.join(__dirname, "..", "build", "index.html"))
 );
 
+app.use('/health', (req, res) => res.sendStatus(200));
+
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`)
 });

@@ -9,6 +9,12 @@ const port = 8080;
 
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use(function setCommonHeaders(req, res, next) {
+  res.set("Access-Control-Allow-Private-Network", "true");
+  next();
+});
+
 app.use('/api', router);
 
 app.use(express.static(path.join(__dirname, "..", "build")));

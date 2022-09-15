@@ -26,6 +26,6 @@ app.use('/*', (req, res, next) =>
 
 app.use('/health', (req, res) => res.sendStatus(200));
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`server started at http://localhost:${port}`)
 });

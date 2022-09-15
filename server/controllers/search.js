@@ -212,7 +212,7 @@ export const getEvents = (req, res) => {
     console.log(nearbyGroupedData, 'nearbyGroupedData');
     // Data with an unknown date ends up sorted into a null bucket by default
     // Step 5b) This chunk makes it so that null bucket is the last item, so it will show up last in the front end
-    if (groupedData[0].date === 'null') {
+    if (groupedData[0] && groupedData[0].date === 'null') {
       const datesTBD = groupedData.shift();
       groupedData.push(datesTBD);
     };

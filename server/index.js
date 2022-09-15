@@ -12,6 +12,7 @@ app.use(cors());
 
 app.use(function setCommonHeaders(req, res, next) {
   res.set("Access-Control-Allow-Private-Network", "true");
+  res.set("Access-Control-Allow-Origin", "*")
   next();
 });
 

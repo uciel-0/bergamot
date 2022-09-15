@@ -9,7 +9,7 @@ source /root/.bash_profile
 #     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #     nvm install 14.15.1
-#     nvm use 14.15.1
 # fi
 
 # curl -o- -L https://yarnpkg.com/install.sh | bash
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

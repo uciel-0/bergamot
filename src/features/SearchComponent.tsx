@@ -35,8 +35,8 @@ export const SearchComponent = () => {
   const { locationState } = React.useContext(LocationContext);
 
   const today = moment().startOf('day').format();
-  let history = useNavigate();
-  let location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   React.useEffect(() => {
     if ((!dateRangeState[0] && !dateRangeState[1]) || (dateRangeState[0] && dateRangeState[1])) {
@@ -47,10 +47,10 @@ export const SearchComponent = () => {
   }, [dateRangeState]);
 
   React.useEffect(() => {
-    if (history.location.pathname === '/home') {
+    if (location.pathname === '/home') {
       setFormValue('');
     }
-  }, [history.location]);
+  }, [location]);
 
   const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
     const formattedStartDate = moment(newStartDate).startOf('day').format();
@@ -95,7 +95,7 @@ export const SearchComponent = () => {
     })
     .then((res) => {
       console.log('master search api response for artist:', formValue, res.data);
-      history.push('/search');
+      navigate('/search');
       // set our search result data to the response from the api call
       loaderDispatch(setLoaderState(false));
       searchResultsDispatch(setLastQuery(formValue));
@@ -113,7 +113,7 @@ export const SearchComponent = () => {
       searchResultsDispatch(setNoResultsState(false));
     })
     .catch((err) => {
-      history.push('/search');
+      navigate('/search');
       loaderDispatch(setLoaderState(false));
       searchResultsDispatch(setNoResultsState(true));
       console.log('master search api rejection', err);

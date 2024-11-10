@@ -2,7 +2,6 @@ import * as React from 'react';
 import { BopIconBlack } from '../svg/BopIconBlack';
 import { BopIconWhite } from '../svg/BopIconWhite';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { History } from 'history';
 import { SearchComponent } from './SearchComponent';
 import { Loader } from '../components/Loader';
 import { SearchResultsContext } from '../store/searchResults/Context';
@@ -12,10 +11,10 @@ import { SearchResultsActions } from '../store/searchResults/Actions';
 
 const renderSearchComponent = (isExpanded: boolean) => isExpanded ? <SearchComponent /> : null
 
-const renderNavLinks = (dispatch: React.Dispatch<SearchResultsActions>, history: History) => {
-
-    const onNavItemClick = (tabName: string) => history.push('/' + tabName.toLowerCase());
-    const navLinksStyle = history.location.pathname.includes('home') ? 'nav_links' : 'nav_links white'
+const NavLinks = (navigate: any) => {
+    const location = useLocation();
+    const onNavItemClick = (tabName: string) => navigate('/' + tabName.toLowerCase());
+    const navLinksStyle = location.pathname.includes('home') ? 'nav_links' : 'nav_links white'
     return (
         <div className="navigation">
             <input type="checkbox" className="navigation_checkbox" id="navi-toggle" name="checkbox" />
@@ -55,22 +54,22 @@ const renderBanner = (displayText: string, imageUrl: string) => (
 )
 
 export const Header = () => {
-    let history = useNavigate();
-    let location = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
     const isExpanded = location.pathname.includes('search') || location.pathname.includes('concerts') || location.pathname.includes('sports') || location.pathname.includes('festivals') || location.pathname.includes('theatre');
     const headerContainerStyle = isExpanded ? 'wavy white-text' : 'white-background black-text';
-    const iconStyles = (mainClass: string) => history.location.pathname.includes('home') ? `${mainClass}` : `${mainClass} ${mainClass}-white`
+    // const iconStyles = (mainClass: string) => history.location.pathname.includes('home') ? `${mainClass}` : `${mainClass} ${mainClass}-white`
     const { searchResultsState, searchResultsDispatch } = React.useContext(SearchResultsContext);
     return (
         <div className={headerContainerStyle}>
             <header className="header">
                 <div className="header_content">
-                    <div className="bop-logo_container" onClick={() => history.push('/home')}>
+                    <div className="bop-logo_container" onClick={() => navigate('/home')}>
                         {location.pathname.includes('home') ? <BopIconBlack className={"bop-logo_icon"} /> : <BopIconWhite className='bop-logo_icon' />}
                     </div>
                     <nav className="header_nav-bar">
                         {renderSearchComponent(isExpanded)}
-                        {renderNavLinks(searchResultsDispatch, history)}
+                        {<NavLinks navigate={navigate}/>}
                     </nav>
                     {/* <span className="header_icons"> */}
                         {/* <User className={iconStyles('fa-user')}/> */}

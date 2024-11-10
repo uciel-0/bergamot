@@ -6,7 +6,12 @@ import {loaderReducer, initialLoaderState} from './loader/Reducers';
 import {LocationContext} from './location/Context';
 import {locationReducer, initialLocationState} from './location/Reducer';
 // component which will house all the necessary contexts 
-const Store: React.FunctionComponent = ({children}) => {
+
+interface StoreProps {
+  children: string;
+}
+
+const Store: React.FC<StoreProps> = ({children}) => {
   const [searchResultsState, searchResultsDispatch] = React.useReducer(searchResultsReducer, initialSearchResultsState);
   const [loaderState, loaderDispatch] = React.useReducer(loaderReducer, initialLoaderState);
   const [locationState, locationDispatch] = React.useReducer(locationReducer, initialLocationState);

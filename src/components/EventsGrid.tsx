@@ -29,7 +29,7 @@ interface EventGridItemProps {
 const EventGridItem = ({event}: EventGridItemProps) => {
     const { loaderDispatch } = React.useContext(LoaderContext);
     const { searchResultsDispatch } = React.useContext(SearchResultsContext);
-    let history = useNavigate();
+    const navigate = useNavigate();
   
     const onSubmit = (e: any, keyword: string) => {
       e.preventDefault();
@@ -44,7 +44,7 @@ const EventGridItem = ({event}: EventGridItemProps) => {
         params: { keyword }
       })
       .then((res) => {
-        history.push('/search');
+        navigate('/search');
         window.scrollTo(0, 0);
         // set our search result data to the response from the api call
         console.log(res.data, 'res data from search');
@@ -64,7 +64,7 @@ const EventGridItem = ({event}: EventGridItemProps) => {
         searchResultsDispatch(setNoResultsState(false));
       })
       .catch((err) => {
-        history.push('/search');
+        navigate('/search');
         searchResultsDispatch(setLastQuery(keyword));
         loaderDispatch(setLoaderState(false));
         searchResultsDispatch(setNoResultsState(true));

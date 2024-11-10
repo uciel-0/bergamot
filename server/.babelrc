@@ -2,13 +2,10 @@
     "presets": [
       [
         "@babel/preset-env", {
-          "targets": {
-            "useBuiltIns": "entry",
-            "corejs": "3.22",
-            "node": "current",
-            "modules": false
-          }
+          "useBuiltIns": "entry",
+          "corejs": "3.22"
         }
+        
       ]
     ]
   }

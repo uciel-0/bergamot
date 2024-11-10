@@ -11,7 +11,8 @@ import { SearchResultsActions } from '../store/searchResults/Actions';
 
 const renderSearchComponent = (isExpanded: boolean) => isExpanded ? <SearchComponent /> : null
 
-const NavLinks = (navigate: any) => {
+const NavLinks = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const onNavItemClick = (tabName: string) => navigate('/' + tabName.toLowerCase());
     const navLinksStyle = location.pathname.includes('home') ? 'nav_links' : 'nav_links white'
@@ -69,7 +70,7 @@ export const Header = () => {
                     </div>
                     <nav className="header_nav-bar">
                         {renderSearchComponent(isExpanded)}
-                        {<NavLinks navigate={navigate}/>}
+                        {<NavLinks />}
                     </nav>
                     {/* <span className="header_icons"> */}
                         {/* <User className={iconStyles('fa-user')}/> */}

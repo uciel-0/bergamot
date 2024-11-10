@@ -9,7 +9,7 @@ import { Header } from './features/Header';
 import { ErrorScreen } from './features/ErrorScreen';
 import { Sports } from './features/categories/Sports';
 import { Theatre } from './features/categories/Theatre';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import "react-multi-carousel/lib/styles.css";
 import { Loader } from './components/Loader';
@@ -48,31 +48,16 @@ const App = () => {
     <Router>
       <div className="container">
         <Header />
-        <Switch>
-          <Redirect exact from="/" to="/home" />
-          <Route path="/home">
-            <Loader/>
-            <Home />
-          </Route>
-          <Route path="/concerts">
-            <Concerts />
-          </Route>
-          <Route path="/sports">
-            <Sports />
-          </Route>
-          <Route path="/festivals">
-            <Festivals />
-          </Route>
-          <Route path="/theatre">
-            <Theatre />
-          </Route>
-          <Route path="/search">
-            <Results />
-          </Route>
-          <Route path="/error">
-            <ErrorScreen />
-          </Route>
-        </Switch>
+        <Routes>
+          <Navigate exact from="/" to="/home" />
+          <Route path="/home" element={<><Loader/><Home /></>}></Route>
+          <Route path="/concerts" element={<Concerts />}></Route>
+          <Route path="/sports" element={<Sports />}></Route>
+          <Route path="/festivals" element={<Festivals />}></Route>
+          <Route path="/theatre" element={<Theatre />}></Route>
+          <Route path="/search" element={<Results />}></Route>
+          <Route path="/error" element={<ErrorScreen />}></Route>
+        </Routes>
         <Footer />
       </div>
     </Router>

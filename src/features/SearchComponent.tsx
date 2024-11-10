@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SearchResultsContext } from '../store/searchResults/Context';
 import { LoaderContext } from '../store/loader/Context';
 import { LocationContext } from '../store/location/Context';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   setAllEventsAndEventsNearYou,
   setBulkFilterAction,
@@ -35,7 +35,7 @@ export const SearchComponent = () => {
   const { locationState } = React.useContext(LocationContext);
 
   const today = moment().startOf('day').format();
-  let history = useHistory();
+  let history = useNavigate();
   let location = useLocation();
 
   React.useEffect(() => {

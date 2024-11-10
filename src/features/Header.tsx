@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BopIconBlack } from '../svg/BopIconBlack';
 import { BopIconWhite } from '../svg/BopIconWhite';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { History } from 'history';
 import { SearchComponent } from './SearchComponent';
 import { Loader } from '../components/Loader';
@@ -55,7 +55,7 @@ const renderBanner = (displayText: string, imageUrl: string) => (
 )
 
 export const Header = () => {
-    let history = useHistory();
+    let history = useNavigate();
     let location = useLocation();
     const isExpanded = location.pathname.includes('search') || location.pathname.includes('concerts') || location.pathname.includes('sports') || location.pathname.includes('festivals') || location.pathname.includes('theatre');
     const headerContainerStyle = isExpanded ? 'wavy white-text' : 'white-background black-text';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { setLastQuery } from '../store/searchResults/Actions';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {setLoaderState} from '../store/loader/Actions';
 import {
   setAllEventsAndEventsNearYou,
@@ -29,7 +29,7 @@ interface EventGridItemProps {
 const EventGridItem = ({event}: EventGridItemProps) => {
     const { loaderDispatch } = React.useContext(LoaderContext);
     const { searchResultsDispatch } = React.useContext(SearchResultsContext);
-    let history = useHistory();
+    let history = useNavigate();
   
     const onSubmit = (e: any, keyword: string) => {
       e.preventDefault();

@@ -17,10 +17,10 @@ import {
 } from '../store/searchResults/Actions';
 import { setLoaderState } from '../store/loader/Actions';
 import { MagnifyingGlass } from '../svg/MagnifyingGlass';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+import { DatePicker, MuiPickersUtilsProvider } from '@mui/x-date-pickers';
+import { MaterialUiPickersDate } from '@mui/x-date-pickers/typings/date';
 import { CheckboxShading, SortType } from '../store/searchResults/Reducer';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import moment, { Moment } from 'moment';
 

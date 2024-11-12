@@ -33,6 +33,7 @@ const EventGridItem = ({event}: EventGridItemProps) => {
   
     const onSubmit = (e: any, keyword: string) => {
       e.preventDefault();
+      loaderDispatch(setLoaderState(true));
       searchResultsDispatch(setLastQuery(keyword));
       searchResultsDispatch(setIsStableAction(false));
       searchResultsDispatch(setBulkFilterAction(CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, CheckboxShading.GREYED, [], [], [], []));

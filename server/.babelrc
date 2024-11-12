@@ -5,7 +5,6 @@
           "useBuiltIns": "entry",
           "corejs": "3.22"
         }
-        
       ]
     ]
   }

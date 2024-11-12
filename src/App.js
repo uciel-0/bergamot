@@ -16,17 +16,29 @@ import { Loader } from './components/Loader';
 import { LocationContext } from './store/location/Context';
 import { setLocationStateAction } from './store/location/Actions';
 import { Outlet } from 'react-router-dom';
+import {ThemeProvider, createMuiTheme, makeStyles } from '@mui/material/styles';
+
+const theme = createMuiTheme();
+
+// TODO: move one level down
+// const useStyles = makeStyles((theme) => {
+//   root : {
+//   }
+// })
 
 const Root = () => <>
-  <Header/>
-    <Outlet/>
-  <Footer/>
+  <ThemeProvider theme={theme}>
+    <Header/>
+    <Loader/>
+      <Outlet/>
+    <Footer/>
+  </ThemeProvider>
 </>
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Root/>}>
-      <Route path="home" element={<><Loader/><Home/></>}></Route>
+      <Route path="home" element={<Home/>}></Route>
       <Route path="concerts" element={<Concerts />}></Route>
       <Route path="sports" element={<Sports />}></Route>
       <Route path="festivals" element={<Festivals />}></Route>

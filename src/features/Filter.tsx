@@ -17,10 +17,10 @@ import {
 import { SearchResultsContext } from '../store/searchResults/Context';
 import { LoaderContext } from '../store/loader/Context';
 import { setLoaderState } from '../store/loader/Actions';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Slider from '@material-ui/core/Slider';
-import Switch from '@material-ui/core/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Slider from '@mui/material/Slider';
+import Switch from '@mui/material/Switch';
 import { Moment } from 'moment';
 import {CheckboxShading} from '../store/searchResults/Reducer';
 

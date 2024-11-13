@@ -17,24 +17,21 @@ import {
 } from '../store/searchResults/Actions';
 import { setLoaderState } from '../store/loader/Actions';
 import { MagnifyingGlass } from '../svg/MagnifyingGlass';
-import { DatePicker, MuiPickersUtilsProvider } from '@mui/x-date-pickers';
-import { MaterialUiPickersDate } from '@mui/x-date-pickers/typings/date';
+import { DatePicker } from '@mui/x-date-pickers';
 import { CheckboxShading, SortType } from '../store/searchResults/Reducer';
-import Grid from '@mui/material/Grid';
-import DateFnsUtils from '@date-io/date-fns';
 import moment, { Moment } from 'moment';
 
 export const SearchComponent = () => {
   const [formValue, setFormValue] = React.useState<string>('');
-  const [dateRangeState, setDateRangeState] = React.useState<(Moment | string | null)[]>([null, null]);
-  const [startDateMaxValue, setStartDateMaxValue] = React.useState<string>('');
-  const [endDateMinValue, setEndDateMinValue] = React.useState<string>('');
+  const [dateRangeState, setDateRangeState] = React.useState<(Moment)[]>([]);
+  const [startDateMaxValue, setStartDateMaxValue] = React.useState<Moment>();
+  const [endDateMinValue, setEndDateMinValue] = React.useState<Moment>();
   const [searchEnabled, setSearchEnabled] = React.useState<boolean>(true);
   const { searchResultsDispatch } = React.useContext(SearchResultsContext);
   const { loaderDispatch } = React.useContext(LoaderContext);
   const { locationState } = React.useContext(LocationContext);
 
-  const today = moment().startOf('day').format();
+  const today = moment().startOf('day')
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -52,14 +49,14 @@ export const SearchComponent = () => {
     }
   }, [location]);
 
-  const handleStartDateSelect = (newStartDate: MaterialUiPickersDate) => {
-    const formattedStartDate = moment(newStartDate).startOf('day').format();
+  const handleStartDateSelect = (newStartDate: any) => {
+    const formattedStartDate = moment(newStartDate).startOf('day');
     setDateRangeState([formattedStartDate, dateRangeState[1]]);
     setEndDateMinValue(formattedStartDate);
   }
 
-  const handleEndDateSelect = (newEndDate: MaterialUiPickersDate) => {
-    const formattedEndDate = moment(newEndDate).endOf('day').format();
+  const handleEndDateSelect = (newEndDate: any) => {
+    const formattedEndDate = moment(newEndDate).endOf('day');
     setDateRangeState([dateRangeState[0], formattedEndDate]);
     setStartDateMaxValue(formattedEndDate);
   }
@@ -150,33 +147,23 @@ export const SearchComponent = () => {
           onChange={(e) => setFormValue(e.target.value)}
         />
         <div className={datePickerContainerStyle}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container>
-              <DatePicker
-                minDate={today}
-                maxDate={startDateMaxValue}
-                value={dateRangeState[0]}
-                onChange={(newStartDate: MaterialUiPickersDate) => handleStartDateSelect(newStartDate)}
-                variant="inline"
-                format="MMM, d, yyyy"
-                disableToolbar
-                disablePast
-                autoOk
-                emptyLabel={"From"}
-              />
-              <DatePicker
-                minDate={endDateMinValue}
-                value={dateRangeState[1]}
-                onChange={(newEndDate: MaterialUiPickersDate) => handleEndDateSelect(newEndDate)}
-                variant="inline"
-                format="MMM, d, yyyy"
-                disableToolbar
-                disablePast
-                autoOk
-                emptyLabel={"To"}
-              />
-            </Grid>
-          </MuiPickersUtilsProvider>
+
+          <DatePicker
+            minDate={today}
+            maxDate={startDateMaxValue}
+            value={dateRangeState[0]}
+            onChange={(event, newStartDate) => handleStartDateSelect(newStartDate)}
+            format="MMM, d, yyyy"
+            disablePast
+          />
+          <DatePicker
+            minDate={endDateMinValue}
+            value={dateRangeState[1]}
+            onChange={(event, newEndDate) => handleEndDateSelect(newEndDate)}
+            format="MMM, d, yyyy"
+            disablePast
+          />
+
         </div>
         {location.pathname !== '/home' ? <div className="fake-element"/> : null}
       </form>

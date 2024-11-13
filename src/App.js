@@ -17,6 +17,8 @@ import { LocationContext } from './store/location/Context';
 import { setLocationStateAction } from './store/location/Actions';
 import { Outlet } from 'react-router-dom';
 import {ThemeProvider, createMuiTheme, makeStyles } from '@mui/material/styles';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 const theme = createMuiTheme();
 
@@ -28,10 +30,12 @@ const theme = createMuiTheme();
 
 const Root = () => <>
   <ThemeProvider theme={theme}>
-    <Header/>
-    <Loader/>
-      <Outlet/>
-    <Footer/>
+    <LocalizationProvider dateAdapter={AdapterMoment}>
+      <Header/>
+      <Loader/>
+        <Outlet/>
+      <Footer/>
+    </LocalizationProvider>
   </ThemeProvider>
 </>
 

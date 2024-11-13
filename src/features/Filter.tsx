@@ -321,7 +321,7 @@ export const Filter = () => {
             value={priceRangeState}
             min={maxMinPriceRange[0]}
             max={maxMinPriceRange[1]}
-            onChange={(event: React.ChangeEvent<{}>, values: any) => handleSliderChange(event, values)}
+            onChange={(event: any, values: any) => handleSliderChange(event, values)}
             onChangeCommitted={() => callCacheForFiltering(true, false, false, false)}
             // valueLabelFormat={(x) => '$' + x.toLocaleString()}
             className="Filter_priceSlider"

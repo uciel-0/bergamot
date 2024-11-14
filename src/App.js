@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/main.css';
+import './sass/main.scss';
 import { Results } from './features/Results';
 import { Home } from './features/Home';
 import { Concerts } from './features/categories/Concerts';

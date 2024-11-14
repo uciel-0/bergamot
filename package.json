@@ -6,6 +6,7 @@
     "@babel/cli": "^7.25.9",
     "@babel/core": "^7.26.0",
     "@babel/node": "^7.26.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.26.0",
     "@brainhubeu/react-carousel": "^2.0.4",
     "@date-io/date-fns": "^3.0.0",
@@ -49,7 +50,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "compile:sass": "node-sass ./src/sass/main.scss ./src/css/main.css -w"
+    "compile:sass": "sass src/sass:src/css --watch --no-source-map"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -67,6 +68,7 @@
     ]
   },
   "devDependencies": {
-    "@types/brainhubeu__react-carousel": "^2.0.2"
+    "@types/brainhubeu__react-carousel": "^2.0.2",
+    "sass": "^1.80.7"
   }
 }

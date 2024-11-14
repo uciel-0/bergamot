@@ -22,8 +22,9 @@ import { CheckboxShading, SortType } from '../store/searchResults/Reducer';
 import moment, { Moment } from 'moment';
 
 export const SearchComponent = () => {
+  const today = moment().startOf('day');
   const [formValue, setFormValue] = React.useState<string>('');
-  const [dateRangeState, setDateRangeState] = React.useState<(Moment)[]>([]);
+  const [dateRangeState, setDateRangeState] = React.useState<(Moment|null)[]>([null, null]);
   const [startDateMaxValue, setStartDateMaxValue] = React.useState<Moment>();
   const [endDateMinValue, setEndDateMinValue] = React.useState<Moment>();
   const [searchEnabled, setSearchEnabled] = React.useState<boolean>(true);
@@ -31,7 +32,6 @@ export const SearchComponent = () => {
   const { loaderDispatch } = React.useContext(LoaderContext);
   const { locationState } = React.useContext(LocationContext);
 
-  const today = moment().startOf('day')
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -82,8 +82,8 @@ export const SearchComponent = () => {
     axios.get('http://localhost:8080/api/search/events', {
       params: {
         keyword: formValue,
-        startDate: dateRangeState[0],
-        endDate: dateRangeState[1],
+        startDate: dateRangeState[0]?.format(),
+        endDate: dateRangeState[1]?.format(),
         lat: locationState.location.lat,
         long: locationState.location.long,
         city: locationState.location.city,
@@ -152,20 +152,18 @@ export const SearchComponent = () => {
             minDate={today}
             maxDate={startDateMaxValue}
             value={dateRangeState[0]}
-            onChange={(event, newStartDate) => handleStartDateSelect(newStartDate)}
-            format="MMM, d, yyyy"
+            onChange={(newStartDate) => handleStartDateSelect(newStartDate)}
             disablePast
           />
           <DatePicker
             minDate={endDateMinValue}
             value={dateRangeState[1]}
-            onChange={(event, newEndDate) => handleEndDateSelect(newEndDate)}
-            format="MMM, d, yyyy"
+            onChange={(newEndDate) => handleEndDateSelect(newEndDate)}
             disablePast
           />
 
         </div>
-        {location.pathname !== '/home' ? <div className="fake-element"/> : null}
+        {/* {location.pathname !== '/home' ? <div className="fake-element"/> : null} */}
       </form>
     </React.Fragment>
   )
